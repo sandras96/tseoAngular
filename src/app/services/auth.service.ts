@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 const jwtHelper = new JwtHelperService();
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
+const AUTH_API = 'https://localhost:8080/api/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

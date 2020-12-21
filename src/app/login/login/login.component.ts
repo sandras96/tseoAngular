@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit{
             console.log("ROLES SU" + this.roles)
             let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           
-            this.router.navigate([returnUrl || '/']);
+            this.router.navigate([returnUrl || '/navbar']);
           }
             else  
             this.isLoggedIn = false;
