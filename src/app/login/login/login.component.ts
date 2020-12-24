@@ -24,12 +24,14 @@ export class LoginComponent implements OnInit{
     private tokenStorage : TokenStorageService) { }
 
     ngOnInit() : void {
-      if (this.tokenStorage.getToken()) {
-          this.isLoggedIn = true;
-          this.roles = this.tokenStorage.getUser().roles;
-      }
+    //  if (this.tokenStorage.getToken()) {
+     //     this.isLoggedIn = true;
+     //     this.roles = this.tokenStorage.getUser().roles;
+    //  }
     }
     signIn() {
+      console.log("FUUUUUUUUUU")
+      console.log("form je " +  this.form) 
       this.authService.login(this.form)
         .subscribe(result => { 
           if (result){
@@ -41,11 +43,16 @@ export class LoginComponent implements OnInit{
             this.isLoggedIn = true;
             this.roles = this.tokenStorage.getUser().authorities;
             console.log("ROLES SU" + this.roles)
+
+            //we use snapshot because we're not staying at the same page- login,
+            //we are not have to subscribe to queryParamMap observable
             let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           
             this.router.navigate([returnUrl || '/navbar']);
           }
+         
             else  
+            console.log("staa")
             this.isLoggedIn = false;
             this.isLoginFailed = true;
 

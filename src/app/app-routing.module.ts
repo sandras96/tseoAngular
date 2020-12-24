@@ -1,3 +1,4 @@
+import { LoginGuard } from './services/login-guard.service';
 import { StudentComponent } from './student/student.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
@@ -10,15 +11,15 @@ import { NoAccessComponent } from './no-access/no-access.component';
 import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'navbar', component: NavbarComponent},
-  { path: '', component: LoginComponent },
+  { path: 'home', component: HomeComponent},
+  { path: 'navbar', component: NavbarComponent, canActivate:[AuthGuard]},
+  { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent },
   {
      path: 'admin',
      component: AdminComponent, 
      canActivate: [AuthGuard, AdminAuthGuard]},
-  { path: 'student', component: StudentComponent },
+  { path: 'student', component: StudentComponent},
   { path: 'no-access', component: NoAccessComponent }
 
 

@@ -1,3 +1,5 @@
+import { LoginGuard } from './services/login-guard.service';
+import { TokenStorageService } from './services/token-storage.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
@@ -43,9 +45,12 @@ import { StudentComponent } from './student/student.component';
     NgbCollapseModule
   ],
   providers: [
+    
     AuthService,
+    TokenStorageService,
     AuthGuard,
-    AdminAuthGuard
+    AdminAuthGuard,
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 const jwtHelper = new JwtHelperService();
 
-const AUTH_API = 'https://localhost:8080/api/auth/';
+const AUTH_API = 'http://localhost:8080/api/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,7 +22,7 @@ const httpOptions = {
 })
 export class AuthService {
   private roles: string[];
-
+  loggedInUser = false;
 
   constructor(
     private http : HttpClient,
@@ -30,6 +30,7 @@ export class AuthService {
     ) { }
   
   login(credentials): Observable<any> {
+    console.log("CREDENTIALS SU " + credentials.username + credentials.password)
     return this.http.post(AUTH_API + 'login', {
       username: credentials.username,
       password: credentials.password
@@ -55,31 +56,57 @@ export class AuthService {
 
   
 
-  isLoggedIn() { 
-    
-    let token = localStorage.getItem('token');
+  isLoggedIn() : boolean{ 
+  //  this.loggedInUser = !!this.tokenStorage.getToken();
+    let token = this.tokenStorage.getToken();
     if(!token){
       return false;
     }
+    
     let isExpired = jwtHelper.isTokenExpired(token);
-    console.log("isExpired", isExpired);
-    
+     console.log("isExpired", isExpired);
+    if(isExpired){
+      window.sessionStorage.clear();
+    }
     return !isExpired;
-  }
-
-  get currentUser(){
-    let token = localStorage.getItem('token');
-    if(!token) return null;   
+  //  this.loggedInUser = true;
     
-    return jwtHelper.decodeToken(token);
+    
+    
+
+//  let token = localStorage.getItem('token');
+//   if(!token){
+ //    return false;
+ //  }
+// 
   }
 
-  get currentUserRole(){
-    let token = localStorage.getItem('token');
-    if(!token) return null;   
-    console.log("UsrROLE = " + localStorage.getItem('role'))
-    return localStorage.getItem('role');
+  
+  userRole(): string{
+    if(this.isLoggedIn){
+        const user = this.tokenStorage.getUser();
+        this.roles = user.authorities;
+        if(this.roles.includes('ADMIN')){
+          return 'admin';
+        }
+        if(this.roles.includes('STUDENT')){
+          return 'student';
+        }
+        if(this.roles.includes('PROFESSOR')){
+          return 'professor';
+        }
+    }
   }
+
+
+ // get currentUser(){
+  //  let token = localStorage.getItem('token');
+  //  if(!token) return null;   
+    
+ //   return jwtHelper.decodeToken(token);
+ // }
+
+  
 
   
 

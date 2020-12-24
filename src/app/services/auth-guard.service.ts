@@ -2,20 +2,27 @@ import { TokenStorageService } from './token-storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Token } from '@angular/compiler/src/ml_parser/lexer';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  isLoggedIn = false;
   constructor(
     private router : Router,
     private authService: AuthService,
-    private tokenService: TokenStorageService) { }
+    private tokenStorage: TokenStorageService) { }
 
   canActivate(route, state: RouterStateSnapshot){
-    if(this.tokenService.getUser) return true;
+    console.log("CAN ACTIVATE AUTH GUARD")
+    this.isLoggedIn = this.authService.isLoggedIn();
+    console.log('this.loggedInUser jeee' + this.authService.isLoggedIn())
+    if(this.isLoggedIn){
+      console.log("LOgovan sam"  + this.authService.isLoggedIn())
+      return true;
+    } 
+ //   if(this.tokenService.getUser) return true;
 
     this.router.navigate(['/login'], {queryParams: { returnUrl:state.url }});
     return false;

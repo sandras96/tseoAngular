@@ -3,7 +3,7 @@
   <!-- Sidebar -->
   <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading">Therichpost </div>
-    <div class="list-group list-group-flush" *ngIf="isLoggedIn && this.userRole()=='admin'">
+    <div class="list-group list-group-flush" *ngIf="isLoggedIn && this.userRole=='admin'">
       <a routerLink="/student" class="list-group-item list-group-item-action bg-light">Students</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">admin</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">admin</a>
@@ -11,7 +11,7 @@
       <a href="#" class="list-group-item list-group-item-action bg-light">admin</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">admin</a>
     </div>
-    <div class="list-group list-group-flush" *ngIf="isLoggedIn && this.userRole()=='student'">
+    <div class="list-group list-group-flush" *ngIf="isLoggedIn && this.userRole=='student'">
       <a href="#" class="list-group-item list-group-item-action bg-light">student</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">student</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">student</a>
@@ -48,7 +48,7 @@
               My profile
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" routerLink="/admin" *ngIf="isLoggedIn && this.userRole()=='admin'">Action</a>
+              <a class="dropdown-item" routerLink="/admin" *ngIf="this.userRole=='admin'">Action</a>
               <a class="dropdown-item" href="#">Another action</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>

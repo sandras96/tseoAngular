@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminAuthGuard implements CanActivate {
+  isLoggedIn = false;
+  private roles: string[];
 
   constructor(
     private router : Router,
@@ -16,11 +18,21 @@ export class AdminAuthGuard implements CanActivate {
   ) { }
 
   canActivate(){
-    let user = this.tokenStorage.getUser();
-    if(user && user.authorities=="ADMIN"){
-      return true;
+    console.log("CAN ACTIVATE ADMIN AUTH GUARD")
+    this.isLoggedIn = this.authService.isLoggedIn();
+    
+    if(this.isLoggedIn){
+      const user = this.tokenStorage.getUser();
+      this.roles = user.authorities;
+       if(this.roles.includes("ADMIN")){
+          console.log("aa")
+           return true;
+        }
+        else {
+          console.log("MMMM")
+          this.router.navigate(['/no-access']);
+          return false;
+        }
     }
-    else this.router.navigate(['/no-access']);
-    return false;
   }
 }
