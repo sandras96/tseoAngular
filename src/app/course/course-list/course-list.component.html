@@ -1,0 +1,67 @@
+<div class="list row">
+  <div class="col-md-8">
+  
+  </div>
+  <div class="col-md-6">
+    <h4>courses List</h4>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name course"
+        [(ngModel)]="name"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchName()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <ul class="list-group">
+      
+      <li
+        class="list-group-item"
+        *ngFor="let course of courses; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveCourse(course, i)"
+      >
+        {{ course.name }}
+      </li>
+    </ul>
+
+  
+  </div>
+  <div class="col-md-4">
+    <div *ngIf="currentCourse">
+      <h4>Tutorial</h4>
+      <div>
+        <label><strong>ID:</strong></label> {{ currentCourse.id }}
+      </div>
+      <div>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentCourse.name }}
+      </div>
+      <div>
+        <label><strong>ESPB:</strong></label>
+        {{ currentCourse.espb }}
+      </div>
+      <div>
+        <label><strong>SEMESTER</strong></label>
+        {{ currentCourse.semester}}
+      </div>
+
+      <a class="badge badge-warning" routerLink="/courses/{{ currentCourse.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentCourse">
+      <br />
+      <p>Please click on a Tutorial...</p>
+    </div>
+  </div>
+</div>

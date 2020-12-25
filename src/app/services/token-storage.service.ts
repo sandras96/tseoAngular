@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { JwtHelperService } from '@auth0/angular-jwt';
-
-const jwtHelper = new JwtHelperService();
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 
@@ -34,6 +31,4 @@ export class TokenStorageService {
   public getUser(): any {
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
-
- 
- }
+}

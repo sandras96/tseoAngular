@@ -2,6 +2,7 @@ import { TokenStorageService } from './../../services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'login',
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit{
 
   form: any = {};
+  public user : User;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit{
     signIn() {
       console.log("FUUUUUUUUUU")
       console.log("form je " +  this.form) 
+    
       this.authService.login(this.form)
         .subscribe(result => { 
           if (result){

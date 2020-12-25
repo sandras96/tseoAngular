@@ -7,9 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from  '@ng-bootstrap/ng-bootstrap';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
-
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login/login.component';
@@ -19,6 +19,12 @@ import { AdminComponent } from './admin/admin.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StudentComponent } from './student/student.component';
+import { AddCourseComponent } from './course/add-course/add-course.component';
+import { CourseDetailsComponent } from './course/course-details/course-details.component';
+import { CourseListComponent } from './course/course-list/course-list.component';
+import { UpdateCourseComponent } from './course/update-course/update-course.component';
+
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 
 
 @NgModule({
@@ -29,7 +35,11 @@ import { StudentComponent } from './student/student.component';
     AdminComponent,
     NoAccessComponent,
     NavbarComponent,
-    StudentComponent
+    StudentComponent,
+    AddCourseComponent,
+    CourseDetailsComponent,
+    CourseListComponent,
+    UpdateCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +47,9 @@ import { StudentComponent } from './student/student.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+   
+    
 
   ],
   exports:[
@@ -47,6 +59,7 @@ import { StudentComponent } from './student/student.component';
   providers: [
     
     AuthService,
+    authInterceptorProviders,
     TokenStorageService,
     AuthGuard,
     AdminAuthGuard,
