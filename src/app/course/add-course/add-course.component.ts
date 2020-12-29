@@ -23,6 +23,7 @@ export class AddCourseComponent implements OnInit {
   newCourse(): void {
     this.submitted = false;
     this.course = new Course();
+  //  getSemester();
   }
 
   save() {
@@ -45,4 +46,8 @@ export class AddCourseComponent implements OnInit {
   goToList(){
     this.router.navigate(['/courses']);
   }
+
+ getSemester(){
+
+ }
 }

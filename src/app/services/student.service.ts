@@ -1,68 +1,42 @@
-import { Student } from './../model/student.model';
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
    
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Student } from '../model/student.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  private apiURL = "http://localhost:8080/api/students";
+  private baseUrl = "http://localhost:8080/api/students";
    
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
   
-  constructor(private httpClient: HttpClient) { }
+  
+  constructor(private http: HttpClient) { }
    
-  getAll(): Observable<Student[]> {
-    return this.httpClient.get<Student[]>(this.apiURL + '/all')
-    .pipe(
-      catchError(this.errorHandler)
-    )
+  getAll(): Observable<any>{
+    return this.http.get(`${this.baseUrl}/all`);
   }
    
-  create(student): Observable<Student> {
-    return this.httpClient.post<Student>(this.apiURL + '/', JSON.stringify(student), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }  
-   
-  find(id): Observable<Student> {
-    return this.httpClient.get<Student>(this.apiURL + '/' + id)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+  get(student_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/${student_id}`);
+  }
+
+  create(student : Student): Observable<any>{
+    return this.http.post(`${this.baseUrl}`, student);
   }
    
-  update(id, student): Observable<Student> {
-    return this.httpClient.put<Student>(this.apiURL + '/' + id, JSON.stringify(student), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+  update(student_id : number, data) : Observable<any>{
+    return this.http.put(`${this.baseUrl}/${student_id}`, data);
   }
    
-  delete(id){
-    return this.httpClient.delete<Student>(this.apiURL + '/posts/' + id, this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+  delete(student_id : number) : Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${student_id}`);
   }
     
   
-  errorHandler(error) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
- }
+
 }

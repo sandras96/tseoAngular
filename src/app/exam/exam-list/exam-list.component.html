@@ -1,0 +1,59 @@
+<div class="list row">
+    <div class="col-md-8">
+    
+    </div>
+    <div class="col-md-6">
+      <h4>Exams List</h4>
+    
+      <ul class="list-group">
+        
+        <li
+          class="list-group-item"
+          *ngFor="let exam of exams; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveExam(exam, i)"
+        >
+          {{ exam.id }}
+        </li>
+      </ul>
+  
+    
+    </div>
+    <div class="col-md-4" id="details">
+      <div *ngIf="currentExam">
+        <h4>Exam</h4>
+        <div>
+          <label><strong>ID:</strong></label> {{ currentExam.id }}
+        </div>
+        <div>
+        <div>
+          <label><strong>Name:</strong></label> {{ currentExam.name }}
+        </div>
+        <div>
+          <label><strong>ESPB:</strong></label>
+          {{ currentExam.espb }}
+        </div>
+        <div>
+          <label><strong>SEMESTER</strong></label>
+          {{ currentExam.semester}}
+        </div>
+        <div>
+         
+  
+        <a class="badge badge-warning" routerLink="/exams/{{ currentExam.id }}">
+          Edit
+        </a>
+      </div>
+      <br/>
+      
+      
+     
+   
+      
+  
+      <div *ngIf="!currentExam">
+        <br />
+        <p>Please click on a Exam...</p>
+      </div>
+    </div>
+  </div>

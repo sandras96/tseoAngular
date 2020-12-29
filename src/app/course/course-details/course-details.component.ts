@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Course } from 'src/app/model/course.model';
+import { Student } from 'src/app/model/student.model';
 import { CourseService } from 'src/app/services/course.service';
 
 @Component({
@@ -13,6 +15,8 @@ export class CourseDetailsComponent implements OnInit {
   course_id : number;
   course : Course;
   currentCourse = null;
+  
+ 
   message = '';
   
   constructor(private route: ActivatedRoute,
@@ -23,18 +27,23 @@ export class CourseDetailsComponent implements OnInit {
     this.course = new Course();
     this.message = '';
     this.getCourse(this.route.snapshot.paramMap.get('id'));
+    
   }
+
+
     getCourse(id): void {
       this.courseService.get(id)
         .subscribe(
           data => {
             this.currentCourse = data;
+            
             console.log(data);
           },
           error => {
             console.log(error);
           });
     }
+    
 
     updateCourse(): void {
       this.courseService.update(this.currentCourse.id, this.currentCourse)

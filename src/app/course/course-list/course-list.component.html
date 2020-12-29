@@ -35,9 +35,9 @@
 
   
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4" id="details">
     <div *ngIf="currentCourse">
-      <h4>Tutorial</h4>
+      <h4>Course</h4>
       <div>
         <label><strong>ID:</strong></label> {{ currentCourse.id }}
       </div>
@@ -53,11 +53,41 @@
         <label><strong>SEMESTER</strong></label>
         {{ currentCourse.semester}}
       </div>
+      <div>
+        <label><strong>Course professors</strong></label>
+       <a *ngFor="let professor of professors ">  {{professor.firstname}},  </a> 
+      </div>
 
       <a class="badge badge-warning" routerLink="/courses/{{ currentCourse.id }}">
         Edit
       </a>
     </div>
+    <br/>
+    
+    
+   
+  <div class="card mb-3">
+    <div class="card-header">Enrollment students</div>
+    <table class="card-body table table-hover table-sm">
+        <thead>
+            <tr>
+              
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Index number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of students">
+                
+                <td>{{student.firstname}}</td>
+                <td>{{student.lastname}}</td>
+                <td>{{student.indexNum}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    
 
     <div *ngIf="!currentCourse">
       <br />

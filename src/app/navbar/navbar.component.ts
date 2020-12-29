@@ -39,10 +39,10 @@ export class NavbarComponent implements OnInit {
      
     }
 
-   $("#menu-toggle").on("click",function(e) {
-      e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
+  // $("#menu-toggle").on("click",function(e) {
+  //    e.preventDefault();
+ //   $("#wrapper").toggleClass("toggled");
+ // });
   
     }
 

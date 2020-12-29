@@ -3,11 +3,11 @@
     <h4>Course</h4>
     <form>
       <div class="form-group">
-        <label for="title">NAME</label>
+        <label for="name">NAME</label>
         <input
           type="text"
           class="form-control"
-          id="title"
+          id="name"
           [(ngModel)]="currentCourse.name"
           name="name"
         />
@@ -17,24 +17,27 @@
         <input
           type="text"
           class="form-control"
-          id="description"
+          id="espb"
           [(ngModel)]="currentCourse.espb"
           name="espb"
         />
       </div>
       <div class="form-group">
-        <label for="description">semester</label>
-        <input
-          type="text"
-          class="form-control"
-          id="description"
-          [(ngModel)]="currentCourse.semester"
-          name="semester"
-        />
+        <label for="semester">semester</label>
+       
+        
+        <select  class="form-control" id="semester2" required [(ngModel)]="currentCourse.semester" name="semester">
+          
+          <option value="WINTER">WINTER</option>
+          <option value="SUMMER">SUMMER</option>
+        </select>
       </div>
+      
 
       
     </form>
+    
+
 
    
 

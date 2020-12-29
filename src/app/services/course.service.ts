@@ -18,7 +18,7 @@ export class CourseService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any>{
-    return this.http.get(`${this.baseUrl}`);
+    return this.http.get(`${this.baseUrl}/all`);
   }
 
   get(course_id : number) : Observable<any>{
@@ -39,6 +39,10 @@ export class CourseService {
 
   findByName(name): Observable<any> {
     return this.http.get(`${this.baseUrl}/searchByName/${name}`);
+  }
+
+  getStudents(course_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/student/course/${course_id}`);
   }
 
 }
