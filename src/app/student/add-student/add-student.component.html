@@ -1,1 +1,234 @@
-<p>add-student works!</p>
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="view-account">
+      <!--  <section class="module">-->
+          <!--  <div class="module-inner">-->
+               
+
+                <div class="content-panel">
+                    <div class="content-header-wrapper">
+                        <h2 class="title" for="title">Create new student</h2>
+                     <!--  <div class="actions">
+                            <button class="btn btn-success"><i class="fa fa-plus"></i> Upload New Item</button>
+                        </div>--> 
+                    </div>
+            
+
+            
+                    <div class="profile-detail">
+                             
+                                       
+                            
+                      <div class="row">
+                            <div class="rover-primary-col rover-single-col col-center
+                                col-md-10 col-lg-7 margin-top-x5">
+                                <div class="rover-primary-content-block">
+                                    <form
+                                    class="js-account-info-form" (ngSubmit)="onSubmit()" >
+                                        <div class="row margin-top-x4">
+                                            <div class="form-group col-lg-12">
+                                                <label for="firstname">Firstname:</label>
+                                                <input type="text" class="form-control" name="firstname"
+                                                 id="firstname" name="firstname"  required [(ngModel)]="student.firstname"/>
+                                                 <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="lastname">Lastname</label>
+                                                           
+                                                            <input class="form-control" id="lastname" [(ngModel)]="student.lastname"
+                                                                name="lastname" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="indexNum">Index number</label>
+                                                           
+                                                            <input class="form-control" id="indexNum" [(ngModel)]="student.indexNum"
+                                                                name="indexNum" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+
+                                                <div class="controls ">
+                                                    <div class="row birthdate-widget">
+                                                        <div class="col-4">
+                                                            <label for="birthdate">Birthdate</label>
+                                                           <input type="date" class="date" id="birthdate" 
+                                                           name="birthdate" [(ngModel)]="student.birthdate" />
+                                                        </div>
+                                                        <div class="col-4">
+                                                  
+                                                        </div>
+                                                        <div class="col-4">
+                                                  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="address">Address</label>
+                                                           
+                                                            <input class="form-control" id="address" [(ngModel)]="student.address"
+                                                                 name="address"
+                                                                type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" split="[4, 4, 4]">
+                                                    <div class="col-md-4">
+                                                        <div id="city" class="form-group">
+                                                            <label for="city" class="form-control-label">City
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="city"
+                                                               name="city" type="text" [(ngModel)]="student.city"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div id="country" class="form-group">
+                                                            <label for="country" class="form-control-label">Country
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="country"
+                                                                name="country" type="text" [(ngModel)]="student.country"/>
+                                                                   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div id="zip" class="form-group">
+                                                            <label for="zip" class="form-control-label">ZIP
+                                                            </label>
+                                                            <input class="form-control" id="zip"
+                                                                name="zip" type="text" [(ngModel)]="student.zip"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="phone">Phone</label>
+                                                           
+                                                            <input class="form-control" id="phone" [(ngModel)]="student.phone"
+                                                                name="phone" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="email">Email</label>
+                                                           
+                                                            <input class="form-control" id="email" [(ngModel)]="student.email"
+                                                                name="email" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                     
+                                       
+                                        <div class="row">
+                                            <div class="col-lg-12" >
+                                                <div class="account-profile-section-header">
+                                                     <h3>User Information</h3>
+                                                    <p class="body-text text-muted">We won't share or display this on your profile.</p>
+                                                </div>
+                                                <input type="hidden" name="username" 
+                                                />
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="username" class="form-group">
+                                                            <label for="username" class="form-control-label">Username
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="username"
+                                                                name="username" type="text"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="password" class="form-group">
+                                                            <label for="password" class="form-control-label">Password
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="password"
+                                                                name="password" type="password" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="role"class="form-group">
+                                                            <label for="role">Role</label>
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item">
+                                                                  <!-- Default checked -->
+                                                                  <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="check1">
+                                                                    <label class="custom-control-label" for="check1">ADMIN</label>
+                                                                  </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                  <!-- Default checked -->
+                                                                  <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="check2" checked disabled>
+                                                                    <label class="custom-control-label" for="check2">STUDENT</label>
+                                                                  </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                  <!-- Default checked -->
+                                                                 
+                                                                </li>
+                                                               
+                                                              </ul>
+                                                            
+    
+                                            
+                                                              
+                                                              
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                    <div class="padding-top-x5">
+                                        <div class="padding-top-x5">
+                                            <div class="text-center">
+                                                <button type="submit" class="badge badge-success">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      
+                    </div>
+                    </div>
+                </div>
+            <!--</div> -->
+        <!--</section>-->
+    </div>
+</div>

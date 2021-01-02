@@ -1,0 +1,11 @@
+<div *ngIf="professor">  
+    Firstname: {{professor.firstname}}  
+    <br/>  
+    Lastname: {{professor.lastname}}  
+    <br/>  
+    ID: {{professor.id}} 
+    <br/>
+    <a class="badge badge-warning" routerLink="/professors/{{ professor.id }}">
+        View more
+      </a>
+</div> 

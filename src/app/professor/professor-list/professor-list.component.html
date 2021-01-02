@@ -1,0 +1,12 @@
+<h4>Professors</h4>  
+<table class="table table-striped">  
+  <tr>  
+    <th>Firstname</th>  
+    <th>Lastname</th>  
+  </tr>  
+  <tr *ngFor="let professor of professors" (click)="selectProfessor(professor)">  
+    <td>{{ professor.firstname }}</td>  
+    <td>{{ professor.lastname }}</td>  
+  </tr>  
+</table>  
+<br /> 

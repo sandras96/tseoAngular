@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { StudentService } from './../../services/student.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Student } from 'src/app/model/student.model';
 import { UserService } from 'src/app/services/user.service';
 import { DocumentService } from 'src/app/services/document.service';
@@ -14,8 +14,9 @@ import { User } from 'src/app/model/user.model';
 })
 export class StudentDetailsComponent implements OnInit {
 
+  @Input() student : Student;
   student_id : number;
-  student : Student;
+  
   currentStudent = null;
   currentUser : User = null;
   documents : Observable<Document[]>

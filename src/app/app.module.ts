@@ -5,8 +5,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from  '@ng-bootstrap/ng-bootstrap';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { CommonModule } from '@angular/common';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -25,13 +24,25 @@ import { UpdateCourseComponent } from './course/update-course/update-course.comp
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { NavigationComponent } from './navigation/navigation.component';
-import { AddProfessorComponent } from './professor/add-professor/add-professor.component';
 import { ExamListComponent } from './exam/exam-list/exam-list.component';
 import { AddStudentComponent } from './student/add-student/add-student.component';
 import { StudentDetailsComponent } from './student/student-details/student-details.component';
 import { StudentListComponent } from './student/student-list/student-list.component';
 import { UserDocumentsComponent } from './document/user-documents/user-documents.component';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { NavStudentComponent } from './student/student-details/nav-student/nav-student/nav-student.component';
+import { DocumentStudentComponent } from './student/student-details/documents-student/document-student/document-student.component';
+import { ProfileStudentComponent } from './student/student-details/profile-student/profile-student/profile-student.component';
+import { PaymentStudentComponent } from './student/student-details/payment-student/payment-student/payment-student.component';
+import { NgxPaginationModule} from 'ngx-pagination';
+import { ProfessorComponent } from './professor/professor/professor.component';
+import { ProfessorListComponent } from './professor/professor-list/professor-list.component';
+import { ProfessorDetailComponent } from './professor/professor-detail/professor-detail.component';
+import { StudentComponent } from './student/student/student.component';
+import { ProfessorViewComponent } from './professor/professor-view/professor-view.component';
+import { ProfessorProfileComponent } from './professor/professor-profile/professor-profile.component';
+import { ProfessorCoursesComponent } from './professor/professor-courses/professor-courses.component';
+import { ProfessorExamsComponent } from './professor/professor-exams/professor-exams.component';
 
 
 @NgModule({
@@ -47,29 +58,37 @@ import { UserListComponent } from './user/user-list/user-list.component';
     CourseListComponent,
     UpdateCourseComponent,
     NavigationComponent,
-    AddProfessorComponent,
     ExamListComponent,
     AddStudentComponent,
     StudentDetailsComponent,
     StudentListComponent,
     UserDocumentsComponent,
-    UserListComponent
+    UserListComponent,
+    NavStudentComponent,
+    DocumentStudentComponent,
+    ProfileStudentComponent,
+    PaymentStudentComponent,
+    ProfessorComponent,
+    ProfessorListComponent,
+    ProfessorDetailComponent,
+    StudentComponent,
+    ProfessorViewComponent,
+    ProfessorProfileComponent,
+    ProfessorCoursesComponent,
+    ProfessorExamsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule,
-    NgbCollapseModule,
+    
+    NgxPaginationModule
    
     
 
   ],
-  exports:[
-    NgbModule,
-    NgbCollapseModule
-  ],
+  exports:[],
   providers: [
     
     AuthService,

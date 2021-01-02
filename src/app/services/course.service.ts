@@ -17,8 +17,8 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/all`);
+  getAll(params): Observable<any>{
+    return this.http.get(`${this.baseUrl}/all`, {params});
   }
 
   get(course_id : number) : Observable<any>{
@@ -45,6 +45,7 @@ export class CourseService {
     return this.http.get(`${this.baseUrl}/student/course/${course_id}`);
   }
 
+  
 }
 
 

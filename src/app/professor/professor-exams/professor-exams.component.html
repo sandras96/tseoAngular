@@ -1,0 +1,26 @@
+<div class="table-responsive drive-items-table-wrapper">
+                     
+    <table class="table">
+         <thead>
+           
+             <tr>
+               
+                 <th class="name">Mark</th>
+                 <th class="date">Pass</th>
+                 <th class="date">Points</th>
+                
+             </tr>
+         </thead>
+         <tbody>
+            
+          <tr *ngFor="let et of examtakings">
+               
+                 <td class="name"><i class="fa fa-pencil"></i><a href="#">{{et.mark}}</a></td>
+                 <td class="date">{{et.pass}}</td>
+                 <td class="date">{{et.points}}</td>
+               
+             </tr> 
+        
+         </tbody>
+     </table>
+ </div>

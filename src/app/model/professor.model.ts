@@ -2,7 +2,7 @@ import { EnumType } from "typescript";
 
 export class Professor {
 
-    professor_id : number;
+    id : number;
     address : String;
     birthdate: Date;
     city : String;

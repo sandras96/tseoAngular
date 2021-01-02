@@ -1,0 +1,269 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="view-account" *ngIf="currentStudent" >
+        <section class="module">
+            <div class="module-inner">
+                <div class="side-bar">
+                    <div class="user-info">
+                        <img class="img-profile img-circle img-responsive center-block" src="assets\img\icon-user-default.png" alt="">
+                        <ul class="meta list list-unstyled">
+                            <li class="name">{{currentStudent.firstname}}
+                                            
+                                <label class="label label-info">{{currentStudent.lastname}}</label>
+                            </li>
+                            <li class="email">INDEX</li>
+                          
+                        </ul>
+                    </div>
+                    <!-- side navbar-->
+                    <nav class="side-menu">
+                        <ul class="nav" >
+                            <li class="active"><a routerLink="{{student_id}}/profile" id="title"><span class="fa fa-user"></span> Profile</a></li>
+                            <li><a routerLink="./courseattendances"><span class="fa fa-users"></span> Courses</a></li>
+                            <li><a routerLink="./examstakings"><span class="fa fa-pencil"></span> Exam takings</a></li>
+                            <li><a routerLink="./documents"><i class="fa fa-file-text-o"></i> Documents</a></li>
+                            <li><a routerLink="./payments"><span class="fa fa-credit-card"></span> Payments</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- cela desna strana - kontent-->
+                <div class="content-panel">
+                    <div class="content-header-wrapper">
+                        <h2 class="title" for="title">TITLE</h2>
+                     <div class="actions">
+                            <button class="btn btn-success"><i class="fa fa-plus"></i> Upload New Item</button>
+                        </div>
+                    </div>
+            
+
+                 
+                    <div class="profile-detail">
+                       <router-outlet></router-outlet>
+                       <!-- Tabela dokumenata -->
+                        <!--<div class="table-responsive drive-items-table-wrapper">
+                     
+                           <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="type"></th>
+                                        <th class="name truncate">Name</th>
+                                        <th class="date">Uploaded</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    <tr *ngFor="let document of documents">
+                                        <td class="type"><i class="fa fa-file-text-o text-primary"></i></td>
+                                        <td class="name truncate"><a href="#">{{document.name}}</a></td>
+                                        <td class="date">{{document.date}}</td>
+                                      
+                                    </tr>
+                               
+                                </tbody>
+                            </table>
+                        </div>-->
+
+                        <!-- Student podaci-->
+                   <!--   <div class="row">
+                            <div class="rover-primary-col rover-single-col col-center
+                                col-md-10 col-lg-7 margin-top-x5">
+                                <div class="rover-primary-content-block">
+                                    <form
+                                    class="js-account-info-form">
+                                        <div class="row margin-top-x4">
+                                            <div class="form-group col-lg-12">
+                                                <label for="firstname">Firstname:</label>
+                                                <input type="text" class="form-control" name="firstname"
+                                                 id="firstname" [(ngModel)]="currentStudent.user.firstname" name="firstname"
+                                                />
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="indexNum">Index number</label>
+                                                           
+                                                            <input class="form-control" id="indexNum" [(ngModel)]="currentStudent.indexNum"
+                                                                name="indexNum" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="lastname">Lastname</label>
+                                                           
+                                                            <input class="form-control" id="lastname" [(ngModel)]="currentStudent.user.lastname"
+                                                                name="lastname" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="controls ">
+                                                    <div class="row birthdate-widget">
+                                                        <div class="col-4">
+                                                            <label for="birthdate">Birthdate</label>
+                                                           <input type="date" class="date" id="birthdate" 
+                                                           name="birthdate" [(ngModel)]="currentStudent.user.birthdate" />
+                                                        </div>
+                                                        <div class="col-4">
+                                                  
+                                                        </div>
+                                                        <div class="col-4">
+                                                  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="address">Address</label>
+                                                           
+                                                            <input class="form-control" id="address" [(ngModel)]="currentStudent.user.address"
+                                                                 name="address"
+                                                                type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" split="[4, 4, 4]">
+                                                    <div class="col-md-4">
+                                                        <div id="city" class="form-group">
+                                                            <label for="city" class="form-control-label">City
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="city"
+                                                               name="city" type="text" [(ngModel)]="currentStudent.user.city"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div id="country" class="form-group">
+                                                            <label for="country" class="form-control-label">Country
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="country"
+                                                                name="country" type="text" [(ngModel)]="currentStudent.user.country"/>
+                                                                   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div id="zip" class="form-group">
+                                                            <label for="zip" class="form-control-label">ZIP
+                                                            </label>
+                                                            <input class="form-control" id="zip"
+                                                                name="zip" type="text" [(ngModel)]="currentStudent.user.zip"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="phone">Phone</label>
+                                                           
+                                                            <input class="form-control" id="phone" [(ngModel)]="currentStudent.user.phone"
+                                                                name="phone" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="email">Email</label>
+                                                           
+                                                            <input class="form-control" id="email" [(ngModel)]="currentStudent.user.email"
+                                                                name="email" type="text" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="div_id_private_information-birthdate" class="form-group">
+                                                            
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     
+                                       
+                                        <div class="row">
+                                            <div class="col-lg-12" *ngIf="currentUser">
+                                                <div class="account-profile-section-header">
+                                                     <h3>User Information</h3>
+                                                    <p class="body-text text-muted">We won't share or display this on your profile.</p>
+                                                </div>
+                                                <input type="hidden" name="username" 
+                                                />
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="username" class="form-group">
+                                                            <label for="username" class="form-control-label">Username
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="username"
+                                                                name="username" type="text"  [(ngModel)] = "currentUser.username"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="password" class="form-group">
+                                                            <label for="password" class="form-control-label">Password
+                                                            </label>
+                                                            <div class="controls ">
+                                                                <input class="form-control" id="password"
+                                                                name="password" type="password"  [(ngModel)] ="currentUser.password"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="role"class="form-group">
+                                                            <label for="role">Role</label>
+                                                           
+                                                            
+                                                            <select  class="form-control" id="role" name="role">
+                                                              
+                                                              <option value="ADMIN">ADMIN</option>
+                                                              <option value="STUDENT">STUDENT</option>
+                                                              <option value="PROFESSOR">PROFESSOR</option>
+                                                            </select>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                    <div class="padding-top-x5">
+                                        <div class="padding-top-x5">
+                                            <div class="text-center">
+                                                <button type="submit" class="badge badge-success" (click)="updateStudent()">Edit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    
+                    </div>
+                </div>
+        </section>
+    </div>
+</div>

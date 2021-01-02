@@ -34,4 +34,12 @@ export class ProfessorService {
   getAllByCourseId(professor_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/course/${professor_id}`);
   }
+
+  getAllCoursesByProfId(professor_id :number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/profcourse/${professor_id}`);
+  }
+
+  getAllExamTakingsByProfId(professor_id :number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/profExam/${professor_id}`);
+  }
 }

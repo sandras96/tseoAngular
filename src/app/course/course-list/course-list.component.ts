@@ -22,28 +22,93 @@ export class CourseListComponent implements OnInit {
 
   name = '';
 
+  page = 1;
+  count = 0;
+  pageSize = 3;
+  pageSizes = [3, 6, 9];
+
   constructor(private courseService : CourseService,
               private professorService : ProfessorService,
               private router : Router) { }
 
   ngOnInit(): void {
-    this.reloadData();
+    this.retrieveCourses();
+   // this.reloadData();
   }
 
-  reloadData(){
-    this.courseService.getAll()
-    .subscribe(
-      data => {
-        this.courses = data;
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      });
-  
+  getRequestParams(searchName, page, pageSize): any {
+    // tslint:disable-next-line:prefer-const
+    let params = {};
+
+    if (searchName) {
+      params[`name`] = searchName;
+    }
+
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    return params;
   }
+
+  retrieveCourses(): void {
+    const params = this.getRequestParams(this.name, this.page, this.pageSize);
+
+    this.courseService.getAll(params)
+      .subscribe(
+        response => {
+          const { courses, totalItems } = response;
+          this.courses = courses;
+          this.count = totalItems;
+          console.log(response, params, courses);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  handlePageChange(event): void {
+    this.page = event;
+    this.retrieveCourses();
+  }
+
+  handlePageSizeChange(event): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrieveCourses();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // reloadData(){
+ //   this.courseService.getAll()
+ //   .subscribe(
+  //    data => {
+ ///       this.courses = data;
+  //      console.log(data);
+  //    },
+  //    error => {
+  //      console.log(error);
+  //    });
+  
+  //}
   refreshList(): void {
-    this.reloadData();
+  //  this.reloadData();
     this.currentCourse = null;
     this.currentIndex = -1;
   }
@@ -51,8 +116,8 @@ export class CourseListComponent implements OnInit {
  setActiveCourse(course, index): void {  
     this.currentCourse = course;
     this.currentIndex = index;
-    this.getStudents(this.currentCourse.id);
-    this.getProfessors(this.currentCourse.id);
+//    this.getStudents(this.currentCourse.id);
+//    this.getProfessors(this.currentCourse.id);
   }
   getStudents(id){
     this.courseService.getStudents(id)
@@ -85,7 +150,7 @@ export class CourseListComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.reloadData();
+          
         },
         error => console.log(error)
       );
