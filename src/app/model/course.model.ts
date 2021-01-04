@@ -1,7 +1,7 @@
 import { EnumType } from "typescript";
 
 export class Course {
-    course_id : number;
+    id : number;
   //  deleted : boolean;
     espb : number;
     name : string;

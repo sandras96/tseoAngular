@@ -34,7 +34,7 @@ export class StudentDetailsComponent implements OnInit {
     this.message = '';
     this.getStudent(this.route.snapshot.paramMap.get('id'));
     
-    this.getDocuments(this.route.snapshot.paramMap.get('id'));
+ //   this.getDocuments(this.route.snapshot.paramMap.get('id'));
     
   }
 

@@ -41,8 +41,9 @@ export class ProfessorViewComponent implements OnInit {
       .subscribe(
         data =>{
           this.professor = data;
-          this.getUser(data.user.id);
-          console.log(data);
+      //    this.getUser(data.user.id);
+          console.log("HH" + data.user.id);
+          this.getUserAuth(data.user.id);
         },
         error => {
           console.log(error);
@@ -77,14 +78,8 @@ export class ProfessorViewComponent implements OnInit {
       )
   }
 
-  getUser(id){
-    this.userService.get(id)
-      .subscribe(
-        data => {
-          this.user = data;
-          console.log(data.username);
-        }
-      )
+  getUserAuth(id){
+    
   }
 
 onTabClick(index){

@@ -6,5 +6,6 @@ export class User {
     deleted: boolean;
     password : String;
     username: String;
-    authority : Authority[];
+    authorities : Authority[];
+    role : String;
 }

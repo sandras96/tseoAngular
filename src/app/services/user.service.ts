@@ -36,5 +36,9 @@ export class UserService {
   getByStudentId(student_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/student/${student_id}`);
   }
-              
+
+  getAuthoritiesByUser(user_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/authorities/${user_id}`);
+  }
+  
 }

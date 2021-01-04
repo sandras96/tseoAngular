@@ -1,3 +1,4 @@
+
 import { LoginGuard } from './services/login-guard.service';
 import { TokenStorageService } from './services/token-storage.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
@@ -14,7 +15,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddCourseComponent } from './course/add-course/add-course.component';
@@ -23,12 +23,10 @@ import { CourseListComponent } from './course/course-list/course-list.component'
 import { UpdateCourseComponent } from './course/update-course/update-course.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
-import { NavigationComponent } from './navigation/navigation.component';
 import { ExamListComponent } from './exam/exam-list/exam-list.component';
 import { AddStudentComponent } from './student/add-student/add-student.component';
 import { StudentDetailsComponent } from './student/student-details/student-details.component';
 import { StudentListComponent } from './student/student-list/student-list.component';
-import { UserDocumentsComponent } from './document/user-documents/user-documents.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { NavStudentComponent } from './student/student-details/nav-student/nav-student/nav-student.component';
 import { DocumentStudentComponent } from './student/student-details/documents-student/document-student/document-student.component';
@@ -43,6 +41,14 @@ import { ProfessorViewComponent } from './professor/professor-view/professor-vie
 import { ProfessorProfileComponent } from './professor/professor-profile/professor-profile.component';
 import { ProfessorCoursesComponent } from './professor/professor-courses/professor-courses.component';
 import { ProfessorExamsComponent } from './professor/professor-exams/professor-exams.component';
+import { ExamPeriodComponent } from './exam-period/exam-period.component';
+
+
+import { CourseViewComponent } from './course/course-view/course-view.component';
+import { CourseUnitComponent } from './course/course-unit/course-unit.component';
+import { EnrrollmentsComponent } from './course/enrrollments/enrrollments.component';
+import { CourseProfessorsComponent } from './course/course-professors/course-professors.component';
+import { CourseExamsComponent } from './course/course-exams/course-exams.component';
 
 
 @NgModule({
@@ -50,19 +56,16 @@ import { ProfessorExamsComponent } from './professor/professor-exams/professor-e
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AdminComponent,
     NoAccessComponent,
     NavbarComponent,
     AddCourseComponent,
     CourseDetailsComponent,
     CourseListComponent,
     UpdateCourseComponent,
-    NavigationComponent,
     ExamListComponent,
     AddStudentComponent,
     StudentDetailsComponent,
     StudentListComponent,
-    UserDocumentsComponent,
     UserListComponent,
     NavStudentComponent,
     DocumentStudentComponent,
@@ -75,7 +78,14 @@ import { ProfessorExamsComponent } from './professor/professor-exams/professor-e
     ProfessorViewComponent,
     ProfessorProfileComponent,
     ProfessorCoursesComponent,
-    ProfessorExamsComponent
+    ProfessorExamsComponent,
+    ExamPeriodComponent,
+    CourseViewComponent,
+    CourseUnitComponent,
+    EnrrollmentsComponent,
+    CourseProfessorsComponent,
+    CourseExamsComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -83,8 +93,8 @@ import { ProfessorExamsComponent } from './professor/professor-exams/professor-e
     FormsModule,
     HttpClientModule,
     
-    NgxPaginationModule
-   
+    NgxPaginationModule,
+
     
 
   ],
@@ -97,7 +107,9 @@ import { ProfessorExamsComponent } from './professor/professor-exams/professor-e
     AuthGuard,
     AdminAuthGuard,
     LoginGuard
+ 
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

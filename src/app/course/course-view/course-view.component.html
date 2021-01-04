@@ -1,0 +1,14 @@
+<nav>
+    <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" (click)="onTabClick(0)" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Course details</a>
+      <a class="nav-item nav-link" (click)="onTabClick(1)" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Enrollments</a>
+      <a class="nav-item nav-link" (click)="onTabClick(2)" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Course professors</a>
+      <a class="nav-item nav-link" (click)="onTabClick(3)" id="nav-exam-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Exams</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <app-course-unit  *ngIf="tabIndex === 0" [course]= "course"></app-course-unit>
+    <app-course-enrrollments  *ngIf="tabIndex === 1" [courseAttendances]= "courseAttendances" [course]="course"></app-course-enrrollments>
+    <app-course-professors  *ngIf="tabIndex === 2" [professors]= "professors"></app-course-professors>
+    <app-course-exams  *ngIf="tabIndex === 3" [exams]= "exams"></app-course-exams>
+  </div>

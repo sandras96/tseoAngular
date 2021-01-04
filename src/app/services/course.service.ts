@@ -45,6 +45,9 @@ export class CourseService {
     return this.http.get(`${this.baseUrl}/student/course/${course_id}`);
   }
 
+  getExams(course_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/exam/course/${course_id}`);
+  }
   
 }
 

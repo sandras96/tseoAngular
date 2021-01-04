@@ -15,7 +15,7 @@
             
           <tr *ngFor="let course of courses">
                
-                 <td class="name"><i class="fa fa-book"></i><a href="#">   {{course.name}}</a></td>
+                 <td class="name"><i class="fa fa-book"></i><a routerLink="/course-view/{{ course.id }}">   {{course.name}}</a></td>
                  <td class="date">{{course.espb}}</td>
                  <td class="date">{{course.semester}}</td>
                

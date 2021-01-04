@@ -1,0 +1,47 @@
+<div class="row">
+        
+    <div id="unit"class="col-lg-6 col-md-4 ml-auto mr-auto" >
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                     
+                        <th>Students</th>
+                        <th></th>
+                        <th class="text-right">Index number</th>
+                      
+                      <th class="text-right">Actions</th> 
+                    </tr>
+                </thead>
+                <tbody>
+             
+                    <tr  *ngFor="let ca of courseAttendances">
+                        <!-- <td class="text-center">{{ca.id}}</td> -->
+                        <td>{{ca.student.firstname}}</td>
+                        <td>{{ca.student.lastname}}</td>
+                        <td class="text-right">{{ca.student.indexNum}}</td>
+                            <td class="td-actions text-right">
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </td> 
+                    </tr>
+                   
+                </tbody>
+            </table>
+            </div>
+           
+
+            <!-- <div>
+                <div id="role"class="col-md-6 form-group">
+                    <button (click)="addStudent()">Add student</button>
+                   
+                    <select  class="form-control" id="profRole" name="profRole">
+                        
+                        <option value="PROFESSOR">PROFESSOR</option>
+                        <option value="ASSOCIATE">ASSOCIATE</option>
+                        <option value="DEMONSTRATOR">DEMONSTRATOR</option>
+                    </select>
+            </div>
+            </div> --> 
+        </div> 

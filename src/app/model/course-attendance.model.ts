@@ -1,6 +1,7 @@
+import { Student } from 'src/app/model/student.model';
 export class CourseAttendance {
 
-    course_attendance_ide : number;
+    id : number;
     course_id : number;
-    student_id : number;
+    student : Student;
 }

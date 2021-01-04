@@ -1,4 +1,6 @@
-
+.container{
+height: auto;
+}
 body{
     background:#f9f9fb;    
 }
@@ -116,6 +118,7 @@ body{
 
 .view-account .content-panel {
     padding: 30px
+    
 }
 
 .view-account .content-panel .title {

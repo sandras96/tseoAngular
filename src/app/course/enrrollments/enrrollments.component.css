@@ -1,14 +1,4 @@
-/* .list {
-    text-align: left;
-    max-width: 750px;
-    margin: auto;
-  }
-  
-  .ngx-pagination {
-    padding-inline-start: 0 !important;
-  } */
-
-  html *{
+html *{
     -webkit-font-smoothing: antialiased;
     
 }
@@ -224,3 +214,6 @@ small{
 }
 
 
+#unit{
+    padding-top: 20px;
+}

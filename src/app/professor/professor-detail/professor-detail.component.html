@@ -1,4 +1,4 @@
-<div *ngIf="professor">  
+<!-- <div *ngIf="professor">  
     Firstname: {{professor.firstname}}  
     <br/>  
     Lastname: {{professor.lastname}}  
@@ -8,4 +8,38 @@
     <a class="badge badge-warning" routerLink="/professors/{{ professor.id }}">
         View more
       </a>
-</div> 
+</div>  -->
+ <!-- <div class="card border-info mb-3" style="max-width: 18rem;" *ngIf="professor" >
+  <div class="card-header">Professor details</div>
+  <div class="card-body" >
+    <h5 class="card-title"> {{professor.firstname}} {{professor.lastname}}  </h5>
+    <p class="card-text"> {{professor.role}} </p>
+    <p class="card-text">email: {{professor.email}} </p>
+    <p class="card-text">phone: {{professor.phone}} </p>
+  </div>
+  <div class="card-footer bg-transparent border-info text-right"><a type="button" routerLink="/professors/{{ professor.id }}">
+    <i class="material-icons">person</i> View More
+  </a></div>
+  <div class="text-left">
+  <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
+    <i class="material-icons">close</i>
+</button>
+</div>
+</div>  -->
+
+<div class="card" style="width: 18rem;" *ngIf="professor">
+  <div class="card-header">Professor details</div>
+  <div class="card-body">
+   
+    <h4 class="card-subtitle mb-2 ">{{professor.firstname}} {{professor.lastname}}</h4>
+    <h5 class="card-subtitle mb-2 "> {{professor.role}}</h5>
+    <p class="card-text text-muted">email: {{professor.email}} <br/>phone: {{professor.phone}} </p>
+  
+    <div class="card-footer bg-transparent border-info text-right"><a type="button" routerLink="/professors/{{ professor.id }}">
+      View More
+    </a>
+    
+  </div>
+   
+  </div>
+</div>
