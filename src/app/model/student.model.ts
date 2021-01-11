@@ -2,7 +2,7 @@ import { User } from "./user.model";
 
 export class Student {
 
-    student_id : number;
+    id : number;
     address : String;
     birthdate: Date;
     city : String;

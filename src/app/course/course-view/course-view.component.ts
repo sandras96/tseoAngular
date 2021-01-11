@@ -7,6 +7,9 @@ import { CourseAttendanceService } from 'src/app/services/course-attendance.serv
 import { ProfessorService } from 'src/app/services/professor.service';
 import { Professor } from 'src/app/model/professor.model';
 import { Exam } from 'src/app/model/exam.model';
+import { switchMap } from 'rxjs/operators';
+import { Student } from 'src/app/model/student.model';
+
 
 
 @Component({
@@ -17,9 +20,11 @@ import { Exam } from 'src/app/model/exam.model';
 export class CourseViewComponent implements OnInit {
 
   course : Course;
-  courseAttendances : CourseAttendance[];
+  public courseAttendances : CourseAttendance[] = [];
   professors : Professor[];
+  public students : Student[] = [];
   exams : Exam[];
+
 
   tabIndex = 0;
   constructor(private courseService : CourseService,
@@ -64,13 +69,22 @@ export class CourseViewComponent implements OnInit {
       .subscribe(
         data => {
           this.courseAttendances = data;
-          console.log("enrollments " + data);
+          console.log("enrollments " , data);
         }, 
         error => {
           console.log(error)
         }
       )
   }
+  // getEnrollments(id){
+  //     this.courseService.getStudents(id)
+  //       .subscribe(
+  //         data => {
+  //           this.students = data;
+  //           console.log("studenti suu" + data)
+  //         }
+  //       )
+  // }
 
   getProfessors(id){
     this.professorService.getAllByCourseId(id)
@@ -86,5 +100,13 @@ export class CourseViewComponent implements OnInit {
   }
   onTabClick(index){
     this.tabIndex = index;
+  }
+
+
+  hh(ca : CourseAttendance) {
+    console.log("EVENT JE " + ca)
+    this.courseAttendances = [...this.courseAttendances, ca];
+    console.log('TCL: EventComponent -> hh -> this.students', this.students);
+   // this.students.push(student);
   }
 }

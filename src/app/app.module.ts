@@ -1,3 +1,4 @@
+import { EnrrollmentsComponent } from './course/enrrollments/enrrollments.component';
 
 import { LoginGuard } from './services/login-guard.service';
 import { TokenStorageService } from './services/token-storage.service';
@@ -13,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -46,9 +47,9 @@ import { ExamPeriodComponent } from './exam-period/exam-period.component';
 
 import { CourseViewComponent } from './course/course-view/course-view.component';
 import { CourseUnitComponent } from './course/course-unit/course-unit.component';
-import { EnrrollmentsComponent } from './course/enrrollments/enrrollments.component';
 import { CourseProfessorsComponent } from './course/course-professors/course-professors.component';
 import { CourseExamsComponent } from './course/course-exams/course-exams.component';
+
 
 
 @NgModule({
@@ -82,9 +83,9 @@ import { CourseExamsComponent } from './course/course-exams/course-exams.compone
     ExamPeriodComponent,
     CourseViewComponent,
     CourseUnitComponent,
-    EnrrollmentsComponent,
     CourseProfessorsComponent,
-    CourseExamsComponent
+    CourseExamsComponent,
+    EnrrollmentsComponent
    
   ],
   imports: [
@@ -92,7 +93,7 @@ import { CourseExamsComponent } from './course/course-exams/course-exams.compone
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    
+    ReactiveFormsModule,
     NgxPaginationModule,
 
     

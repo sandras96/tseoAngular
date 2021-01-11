@@ -1,30 +1,51 @@
-<div class="row">
-        
-    <div id="unit"class="col-lg-6 col-md-4 ml-auto mr-auto" >
-            <div class="table-responsive">
+<!-- <div id="unit"class="input-group col-lg-6 col-md-4 ml-auto mr-auto">
+    <select class="form-control"  #s id="inputGroupSelect04">
+      <option hidden>Add student to this course</option>
+      <option [value]="s.id"  *ngFor="let s of studentsAll">{{s.firstname}}</option>
+     
+    </select>
+    <div class="input-group-append" >
+      <button class="btn btn-outline-secondary" type="button" (click)="add(s.value)">Add</button>
+    </div>
+  </div> -->
+
+  <div id="unit" class="input-group col-lg-6 col-md-4 ml-auto mr-auto">
+    <select class="custom-select" #s id="inputGroupSelect04">
+      <option hidden>Add student to this course</option>
+      <option [value]="s.id"  *ngFor="let s of studentsAll">{{s.firstname}}</option>
+     
+    </select>
+    <div class="input-group-append">
+      <button class="btn btn-success" type="button"(click)="add(s.value)">Add</button>
+    </div>
+  </div>
+<div class="row" >
+
+    <div id="unit"class="col-lg-6 col-md-4 ml-auto mr-auto">
+            <div class="table-responsive" *ngIf="courseAttendances.length>0">
             <table class="table">
                 <thead>
                     <tr>
                      
                         <th>Students</th>
                         <th></th>
-                        <th class="text-right">Index number</th>
+                        <th class="text-left">Index number</th>
                       
                       <th class="text-right">Actions</th> 
                     </tr>
                 </thead>
                 <tbody>
              
-                    <tr  *ngFor="let ca of courseAttendances">
-                        <!-- <td class="text-center">{{ca.id}}</td> -->
-                        <td>{{ca.student.firstname}}</td>
-                        <td>{{ca.student.lastname}}</td>
-                        <td class="text-right">{{ca.student.indexNum}}</td>
+                 <tr *ngFor="let ca of courseAttendances">
+                        <td><a>{{ca.student.firstname}}<span>&nbsp;&nbsp;&nbsp;</span>{{ca.student.lastname}}</a></td>
+                        <td></td>
+                      <td class="text-left">{{ca.student.indexNum}}</td>
                             <td class="td-actions text-right">
                             <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
                                 <i class="material-icons">close</i>
                             </button>
                         </td> 
+                   
                     </tr>
                    
                 </tbody>
@@ -45,3 +66,47 @@
             </div>
             </div> --> 
         </div> 
+
+     
+
+       
+        </div>
+
+        <!-- <div class="container">
+            <h1>Angular CheckBox Example - ItSolutionStuff.com</h1>
+                
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                    
+                <div class="form-group">
+                    <label for="website">Website:</label>
+                    <div *ngFor="let web of websiteList">
+                      <label>
+                        <input type="checkbox" [value]="web.id" (change)="onCheckboxChange($event)" />
+                        {{web.name}}
+                      </label>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+            </form>
+        </div> -->
+        <!-- <div class="container">
+            <h1>Angular CheckBox Example - ItSolutionStuff.com</h1>
+                
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                    
+                <div class="form-group">
+                    <label for="student">Students:</label>
+                    <div *ngFor="let s of studentsAll">
+                      <label>
+                        <input type="checkbox" [value]="s.id" (change)="onCheckboxChange($event)" />
+                        {{s.firstname}}
+                      </label>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+            </form>
+        </div>  -->
+
+    

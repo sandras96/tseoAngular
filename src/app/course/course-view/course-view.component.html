@@ -8,7 +8,8 @@
   </nav>
   <div class="tab-content" id="nav-tabContent">
     <app-course-unit  *ngIf="tabIndex === 0" [course]= "course"></app-course-unit>
-    <app-course-enrrollments  *ngIf="tabIndex === 1" [courseAttendances]= "courseAttendances" [course]="course"></app-course-enrrollments>
+    <app-course-enrrollments  *ngIf="tabIndex === 1" [courseAttendances]= "courseAttendances" (addStudent)="hh($event)" [course]="course"></app-course-enrrollments>
+    <!-- <app-course-enrrollments  *ngIf="tabIndex === 1" [courseAttendances]= "courseAttendances" (change)="countChange($event)" [course]="course"></app-course-enrrollments> -->
     <app-course-professors  *ngIf="tabIndex === 2" [professors]= "professors"></app-course-professors>
     <app-course-exams  *ngIf="tabIndex === 3" [exams]= "exams"></app-course-exams>
   </div>
