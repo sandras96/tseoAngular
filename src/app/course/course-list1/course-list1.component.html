@@ -1,4 +1,7 @@
-<h4><small>Courses</small></h4>
+<h4><small>Courses</small> <span>&nbsp;&nbsp;&nbsp;</span>
+    <a routerLink="/add-course" type="button" rel="tooltip" class="btn btn-primary btn-link btn-just-icon btn-sm" data-original-title="" title="add course">
+    <i class="material-icons">add</i>
+    </a></h4>
 <div class="table-responsive">
         <table class="table">
             <thead>
@@ -7,15 +10,23 @@
                     <th>Name</th>
                     <th>ESPB</th>
                     <th>Semester</th>
-                    <!-- <th class="text-right">Actions</th> -->
+                    <th class="text-right">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let course of courses" (click)="selectCourse(course)">
                     <td class="text-center">{{course.id}}</td>
-                    <td><a routerLink="/course-view/{{ course.id }}">{{course.name}}</a></td>
+                    <td>{{course.name}}</td>
                     <td>{{course.espb}}</td>
                     <td>{{course.semester}}</td> 
+                    <td class="text-right"> 
+                        <a routerLink="/course-view/{{ course.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
+                            <i class="material-icons">preview</i>
+                        </a> 
+                        <a type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
+                            <i class="material-icons">close</i>
+                        </a>
+                   </td>
                 </tr>   
             </tbody>
         </table>
