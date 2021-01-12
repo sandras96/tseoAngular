@@ -48,6 +48,10 @@ export class CourseService {
   getExams(course_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/exam/course/${course_id}`);
   }
+
+  getByStudentId(student_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/student/${student_id}`);
+  }
   
 }
 

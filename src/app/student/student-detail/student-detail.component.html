@@ -1,0 +1,16 @@
+<div class="card" style="width: 18rem;" *ngIf="student">
+    <div class="card-header">Student details</div>
+    <div class="card-body">
+     
+      <h4 class="card-subtitle mb-2 ">{{student.firstname}} {{student.lastname}}</h4>
+      <h5 class="card-subtitle mb-2 "> {{student.indexNum}}</h5>
+      <p class="card-text text-muted">email: {{student.email}} <br/>phone: {{student.phone}} </p>
+    
+      <div class="card-footer bg-transparent border-info text-right"><a type="button" routerLink="/students/{{student.id}}">
+        View More
+      </a>
+      
+    </div>
+     
+    </div>
+  </div>

@@ -1,5 +1,5 @@
 import { ProfessorDetailComponent } from './../professor-detail/professor-detail.component';
-import { Component, OnInit, Input, Output, ChangeDetectionStrategy,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Professor } from 'src/app/model/professor.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 

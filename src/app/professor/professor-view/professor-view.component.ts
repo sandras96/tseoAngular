@@ -21,7 +21,7 @@ export class ProfessorViewComponent implements OnInit {
 
   
   tabIndex = 0;
-  loadComponent = false;
+  
 
   
 

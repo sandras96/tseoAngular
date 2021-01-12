@@ -25,19 +25,11 @@ import { UpdateCourseComponent } from './course/update-course/update-course.comp
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { ExamListComponent } from './exam/exam-list/exam-list.component';
-import { AddStudentComponent } from './student/add-student/add-student.component';
-import { StudentDetailsComponent } from './student/student-details/student-details.component';
-import { StudentListComponent } from './student/student-list/student-list.component';
 import { UserListComponent } from './user/user-list/user-list.component';
-import { NavStudentComponent } from './student/student-details/nav-student/nav-student/nav-student.component';
-import { DocumentStudentComponent } from './student/student-details/documents-student/document-student/document-student.component';
-import { ProfileStudentComponent } from './student/student-details/profile-student/profile-student/profile-student.component';
-import { PaymentStudentComponent } from './student/student-details/payment-student/payment-student/payment-student.component';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { ProfessorComponent } from './professor/professor/professor.component';
 import { ProfessorListComponent } from './professor/professor-list/professor-list.component';
 import { ProfessorDetailComponent } from './professor/professor-detail/professor-detail.component';
-import { StudentComponent } from './student/student/student.component';
 import { ProfessorViewComponent } from './professor/professor-view/professor-view.component';
 import { ProfessorProfileComponent } from './professor/professor-profile/professor-profile.component';
 import { ProfessorCoursesComponent } from './professor/professor-courses/professor-courses.component';
@@ -49,6 +41,15 @@ import { CourseViewComponent } from './course/course-view/course-view.component'
 import { CourseUnitComponent } from './course/course-unit/course-unit.component';
 import { CourseProfessorsComponent } from './course/course-professors/course-professors.component';
 import { CourseExamsComponent } from './course/course-exams/course-exams.component';
+import { StudentComponent } from './student/student/student.component';
+import { StudentListComponent } from './student/student-list/student-list.component';
+import { StudentDetailComponent } from './student/student-detail/student-detail.component';
+import { StudentViewComponent } from './student/student-view/student-view.component';
+import { StudentProfileComponent } from './student/student-profile/student-profile.component';
+import { StudentCoursesComponent } from './student/student-courses/student-courses.component';
+import { StudentExamsComponent } from './student/student-exams/student-exams.component';
+import { StudentDocumentsComponent } from './student/student-documents/student-documents.component';
+import { StudentPaymentsComponent } from './student/student-payments/student-payments.component';
 
 
 
@@ -64,18 +65,10 @@ import { CourseExamsComponent } from './course/course-exams/course-exams.compone
     CourseListComponent,
     UpdateCourseComponent,
     ExamListComponent,
-    AddStudentComponent,
-    StudentDetailsComponent,
-    StudentListComponent,
     UserListComponent,
-    NavStudentComponent,
-    DocumentStudentComponent,
-    ProfileStudentComponent,
-    PaymentStudentComponent,
     ProfessorComponent,
     ProfessorListComponent,
     ProfessorDetailComponent,
-    StudentComponent,
     ProfessorViewComponent,
     ProfessorProfileComponent,
     ProfessorCoursesComponent,
@@ -85,7 +78,16 @@ import { CourseExamsComponent } from './course/course-exams/course-exams.compone
     CourseUnitComponent,
     CourseProfessorsComponent,
     CourseExamsComponent,
-    EnrrollmentsComponent
+    EnrrollmentsComponent,
+    StudentComponent,
+    StudentListComponent,
+    StudentDetailComponent,
+    StudentViewComponent,
+    StudentProfileComponent,
+    StudentCoursesComponent,
+    StudentExamsComponent,
+    StudentDocumentsComponent,
+    StudentPaymentsComponent
    
   ],
   imports: [

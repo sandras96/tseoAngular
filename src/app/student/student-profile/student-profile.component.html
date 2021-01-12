@@ -1,0 +1,131 @@
+<form>
+    <div class="form-row">
+      <div class="col-md-4 mb-3 form-group">
+        <label for="validationDefault01">First name</label>
+        <input type="text" class="form-control" name="firstname"
+        id="firstname" [(ngModel)]="student.firstname" id="validationDefault01" placeholder="First name"  required/>
+       
+      </div>
+      <div class="col-md-4 mb-3 form-group">
+        <label for="validationDefault02">Last name</label>
+        <input type="text" class="form-control" name="lastname"
+        id="lastname" [(ngModel)]="student.lastname"  id="validationDefault02" placeholder="Last name" required>
+      </div>
+
+      <div class="col-md-4 mb-3 form-group">
+        <div class="form-group">
+            <label for="birthdate">Birthdate: {{ student.birthDate | date }}</label>
+           
+            <input type="date" name="birthdate" id="birthdate" class="form-control" [(ngModel)]="student.birthDate"/>
+             
+        </div>
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="validationDefault099">Index number</label>
+        <input type="text" class="form-control" name="indexnum"
+        id="indexnum" [(ngModel)]="student.indexNum"  id="validationDefault099" placeholder="index number" required>
+      </div>
+   
+    </div>
+    <div class="form-row">
+        <div class="col-md-12 mb-2 form-group">
+            <label for="validationDefault03">Address</label>
+            <input type="text" [(ngModel)]="student.address" class="form-control" 
+            id="inputAddress" placeholder="1234 Main St" id="validationDefault03" name="address">
+          </div>
+      <div class="col-md-6 mb-3 form-group">
+        <label for="validationDefault04">City</label>
+        <input type="text" [(ngModel)]="student.city" 
+        class="form-control" id="validationDefault04" placeholder="City" name="city" required>
+      </div>
+      <div class="col-md-3 mb-3 form-group">
+        <label for="validationDefault05">Country</label>
+        <input type="text" [(ngModel)]="student.country"
+         class="form-control" id="validationDefault05" placeholder="Country" name="country" required>
+      </div>
+      <div class="col-md-3 mb-3 form-group">
+        <label for="validationDefault06">Zip</label>
+        <input type="text" [(ngModel)]="student.zip" class="form-control"
+         id="validationDefault06" placeholder="Zip" required name="zip" required>
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-2 form-group">
+            <label for="email">Email</label>
+            <input type="text" [(ngModel)]="student.email" 
+            class="form-control" id="email" placeholder="123@test.net" name="email" required>
+          </div>
+          <div class="col-md-6 mb-2 form-group">
+            <label for="phone">Phone</label>
+            <input type="text" [(ngModel)]="student.phone" 
+            class="form-control" id="phone" placeholder="+381/654017152" name="phone" required>
+          </div>
+    </div>
+
+    <div class="form-row" *ngIf="student.user">
+        <div class="col-md-6 mb-2 form-group">
+        <label for="validationDefaultUsername">Username</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+          </div>
+          <input type="text" [(ngModel)]="student.user.username" class="form-control" name="username"
+           id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required>
+        </div>
+    </div>
+          <div class="col-md-6 mb-2 form-group">
+            <label for="password">Password</label>
+            <input type="password" [(ngModel)]="student.user.password" 
+            class="form-control" id="password" placeholder="*********" name="password" required>
+          </div>
+          <div class="col-md-4 mb-3 form-group">
+            <div id="role"class="form-group">
+              
+                <!-- <ul class="list-group list-group-flush" >
+                    <li class="list-group-item">
+                     
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check1" value="ADMIN">
+                        <label class="custom-control-label" for="check1">ADMIN</label>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                     
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check2" checked disabled>
+                        <label class="custom-control-label" for="check2">PROFESSOR</label>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                    
+                     
+                    </li>
+                   
+                  </ul> -->
+                  <!-- <div class="form-group" >
+                    <label for="website">Website:</label>
+                    <div *ngFor="let a of authorityList">
+                      <label>
+                        <input type="checkbox" [value]="a.id" (change)="onCheckboxChange($event)" />
+                        {{a.name}}
+                      </label>
+                    </div>
+                </div> -->
+            
+
+                  
+                  
+              </div>
+        </div>
+    </div>
+   
+    <div class="padding-top-x5">
+        <div class="padding-top-x5">
+            <div class="text-center">
+                <button type="submit" class="badge badge-success" (click)="updateStudent()">Edit</button>
+                <button class="badge badge-danger mr-2" (click)="deleteStudent()">Delete</button>
+            </div>
+        </div>
+        
+    </div>
+  </form>

@@ -1,143 +1,22 @@
-<!-- <div class="list row">
-    <div class="col-md-8">
-    
-    </div>
-    <div class="col-md-6">
-      <h4>Students List <div class="actions">
-        <button class="btn btn-primary"><i class="fa fa-plus"></i> add New student</button>
-    </div></h4>
-      <ul class="list-group">
-        
-        <li
-          class="list-group-item"
-          *ngFor="let student of students; let i = index"
-          [class.active]="i == currentIndex"
-          (click)="setActiveStudent(student, i)"
-        >
-          {{ student.user.firstname }}
-          {{student.user.lastname}}
-          {{ student.indexNum }}
-
-        </li>
-       
-      </ul>
-  
-    
-    </div>
-    <div class="col-md-4" id="details">
-      <div *ngIf="currentStudent">
-        <h4>Student</h4>
-        <div>
-          <label><strong>ID:</strong></label> {{ currentStudent.id }}
-        </div>
-        <div>
-        <div>
-          <label><strong>Firstname:</strong></label> {{ currentStudent.firstname }}
-        </div>
-        <div>
-          <label><strong>Lastname</strong></label>
-          {{ currentStudent.lastname }}
-        </div>
-        <div>
-          <label><strong>Index number</strong></label>
-          {{ currentStudent.indexNum}}
-        </div>
-       
-  
-        <a class="badge badge-warning" routerLink="/students/{{ currentStudent.id }}">
-          View more
-        </a>
-      </div>
-
-
-      <div *ngIf="!currentStudent">
-        <br />
-        <p>Please click on a Student...</p>
-      </div>
-    </div>
-  </div>
-
- 
-
-
-<!--<form>
- <div class="form-group form-inline">
-      Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
-      <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
-  </div>
-
-  <table class="table table-striped">
-    <thead>
-   <tr>
-      <th scope="col">#</th>
-      <th scope="col" sortable="name" (sort)="onSort($event)">Country</th>
-      <th scope="col" sortable="area" (sort)="onSort($event)">Area</th>
-      <th scope="col" sortable="population" (sort)="onSort($event)">Population</th>
-    </tr>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col" sortable="name" >Country</th>
-      <th scope="col" sortable="area" >Area</th>
-      <th scope="col" sortable="population">Population</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let student of students | async">
-      <th scope="row">{{ student.student_id }}</th>
-      <td>
-        <i class="fas fa-user"></i>
-     
-      </td>
-      <td><ngb-highlight {{student.user.firstname}} ></ngb-highlight></td>
-      <td><ngb-highlight >{{student.user.lastname}}</ngb-highlight></td>
-    </tr>
-    </tbody>
-  </table>
-
-  <div class="d-flex justify-content-between p-2">
- 
-    <select class="custom-select" style="width: auto" name="pageSize" >
-      <option [ngValue]="2">2 items per page</option>
-      <option [ngValue]="4">4 items per page</option>
-      <option [ngValue]="6">6 items per page</option>
-    </select>
-  </div>
-
-</form>--> 
-
-<!--NOVO-->
-
-<h4>Students</h4>  
-<!-- <table class="table table-striped">  
-  <tr>  
-    <th>Firstname</th>  
-    <th>Lastname</th>  
-  </tr>  
-  <tr *ngFor="let student of students" (click)="selectStudent(student)">  
-    <td>{{ student.firstname }}</td>  
-    <td>{{ student.lastname }}</td>  
-  </tr>  
-</table>   -->
-<br /> 
-
-
-
-<table class="table table-hover">
-  <thead class="table-info">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Firstname</th>
-      <th scope="col">Lastname</th>
-      <th scope="col">Index number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of students" (click)="selectStudent(student)">
-      <th scope="row">1</th>
-      <td>{{ student.firstname }}</td>
-      <td>{{ student.lastname }}</td>
-      <td>{{ student.indexNum }}</td>
-    </tr>
-    
-  </tbody>
-</table>
+<h4><small>Students</small></h4>
+<div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Index number</th>
+                    <!-- <th class="text-right">Actions</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of students" (click)="selectStudent(student)">
+                    <td class="text-center">{{student.id}}</td>
+                    <td>{{student.firstname}}</td>
+                    <td>{{student.lastname}}</td>
+                    <td>{{student.indexNum}}</td> 
+                </tr>   
+            </tbody>
+        </table>
+</div>

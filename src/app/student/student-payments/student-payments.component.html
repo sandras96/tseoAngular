@@ -1,0 +1,19 @@
+<div class="table-responsive drive-items-table-wrapper">
+                     
+    <table class="table">
+         <thead>
+            <tr>
+                 <th class="name">Name</th>
+                 <th class="date">Date</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            <tr *ngFor="let payment of payments">
+                 <td class="name"><i class="fa fa-credit-card"></i><a routerLink="/document-view/{{ payment.id }}">   {{payment.name}}</a></td>
+                 <td class="date">{{payment.date | date}}</td>
+            </tr>
+         </tbody>
+     </table>
+     
+ </div>

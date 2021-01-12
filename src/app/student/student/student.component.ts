@@ -9,25 +9,26 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class StudentComponent implements OnInit {
 
- public student : Student;
- public students : Student[];
+  public student : Student;
+  public students : Student[];
 
   constructor(private studentService: StudentService) { }
 
   ngOnInit(): void {
     this.getStudents();
-    
   }
 
   getStudents(){
     this.studentService.getAll()
-    .subscribe((students : Student[]) => this.students = students);
-    console.log(this.students);
-    
+      .subscribe( data => {
+        this.students = data;
+      }, error =>{
+        console.log(error)
+      })
   }
 
   selected(student : any){
     this.student = student;
-
+    console.log("STUDENT JE ", student)
   }
 }

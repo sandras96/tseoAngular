@@ -227,11 +227,15 @@
           </div>
 
           <div class="col-md-4 mb-3 form-group">
-            <label>Birthdate</label>
-            <input type="text" class="form-control" placeholder="Last name" required>
+            <div class="form-group">
+                <label for="birthdate">Birthdate: {{ professor.birthdate | date }}</label>
+               
+                <input type="date" name="birthdate" id="birthdate" class="form-control" [(ngModel)]="professor.birthdate"/>
+                 
+            </div>
           </div>
             <div id="role"class="col-md-6 form-group">
-                <label for="role">Role</label>
+                <label for="profRole">Role</label>
                 <select  class="form-control" id="profRole" name="profRole" [(ngModel)]="professor.role">
                     
                     <option value="PROFESSOR">PROFESSOR</option>
@@ -294,8 +298,8 @@
               </div>
               <div class="col-md-4 mb-3 form-group">
                 <div id="role"class="form-group">
-                    <label for="role">Role</label>
-                    <ul class="list-group list-group-flush" >
+                  
+                    <!-- <ul class="list-group list-group-flush" >
                         <li class="list-group-item">
                          
                           <div class="custom-control custom-checkbox">
@@ -315,9 +319,17 @@
                          
                         </li>
                        
-                      </ul>
-                    
-
+                      </ul> -->
+                      <div class="form-group" >
+                        <label for="website">Website:</label>
+                        <div *ngFor="let a of authorityList">
+                          <label>
+                            <input type="checkbox" [value]="a.id" (change)="onCheckboxChange($event)" />
+                            {{a.name}}
+                          </label>
+                        </div>
+                    </div>
+                
     
                       
                       
@@ -335,3 +347,6 @@
             
         </div>
       </form>
+
+    
+     

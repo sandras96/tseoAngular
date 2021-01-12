@@ -1,6 +1,6 @@
 export class Document {
 
-    document_id : number;
+    id : number;
     date : Date;
     deleted : boolean;
     name : String;

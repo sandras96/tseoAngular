@@ -1,0 +1,26 @@
+<div class="table-responsive drive-items-table-wrapper">
+                     
+    <table class="table">
+         <thead>
+           
+             <tr>
+               
+                 <th class="name">Name</th>
+                 <th class="date">Espb</th>
+                 <th class="date">SEMESTER</th>
+                
+             </tr>
+         </thead>
+         <tbody>
+            
+          <tr *ngFor="let course of courses">
+               
+                 <td class="name"><i class="fa fa-book"></i><a routerLink="/course-view/{{ course.id }}">   {{course.name}}</a></td>
+                 <td class="date">{{course.espb}}</td>
+                 <td class="date">{{course.semester}}</td>
+               
+             </tr> 
+        
+         </tbody>
+     </table>
+ </div>

@@ -1,0 +1,53 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="view-account" *ngIf="student" >
+        <section class="module">
+            <div class="module-inner">
+                <div class="side-bar">
+                    <div class="user-info">
+                        <img class="img-profile img-circle img-responsive center-block" src="assets\img\student-icon-10.jpg" alt="">
+                        <ul class="meta list list-unstyled">
+                            <li class="name">{{student.firstname}}
+                                            
+                                <label class="label label-info">{{student.lastname}}</label>
+                            </li>
+                            <li class="email">{{student.indexNum}}</li>
+                          
+                        </ul>
+                    </div>
+                    <!-- side navbar-->
+                   <nav class="side-menu">
+                        <ul class="nav" >
+                            <li><a (click)="onTabClick(0)"><span class="fa fa-user"></span> Profile</a></li>
+                            <li><a (click)="onTabClick(1)"><span class="fa fa-book"></span> Courses</a></li>
+                            <li><a (click)="onTabClick(2)"><span class="fa fa-pencil"></span> Exam takings</a></li>
+                            <li><a (click)="onTabClick(3)"><span class="fa fa-file-text-o"></span> Documents</a></li>
+                            <li><a (click)="onTabClick(4)"><span class="fa fa-credit-card"></span> Payments</a></li>
+                        </ul> 
+
+
+                      
+                    </nav> 
+                </div>
+
+                <!-- cela desna strana - kontent-->
+                <div class="content-panel">
+                  
+            
+
+                
+                 
+                    <div class="profile-detail">
+                        
+                        <app-student-profile *ngIf="tabIndex === 0" [student]="student"></app-student-profile>
+                        <app-student-courses  *ngIf="tabIndex === 1" [courses]="courses" ></app-student-courses>
+                        <app-student-exams  *ngIf="tabIndex === 2" [examTakings]="examTakings" ></app-student-exams>
+                        <app-student-documents  *ngIf="tabIndex === 3" [documents]="documents" ></app-student-documents>
+                        <app-student-payments  *ngIf="tabIndex === 4" [payments]="payments" ></app-student-payments>
+                    </div>
+                    
+                    </div>
+                </div>
+        </section>
+    </div>
+</div>

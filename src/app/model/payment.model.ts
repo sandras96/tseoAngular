@@ -1,6 +1,6 @@
 export class Payment {
 
-    payment_id : number;
+    id : number;
     account_number : number;
     address: String;
     amount : number;
