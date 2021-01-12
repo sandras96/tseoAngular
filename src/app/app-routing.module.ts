@@ -1,3 +1,4 @@
+import { CourseComponent } from './course/course/course.component';
 import { StudentComponent } from './student/student/student.component';
 
 import { ExamPeriodComponent } from './exam-period/exam-period.component';
@@ -33,30 +34,28 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent, canActivate:[AuthGuard]},
  // { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent },
-  {path: 'courses', component: CourseListComponent},
- // {path : 'courses/:id', component: CourseDetailsComponent},
-  {path: 'add-course', component: AddCourseComponent},
-
+ 
   {path: 'exams', component: ExamListComponent},
 
  // { path: '', redirectTo: 'login', pathMatch: 'full' },
 
 
 
- {path: 'users', component: UserListComponent},
+{path: 'users', component: UserListComponent},
 
-  { path: 'no-access', component: NoAccessComponent },
+{ path: 'no-access', component: NoAccessComponent },
 
 
-
+{path: 'courses', component: CourseComponent},
 {path: 'course-view/:id', component: CourseViewComponent},
+{path: 'add-course', component: AddCourseComponent},
 
 {path: 'professors', component: ProfessorComponent},
 {path : 'professors/:id', component: ProfessorViewComponent},
 
-
 {path: 'students', component: StudentComponent},
 {path : 'students/:id', component: StudentViewComponent},
+
 
 {path: 'examperiod' , component: ExamPeriodComponent}
 

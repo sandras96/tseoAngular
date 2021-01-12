@@ -50,6 +50,8 @@ import { StudentCoursesComponent } from './student/student-courses/student-cours
 import { StudentExamsComponent } from './student/student-exams/student-exams.component';
 import { StudentDocumentsComponent } from './student/student-documents/student-documents.component';
 import { StudentPaymentsComponent } from './student/student-payments/student-payments.component';
+import { CourseComponent } from './course/course/course.component';
+import { CourseList1Component } from './course/course-list1/course-list1.component';
 
 
 
@@ -87,7 +89,9 @@ import { StudentPaymentsComponent } from './student/student-payments/student-pay
     StudentCoursesComponent,
     StudentExamsComponent,
     StudentDocumentsComponent,
-    StudentPaymentsComponent
+    StudentPaymentsComponent,
+    CourseComponent,
+    CourseList1Component
    
   ],
   imports: [

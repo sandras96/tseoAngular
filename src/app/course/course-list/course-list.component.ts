@@ -58,7 +58,7 @@ export class CourseListComponent implements OnInit {
   retrieveCourses(): void {
     const params = this.getRequestParams(this.name, this.page, this.pageSize);
 
-    this.courseService.getAll(params)
+    this.courseService.getAll1(params)
       .subscribe(
         response => {
           const { courses, totalItems } = response;
