@@ -1,10 +1,13 @@
+import { Course } from "./course.model";
+import { ExamPeriod } from "./exam-period.model";
+
 export class Exam {
 
-    exam_id : number;
+    id : number;
     assignment : String;
     date : Date;
     points: number;
-    course_id : number;
-    exam_period_id : number;
+    course : Course;
+    examPeriod : ExamPeriod;
     
 }

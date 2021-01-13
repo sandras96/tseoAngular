@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+    <a  routerLink="/courses" data-original-title="" title="back to list">
+        <span class="material-icons">
+            keyboard_backspace
+            </span>
+      </a>
+  </div>
+  
+  <nav>
+      <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" (click)="onTabClick(0)" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Exam details</a>
+        <a class="nav-item nav-link" (click)="onTabClick(1)" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Exam takings</a>
+        <a class="nav-item nav-link" (click)="onTabClick(2)" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Exam Period</a>
+        <a class="nav-item nav-link" (click)="onTabClick(3)" id="nav-exam-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Course</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <app-exam-unit  *ngIf="tabIndex === 0" [exam]= "exam"></app-exam-unit>
+       <app-exam-taking  *ngIf="tabIndex === 1" [examTakings]= "examTakings"></app-exam-taking>
+      <!--<app-course-professors  *ngIf="tabIndex === 2" [professors]= "professors"></app-course-professors>-->
+      <app-exam-course  *ngIf="tabIndex === 3" [exam]= "exam"></app-exam-course> 
+    </div>

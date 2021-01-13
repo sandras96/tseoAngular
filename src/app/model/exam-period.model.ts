@@ -1,6 +1,6 @@
 export class ExamPeriod {
 
-    exam_period_id : number;
+    id : number;
     end_date : Date;
     name: String;
     start_date : Date;

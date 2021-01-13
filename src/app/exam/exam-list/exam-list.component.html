@@ -1,59 +1,37 @@
-<div class="list row">
-    <div class="col-md-8">
-    
-    </div>
-    <div class="col-md-6">
-      <h4>Exams List</h4>
-    
-      <ul class="list-group">
-        
-        <li
-          class="list-group-item"
-          *ngFor="let exam of exams; let i = index"
-          [class.active]="i == currentIndex"
-          (click)="setActiveExam(exam, i)"
-        >
-          {{ exam.id }}
-        </li>
-      </ul>
-  
-    
-    </div>
-    <div class="col-md-4" id="details">
-      <div *ngIf="currentExam">
-        <h4>Exam</h4>
-        <div>
-          <label><strong>ID:</strong></label> {{ currentExam.id }}
-        </div>
-        <div>
-        <div>
-          <label><strong>Name:</strong></label> {{ currentExam.name }}
-        </div>
-        <div>
-          <label><strong>ESPB:</strong></label>
-          {{ currentExam.espb }}
-        </div>
-        <div>
-          <label><strong>SEMESTER</strong></label>
-          {{ currentExam.semester}}
-        </div>
-        <div>
-         
-  
-        <a class="badge badge-warning" routerLink="/exams/{{ currentExam.id }}">
-          Edit
-        </a>
-      </div>
-      <br/>
-      
-      
-     
-   
-      
-  
-      <div *ngIf="!currentExam">
-        <br />
-        <p>Please click on a Exam...</p>
-      </div>
-    </div>
-  </div>
+<h4><small>Exams</small> <span>&nbsp;&nbsp;&nbsp;</span>
+    <a routerLink="/add-course" type="button" rel="tooltip" class="btn btn-primary btn-link btn-just-icon btn-sm" data-original-title="" title="add course">
+    <i class="material-icons">add</i>
+    </a></h4>
+<div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Assignment</th>
+                    <th>Date</th>
+                    <th>Points</th>
+                    <th>Exam Period</th>
+                    <th>Course</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exam of exams">
+                    <td class="text-center">{{exam.id}}</td>
+                    <td>{{exam.assignment}}</td>
+                    <td>{{exam.date  | date}}</td>
+                    <td>{{exam.points}}</td> 
+                    <td><a routerLink="/examPeriod-view/{{exam.examPeriod.id}}" data-original-title="" title="view exam period">{{exam.examPeriod.name}}</a></td>
+                    <td><a routerLink="/course-view/{{exam.course.id}}" data-original-title="" title="view course">{{exam.course.name}}</a></td>
+                    <td class="text-right"> 
+                        <a routerLink="/exam-view/{{ exam.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
+                            <i class="material-icons">preview</i>
+                        </a> 
+                        <a type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
+                            <i class="material-icons">close</i>
+                        </a>
+                   </td>
+                </tr>   
+            </tbody>
+        </table>
+</div>

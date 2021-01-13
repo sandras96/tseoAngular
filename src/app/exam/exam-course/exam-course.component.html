@@ -1,0 +1,16 @@
+<div class="col-lg-6 col-md-4 ml-auto mr-auto">
+    <div id="unit" style="width: 400px;" *ngIf="exam.course">
+      
+        
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">name: {{exam.course.name}}</li>
+              <li class="list-group-item">espb: {{exam.course.espb}}</li>
+              <li class="list-group-item">semester: {{exam.course.semester}}</li>
+            </ul>
+            <div class="card-footer text-right">
+                <a routerLink="/course-view/{{ exam.course.id }}">view course</a>
+              </div>
+          </div>
+    
+    
+    </div>
