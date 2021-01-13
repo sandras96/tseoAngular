@@ -25,7 +25,7 @@ import { UpdateCourseComponent } from './course/update-course/update-course.comp
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { ExamListComponent } from './exam/exam-list/exam-list.component';
-import { UserListComponent } from './user/user-list/user-list.component';
+
 import { NgxPaginationModule} from 'ngx-pagination';
 import { ProfessorComponent } from './professor/professor/professor.component';
 import { ProfessorListComponent } from './professor/professor-list/professor-list.component';
@@ -52,6 +52,9 @@ import { StudentDocumentsComponent } from './student/student-documents/student-d
 import { StudentPaymentsComponent } from './student/student-payments/student-payments.component';
 import { CourseComponent } from './course/course/course.component';
 import { CourseList1Component } from './course/course-list1/course-list1.component';
+import { UserComponent } from './user/user/user.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
 
 
 
@@ -67,7 +70,6 @@ import { CourseList1Component } from './course/course-list1/course-list1.compone
     CourseListComponent,
     UpdateCourseComponent,
     ExamListComponent,
-    UserListComponent,
     ProfessorComponent,
     ProfessorListComponent,
     ProfessorDetailComponent,
@@ -91,7 +93,10 @@ import { CourseList1Component } from './course/course-list1/course-list1.compone
     StudentDocumentsComponent,
     StudentPaymentsComponent,
     CourseComponent,
-    CourseList1Component
+    CourseList1Component,
+    UserComponent,
+    UserListComponent,
+    UserDetailComponent
    
   ],
   imports: [

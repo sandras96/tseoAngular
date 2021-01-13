@@ -1,0 +1,15 @@
+<div class="card" style="width: 18rem;" *ngIf="user">
+    <div class="card-header">User details</div>
+    <div class="card-body">
+     
+      <h4 class="card-subtitle mb-2" >{{user.username}} {{user.username}}</h4>
+      <h5 class="card-subtitle mb-2 "> {{user.username}}</h5>
+      <p class="card-text text-muted">email: {{user.username}} <br/>phone: {{user.username}} </p>
+    
+      <div *ngIf="findRole()=='professor'" class="card-footer bg-transparent border-info text-right"><a type="button" routerLink="/professors/{{user.id}}">
+        View More
+      </a>
+    </div>
+     
+    </div>
+  </div>

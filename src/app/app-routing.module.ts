@@ -7,7 +7,6 @@ import { ProfessorViewComponent } from './professor/professor-view/professor-vie
 
 import { ProfessorComponent } from './professor/professor/professor.component';
 
-import { UserListComponent } from './user/user-list/user-list.component';
 
 
 import { ExamListComponent } from './exam/exam-list/exam-list.component';
@@ -27,6 +26,7 @@ import { NoAccessComponent } from './no-access/no-access.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { CourseViewComponent } from './course/course-view/course-view.component';
 import { StudentViewComponent } from './student/student-view/student-view.component';
+import { UserComponent } from './user/user/user.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -41,7 +41,7 @@ const routes: Routes = [
 
 
 
-{path: 'users', component: UserListComponent},
+
 
 { path: 'no-access', component: NoAccessComponent },
 
@@ -49,6 +49,9 @@ const routes: Routes = [
 {path: 'courses', component: CourseComponent},
 {path: 'course-view/:id', component: CourseViewComponent},
 {path: 'add-course', component: AddCourseComponent},
+
+{path: 'users', component: UserComponent},
+
 
 {path: 'professors', component: ProfessorComponent},
 {path : 'professors/:id', component: ProfessorViewComponent},

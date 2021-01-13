@@ -1,7 +1,4 @@
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/model/user.model';
 
 @Component({
@@ -11,39 +8,16 @@ import { User } from 'src/app/model/user.model';
 })
 export class UserListComponent implements OnInit {
 
-  currentUser = null;
-  currentIndex = -1;
-  users : Observable<User[]>;
-
-  constructor(private userService: UserService,
-              private router : Router) { }
+  @Input() users : User[];
+  @Output() userSelected  = new EventEmitter<User>();
+  constructor() { }
 
   ngOnInit(): void {
-    this.reloadData();
   }
 
-  reloadData(){
-    this.userService.getAll()
-      .subscribe(
-        data => {
-          this.users = data;
-        },
-        error => {
-          console.log(error)
-        }
-      )
-  };
-
-  //napravi dugmence za refresh
-  refreshList(): void {
-    this.reloadData();
-    this.currentUser = null;
-    this.currentIndex = -1;
+  selectUser(user : User){
+    this.userSelected.emit(user);
   }
 
-setActiveUser(user, index) : void {
-  this.currentUser = user;
-  this.currentIndex = index;
-}
-
+  
 }
