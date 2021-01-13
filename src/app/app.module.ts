@@ -61,7 +61,8 @@ import { ExamViewComponent } from './exam/exam-view/exam-view.component';
 import { ExamUnitComponent } from './exam/exam-unit/exam-unit.component';
 import { ExamTakingComponent } from './exam/exam-taking/exam-taking.component';
 import { ExamCourseComponent } from './exam/exam-course/exam-course.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -117,7 +118,8 @@ import { ExamCourseComponent } from './exam/exam-course/exam-course.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
     
 
   ],
@@ -129,7 +131,8 @@ import { ExamCourseComponent } from './exam/exam-course/exam-course.component';
     TokenStorageService,
     AuthGuard,
     AdminAuthGuard,
-    LoginGuard
+    LoginGuard,
+    
  
   ],
   bootstrap: [AppComponent]

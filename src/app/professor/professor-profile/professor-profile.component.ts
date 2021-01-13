@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Professor } from 'src/app/model/professor.model';
 import { ProfessorService } from 'src/app/services/professor.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-professor-profile',
@@ -34,7 +35,8 @@ export class ProfessorProfileComponent implements OnInit {
   message = "";
   constructor(private formBuilder: FormBuilder,
     private professorService : ProfessorService,
-              private router : Router ) {
+              private router : Router,
+              private toastr: ToastrService ) {
                 this.form = this.formBuilder.group({
                   role: this.formBuilder.array([], [Validators.required])
                 })
@@ -61,8 +63,8 @@ export class ProfessorProfileComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.message = 'This Student was updated successfully!';
-          
+          this.message = 'This Professor was updated successfully!';
+          this.toastr.success('This Professor was updated successfully!', 'Update')
         },
         error => {
           console.log(error);
