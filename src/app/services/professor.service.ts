@@ -42,4 +42,7 @@ export class ProfessorService {
   getAllExamTakingsByProfId(professor_id :number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/profExam/${professor_id}`);
   }
+  getByUserId(user_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/user/${user_id}`);
+  }
 }

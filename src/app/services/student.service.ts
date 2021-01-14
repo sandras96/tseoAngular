@@ -37,6 +37,9 @@ export class StudentService {
     return this.http.delete(`${this.baseUrl}/${student_id}`);
   }
     
+  getByUserId(user_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/user/${user_id}`);
+  }
   
 
 }

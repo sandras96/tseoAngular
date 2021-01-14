@@ -9,6 +9,7 @@ import { User } from 'src/app/model/user.model';
 export class UserListComponent implements OnInit {
 
   @Input() users : User[];
+
   @Output() userSelected  = new EventEmitter<User>();
   constructor() { }
 
@@ -18,6 +19,18 @@ export class UserListComponent implements OnInit {
   selectUser(user : User){
     this.userSelected.emit(user);
   }
+  
+  findRole(u) : string {
+     if(u.authorities.find(e=> e.name =="PROFESSOR")){
+      return "professor"      
+    } else
+    if(u.authorities.find(e=> e.name =="STUDENT")){
+      return "student"
+    }else{
+      return "admin"
+    }
+  }
 
+  
   
 }
