@@ -1,23 +1,37 @@
+<div class="input-group">
+    <select class="custom-select" #course id="inputGroupSelect04">
+      <option hidden>Sign student for the new course</option>
+      <option [value]="c.id" *ngFor="let c of coursesAll">{{c.name}}</option>
+     
+    </select>
+    <div class="input-group-append">
+        <button class="btn btn-info" type="button"(click)="signStudent(course.value)">Sign</button>
+      </div>
+  </div>
 <div class="table-responsive drive-items-table-wrapper">
-                     
+   
     <table class="table">
          <thead>
            
              <tr>
-               
+                 <th></th>
                  <th class="name">Name</th>
                  <th class="date">Espb</th>
                  <th class="date">SEMESTER</th>
-                
+                 <th class="text-right">Actions</th>
              </tr>
          </thead>
          <tbody>
             
           <tr *ngFor="let course of courses">
-               
-                 <td class="name"><i class="fa fa-book"></i><a routerLink="/course-view/{{ course.id }}">   {{course.name}}</a></td>
+                 <td><i class="fa fa-book"></i></td>
+                 <td class="name"><a routerLink="/course-view/{{ course.id }}">   {{course.name}}</a></td>
                  <td class="date">{{course.espb}}</td>
                  <td class="date">{{course.semester}}</td>
+                 <td class="text-right"><a type="button" rel="tooltip" (click)="removeCourse(course)"
+                    class="btn btn-danger btn-sm" data-original-title="" title="remove course">
+                    <i class="material-icons">close</i>
+                </a></td>
                
              </tr> 
         

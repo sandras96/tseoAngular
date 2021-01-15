@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/model/user.model';
+import { ProfessorService } from 'src/app/services/professor.service';
+import { StudentService } from 'src/app/services/student.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -32,5 +36,8 @@ export class UserListComponent implements OnInit {
   }
 
   
+    
+  }
   
-}
+  
+

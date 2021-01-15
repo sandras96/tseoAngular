@@ -14,4 +14,7 @@ export class PaymentService {
   getPaymentsByStudentId(student_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/student/${student_id}`);
   }
+  delete(pay_id : number) : Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${pay_id}`);
+  }
 }

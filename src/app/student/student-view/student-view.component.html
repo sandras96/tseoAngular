@@ -1,11 +1,3 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-    <a  routerLink="/students" data-original-title="" title="back to list">
-        <span class="material-icons">
-            keyboard_backspace
-            </span>
-      </a>
-  </div>
-
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="view-account" *ngIf="student" >
@@ -48,10 +40,10 @@
                     <div class="profile-detail">
                         
                         <app-student-profile *ngIf="tabIndex === 0" [student]="student"></app-student-profile>
-                        <app-student-courses  *ngIf="tabIndex === 1" [courses]="courses" ></app-student-courses>
-                        <app-student-exams  *ngIf="tabIndex === 2" [examTakings]="examTakings" ></app-student-exams>
-                        <app-student-documents  *ngIf="tabIndex === 3" [documents]="documents" ></app-student-documents>
-                        <app-student-payments  *ngIf="tabIndex === 4" [payments]="payments" ></app-student-payments>
+                        <app-student-courses  *ngIf="tabIndex === 1" [courses]="courses" (deleteCourse)="removeCourse($event)" (addCourse)="addCourse($event)"></app-student-courses>
+                        <app-student-exams  *ngIf="tabIndex === 2" [examTakings]="examTakings" (deleteExamTaking)="removeExamTaking($event)"></app-student-exams>
+                        <app-student-documents  *ngIf="tabIndex === 3" [documents]="documents" (deleteDocument)="removeDocument($event)" ></app-student-documents>
+                        <app-student-payments  *ngIf="tabIndex === 4" [payments]="payments" (deletePayment)="removePayment($event)" ></app-student-payments>
                     </div>
                     
                     </div>

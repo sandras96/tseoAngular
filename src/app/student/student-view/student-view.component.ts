@@ -1,9 +1,9 @@
+import { ExamTakingService } from 'src/app/services/exam-taking.service';
 import { Course } from 'src/app/model/course.model';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/model/student.model';
 import { StudentService } from 'src/app/services/student.service';
-import { CourseAttendance } from 'src/app/model/course-attendance.model';
 import { CourseService } from 'src/app/services/course.service';
 import { ExamTaking } from 'src/app/model/exam-taking.model';
 import { DocumentService } from 'src/app/services/document.service';
@@ -18,7 +18,7 @@ import { PaymentService } from 'src/app/services/payment.service';
 export class StudentViewComponent implements OnInit {
 
   student : Student;
-  courses : Course[];
+  courses : Course[] = [];
   examTakings : ExamTaking[];
   documents : Document[];
   payments : Payment[];
@@ -29,13 +29,12 @@ export class StudentViewComponent implements OnInit {
               private courseService : CourseService,
               private documentService : DocumentService,
               private paymentService : PaymentService,
+              private examTakingService : ExamTakingService,
               private route : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getStudent(this.route.snapshot.paramMap.get('id'));
-    this.getCourses(this.route.snapshot.paramMap.get('id'));
-    this.getDocuments(this.route.snapshot.paramMap.get('id'));
-    this.getPayments(this.route.snapshot.paramMap.get('id'));
+    
   }
 
   getStudent(id){
@@ -43,6 +42,10 @@ export class StudentViewComponent implements OnInit {
       .subscribe(
         data=>{
           this.student = data;
+          this.getCourses(data.id);
+          this.getDocuments(data.id);
+          this.getPayments(data.id);
+          this.getExamTakings(data.id);
         }, 
         error => {
           console.log(error);
@@ -86,8 +89,46 @@ export class StudentViewComponent implements OnInit {
         }
       )
   }
+
+  getExamTakings(id){
+    this.examTakingService.getAllByStudentId(id)
+      .subscribe( data=> {
+        this.examTakings = data;
+        console.log(data);
+      }, error=>{
+        console.log(error)
+      })
+  }
   onTabClick(index){
     this.tabIndex = index;
   }
 
+  removeCourse(course : Course){
+    console.log("removecoure ", course)
+    this.courses = this.courses.filter(c => c !== course);
+    console.log("kourses", this.courses)
+  }
+
+  addCourse(id : number){
+    this.courseService.get(id).subscribe(
+      data=>{
+        this.courses = [...this.courses, data]
+      }
+    )
+  }
+  
+  removeDocument(document : Document){
+    console.log("removeDoc", document)
+    this.documents = this.documents.filter(d => d !== document);
+  } 
+ 
+  removePayment(payment : Payment){
+    console.log("removePayment", payment)
+    this.payments = this.payments.filter(p => p!== payment);
+  }
+
+  removeExamTaking(et : ExamTaking){
+    console.log("remove Exam Taking", et)
+    this.examTakings = this.examTakings.filter(e => e!==et);
+  }
 }

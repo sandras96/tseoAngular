@@ -1,17 +1,32 @@
+<div id="divAdd" class="text-right"><span id="span">create payment &nbsp;</span>
+     <a type="button" rel="tooltip" class="btn btn-info btn-sm" data-original-title="" title="add course">
+          <i class="material-icons">add</i>
+          </a></div>
 <div class="table-responsive drive-items-table-wrapper">
                      
     <table class="table">
          <thead>
             <tr>
+                 <th></th>
                  <th class="name">Name</th>
                  <th class="date">Date</th>
+                 <th class="purpose">Purpose</th>
+                 <th class="amount">Amount</th>
+                 <th class="text-right">Actions</th>
             </tr>
          </thead>
 
          <tbody>
             <tr *ngFor="let payment of payments">
-                 <td class="name"><i class="fa fa-credit-card"></i><a routerLink="/document-view/{{ payment.id }}">   {{payment.name}}</a></td>
+                 <td><i class="fa fa-credit-card"></i></td>
+                 <td class="name"><a routerLink="/payment-view/{{ payment.id }}">{{payment.name}}</a></td>
                  <td class="date">{{payment.date | date}}</td>
+                 <td class="purpose">{{payment.purpose}}</td>
+                 <td class="amount">{{payment.amount}}</td>
+                 <td class="text-right"><a type="button" rel="tooltip" (click)="removePayment(payment)"
+                    class="btn btn-danger btn-sm" data-original-title="" title="delete payment">
+                    <i class="material-icons">close</i>
+                </a></td>
             </tr>
          </tbody>
      </table>

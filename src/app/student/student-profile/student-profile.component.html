@@ -121,11 +121,50 @@
    
     <div class="padding-top-x5">
         <div class="padding-top-x5">
-            <div class="text-center">
-                <button type="submit" class="badge badge-success" (click)="updateStudent()">Edit</button>
-                <button class="badge badge-danger mr-2" (click)="deleteStudent()">Delete</button>
+           
+          <div class="row">
+              <div class="col-md-6 mb-2 form-group">
+                <a type="button" rel="tooltip" (click)="updateStudent()"
+                    class="btn btn-success btn-sm" data-original-title="" title="update student">Update</a>
+                </div>
+                <div class="col-md-6 mb-2 form-group text-right">
+                  <a type="button" rel="tooltip" (click)="deleteStudent()"
+                class="btn btn-danger btn-sm" data-original-title="" title="delete student">Delete</a>
+              </div>
+            </div>
+             <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button> -->
+
+   
+
+<ng-template #mymodal let-modal>
+
+  <div class="modal-header">
+
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+      <span aria-hidden="true">×</span>
+
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+
+    This is example from HDTuto.com
+
+  </div>
+
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+
+  </div>
+
+</ng-template>
             </div>
         </div>
         
-    </div>
+    
   </form>

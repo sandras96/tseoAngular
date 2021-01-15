@@ -11,7 +11,13 @@ export class ExamTakingService {
 
   constructor(private http : HttpClient) { }
 
+  delete(examTaking_id : number) : Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${examTaking_id}`);
+  }
   getAllByExamId(exam_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/exam/${exam_id}`);
+  }
+  getAllByStudentId(student_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/student/${student_id}`);
   }
 }

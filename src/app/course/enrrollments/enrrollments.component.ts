@@ -23,7 +23,7 @@ export class EnrrollmentsComponent implements OnInit {
   @Input() courseAttendances : CourseAttendance[];
   
   courseStudents : Student[];
-  filteredStudents : Student[] = [];
+  filteredStudents : Student[];
   studentsAll: Student[];
   courseAttendance : CourseAttendance;
   form: FormGroup;
@@ -33,7 +33,7 @@ export class EnrrollmentsComponent implements OnInit {
  @Output()
   addStudent = new EventEmitter<CourseAttendance>();
 
-  @Output() change  = new EventEmitter<Student[]>();
+ // @Output() change  = new EventEmitter<Student[]>();
 
 
   constructor(
@@ -77,7 +77,18 @@ export class EnrrollmentsComponent implements OnInit {
   //       console.log(error)
   //     })
   // }
-
+  getFilteretStudents(){
+    this.courseAttendanceService.getStudentsNotInCourse(this.course.id)
+      .subscribe(
+        data => {
+          this.filteredStudents = data;
+          console.log("FILTERED STUDENTSSSS", data)
+        },
+        error => {
+          console.log(error)
+        }
+      )
+  }
  getStudents(){
    this.studentService.getAll()
     .subscribe( data =>{

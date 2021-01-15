@@ -14,4 +14,7 @@ export class DocumentService {
   getDocumentsByStudentId(student_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/student/${student_id}`);
   }
+  delete(doc_id : number) : Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${doc_id}`);
+  }
 }

@@ -1,1 +1,39 @@
-<p>student-exams works!</p>
+<div id="divAdd" class="text-right"><span id="span">add exam-taking &nbsp;</span>
+    <a type="button" rel="tooltip" class="btn btn-info btn-sm" data-original-title="" title="add exam taking">
+         <i class="material-icons">add</i>
+         </a></div>
+<div class="table-responsive drive-items-table-wrapper">
+                    
+   <table class="table">
+        <thead>
+           <tr>
+                
+                <th class="text-center">Course exam</th>
+                <th class="text-center">Exam Period</th>
+                <th class="text-center">Points</th>
+                <th class="text-center">Mark</th>
+                <th class="text-center">Pass</th>
+                <th class="text-center">Professor</th>
+                <th class="text-right">Actions</th> 
+           </tr>
+        </thead>
+
+        <tbody>
+           <tr *ngFor="let et of examTakings">
+              
+                <td class="text-center"><i class="fa fa-book"></i><a routerLink="/exam-view/{{ et.exam.id }}">{{et.exam.course.name}}</a></td>
+                <td class="text-center">{{et.exam.examPeriod.name}}</td> <!--dodati router link ka ispitnom roku-->
+                <td class="text-center">{{et.points}}</td>
+                <td class="text-center">{{et.mark}}</td>
+                <td class="text-center" *ngIf="!et.pass"><i class="fa fa-thumbs-o-down" style="color:red" aria-hidden="true"></i></td>
+                <td class="text-center" *ngIf="et.pass"><i class="fa fa-thumbs-o-up" style="color:green" aria-hidden="true"></i></td>
+                <td class="text-center"><a routerLink="/professors/{{ et.professor.id }}">{{et.professor.firstname}}&nbsp;{{et.professor.lastname}}</a></td>
+                <td class="text-right"><a type="button" rel="tooltip" (click)="removeExamTaking(et)"
+                    class="btn btn-danger btn-sm" data-original-title="" title="delete">
+                    <i class="material-icons">close</i>
+                </a></td>
+           </tr>
+        </tbody>
+    </table>
+    
+</div>
