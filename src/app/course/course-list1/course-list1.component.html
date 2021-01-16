@@ -1,6 +1,5 @@
 <h4><small>Courses</small> <span>&nbsp;&nbsp;&nbsp;</span>
-    <a routerLink="/add-course" type="button" rel="tooltip" class="btn btn-primary btn-link btn-just-icon btn-sm" data-original-title="" title="add course">
-    <i class="material-icons">add</i>
+    <a type="button" rel="tooltip" (click)="openModal('addCourseModal')" class="btn btn-info btn-sm" data-original-title="" title="add course">
     </a></h4>
 <div class="table-responsive">
         <table class="table">
@@ -31,3 +30,42 @@
             </tbody>
         </table>
 </div>
+<jw-modal id="addCourseModal">
+    
+    
+
+ 
+    <div class="col-md-6 offset-md-3">
+        
+   
+      
+        <div class="card card-outline-secondary">
+            <div class="card-body">
+                <h3 class="text-center">Create Payment</h3>
+               
+                <form (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" required [(ngModel)]="course.name" name="name">
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="espb">espb</label>
+                      <input type="text" class="form-control" id="espb" required [(ngModel)]="course.espb" name="espb">
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="semester">semester</label>
+                      <select  class="form-control" id="semester" required [(ngModel)]="course.semester" name="semester">
+                        <option value="WINTER">WINTER</option>
+                        <option value="SUMMER">SUMMER</option>
+                      </select>
+                    </div>
+                
+                    <button type="submit" class="btn btn-success" (click)="closeModal('addCourseModal');">Submit</button>
+                  </form>
+            </div>
+        </div>
+        <!-- /form card cc payment -->
+   </div>
+   </jw-modal>

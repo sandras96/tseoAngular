@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
+import { ModalModule } from './_modal';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -121,7 +122,8 @@ import { UserViewComponent } from './user/user-view/user-view.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ModalModule,
     
 
   ],

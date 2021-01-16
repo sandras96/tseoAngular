@@ -7,6 +7,7 @@ import { Student } from 'src/app/model/student.model';
 import { StudentService } from 'src/app/services/student.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfessorService } from 'src/app/services/professor.service';
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-user-view',
@@ -19,14 +20,20 @@ export class UserViewComponent implements OnInit {
   user : User;
   student : Student = new Student();
   submitted = false;
+  bodyText: string;
+
 
   constructor(private userService : UserService,
               private studentService : StudentService,
               private professorService : ProfessorService,
               private route : ActivatedRoute,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private modalService: ModalService) { }
 
   ngOnInit(): void {
+
+    this.bodyText = 'This text can be updated in modal 1';
+
     this.getUser(this.route.snapshot.paramMap.get('id'));
 
     this.createProfessorForm = this.formBuilder.group({
@@ -85,4 +92,12 @@ export class UserViewComponent implements OnInit {
     this.save();
   }
 
+
+  openModal(id: string) {
+    this.modalService.open(id);
+}
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
 }
