@@ -1,48 +1,21 @@
-<!-- <h4>Professors</h4>  
-
-
-<table class="table table-hover">
-  <thead class="table-info">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Firstname</th>
-      <th scope="col">Lastname</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let professor of professors" (click)="selectProfessor(professor)">
-      <th scope="row">{{ professor.id }}</th>
-      <td>{{ professor.firstname }}</td>
-      <td>{{ professor.lastname }}</td>
-     
-    </tr>
-    
-  </tbody>
-</table> -->
-
-
-
-
-        <h4><small>Professors</small></h4>
-            <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Role</th>
-                        <!-- <th class="text-right">Actions</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-             
-                    <tr  *ngFor="let professor of professors" (click)="selectProfessor(professor)">
-                        <td class="text-center">{{professor.id}}</td>
-                        <td>{{professor.firstname}}</td>
-                        <td>{{professor.lastname}}</td>
-                        <td>{{professor.role}}</td> 
+<h4><small>Professors</small></h4>
+<div class="table-responsive table-hover">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Role</th>
+                    <!-- <th class="text-right">Actions</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let professor of professors" (click)="selectProfessor(professor)">
+                    <td class="text-center">{{professor.id}}</td>
+                    <td>{{professor.firstname}}</td>
+                    <td>{{professor.lastname}}</td>
+                    <td>{{professor.role}}</td> 
                       
                         <!-- <td class="td-actions text-right">
                             <a type="button" rel="tooltip" class="btn btn-info btn-link btn-just-icon btn-sm" data-original-title="" title="">
@@ -55,11 +28,9 @@
                                 <i class="material-icons">close</i>
                             </button>
                         </td> -->
-                    </tr>
+                </tr>
                    
-                </tbody>
-            </table>
-            
-      
-              </div>
+            </tbody>
+        </table>
+</div>
       

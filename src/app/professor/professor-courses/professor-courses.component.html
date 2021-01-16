@@ -4,21 +4,24 @@
          <thead>
            
              <tr>
-               
+                 <th></th>
                  <th class="name">Name</th>
                  <th class="date">Espb</th>
                  <th class="date">SEMESTER</th>
-                
+                 <th class="text-right">Actions</th>
              </tr>
          </thead>
          <tbody>
             
           <tr *ngFor="let course of courses">
-               
-                 <td class="name"><i class="fa fa-book"></i><a routerLink="/course-view/{{ course.id }}">   {{course.name}}</a></td>
+                 <td><i class="fa fa-book"></i></td>
+                 <td class="name"><a routerLink="/course-view/{{ course.id }}">   {{course.name}}</a></td>
                  <td class="date">{{course.espb}}</td>
                  <td class="date">{{course.semester}}</td>
-               
+                 <td class="text-right"><a type="button" rel="tooltip" (click)="removeCourse(course)"
+                    class="btn btn-danger btn-sm" data-original-title="" title="remove course">
+                    <i class="material-icons">close</i>
+                </a></td>
              </tr> 
         
          </tbody>

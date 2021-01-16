@@ -18,4 +18,7 @@ export class ProfessorDetailComponent implements OnInit {
     
   }
 
+  deleteProfessor(professor){
+    console.log("deleteProfessor")
+  }
 }

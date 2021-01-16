@@ -86,5 +86,8 @@ onTabClick(index){
   this.tabIndex = index;
 }
 
+removeCourse(course : Course){
+  this.courses = this.courses.filter(c => c!== course);
+}
  
 }

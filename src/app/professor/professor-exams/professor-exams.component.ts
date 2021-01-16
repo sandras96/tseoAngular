@@ -14,4 +14,7 @@ export class ProfessorExamsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  removeExamTaking(et){
+    
+  }
 }

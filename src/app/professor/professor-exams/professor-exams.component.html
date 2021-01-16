@@ -5,9 +5,13 @@
            
              <tr>
                
-                 <th class="name">Mark</th>
-                 <th class="date">Pass</th>
-                 <th class="date">Points</th>
+                <th class="text-center">Course exam</th>
+                <th class="text-center">Exam Period</th>
+                <th class="text-center">Points</th>
+                <th class="text-center">Mark</th>
+                <th class="text-center">Pass</th>
+                <th class="text-center">Student</th>
+                <th class="text-right">Actions</th> 
                 
              </tr>
          </thead>
@@ -15,9 +19,17 @@
             
           <tr *ngFor="let et of examtakings">
                
-                 <td class="name"><i class="fa fa-pencil"></i><a href="#">{{et.mark}}</a></td>
-                 <td class="date">{{et.pass}}</td>
-                 <td class="date">{{et.points}}</td>
+            <td class="text-center"><i class="fa fa-book"></i><a routerLink="/exam-view/{{ et.exam.id }}">{{et.exam.course.name}}</a></td>
+            <td class="text-center">{{et.exam.examPeriod.name}}</td> <!--dodati router link ka ispitnom roku-->
+            <td class="text-center">{{et.points}}</td>
+            <td class="text-center">{{et.mark}}</td>
+            <td class="text-center" *ngIf="!et.pass"><i class="fa fa-thumbs-o-down" style="color:red" aria-hidden="true"></i></td>
+            <td class="text-center" *ngIf="et.pass"><i class="fa fa-thumbs-o-up" style="color:green" aria-hidden="true"></i></td>
+            <td class="text-center"><a routerLink="/students/{{ et.professor.id }}">{{et.student.firstname}}&nbsp;{{et.student.lastname}}</a></td>
+            <td class="text-right"><a type="button" rel="tooltip" (click)="removeExamTaking(et)"
+                class="btn btn-danger btn-sm" data-original-title="" title="delete">
+                <i class="material-icons">close</i>
+            </a></td>
                
              </tr> 
         

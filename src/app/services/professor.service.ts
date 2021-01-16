@@ -45,4 +45,7 @@ export class ProfessorService {
   getByUserId(user_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/user/${user_id}`);
   }
+  removeCourseProfessor(professor_id : number, course_id) : Observable<any>{
+    return this.http.delete(`${this.baseUrl}/profcourse/${professor_id}/${course_id}`);
+  }
 }
