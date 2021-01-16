@@ -15,4 +15,7 @@ export class StudentDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  deleteStudent(s){
+    console.log("delete student")
+  }
 }

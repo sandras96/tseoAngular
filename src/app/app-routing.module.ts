@@ -29,6 +29,7 @@ import { CourseViewComponent } from './course/course-view/course-view.component'
 import { StudentViewComponent } from './student/student-view/student-view.component';
 import { UserComponent } from './user/user/user.component';
 import { ExamComponent } from './exam/exam/exam.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -52,6 +53,7 @@ const routes: Routes = [
 {path: 'add-course', component: AddCourseComponent},
 
 {path: 'users', component: UserComponent},
+{path: 'users/:id', component: UserViewComponent},
 
 
 {path: 'professors', component: ProfessorComponent},

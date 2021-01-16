@@ -18,4 +18,5 @@ export class StudentListComponent implements OnInit {
   selectStudent(student: Student){
     this.studentSelected.emit(student);
   }
+
 }

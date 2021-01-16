@@ -16,6 +16,7 @@ export class StudentCoursesComponent implements OnInit {
   @Input() courses : Course[];
   
   coursesAll : Course[];
+  filteredCourses : any[] = [];
   studentId : number;
   @Output() deleteCourse  = new EventEmitter<Course[]>();
   @Output() addCourse  = new EventEmitter<Course[]>();
@@ -36,6 +37,7 @@ export class StudentCoursesComponent implements OnInit {
       .subscribe(data=>{
         this.deleteCourse.emit(course);
         this.toastr.success("Course " +course.name+ " was successfully removed!", "Success")
+        this.filteredCourses.push(course)
       }, error => {
         console.log(error)
       })
@@ -49,7 +51,8 @@ export class StudentCoursesComponent implements OnInit {
     console.log("GET COURSES")
     this.courseService.getAll()
       .subscribe(data => {
-        this.coursesAll =data;
+        this.coursesAll = data;
+        this.getFilteredCourses();
       },error=>{console.log(error)})
   }
 
@@ -59,13 +62,35 @@ export class StudentCoursesComponent implements OnInit {
     this.courseAttendanceService.create(cId, this.studentId)
     .subscribe(data => {
       this.addCourse.emit(cId)
+      this.filteredCourses = this.arrayRemove(this.filteredCourses, cId);
       console.log("CA JE:" + data.id);
       
     },
     error => {
-      this.toastr.error("Student already enrolled on this course", "Error")
       console.log(error)
     }
     )}
+
+    getFilteredCourses () {
+      this.filteredCourses = []
+      this.coursesAll.forEach( course => {
+        let counter = 0
+        this.courses.forEach( c => {
+          if (c.id === course.id) {
+            counter++
+          }
+        })
+        if (counter === 0) {
+          this.filteredCourses.push(course)
+        }
+      })
+    }
+
+    arrayRemove (array, id) { 
+      return array.filter((ele) => { 
+          return ele.id != id; 
+      });
+  }
+
   }
 

@@ -1,0 +1,212 @@
+<div class="card text-center col-md-8" *ngIf="user">
+    <div>
+      User profile
+    </div>
+    <div class="card-body">
+      
+        <div class="col-md-6  form-group">
+            <label for="validationDefault01">Username: </label>
+            <input type="text" class="form-control" name="firstname"
+            id="firstname" [(ngModel)]="user.username" id="validationDefault01" placeholder="First name"  required/>
+           
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="validationDefault02">Role: </label>
+            <input type="text" class="form-control" name="lastname"
+            id="lastname" value="ADMIN" id="validationDefault02" placeholder="Last name" disabled>
+          </div>
+        
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div id="headingOne">
+            <h5 class="mb-0 text-left">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Add student role
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3 form-group">
+                          <label for="validationDefault01">First name</label>
+                          <input type="text" class="form-control" name="firstname"
+                          id="firstname" [(ngModel)]="student.firstname" id="validationDefault01" placeholder="First name"  required/>
+                         
+                        </div>
+                        <div class="col-md-4 mb-3 form-group">
+                          <label for="validationDefault02">Last name</label>
+                          <input type="text" class="form-control" name="lastname"
+                          id="lastname" [(ngModel)]="student.lastname"  id="validationDefault02" placeholder="Last name" required>
+                        </div>
+                  
+                        <div class="col-md-4 mb-3 form-group">
+                          <div class="form-group">
+                              <label for="birthdate">Birthdate: {{ student.birthDate | date }}</label>
+                             
+                              <input type="date" name="birthdate" id="birthdate" class="form-control" [(ngModel)]="student.birthDate"/>
+                               
+                          </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label for="validationDefault099">Index number</label>
+                          <input type="text" class="form-control" name="indexnum"
+                          id="indexnum" [(ngModel)]="student.indexNum"  id="validationDefault099" placeholder="index number" required>
+                        </div>
+                     
+                      </div>
+                      <div class="form-row">
+                          <div class="col-md-12 mb-2 form-group">
+                              <label for="validationDefault03">Address</label>
+                              <input type="text" [(ngModel)]="student.address" class="form-control" 
+                              id="inputAddress" placeholder="1234 Main St" id="validationDefault03" name="address">
+                            </div>
+                        <div class="col-md-6 mb-3 form-group">
+                          <label for="validationDefault04">City</label>
+                          <input type="text" [(ngModel)]="student.city" 
+                          class="form-control" id="validationDefault04" placeholder="City" name="city" required>
+                        </div>
+                        <div class="col-md-3 mb-3 form-group">
+                          <label for="validationDefault05">Country</label>
+                          <input type="text" [(ngModel)]="student.country"
+                           class="form-control" id="validationDefault05" placeholder="Country" name="country" required>
+                        </div>
+                        <div class="col-md-3 mb-3 form-group">
+                          <label for="validationDefault06">Zip</label>
+                          <input type="text" [(ngModel)]="student.zip" class="form-control"
+                           id="validationDefault06" placeholder="Zip" required name="zip" required>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="col-md-6 mb-2 form-group">
+                              <label for="email">Email</label>
+                              <input type="text" [(ngModel)]="student.email" 
+                              class="form-control" id="email" placeholder="123@test.net" name="email" required>
+                            </div>
+                            <div class="col-md-6 mb-2 form-group">
+                              <label for="phone">Phone</label>
+                              <input type="text" [(ngModel)]="student.phone" 
+                              class="form-control" id="phone" placeholder="+381/654017152" name="phone" required>
+                            </div>
+                      </div>
+                    <div class="padding-top-x5">
+                        <div class="padding-top-x5">
+                           
+                          <div class="row">
+                              <div class="col-md-6 mb-2 form-group text-left">
+                                <button type="submit" rel="tooltip"
+                                    class="btn btn-success btn-sm" data-original-title="" title="update student">Update</button>
+                                </div>
+                                <div class="col-md-6 mb-2 form-group text-right">
+                                  <a type="button" rel="tooltip"
+                                class="btn btn-danger btn-sm" data-original-title="" title="delete student">Delete</a>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div id="headingTwo">
+            <h5 class="mb-0 text-left">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+               Add professor role
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <form [formGroup]="createProfessorForm" (ngSubmit)="createProfessor()">
+                    <div class="form-row">
+                      <div class="col-md-4 mb-3 form-group">
+                        <label for="validationDefault01">First name</label>
+                        <input type="text" class="form-control" name="firstname"
+                        id="firstname"  id="validationDefault01" placeholder="First name"  required/>
+                       
+                      </div>
+                      <div class="col-md-4 mb-3 form-group">
+                        <label for="validationDefault02">Last name</label>
+                        <input type="text" class="form-control" name="lastname"
+                        id="lastname"   id="validationDefault02" placeholder="Last name" required>
+                      </div>
+                
+                      <div class="col-md-4 mb-3 form-group">
+                        <div class="form-group">
+                            <label for="birthdate">Birthdate: </label>
+                           
+                            <input type="date" name="birthdate" id="birthdate" class="form-control" />
+                             
+                        </div>
+                      </div>
+                      <div class="col-md-6 form-group">
+                        <label for="validationDefault099">Role</label>
+                        <select  class="form-control" id="profRole" name="profRole">
+                    
+                            <option value="PROFESSOR">PROFESSOR</option>
+                            <option value="ASSOCIATE">ASSOCIATE</option>
+                            <option value="DEMONSTRATOR">DEMONSTRATOR</option>
+                        </select>
+                      </div>
+                   
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-2 form-group">
+                            <label for="validationDefault03">Address</label>
+                            <input type="text"  class="form-control" 
+                            id="inputAddress" placeholder="1234 Main St" id="validationDefault03" name="address">
+                          </div>
+                      <div class="col-md-6 mb-3 form-group">
+                        <label for="validationDefault04">City</label>
+                        <input type="text" 
+                        class="form-control" id="validationDefault04" placeholder="City" name="city" required>
+                      </div>
+                      <div class="col-md-3 mb-3 form-group">
+                        <label for="validationDefault05">Country</label>
+                        <input type="text" 
+                         class="form-control" id="validationDefault05" placeholder="Country" name="country" required>
+                      </div>
+                      <div class="col-md-3 mb-3 form-group">
+                        <label for="validationDefault06">Zip</label>
+                        <input type="text" class="form-control"
+                         id="validationDefault06" placeholder="Zip" required name="zip" required>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-2 form-group">
+                            <label for="email">Email</label>
+                            <input type="text" 
+                            class="form-control" id="email" placeholder="123@test.net" name="email" required>
+                          </div>
+                          <div class="col-md-6 mb-2 form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" 
+                            class="form-control" id="phone" placeholder="+381/654017152" name="phone" required>
+                          </div>
+                    </div>
+                    <div class="padding-top-x5">
+                        <div class="padding-top-x5">
+                           
+                          <div class="row">
+                              <div class="col-md-6 mb-2 form-group text-left">
+                                <button class="btn btn-success">Add</button>
+                                </div>
+                                <div class="col-md-6 mb-2 form-group text-right">
+                                  <a type="button" rel="tooltip"
+                                class="btn btn-danger btn-sm" data-original-title="" title="delete student">Delete</a>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+   
+  </div>

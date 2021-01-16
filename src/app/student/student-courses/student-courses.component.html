@@ -1,7 +1,7 @@
 <div class="input-group">
     <select class="custom-select" #course id="inputGroupSelect04">
       <option hidden>Sign student for the new course</option>
-      <option [value]="c.id" *ngFor="let c of coursesAll">{{c.name}}</option>
+      <option [value]="c.id" *ngFor="let c of filteredCourses">{{c.name}}</option>
      
     </select>
     <div class="input-group-append">

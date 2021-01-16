@@ -63,6 +63,7 @@ import { ExamTakingComponent } from './exam/exam-taking/exam-taking.component';
 import { ExamCourseComponent } from './exam/exam-course/exam-course.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { UserViewComponent } from './user/user-view/user-view.component';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { ToastrModule } from 'ngx-toastr';
     ExamViewComponent,
     ExamUnitComponent,
     ExamTakingComponent,
-    ExamCourseComponent
+    ExamCourseComponent,
+    UserViewComponent
    
   ],
   imports: [
