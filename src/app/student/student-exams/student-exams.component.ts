@@ -10,12 +10,18 @@ import { ExamTaking } from 'src/app/model/exam-taking.model';
 })
 export class StudentExamsComponent implements OnInit {
 
+
+
   @Input() examTakings : ExamTaking[];
   @Output() deleteExamTaking = new EventEmitter<ExamTaking[]>();
+
+  examTaking : ExamTaking = new ExamTaking();
   constructor(private examTakingService : ExamTakingService,
               private toastr : ToastrService) { }
 
+  
   ngOnInit(): void {
+   
   }
 
   removeExamTaking(et){
@@ -25,8 +31,11 @@ export class StudentExamsComponent implements OnInit {
         this.toastr.success("This exam from course " +et.exam.course.name+ " was deleted successfully", "Success");
       }, error => {
         console.log(error)
-      }
-      )
+      })
 
   }
+
+
+
+  
 }

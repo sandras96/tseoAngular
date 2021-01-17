@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ExamTaking } from '../model/exam-taking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,10 @@ export class ExamTakingService {
   private baseUrl = 'http://localhost:8080/api/examtakings';
 
   constructor(private http : HttpClient) { }
+
+  create(examTaking : ExamTaking): Observable<any>{
+    return this.http.post(`${this.baseUrl}`, examTaking);
+  }
 
   delete(examTaking_id : number) : Observable<any>{
     return this.http.delete(`${this.baseUrl}/${examTaking_id}`);

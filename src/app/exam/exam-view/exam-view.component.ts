@@ -54,7 +54,14 @@ export class ExamViewComponent implements OnInit {
         }
       )
   }
+  
+  addExamTaking(examTaking : ExamTaking){
+    this.examTakings.push(examTaking);
+  }
 
+  removeExamTaking(examTaking : ExamTaking){
+    this.examTakings = this.examTakings.filter(et => et !== examTaking)
+  }
 
   onTabClick(index){
     this.tabIndex = index;

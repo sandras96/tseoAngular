@@ -1,3 +1,11 @@
+<div>
+    <div class="input-group" id="addBtn">
+       
+        <div>
+          <button class="btn btn-outline-secondary" type="button" (click)="openModal('createETModal')">+</button>
+        </div>
+      </div>
+    </div>
 <div class="row">
         
     <div id="unit"class="col-lg-6 col-md-4 ml-auto mr-auto" >
@@ -28,7 +36,10 @@
                        
                         
                             <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
+                            <button type="button" (click)="openModal('editETModal')" class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="edit exam taking">
+                                    <i class="material-icons">create</i>
+                            </button> 
+                            <button type="button" rel="tooltip" (click)="removeExamTaking(et)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
                                 <i class="material-icons">close</i>
                             </button>
                         </td> 
@@ -38,3 +49,123 @@
             </table>
             </div>
             </div>
+
+            <jw-modal id="createETModal">
+
+                <div class="col-md-6 offset-md-3">
+                    <div class="card card-outline-secondary">
+                        <div class="card-body">
+                            <h3 class="text-center">Create Exam Taking</h3>
+                            
+                            <form [formGroup]="addForm" (ngSubmit)="addExamTaking()">
+                                <div class="input-group">
+                                    <select class="custom-select" formControlName="student" #s id="inputGroupSelect04">
+                                        <option hidden>Add student to this course</option>
+                                        <option [ngValue]="s"  *ngFor="let s of studentsAll">{{s.firstname}}&nbsp;{{s.lastname}}&nbsp;{{s.indexNum}}</option>
+                                    </select>
+                                  </div>
+                                <div class="form-group">
+                                    <label for="mark">Mark</label>
+                                    <input formControlName="mark" type="number" class="form-control" id="mark" required placeholder="Mark">
+                                  </div>
+                                  
+                                  <div>
+                                    <input id="true" type="radio" [value]=true name="pass" formControlName="pass">
+                                    <label for="true">Pass</label>
+                                 </div>
+                              
+                                 <div>
+                                    <input id="false" type="radio" [value]=false name="pass" formControlName="pass">
+                                    <label for="false">Not pass</label>
+                                 </div>
+                            
+                                <div class="form-group">
+                                  <label for="points">Points</label>
+                                  <input formControlName="points" type="number" class="form-control" id="points" required name="points">
+                                </div>
+                                <div class="input-group">
+                                    <select class="custom-select" formControlName="professor" #p id="inputGroupSelect05">
+                                        <option hidden>Add professor to this course</option>
+                                        <option [ngValue]="p"  *ngFor="let p of professorsAll">{{p.firstname}}&nbsp;{{p.lastname}}&nbsp;{{p.role}}</option>
+                                    </select>
+                                  </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 form-group">
+                                      <button type="submit" rel="tooltip" 
+                                          class="btn btn-success btn-sm" data-original-title="" title="create exam">Create</button>
+                                      </div>
+                                      <div class="col-md-6 mb-2 form-group text-right">
+                                        <a type="button" rel="tooltip" (click)="closeModal('createETModal')"
+                                      class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                                    </div>
+                                  </div>
+                              </form>
+                        </div>
+                    </div>
+                    <!-- /form card cc payment -->
+                </div>
+                </jw-modal>
+
+                <jw-modal id="editETModal">
+
+                    <div class="col-md-6 offset-md-3">
+                        <div class="card card-outline-secondary">
+                            <div class="card-body">
+                                <h3 class="text-center">Edit Exam Taking</h3>
+                                <div *ngIf="examTaking">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="mark">Mark</label>
+                                        <input type="text" class="form-control" id="mark" required [(ngModel)]="examTaking.mark" name="mark">
+                                      </div>
+                                  
+                                      <div class="form-group">
+                                        <label for="points">Points</label>
+                                        <input type="text" class="form-control" id="points" required [(ngModel)]="examTaking.points" name="points">
+                                      </div>
+                                  
+                                   
+                                    <!-- <div class="form-group">
+                                        <label for="mark">Mark</label>
+                                        <input type="number" [(ngModel)]="examTaking.mark" class="form-control" id="mark" required placeholder="Mark">
+                                      </div>
+                                      
+                                      <div>
+                                        <input id="true" type="radio" [value]=true name="pass" formControlName="pass">
+                                        <label for="true">Pass</label>
+                                     </div>
+                                  
+                                     <div>
+                                        <input id="false" type="radio" [value]=false name="pass" formControlName="pass">
+                                        <label for="false">Not pass</label>
+                                     </div>
+                                
+                                    <div class="form-group">
+                                      <label for="points">Points</label>
+                                      <input [(ngModel)]="examTaking.points" type="number" class="form-control" id="points" required name="points">
+                                    </div>
+                                    <div class="input-group">
+                                        <select class="custom-select" [(ngModel)]="examTaking.professor" #p id="inputGroupSelect05">
+                                            <option hidden>Add professor to this course</option>
+                                            <option [ngValue]="p"  *ngFor="let p of professorsAll">{{p.firstname}}&nbsp;{{p.lastname}}&nbsp;{{p.role}}</option>
+                                        </select>
+                                      </div>
+     -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2 form-group">
+                                          <button type="submit" rel="tooltip" 
+                                              class="btn btn-success btn-sm" data-original-title="" title="create exam">Create</button>
+                                          </div>
+                                          <div class="col-md-6 mb-2 form-group text-right">
+                                            <a type="button" rel="tooltip" (click)="closeModal('createETModal')"
+                                          class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                                        </div>
+                                      </div>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /form card cc payment -->
+                    </div>
+                    </jw-modal>

@@ -16,7 +16,7 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <app-exam-unit  *ngIf="tabIndex === 0" [exam]= "exam"></app-exam-unit>
-       <app-exam-taking  *ngIf="tabIndex === 1" [examTakings]= "examTakings"></app-exam-taking>
+       <app-exam-taking  *ngIf="tabIndex === 1" [examTakings]= "examTakings" [exam]="exam" (createExamTaking)="addExamTaking($event)" (deleteExamTaking)="removeExamTaking($event)"></app-exam-taking>
       <!--<app-course-professors  *ngIf="tabIndex === 2" [professors]= "professors"></app-course-professors>-->
       <app-exam-course  *ngIf="tabIndex === 3" [exam]= "exam"></app-exam-course> 
     </div>
