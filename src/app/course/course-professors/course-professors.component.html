@@ -1,6 +1,17 @@
-<div class="row">
-        
-    <div id="unit"class="col-lg-6 col-md-4 ml-auto mr-auto" >
+<div id="enrollDiv">
+    <div>
+    <div class="input-group">
+        <select class="custom-select"  #s id="inputGroupSelect04">
+          <option hidden>Add student to this course</option>
+            <!-- <option [value]="s.id"  *ngFor="let s of studentsAll">{{s.firstname}}</option> -->
+        <option>ssss</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Add</button>
+        </div>
+      </div>
+    </div>
+    <div id="unit">
             <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -20,14 +31,15 @@
                         <td><a routerLink="/professors/{{ professor.id }}">{{professor.firstname}}<span> &nbsp;&nbsp;{{professor.lastname}}</span></a></td>
                        
                         <td class="text-right">{{professor.role}}</td>
-                            <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
-                                <i class="material-icons">close</i>
-                            </button>
-                        </td> 
+                        <td class="text-right"><a type="button" rel="tooltip" 
+                          class="btn btn-danger btn-sm" data-original-title="" title="remove professor">
+                          <i class="material-icons">close</i>
+                      </a></td>
                     </tr>
                    
                 </tbody>
             </table>
             </div>
             </div>
+
+            

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { CourseAttendance } from './../../model/course-attendance.model';
 import { CourseAttendanceService } from 'src/app/services/course-attendance.service';
 
@@ -9,6 +10,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { CourseService } from 'src/app/services/course.service';
 import { filter, map } from 'rxjs/operators'; 
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-course-enrrollments',
@@ -23,26 +25,19 @@ export class EnrrollmentsComponent implements OnInit {
   @Input() courseAttendances : CourseAttendance[];
   
   courseStudents : Student[];
-  filteredStudents : Student[];
+  filteredStudents : Student[] = [];
   studentsAll: Student[];
   courseAttendance : CourseAttendance;
-  form: FormGroup;
-  studentId : number;
- // studentsAll: any = [];
+ 
   
- @Output()
-  addStudent = new EventEmitter<CourseAttendance>();
-
- // @Output() change  = new EventEmitter<Student[]>();
+ @Output() addStudent = new EventEmitter<CourseAttendance[]>();
+ @Output() deleteStudent = new EventEmitter<CourseAttendance[]>();
 
 
-  constructor(
-              private courseAttendanceService : CourseAttendanceService,
+  constructor(private courseAttendanceService : CourseAttendanceService,
               private studentService : StudentService,
-              private courseService : CourseService) { 
-
-               
-              }
+              private route : ActivatedRoute,
+              private toastr : ToastrService) {}
 
                  
 
@@ -51,66 +46,59 @@ export class EnrrollmentsComponent implements OnInit {
     console.log("kurs id2 je " + this.course.id)
   }
 
-  // getStudents(){
-  //   this.studentService.getAll()
-  //     .subscribe( data => {
-  //       this.studentsAll = data;
-  //       if(this.courseAttendances.length<0){
-  //         return this.studentsAll = this.filteredStudents;
-  //       }
-  //       this.courseAttendances.forEach(element => {
-  //         console.log("ELEMENT JE " , element.student.id)
-  //         data.forEach(element2 => {
-  //           console.log("DATA ELEMENT 2", element2.id)
-  //           if(element.student.id != element2.id){
-  //             this.filteredStudents.push(element2);
-  //             console.log("filtered students lista je ", element2)
-  //           }
-  //         });
-        
-          
-  //       });
-  //      return this.filteredStudents;
-       
-  //     },
-  //     error => {
-  //       console.log(error)
-  //     })
-  // }
-  getFilteretStudents(){
-    this.courseAttendanceService.getStudentsNotInCourse(this.course.id)
-      .subscribe(
-        data => {
-          this.filteredStudents = data;
-          console.log("FILTERED STUDENTSSSS", data)
-        },
-        error => {
-          console.log(error)
-        }
-      )
-  }
  getStudents(){
    this.studentService.getAll()
     .subscribe( data =>{
       this.studentsAll = data;
+      this.getFilteredStudents();
     }, error =>{
       console.log(error)
     })
  }
 
+ getFilteredStudents(){
+   this.filteredStudents = [];
+   this.studentsAll.forEach(student =>{
+     let counter = 0;
+     this.courseAttendances.forEach(ca =>{
+       if(ca.student.id == student.id){
+         counter++
+       }
+     })
+     if(counter ===0){
+       this.filteredStudents.push(student)
+     }
+   })
+
+ }
+
+ arrayRemove (array, id) { 
+  return array.filter((ele) => { 
+      return ele.id != id; 
+  });
+}
   add(sId){
     this.courseAttendanceService.create(this.course.id, sId)
       .subscribe(data => {
-        
-        
-        
         this.courseAttendance = data;
-        this.addStudent.emit(data)
+        this.addStudent.emit(data);
+        this.filteredStudents = this.arrayRemove(this.filteredStudents, data.student.id)
         console.log("CA JE:" + data.id);
-        
       },
       error => {
         console.log(error)
       }
       )}
+
+  removeStudent(ca){
+    this.courseAttendanceService.delete(ca.student.id, this.course)
+      .subscribe(data=>{
+        console.log("DATA JE ", data)
+        this.deleteStudent.emit(ca);
+        this.filteredStudents.push(ca.student);
+      },
+      error =>{
+        console.log(error)
+      })
+  }
 }

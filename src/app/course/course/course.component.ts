@@ -33,10 +33,11 @@ export class CourseComponent implements OnInit {
       )
   }
 
-  selected(course : any){
-    this.course = course;
-    this.router.navigate(['[/course-view/:{{this.course.id}}']);
-    console.log("Course selected: ", course)
+  addCourse(course : Course){
+    this.courses.push(course);
+  }
+  deleteCourse(course : Course){
+    this.courses = this.courses.filter(c => c!== course);
   }
 }
 

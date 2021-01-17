@@ -57,7 +57,7 @@ export class CourseViewComponent implements OnInit {
       .subscribe(
         data => {
           this.exams = data;
-          console.log("exams " + data)
+          console.log("exams ", data)
         },
         error => {
           console.log(error)
@@ -108,5 +108,19 @@ export class CourseViewComponent implements OnInit {
     this.courseAttendances = [...this.courseAttendances, ca];
     console.log('TCL: EventComponent -> hh -> this.students', this.students);
    // this.students.push(student);
+  }
+
+  removeStudent(courseAttendance : CourseAttendance){
+    this.courseAttendances = this.courseAttendances.filter(ca => ca !== courseAttendance)
+    
+  }
+
+  createExam(exam : Exam){
+    console.log("exam pushovan je ", exam)
+    this.exams.push(exam);
+  }
+
+  deleteExam(exam:Exam){
+    this.exams = this.exams.filter(e => e!==exam);
   }
 }

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from 'src/app/model/course.model';
 import { CourseService } from 'src/app/services/course.service';
@@ -10,19 +11,18 @@ import { ModalService } from 'src/app/_modal';
 export class CourseList1Component implements OnInit {
 
   @Input() public courses : Course[];
-  @Output() public courseSelected = new EventEmitter<Course>();
-
+  @Output() addCourse = new EventEmitter<Course[]>();
+  @Output() deleteCourse = new EventEmitter<Course[]>();
   course : Course = new Course();
 
   constructor( private modalService: ModalService,
-               private courseService : CourseService) { }
+               private courseService : CourseService,
+               private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
 
-  selectCourse(course : Course){
-    this.courseSelected.emit(course);
-  }
+ 
 
    newCourse(): void {
    
@@ -36,6 +36,9 @@ export class CourseList1Component implements OnInit {
         .subscribe(data => {
           console.log(data);
           this.course = new Course();
+          this.addCourse.emit(data);
+          this.toastr.success('Course '+data.name+' was successfully created!', 'Success!')
+          this.closeModal('createCourseModal');
          
         },
         error => console.log(error)
@@ -43,9 +46,17 @@ export class CourseList1Component implements OnInit {
   }
 
   onSubmit(){
-    
     this.save();
   }
+
+  removeCourse(course){
+    this.courseService.delete(course.id)  
+      .subscribe(data=>{
+        this.deleteCourse.emit(course);
+        this.toastr.success('Course '+course.name+' was successfully deleted!', 'Success!')
+      })
+  }
+
   openModal(id: string) {
     this.modalService.open(id);
 }

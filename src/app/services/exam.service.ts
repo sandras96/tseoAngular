@@ -20,8 +20,8 @@ export class ExamService {
     return this.http.get(`${this.baseUrl}/${exam_id}`);
   }
 
-  create(exam : Exam): Observable<any>{
-    return this.http.post(`${this.baseUrl}`, exam);
+  create(exam : Exam, course_id : number, ep_id : number): Observable<any>{
+    return this.http.post(`${this.baseUrl}/${course_id}/${ep_id}`, exam);
   }
 
   update(exam_id : number, data) : Observable<any>{

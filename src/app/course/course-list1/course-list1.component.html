@@ -1,6 +1,6 @@
 <h4><small>Courses</small> <span>&nbsp;&nbsp;&nbsp;</span>
-    <a type="button" rel="tooltip" (click)="openModal('addCourseModal')" class="btn btn-info btn-sm" data-original-title="" title="add course">
-    </a></h4>
+    <a type="button" rel="tooltip" (click)="openModal('createCourseModal')" class="btn btn-info btn-sm" data-original-title="" title="add course">
+        <i class="material-icons">add</i></a></h4>
 <div class="table-responsive">
         <table class="table">
             <thead>
@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let course of courses" (click)="selectCourse(course)">
+                <tr *ngFor="let course of courses">
                     <td class="text-center">{{course.id}}</td>
                     <td>{{course.name}}</td>
                     <td>{{course.espb}}</td>
@@ -22,7 +22,7 @@
                         <a routerLink="/course-view/{{ course.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
                             <i class="material-icons">preview</i>
                         </a> 
-                        <a type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
+                        <a type="button" rel="tooltip" (click)="removeCourse(course)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
                             <i class="material-icons">close</i>
                         </a>
                    </td>
@@ -30,7 +30,7 @@
             </tbody>
         </table>
 </div>
-<jw-modal id="addCourseModal">
+<jw-modal id="createCourseModal">
     
     
 
@@ -41,7 +41,7 @@
       
         <div class="card card-outline-secondary">
             <div class="card-body">
-                <h3 class="text-center">Create Payment</h3>
+                <h3 class="text-center">Create Course</h3>
                
                 <form (ngSubmit)="onSubmit()">
                     <div class="form-group">
@@ -62,7 +62,16 @@
                       </select>
                     </div>
                 
-                    <button type="submit" class="btn btn-success" (click)="closeModal('addCourseModal');">Submit</button>
+                    <div class="row">
+                        <div class="col-md-6 mb-2 form-group">
+                          <button type="submit" rel="tooltip" 
+                              class="btn btn-success btn-sm" data-original-title="" title="create course">Create</button>
+                          </div>
+                          <div class="col-md-6 mb-2 form-group text-right">
+                            <a type="button" rel="tooltip" (click)="closeModal('createCourseModal')"
+                          class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                        </div>
+                      </div>
                   </form>
             </div>
         </div>
