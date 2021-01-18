@@ -1,4 +1,5 @@
 import { EnumType } from "typescript";
+import { Course } from "./course.model";
 import { User } from "./user.model";
 
 export class Professor {
@@ -15,4 +16,5 @@ export class Professor {
     zip: number;
     role : EnumType;
     user : User;
+    courses : Course[];
 }

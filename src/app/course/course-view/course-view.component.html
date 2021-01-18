@@ -23,7 +23,7 @@
         <app-course-enrrollments  class="tab-pane fade" id="tab2" role="tabpanel" *ngIf="tabIndex === 1" [courseAttendances]= "courseAttendances" (addStudent)="hh($event)" [course]="course" (deleteStudent)="removeStudent($event)"></app-course-enrrollments>
       </div>
       <div class="tab-pane fade" id="tab3" role="tabpanel">
-        <app-course-professors  *ngIf="tabIndex === 2" [professors]= "professors"></app-course-professors>
+        <app-course-professors  *ngIf="tabIndex === 2" [professors]= "professors" (deleteProfessor)="removeProfessor($event)" (addProfessor)="addProfessor($event)"></app-course-professors>
       </div>
       <div class="tab-pane fade" id="tab4" role="tabpanel">
         <app-course-exams  *ngIf="tabIndex === 3" [exams]= "exams" [course]="course" (addExam)="createExam($event)" (deleteExam)="deleteExam($event)"></app-course-exams>

@@ -123,4 +123,10 @@ export class CourseViewComponent implements OnInit {
   deleteExam(exam:Exam){
     this.exams = this.exams.filter(e => e!==exam);
   }
+  removeProfessor(professor : Professor){
+    this.professors = this.professors.filter(p => p !==professor);
+  }
+  addProfessor(professor : Professor){
+    this.professors.push(professor);
+  }
 }

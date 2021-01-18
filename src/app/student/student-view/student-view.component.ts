@@ -122,6 +122,9 @@ export class StudentViewComponent implements OnInit {
     this.documents = this.documents.filter(d => d !== document);
   } 
  
+  addPayment(payment : Payment){
+    this.payments.push(payment);
+  }
   removePayment(payment : Payment){
     console.log("removePayment", payment)
     this.payments = this.payments.filter(p => p!== payment);

@@ -43,7 +43,7 @@
                         <app-student-courses  *ngIf="tabIndex === 1" [courses]="courses" (deleteCourse)="removeCourse($event)" (addCourse)="addCourse($event)"></app-student-courses>
                         <app-student-exams  *ngIf="tabIndex === 2" [examTakings]="examTakings" (deleteExamTaking)="removeExamTaking($event)"></app-student-exams>
                         <app-student-documents  *ngIf="tabIndex === 3" [documents]="documents" (deleteDocument)="removeDocument($event)" ></app-student-documents>
-                        <app-student-payments  *ngIf="tabIndex === 4" [payments]="payments" (deletePayment)="removePayment($event)" ></app-student-payments>
+                        <app-student-payments  *ngIf="tabIndex === 4" [payments]="payments" (createPayment)="addPayment($event)"(deletePayment)="removePayment($event)" [student]="student"></app-student-payments>
                     </div>
                     
                     </div>

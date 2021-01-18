@@ -1,13 +1,13 @@
 <div id="enrollDiv">
     <div>
     <div class="input-group">
-        <select class="custom-select"  #s id="inputGroupSelect04">
-          <option hidden>Add student to this course</option>
-            <!-- <option [value]="s.id"  *ngFor="let s of studentsAll">{{s.firstname}}</option> -->
-        <option>ssss</option>
+        <select class="custom-select"  #professor id="inputGroupSelect04">
+          <option hidden>Add professor to this course</option>
+           <option [value]="p.id"  *ngFor="let p of filteredProfessors">
+             {{p.firstname}}&nbsp;{{p.lastname}}</option>
         </select>
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Add</button>
+          <button class="btn btn-outline-secondary" type="button" (click)="signProfessor(professor.value)">Add</button>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
                        
                         <td class="text-right">{{professor.role}}</td>
                         <td class="text-right"><a type="button" rel="tooltip" 
-                          class="btn btn-danger btn-sm" data-original-title="" title="remove professor">
+                          class="btn btn-danger btn-sm" data-original-title="" (click)="removeProfessor(professor)"title="remove professor">
                           <i class="material-icons">close</i>
                       </a></td>
                     </tr>

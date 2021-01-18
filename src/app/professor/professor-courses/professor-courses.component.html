@@ -1,3 +1,13 @@
+<div class="input-group">
+    <select class="custom-select" #course id="inputGroupSelect04">
+      <option hidden>Add course to professor</option>
+      <option [value]="c.id" *ngFor="let c of filteredCourses">{{c.name}}</option>
+     
+    </select>
+    <div class="input-group-append">
+        <button class="btn btn-info" type="button"(click)="signProfessor(course.value)">Sign</button>
+      </div>
+  </div>
 <div class="table-responsive drive-items-table-wrapper">
                      
     <table class="table">

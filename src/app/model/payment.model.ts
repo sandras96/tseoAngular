@@ -1,7 +1,8 @@
+import { Student } from './student.model';
 export class Payment {
 
     id : number;
-    account_number : number;
+    accountNumber : number;
     address: String;
     amount : number;
     city : String;
@@ -9,8 +10,8 @@ export class Payment {
     deleted : boolean;
     model : number;
     name : String;
-    payment_code : number;
+    paymentCode : number;
     purpose : String;
     reference : number;
-    student_id : number;
+    student : Student;
 }

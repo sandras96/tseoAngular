@@ -6,6 +6,7 @@ import { Course } from 'src/app/model/course.model';
 import { ExamTaking } from 'src/app/model/exam-taking.model';
 import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-professor-view',
@@ -26,7 +27,7 @@ export class ProfessorViewComponent implements OnInit {
   
 
   constructor(private professorService: ProfessorService,
-              private userService : UserService,
+              private courseService : CourseService,
               private route : ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -88,6 +89,12 @@ onTabClick(index){
 
 removeCourse(course : Course){
   this.courses = this.courses.filter(c => c!== course);
+}
+
+addCourse(courseId : number){
+  this.courseService.get(courseId).subscribe( data=>{
+    this.courses.push(data);
+  })
 }
  
 }

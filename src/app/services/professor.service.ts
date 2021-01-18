@@ -26,6 +26,9 @@ export class ProfessorService {
   update(professor_id : number, data) : Observable<any>{
     return this.http.put(`${this.baseUrl}/${professor_id}`, data);
   }
+  updateCourse(professor_id : number, course_id : any, data) : Observable<any>{
+    return this.http.put(`${this.baseUrl}/${professor_id}/${course_id}`, data);
+  }
 
   delete(professor_id : number) : Observable<any>{
     return this.http.delete(`${this.baseUrl}/${professor_id}`);

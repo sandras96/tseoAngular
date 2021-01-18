@@ -1,5 +1,5 @@
 <div id="divAdd" class="text-right"><span id="span">create payment &nbsp;</span>
-     <a type="button" rel="tooltip" (click)="openModal('paymentModal')" class="btn btn-info btn-sm" data-original-title="" title="add course">
+     <a type="button" rel="tooltip" (click)="openModal('createPaymentModal')" class="btn btn-info btn-sm" data-original-title="" title="add course">
           <i class="material-icons">add</i>
           </a></div>
 <div class="table-responsive drive-items-table-wrapper">
@@ -34,71 +34,74 @@
  </div>
 
 
- <jw-modal id="paymentModal">
-    
-    
+ <jw-modal id="createPaymentModal">
 
- 
  <div class="col-md-6 offset-md-3">
-     
-
-     <!-- form card cc payment -->
+      
      <div class="card card-outline-secondary">
          <div class="card-body">
              <h3 class="text-center">Create Payment</h3>
             
-             <form (ngSubmit)="onSubmit()">
-                 <div class="form-group">
-                     <label for="cc_name">Card Holder's Name</label>
-                     <input type="text" class="form-control" id="cc_name" pattern="\w+ \w+.*" title="First and last name" required="required">
-                 </div>
-                 <div class="form-group">
-                     <label>Card Number</label>
-                     <input type="text" class="form-control" autocomplete="off" maxlength="20" pattern="\d{16}" title="Credit card number" required="">
-                 </div>
-                 <div class="form-group row">
-                     <label class="col-md-12">Card Exp. Date</label>
-                     <div class="col-md-4">
-                         <select class="form-control" name="cc_exp_mo" size="0">
-                             <option value="01">01</option>
-                             <option value="02">02</option>
-                             <option value="03">03</option>
-                           
-                         </select>
-                     </div>
-                     <div class="col-md-4">
-                         <select class="form-control" name="cc_exp_yr" size="0">
-                             <option>2018</option>
-                             <option>2019</option>
-                             <option>2020</option>
-                             <option>2021</option>
-                             <option>2022</option>
-                         </select>
-                     </div>
-                     <div class="col-md-4">
-                         <input type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required="" placeholder="CVC">
-                     </div>
-                 </div>
-                 <div class="row">
-                     <label class="col-md-12">Amount</label>
-                 </div>
-                 <div class="form-inline">
-                     <div class="input-group">
-                         <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                         <input type="text" class="form-control text-right" id="exampleInputAmount" placeholder="39">
-                         <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                     </div>
-                 </div>
-                 <hr>
-                 <div class="form-group row">
-                     <div class="col-md-6">
-                         <button (click)="closeModal('paymentModal');">Close</button>
-                     </div>
-                     <div class="col-md-6">
-                         <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
-                     </div>
-                 </div>
-             </form>
+             <form [formGroup]="addForm" (ngSubmit)="addPayment()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input formControlName="name" type="text" class="form-control" id="name" required name="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="purpose">Purpose</label>
+                    <input formControlName="purpose" type="text" class="form-control" id="purpose" required name="purpose">
+                  </div>
+                <div class="form-group">
+                    <label for="accountNumber">Account number</label>
+                    <input formControlName="accountNumber" type="number" class="form-control" id="accountNumber" required placeholder="account number">
+                  </div>
+            
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <input formControlName="address" type="text" class="form-control" id="address" required name="address">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input formControlName="city" type="text" class="form-control" id="city" required name="city">
+                  </div>
+                  <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input formControlName="amount" type="number" class="form-control" id="amount" required placeholder="amount">
+                  </div>
+                  <div class="col-md-m form-group">
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                       
+                        <input type="date"  formControlName="date" name="date" id="date" class="form-control"  required/>
+                         
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="model">Model</label>
+                    <input formControlName="model" type="number" class="form-control" id="model" required placeholder="model">
+                  </div>
+                  <div class="form-group">
+                    <label for="paymentCode">payment_code</label>
+                    <input formControlName="paymentCode" type="number" class="form-control" id="paymentCode" required placeholder="payment_code">
+                  </div>
+                  <div class="form-group">
+                    <label for="reference">reference</label>
+                    <input formControlName="reference" type="number" class="form-control" id="reference" required placeholder="reference">
+                  </div>
+               
+                  
+
+                <div class="row">
+                    <div class="col-md-6 mb-2 form-group">
+                      <button type="submit" rel="tooltip" 
+                          class="btn btn-success btn-sm" data-original-title="" title="create exam">Create</button>
+                      </div>
+                      <div class="col-md-6 mb-2 form-group text-right">
+                        <a type="button" rel="tooltip" (click)="closeModal('createETModal')"
+                      class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                    </div>
+                  </div>
+              </form>
          </div>
      </div>
      <!-- /form card cc payment -->
