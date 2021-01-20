@@ -14,5 +14,6 @@ export class Student {
     zip: number;
     indexNum : String;
     user : User;
+   
 
 }

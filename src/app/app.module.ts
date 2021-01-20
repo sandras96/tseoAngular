@@ -65,6 +65,11 @@ import { ExamCourseComponent } from './exam/exam-course/exam-course.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UserViewComponent } from './user/user-view/user-view.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
+import { StudentCreateComponent } from './user/student-create/student-create.component';
+import { ProfessorCreateComponent } from './user/professor-create/professor-create.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
+
 
 
 @NgModule({
@@ -111,7 +116,11 @@ import { UserViewComponent } from './user/user-view/user-view.component';
     ExamUnitComponent,
     ExamTakingComponent,
     ExamCourseComponent,
-    UserViewComponent
+    UserViewComponent,
+    UserCreateComponent,
+    StudentCreateComponent,
+    ProfessorCreateComponent,
+    UploadFilesComponent
    
   ],
   imports: [

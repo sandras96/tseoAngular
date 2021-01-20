@@ -1,3 +1,4 @@
+import { UserCreateComponent } from './user/user-create/user-create.component';
 import { ExamViewComponent } from './exam/exam-view/exam-view.component';
 import { CourseComponent } from './course/course/course.component';
 import { StudentComponent } from './student/student/student.component';
@@ -54,7 +55,7 @@ const routes: Routes = [
 
 {path: 'users', component: UserComponent},
 {path: 'users/:id', component: UserViewComponent},
-
+{path: 'user-create', component: UserCreateComponent},
 
 {path: 'professors', component: ProfessorComponent},
 {path : 'professors/:id', component: ProfessorViewComponent},

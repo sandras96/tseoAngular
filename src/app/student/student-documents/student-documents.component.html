@@ -1,11 +1,38 @@
 <div class="table-responsive drive-items-table-wrapper">
-                     
-    <table class="table">
+     <app-upload-files></app-upload-files> 
+    
+     
+    
+      <!-- <table class="table">
+        <thead>
+           <tr>   
+                <th></th>
+                <th class="text-left">Name</th>
+               
+                <th class="text-right">Actions</th>
+           </tr>
+        </thead>
+    
+        <tbody>
+           <tr *ngFor="let file of documents">
+                <td class="text-center"><i class="fa fa-file-text-o"></i></td>
+                <td class="text-left"><a href="{{ file.url }}">{{ file.name }}</a></td>
+                
+                <td class="text-right"><a type="button" rel="tooltip"
+                   class="btn btn-danger btn-sm" data-original-title="" (click)="removeDocument(file)"title="delete document">
+                   <i class="material-icons">close</i>
+               </a></td>
+           </tr>
+        </tbody>
+    </table> -->
+    <!-- <table class="table">
          <thead>
             <tr>   
                  <th></th>
                  <th class="text-left">Name</th>
-                 <th class="text-left">Date</th>
+                
+                
+                 <th class="text-right">Uploaded</th>
                  <th class="text-right">Actions</th>
             </tr>
          </thead>
@@ -13,8 +40,10 @@
          <tbody>
             <tr *ngFor="let document of documents">
                  <td class="text-center"><i class="fa fa-file-text-o"></i></td>
-                 <td class="text-left"><a routerLink="/document-view/{{ document.id }}">   {{document.name}}</a></td>
-                 <td class="text-left">{{document.date | date}}</td>
+                 <td class="text-left"> {{document.type.split('/')[1]}}</td>
+                
+                 <td class="text-right">{{document.date | date}}</td>
+                
                  <td class="text-right"><a type="button" rel="tooltip" (click)="removeDocument(document)"
                     class="btn btn-danger btn-sm" data-original-title="" title="delete document">
                     <i class="material-icons">close</i>
@@ -22,5 +51,7 @@
             </tr>
          </tbody>
      </table>
-     
+      -->
+
+      
  </div>

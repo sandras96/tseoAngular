@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { ExamTakingService } from 'src/app/services/exam-taking.service';
 import { Course } from 'src/app/model/course.model';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +10,7 @@ import { ExamTaking } from 'src/app/model/exam-taking.model';
 import { DocumentService } from 'src/app/services/document.service';
 import { Payment } from 'src/app/model/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
+import { UploadFileService } from 'src/app/services/upload-file.service';
 
 @Component({
   selector: 'app-student-view',
@@ -30,6 +32,7 @@ export class StudentViewComponent implements OnInit {
               private documentService : DocumentService,
               private paymentService : PaymentService,
               private examTakingService : ExamTakingService,
+              private uploadService: UploadFileService,
               private route : ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -43,7 +46,7 @@ export class StudentViewComponent implements OnInit {
         data=>{
           this.student = data;
           this.getCourses(data.id);
-          this.getDocuments(data.id);
+          this.getFiles(data.id);
           this.getPayments(data.id);
           this.getExamTakings(data.id);
         }, 
@@ -64,19 +67,28 @@ export class StudentViewComponent implements OnInit {
         }
       )
   }
-  getDocuments(id){
-    this.documentService.getDocumentsByStudentId(id)
-      .subscribe(
-        data => {
-          this.documents = data;
-          console.log(data)
-        }, 
-        error => {
-          console.log(error)
-        }
-      )
-  }
+  // getDocuments(id){
+  //   this.documentService.getDocumentsByStudentId(id)
+  //     .subscribe(
+  //       data => {
+  //         this.documents = data;
+  //         console.log(data)
+  //       }, 
+  //       error => {
+  //         console.log(error)
+  //       }
+  //     )
+  // }
 
+  getFiles(id){
+    this.uploadService.getFiles(id)
+      .subscribe(data=>{
+        this.documents = data;
+        console.log(data);
+      },error => {
+        console.log(error)
+      })
+  }
   getPayments(id){
     this.paymentService.getPaymentsByStudentId(id)
       .subscribe(
@@ -116,7 +128,9 @@ export class StudentViewComponent implements OnInit {
       }
     )
   }
-  
+  uploadDocument(document : Document){
+    
+  }
   removeDocument(document : Document){
     console.log("removeDoc", document)
     this.documents = this.documents.filter(d => d !== document);

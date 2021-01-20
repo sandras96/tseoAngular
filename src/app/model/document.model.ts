@@ -1,8 +1,10 @@
 export class Document {
 
     id : number;
-    date : Date;
-    deleted : boolean;
     name : String;
+    url : String;
+    type : String;
+    size : number;
+    date : Date;
     student_id : number;
 }
