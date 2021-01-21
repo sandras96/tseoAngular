@@ -16,13 +16,21 @@ export class ProfessorListComponent implements OnInit {
   @Input() public professors: Professor[];  
   @Output() public professorSelected = new EventEmitter<Professor>(); 
 
-  constructor() { }
+  HighlightRow : any;  
+  ClickedRow:any; 
+  
+  constructor() {
+    this.ClickedRow = function(index){  
+      this.HighlightRow = index;  
+  }  
+   }
 
   ngOnInit(): void {
   }
 
   selectProfessor(professor: Professor) {  
     this.professorSelected.emit(professor);  
+    
 
   }  
 

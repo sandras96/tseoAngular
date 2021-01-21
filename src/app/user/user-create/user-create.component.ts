@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,30 +12,57 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserCreateComponent implements OnInit {
 
-  addForm: FormGroup;
   user : User = new User();
   tabIndex = 0;
-  constructor( private userService : UserService,
-              private formBuilder: FormBuilder) { }
+  authorities = new FormArray([])
+  addForm : FormGroup;
+ 
+
+  constructor(private userService : UserService,
+              private router : Router,
+              private toastr : ToastrService) { }
 
   ngOnInit(): void {
-    this.addForm = this.formBuilder.group({
-      id : [],
-      username : [''],
-      password : ['']
-    
-     
-    })
-  }
-  onTabClick(index){
-    this.tabIndex = index;
-    console.log(index)
-  }
+
+    this.addForm = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl(''),
+      authorities : new FormArray([
+        new FormGroup({
+             id: new FormControl(1),
+             name: new FormControl('ADMIN'),
+           })
+      ])
+  });   
+}
 
   createUser(){
     console.log("ADD form user je ", this.addForm.value)
-    this.userService.create(this.addForm.value).subscribe(data=>{
-      console.log(data)
-    })
+     this.userService.create(this.addForm.value)
+      .subscribe(data=>{
+        this.toastr.success('User '+data.username+ ' was successfully created.', "Success!")
+         this.router.navigate(['/users/',data.id])
+       console.log(data)
+     }, error=>{
+       console.log(error)
+     })
   }
+
+  refresh(){
+    this.addForm.reset();
+  }
+
+  isInvalidAndDirty(field: string): boolean {
+    const ctrl = this.addForm.get(field);
+    return ctrl !== null && !ctrl.valid && ctrl.dirty;
+  }
+  hasError(field: string, error: string): boolean {
+    const ctrl = this.addForm.get(field);
+    return ctrl !== null && ctrl.dirty && ctrl.hasError(error);
+  }
+  onTabClick(index){
+    this.tabIndex = index;
+  }
+
+  
 }

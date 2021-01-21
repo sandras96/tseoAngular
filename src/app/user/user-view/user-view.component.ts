@@ -18,47 +18,19 @@ export class UserViewComponent implements OnInit {
 
   createProfessorForm: FormGroup;
   user : User;
-  student : Student = new Student();
-  submitted = false;
-  bodyText: string;
+
+  changeForm: FormGroup;
 
 
   constructor(private userService : UserService,
-              private studentService : StudentService,
-              private professorService : ProfessorService,
               private route : ActivatedRoute,
-              private formBuilder: FormBuilder,
-              private modalService: ModalService) { }
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this.bodyText = 'This text can be updated in modal 1';
-
     this.getUser(this.route.snapshot.paramMap.get('id'));
-
-    this.createProfessorForm = this.formBuilder.group({
-      address : ['', Validators.required],
-      birthdate: [''],
-      city : [''],
-      country : [''],
-      email : [''],
-      firstname : [''],
-      lastname : [''],
-      phone : [''],
-      zip: [''],
-      role : ['DEMONSTRATOR'],
-      user : this.user
-      
-      
-    });
   }
-
-  createProfessor(){
-    this.professorService.create(this.createProfessorForm.value)
-      .subscribe( data=>{
-        console.log("PRof je ", data)
-      })
-  }
+  
   getUser(id){
     this.userService.get(id)
       .subscribe(data => {
@@ -70,34 +42,18 @@ export class UserViewComponent implements OnInit {
       })
   }
 
-  newStudent() : void {
-    this.submitted = false;
-    this.student = new Student();
+  changePassword(){
+
   }
 
-  save(){
-    this.studentService.create(this.student)
-      .subscribe(data=> {
-        console.log(data);
-        this.student = new Student();
-        console.log(this.student)
-      },
-      error=>{
-        console.log(error)
+  deleteUser(){
+
+  }
+
+  updateUser(user){
+    this.userService.update(user.id, user)
+      .subscribe(data=>{
+        console.log(data)
       })
-  }
-
-  onSubmit(){
-    this.submitted = true;
-    this.save();
-  }
-
-
-  openModal(id: string) {
-    this.modalService.open(id);
-}
-
-  closeModal(id: string) {
-    this.modalService.close(id);
   }
 }

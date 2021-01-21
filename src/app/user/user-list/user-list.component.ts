@@ -13,9 +13,16 @@ import { UserService } from 'src/app/services/user.service';
 export class UserListComponent implements OnInit {
 
   @Input() users : User[];
-
   @Output() userSelected  = new EventEmitter<User>();
-  constructor() { }
+  
+  HighlightRow : any;  
+  ClickedRow:any; 
+  
+  constructor() {
+    this.ClickedRow = function(index){  
+      this.HighlightRow = index;  
+  }  
+   }
 
   ngOnInit(): void {
   }

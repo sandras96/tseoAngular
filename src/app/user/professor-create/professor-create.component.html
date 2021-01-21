@@ -1,1 +1,109 @@
-<p>professor-create works!</p>
+<form [formGroup]="professorForm" (ngSubmit)="createProfessor()">
+    <div class="form-row">
+      <div class="col-md-6 mb-2 form-group">
+        <label for="validationDefault01">First name</label>
+        <input type="text"   formControlName="firstname" class="form-control" name="firstname"
+        id="firstname" id="firstname" placeholder="First name"  required/>
+       
+      </div>
+      <div class="col-md-6 mb-2 form-group">
+        <label for="lastname">Last name</label>
+        <input type="text" class="form-control" name="lastname"
+        id="lastname"  formControlName="lastname"  id="lastname" placeholder="Last name" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-2 form-group">
+        <div class="form-group">
+            <label for="birthDate">Birthdate:</label>
+           
+            <input type="date" formControlName="birthDate" name="birthDate" id="birthDate" class="form-control"/>
+             
+        </div>
+      </div>
+      <div id="role"class="col-md-6 mb-2 form-group">
+        <label for="profRole">Role</label>
+        <select  class="form-control" formControlName="role" id="profRole" name="profRole">
+            <option value="PROFESSOR">PROFESSOR</option>
+            <option value="ASSOCIATE">ASSOCIATE</option>
+            <option value="DEMONSTRATOR">DEMONSTRATOR</option>
+        </select>
+    </div>
+</div>
+    
+    <div class="form-row">
+        <div class="col-md-12 mb-2 form-group">
+            <label for="address">Address</label>
+            <input type="text" formControlName="address" class="form-control" 
+             placeholder="1234 Main St" id="address" name="address">
+          </div>
+      <div class="col-md-6 mb-3 form-group">
+        <label for="city">City</label>
+        <input type="text" formControlName="city"
+        class="form-control" id="city" placeholder="City" name="city" required>
+      </div>
+      <div class="col-md-3 mb-3 form-group">
+        <label for="country">Country</label>
+        <input type="text" formControlName="country"
+         class="form-control" id="country" placeholder="Country" name="country" required>
+      </div>
+      <div class="col-md-3 mb-3 form-group">
+        <label for="zip">Zip</label>
+        <input type="number" formControlName="zip" class="form-control"
+         id="zip" placeholder="Zip" required name="zip" required>
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-2 form-group">
+            <label for="email">Email</label>
+            <input type="text" formControlName="email"
+            class="form-control" id="email" placeholder="123@test.net" name="email" required>
+          </div>
+          <div class="col-md-6 mb-2 form-group">
+            <label for="phone">Phone</label>
+            <input type="text" formControlName="phone"
+            class="form-control" id="phone" placeholder="+381/654017152" name="phone" required>
+          </div>
+    </div>
+    <ng-container formGroupName="user">
+      <div class="form-row" >
+        <div class="col-md-4 mb-3 form-group">
+        <label for="username">Username</label>
+        <div class="input-group">
+          <input type="text" formControlName="username" class="form-control" name="username"
+           id="username" placeholder="Username" required>
+        </div>
+    </div>
+          <div class="col-md-4 mb-3 form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password"
+            class="form-control" id="password" placeholder="*********" name="password" required>
+          </div>
+          <div class="col-md-4 mb-3 form-group">
+            <label for="authorities">Role</label>
+            <input type="role" 
+            class="form-control"  id="authorities" value="professor" name="authorities" disabled>
+        </div>
+    </div>
+    </ng-container>
+    
+   
+    <div class="padding-top-x5">
+        <div class="padding-top-x5">
+           
+          <div class="row">
+              <div class="col-md-6 mb-2 form-group">
+                <button type="submit" rel="tooltip"
+                    class="btn btn-success btn-sm" data-original-title="" title="create professor">Create</button>
+                </div>
+                <div class="col-md-6 mb-2 form-group text-right">
+                  <a type="button" rel="tooltip" (click)="refresh()"
+                class="btn btn-outline-secondary btn-sm" data-original-title="" title="clear">Clear</a>
+              </div>
+            </div>
+
+            </div>
+        </div>
+        
+    
+  </form>

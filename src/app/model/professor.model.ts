@@ -6,7 +6,7 @@ export class Professor {
 
     id : number;
     address : String;
-    birthdate: Date;
+    birthDate: Date;
     city : String;
     country : String;
     email : String;

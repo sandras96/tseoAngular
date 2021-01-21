@@ -1,6 +1,6 @@
-<div class="card text-center col-md-8" *ngIf="user">
+<!-- <div class="card text-center col-md-8" *ngIf="user">
     <div>
-      User profile
+      Admin profile
     </div>
     <div class="card-body">
       
@@ -15,206 +15,91 @@
             <input type="text" class="form-control" name="lastname"
             id="lastname" value="ADMIN" id="validationDefault02" placeholder="Last name" disabled>
           </div>
-        
-      <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div id="headingOne">
-            <h5 class="mb-0 text-left">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Add student role
-              </button>
-            </h5>
-          </div>
-      
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-                <form (ngSubmit)="onSubmit()">
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3 form-group">
-                          <label for="validationDefault01">First name</label>
-                          <input type="text" class="form-control" name="firstname"
-                          id="firstname" [(ngModel)]="student.firstname" id="validationDefault01" placeholder="First name"  required/>
-                         
+                 
+            </div>
+          </div> -->
+       
+
+
+<div class="container bootstrap snippet">
+ 
+  <div class="row">
+    <div class="col-sm-3">
+            
+
+    <div class="text-center">
+      <img src="assets\img\admin.png" style="width:185px"  alt="avatar">
+      <h6>ADMIN</h6>
+    </div><br> 
+    </div>
+    <div class="col-sm-6  form-group">
+    
+        <div class="tab-content" *ngIf="user">
+          <div class="tab-pane active" id="home">
+             
+                <form class="form" (click)="updateUser(user)">
+                
+                        <div class="col-sm-8 form-group" id="username">
+                            <label for="username"><h4>Username</h4></label>
+                            <input type="text" class="form-control" name="username" [(ngModel)]="user.username"required/>
                         </div>
-                        <div class="col-md-4 mb-3 form-group">
-                          <label for="validationDefault02">Last name</label>
-                          <input type="text" class="form-control" name="lastname"
-                          id="lastname" [(ngModel)]="student.lastname"  id="validationDefault02" placeholder="Last name" required>
-                        </div>
-                  
-                        <div class="col-md-4 mb-3 form-group">
-                          <div class="form-group">
-                              <label for="birthdate">Birthdate: {{ student.birthDate | date }}</label>
-                             
-                              <input type="date" name="birthdate" id="birthdate" class="form-control" [(ngModel)]="student.birthDate"/>
-                               
-                          </div>
-                        </div>
-                        <div class="col-md-6 form-group">
-                          <label for="validationDefault099">Index number</label>
-                          <input type="text" class="form-control" name="indexnum"
-                          id="indexnum" [(ngModel)]="student.indexNum"  id="validationDefault099" placeholder="index number" required>
-                        </div>
-                     
+                        <div class="col-sm-8 form-group" id="username">
+                          <label for="password"><h4>Password</h4></label>
+                          <input type="password" class="form-control" name="password" [(ngModel)]="user.password" required/>
                       </div>
-                      <div class="form-row">
-                          <div class="col-md-12 mb-2 form-group">
-                              <label for="validationDefault03">Address</label>
-                              <input type="text" [(ngModel)]="student.address" class="form-control" 
-                              id="inputAddress" placeholder="1234 Main St" id="validationDefault03" name="address">
+                        <!-- <div class="col-sm-10  form-group">
+                          <p style="margin-left: 18px;"> 
+                            <a  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                              Change Password?
+                            </a>
+                            
+                          </p>
+                          <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                              <form [formGroup]="changeForm" (ngSubmit)="changePassword()">
+                              <div class="form-group">
+                                <label for="oldpassword">Old password:</label>
+                                <input formControlName="oldPassword" name="oldpassword" type="text" class="form-control" placeholder="Old password..." required>
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="newpassword">New password:</label>
+                                <input formControlName="newPassword" name="newpassword" type="text" class="form-control" placeholder="New password..." required>
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="cnewpassword">Confirm new password:</label>
+                                <input formControlName="cnewPassword" name="cnewpassword" type="text" class="form-control" placeholder="Confirm new password..." required>
+                              </div>
+                              <button class="btn btn-success">Change pass</button>
+            </form>
                             </div>
-                        <div class="col-md-6 mb-3 form-group">
-                          <label for="validationDefault04">City</label>
-                          <input type="text" [(ngModel)]="student.city" 
-                          class="form-control" id="validationDefault04" placeholder="City" name="city" required>
-                        </div>
-                        <div class="col-md-3 mb-3 form-group">
-                          <label for="validationDefault05">Country</label>
-                          <input type="text" [(ngModel)]="student.country"
-                           class="form-control" id="validationDefault05" placeholder="Country" name="country" required>
-                        </div>
-                        <div class="col-md-3 mb-3 form-group">
-                          <label for="validationDefault06">Zip</label>
-                          <input type="text" [(ngModel)]="student.zip" class="form-control"
-                           id="validationDefault06" placeholder="Zip" required name="zip" required>
-                        </div>
-                      </div>
-                      <div class="form-row">
+                          </div>  
+                        </div> -->
+                        <div class="row" style="margin-left:18px; margin-top:35px;">
                           <div class="col-md-6 mb-2 form-group">
-                              <label for="email">Email</label>
-                              <input type="text" [(ngModel)]="student.email" 
-                              class="form-control" id="email" placeholder="123@test.net" name="email" required>
+                            <button type="submit" rel="tooltip"
+                                class="btn btn-success btn-sm" data-original-title="" title="update user">Update</button>
                             </div>
                             <div class="col-md-6 mb-2 form-group">
-                              <label for="phone">Phone</label>
-                              <input type="text" [(ngModel)]="student.phone" 
-                              class="form-control" id="phone" placeholder="+381/654017152" name="phone" required>
-                            </div>
-                      </div>
-                    <div class="padding-top-x5">
-                        <div class="padding-top-x5">
-                           
-                          <div class="row">
-                              <div class="col-md-6 mb-2 form-group text-left">
-                                <button type="submit" rel="tooltip"
-                                    class="btn btn-success btn-sm" data-original-title="" title="update student">Update</button>
-                                </div>
-                                <div class="col-md-6 mb-2 form-group text-right">
-                                  <a type="button" rel="tooltip"
-                                class="btn btn-danger btn-sm" data-original-title="" title="delete student">Delete</a>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    </form>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div id="headingTwo">
-            <h5 class="mb-0 text-left">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-               Add professor role
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-                <form [formGroup]="createProfessorForm" (ngSubmit)="createProfessor()">
-                    <div class="form-row">
-                      <div class="col-md-4 mb-3 form-group">
-                        <label for="validationDefault01">First name</label>
-                        <input type="text" class="form-control" name="firstname"
-                        id="firstname"  id="validationDefault01" placeholder="First name"  required/>
-                       
-                      </div>
-                      <div class="col-md-4 mb-3 form-group">
-                        <label for="validationDefault02">Last name</label>
-                        <input type="text" class="form-control" name="lastname"
-                        id="lastname"   id="validationDefault02" placeholder="Last name" required>
-                      </div>
-                
-                      <div class="col-md-4 mb-3 form-group">
-                        <div class="form-group">
-                            <label for="birthdate">Birthdate: </label>
-                           
-                            <input type="date" name="birthdate" id="birthdate" class="form-control" />
-                             
-                        </div>
-                      </div>
-                      <div class="col-md-6 form-group">
-                        <label for="validationDefault099">Role</label>
-                        <select  class="form-control" id="profRole" name="profRole">
-                    
-                            <option value="PROFESSOR">PROFESSOR</option>
-                            <option value="ASSOCIATE">ASSOCIATE</option>
-                            <option value="DEMONSTRATOR">DEMONSTRATOR</option>
-                        </select>
-                      </div>
-                   
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-12 mb-2 form-group">
-                            <label for="validationDefault03">Address</label>
-                            <input type="text"  class="form-control" 
-                            id="inputAddress" placeholder="1234 Main St" id="validationDefault03" name="address">
+                              <a type="button" rel="tooltip" (click)="deleteUser()"
+                            class="btn btn-danger btn-sm" data-original-title="" title="delete user">Delete</a>
                           </div>
-                      <div class="col-md-6 mb-3 form-group">
-                        <label for="validationDefault04">City</label>
-                        <input type="text" 
-                        class="form-control" id="validationDefault04" placeholder="City" name="city" required>
-                      </div>
-                      <div class="col-md-3 mb-3 form-group">
-                        <label for="validationDefault05">Country</label>
-                        <input type="text" 
-                         class="form-control" id="validationDefault05" placeholder="Country" name="country" required>
-                      </div>
-                      <div class="col-md-3 mb-3 form-group">
-                        <label for="validationDefault06">Zip</label>
-                        <input type="text" class="form-control"
-                         id="validationDefault06" placeholder="Zip" required name="zip" required>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-2 form-group">
-                            <label for="email">Email</label>
-                            <input type="text" 
-                            class="form-control" id="email" placeholder="123@test.net" name="email" required>
-                          </div>
-                          <div class="col-md-6 mb-2 form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" 
-                            class="form-control" id="phone" placeholder="+381/654017152" name="phone" required>
-                          </div>
-                    </div>
-                    <div class="padding-top-x5">
-                        <div class="padding-top-x5">
-                          <div>
-                            <h1>Home</h1>
-                            <p>{{bodyText}}</p>
-                            <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-                            <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
-                        </div>
                           
                         </div>
-                    </div>
-                    </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-   
-  </div>
+                   
+                   
+              </form>
+            
+     
+            
+           </div><!--/tab-pane-->
+         
+             
+         
+           
+        </div><!--/tab-content-->
 
-  <jw-modal id="custom-modal-1">
-    <h1>A Custom Modal!</h1>
-    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
-    <button (click)="closeModal('custom-modal-1');">Close</button>
-</jw-modal>
-
-<jw-modal id="custom-modal-2">
-    <h1 style="height:1000px">A Tall Custom Modal!</h1>
-    <button (click)="closeModal('custom-modal-2');">Close</button>
-</jw-modal>
+      </div><!--/col-9-->
+  </div><!--/row-->
+          

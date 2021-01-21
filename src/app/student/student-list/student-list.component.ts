@@ -10,7 +10,15 @@ export class StudentListComponent implements OnInit {
 
   @Input() public students : Student[];
   @Output() public studentSelected = new EventEmitter<Student>();
-  constructor() { }
+  
+  HighlightRow : any;  
+  ClickedRow:any; 
+  
+  constructor() {
+    this.ClickedRow = function(index){  
+      this.HighlightRow = index;  
+  }  
+   }
 
   ngOnInit(): void {
   }

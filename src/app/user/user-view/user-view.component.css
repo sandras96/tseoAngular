@@ -1,0 +1,13 @@
+img {
+    border-radius: 50%;
+  }
+  .card{
+    border: none;
+  }
+
+  #username{
+      margin-left: 18px;
+  }
+  #home{
+      margin-top: 25px;
+  }

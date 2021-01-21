@@ -1,22 +1,24 @@
-<h4><small>Users</small></h4>
+<h4><small>Users</small> <span>&nbsp;&nbsp;&nbsp;</span>
+    <a type="button" rel="tooltip" routerLink="/user-create" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create user">
+        <i class="material-icons">add</i></a></h4>
 <div class="table table-hover table-sm">
         <table class="table">
             <thead>
                 <tr>
                     <th class="text-center">#</th>
                     <th>Username</th>
-                    <th>Role</th>
+                    <th class="text-left">Role</th>
                    
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users" (click)="selectUser(user)">
+                <tr *ngFor="let user of users; let i = index" (click)="ClickedRow(i)" [class.active]="i == HighlightRow" (click)="selectUser(user)">
                     <td class="text-center">{{user.id}}</td>
                     <td>{{user.username}}</td>
                   
-                    <td *ngIf="findRole(user)=='student'">STUDENT</td>
-                    <td *ngIf="findRole(user)=='professor'">PROFESSOR</td>
-                    <td *ngIf="findRole(user)=='admin'">ADMIN</td>
+                    <td class="text-left" *ngIf="findRole(user)=='student'">STUDENT</td>
+                    <td class="text-left" *ngIf="findRole(user)=='professor'">PROFESSOR</td>
+                    <td class="text-left" *ngIf="findRole(user)=='admin'">ADMIN</td>
                    
                     
                 </tr>   

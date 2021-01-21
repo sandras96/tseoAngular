@@ -1,4 +1,6 @@
-<h4><small>Students</small></h4>
+<h4><small>Students</small> <span>&nbsp;&nbsp;&nbsp;</span>
+    <a type="button" rel="tooltip" routerLink="/user-create" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create user">
+        <i class="material-icons">add</i></a></h4>
 <div class="table-responsive table-hover">
         <table class="table">
             <thead>
@@ -11,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let student of students" (click)="selectStudent(student)">
+                <tr *ngFor="let student of students; let i = index" (click)="ClickedRow(i)" [class.active]="i == HighlightRow" (click)="selectStudent(student)">
                     <td class="text-center">{{student.id}}</td>
                     <td>{{student.firstname}}</td>
                     <td>{{student.lastname}}</td>

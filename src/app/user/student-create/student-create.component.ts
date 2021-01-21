@@ -1,9 +1,8 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import { Student } from 'src/app/model/student.model';
-import { User } from 'src/app/model/user.model';
 import { StudentService } from 'src/app/services/student.service';
-import { FormGroup, FormBuilder} from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { FormGroup, FormControl, FormArray, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-create',
@@ -12,50 +11,53 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class StudentCreateComponent implements OnInit {
 
-  addForm: FormGroup;
-  student : Student = new Student();
-  user : User = new User();
-  constructor(private userService : UserService,
-              private studentService : StudentService,
-              private formBuilder: FormBuilder) { }
+  studentForm: FormGroup;
+ 
+  constructor(private studentService : StudentService,
+              private router : Router,
+              private toastr : ToastrService) { }
 
   ngOnInit(): void {
-    this.addForm = this.formBuilder.group({
-      id : [],
-      address : [''],
-      birthDate: [''],
-      city : [''],
-      country : [''],
-      email : [''],
-      firstname : [''],
-      lastname : [''],
-      phone : [''],
-      zip: [''],
-      indexNum : [''],
+    this.studentForm = new FormGroup({
       
-      username : [''],
-       password : [''],
-       authorities : ['student']
-
-      
+      address : new FormControl('', Validators.required),
+      birthDate: new FormControl('', Validators.required),
+      city : new FormControl('', Validators.required),
+      country : new FormControl('', Validators.required),
+      email : new FormControl('', Validators.required),
+      firstname : new FormControl('', Validators.required),
+      lastname : new FormControl('', Validators.required),
+      phone : new FormControl('', Validators.required),
+      zip: new FormControl('', Validators.required),
+      indexNum : new FormControl('', Validators.required),
+      user : new FormGroup({
+          username : new FormControl('', Validators.required),
+          password :new FormControl('', Validators.required),
+          authorities : new FormArray([
+              new FormGroup({
+                  id: new FormControl(2),
+                  name: new FormControl('STUDENT'),
+                })
+            ])
+      })
     })
   }
 
   createStudent(){
-    console.log("Form je dabogsacuvaj ", this.addForm.value)
-    this.userService.create(this.addForm.value)
+    console.log("Student form value je ", this.studentForm.value)
+    this.studentService.create(this.studentForm.value)
       .subscribe(data=>{
-        console.log(data)
-      })
-    // this.studentService.create(this.student)
-    //   .subscribe(data=>{
-    //     console.log(data)
-    //   })
+         console.log(data)
+         this.toastr.success('Student '+data.firstname+ ' ' + data.lastname+ ' was successfully created.', "Success!")
+         this.router.navigate(['/students/',data.id])
+       },error=>{
+         console.log(error)
+       })
 
   }
 
   refresh(){
-
+    this.studentForm.reset();
   }
 
 }

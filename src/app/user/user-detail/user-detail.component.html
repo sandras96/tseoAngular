@@ -5,11 +5,17 @@
       <h4 class="card-subtitle mb-2" >username: {{user.username}}</h4>
       <h5 class="card-subtitle mb-2 ">role: ADMIN</h5>
      
-    
-      <div class="card-footer bg-transparent border-info text-right"><a type="button" routerLink="/users/{{user.id}}">
-        View More
-      </a>
-    </div>
+    <div class="card-footer bg-transparent border-info text-right row">
+      <div>
+    <a routerLink="/users/{{user.id}}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
+      <i class="material-icons">preview</i>
+  </a> 
+  </div>
+    <div class="text-right col"><a type="button" rel="tooltip" 
+      class="btn btn-danger btn-sm" data-original-title="" title="delete student" (click)="deleteUser(user)">
+      <i class="material-icons">close</i>
+  </a></div>
+  </div>
      
     </div>
   </div>

@@ -7,6 +7,6 @@ export class User {
     password : String;
     username: String;
     authorities : Authority[];
-    role : String;
+  
     
 }

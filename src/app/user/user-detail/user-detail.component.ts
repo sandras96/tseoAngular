@@ -19,6 +19,9 @@ export class UserDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  deleteUser(user){
+    
+  }
  
 
 }
