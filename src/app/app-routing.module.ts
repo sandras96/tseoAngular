@@ -1,9 +1,11 @@
+import { ExamPeriodListComponent } from './exam-period/exam-period-list/exam-period-list.component';
+import { ExamPeriodViewComponent } from './exam-period/exam-period-view/exam-period-view.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { ExamViewComponent } from './exam/exam-view/exam-view.component';
 import { CourseComponent } from './course/course/course.component';
 import { StudentComponent } from './student/student/student.component';
 
-import { ExamPeriodComponent } from './exam-period/exam-period.component';
+
 
 import { ProfessorViewComponent } from './professor/professor-view/professor-view.component';
 
@@ -31,6 +33,7 @@ import { StudentViewComponent } from './student/student-view/student-view.compon
 import { UserComponent } from './user/user/user.component';
 import { ExamComponent } from './exam/exam/exam.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
+import { ExamPeriodComponent } from './exam-period/exam-period/exam-period.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -38,9 +41,7 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent, canActivate:[AuthGuard]},
  // { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent },
-
-
- // { path: '', redirectTo: 'login', pathMatch: 'full' },
+ // { path: '', redirectTo: '/login', pathMatch: 'full' },
 
 
 
@@ -49,25 +50,28 @@ const routes: Routes = [
 { path: 'no-access', component: NoAccessComponent },
 
 
-{path: 'courses', component: CourseComponent},
-{path: 'course-view/:id', component: CourseViewComponent},
-{path: 'add-course', component: AddCourseComponent},
+{path: 'courses', component: CourseComponent, canActivate:[AuthGuard]},
+{path: 'course-view/:id', component: CourseViewComponent, canActivate:[AuthGuard]},
+{path: 'add-course', component: AddCourseComponent, canActivate:[AuthGuard, AdminAuthGuard]},
 
-{path: 'users', component: UserComponent},
-{path: 'users/:id', component: UserViewComponent},
-{path: 'user-create', component: UserCreateComponent},
+{path: 'users', component: UserComponent, canActivate:[AuthGuard, AdminAuthGuard]},
+{path: 'users/:id', component: UserViewComponent, canActivate:[AuthGuard, AdminAuthGuard]},
+{path: 'user-create', component: UserCreateComponent, canActivate:[AuthGuard, AdminAuthGuard]},
 
-{path: 'professors', component: ProfessorComponent},
-{path : 'professors/:id', component: ProfessorViewComponent},
+{path: 'professors', component: ProfessorComponent, canActivate:[AuthGuard, AdminAuthGuard]},
+{path : 'professors/:id', component: ProfessorViewComponent, canActivate:[AuthGuard]},
 
-{path: 'students', component: StudentComponent},
-{path : 'students/:id', component: StudentViewComponent},
+{path: 'students', component: StudentComponent, canActivate:[AuthGuard, AdminAuthGuard]},
+{path : 'students/:id', component: StudentViewComponent, canActivate:[AuthGuard]},
 
 
-{path: 'exams', component: ExamComponent},
-{path: 'exam-view/:id', component: ExamViewComponent},
+{path: 'exams', component: ExamComponent, canActivate:[AuthGuard]},
+{path: 'exams/:id', component: ExamViewComponent, canActivate:[AuthGuard]},
 
-{path: 'examperiod' , component: ExamPeriodComponent}
+{path: 'examperiods' , component: ExamPeriodComponent, canActivate:[AuthGuard]},
+{path: 'examperiods/:id' , component: ExamPeriodViewComponent, canActivate:[AuthGuard]}
+
+
 
 
 ];

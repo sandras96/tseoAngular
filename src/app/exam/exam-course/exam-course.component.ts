@@ -12,6 +12,7 @@ export class ExamCourseComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("exam course")
   }
 
 }

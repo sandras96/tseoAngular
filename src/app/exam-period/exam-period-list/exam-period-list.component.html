@@ -1,0 +1,76 @@
+<h4><small>Exam Periods</small> <span>&nbsp;&nbsp;&nbsp;</span>
+    <a (click)="openModal('createEPModal')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add exam period">
+    <i class="material-icons">add</i>
+    </a></h4>
+<div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Name</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ep of examPeriods">
+                    <td class="text-center">{{ep.id}}</td>
+                    <td>{{ep.name}}</td>
+                    <td>{{ep.startDate  | date}}</td>
+                    <td>{{ep.endDate  | date}}</td> 
+                    <td class="text-right"> 
+                        <a routerLink="/examperiods/{{ ep.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
+                            <i class="material-icons">preview</i>
+                        </a> 
+                        <a type="button" rel="tooltip" (click)="deleteExamP(ep)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete exam period">
+                            <i class="material-icons">close</i>
+                        </a>
+                   </td>
+                </tr>   
+            </tbody>
+        </table>
+</div>
+<jw-modal id="createEPModal">
+
+    <div class="col-md-6 offset-md-3">
+        <div class="card card-outline-secondary">
+            <div class="card-body">
+                <h3 class="text-center">Create Exam Taking</h3>
+                
+                <form [formGroup]="addForm" (ngSubmit)="addExamPeriod()">
+                   
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input formControlName="name" type="text" class="form-control" id="name" required placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                       
+                       
+                        <input type="date" formControlName="startDate" name="startDate" id="startDate" class="form-control" required/>
+                         
+                    </div>
+                    <div class="form-group">
+                       
+                       
+                        <input type="date" formControlName="endDate" name="endDate" id="endDate" class="form-control" required/>
+                         
+                    </div>
+                    
+
+                    <div class="row">
+                        <div class="col-md-6 mb-2 form-group">
+                          <button type="submit" rel="tooltip" 
+                              class="btn btn-success btn-sm" data-original-title="" title="create exam">Create</button>
+                          </div>
+                          <div class="col-md-6 mb-2 form-group text-right">
+                            <a type="button" rel="tooltip" (click)="closeModal('createEPModal')"
+                          class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                        </div>
+                      </div>
+                  </form>
+            </div>
+            
+        </div>
+        <!-- /form card cc payment -->
+    </div>

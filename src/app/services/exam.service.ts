@@ -23,6 +23,9 @@ export class ExamService {
   create(exam : Exam, course_id : number, ep_id : number): Observable<any>{
     return this.http.post(`${this.baseUrl}/${course_id}/${ep_id}`, exam);
   }
+  createExam(exam : Exam): Observable<any>{
+    return this.http.post(`${this.baseUrl}`, exam);
+  }
 
   update(exam_id : number, data) : Observable<any>{
     return this.http.put(`${this.baseUrl}/${exam_id}`, data);
@@ -32,4 +35,7 @@ export class ExamService {
     return this.http.delete(`${this.baseUrl}/${exam_id}`);
   }
 
+  getByExamPeriodId(examPeriod_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/examPeriod/${examPeriod_id}`);
+  }
 }

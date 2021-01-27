@@ -2,7 +2,7 @@
     <div class="input-group" id="addBtn">
        
         <div>
-          <button class="btn btn-outline-secondary" type="button" (click)="openModal('createETModal')">+</button>
+          <button class="btn btn-outline-secondary" type="button" >+</button>
         </div>
       </div>
    
@@ -16,41 +16,38 @@
                      
                         
                         
-                        <th class="text-center">Mark</th>
-                        <th class="text-center">Pass</th>
-                        <th class="text-center">Points</th>
-                        <th class="text-left">Professor</th>
-                        <th class="text-left">Student</th>
-                      
-                      <th class="text-right">Actions</th> 
+                        <th class="text-center">#</th>
+                        <th>Assignment</th>
+                        <th>Date</th>
+                        <th>Points</th>
+                        <th>Course</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
              
-                    <tr  *ngFor="let et of examTakings">
-                        <td class="text-center">{{et.mark}}</td>
-                        <td class="text-center">{{et.pass}}</td>
-                        <td class="text-center">{{et.points}}</td>
-                        <td class="text-left"><a routerLink="/professors/{{ et.professor.id }}">{{et.professor.firstname}}<span> &nbsp;&nbsp;{{et.professor.lastname}}</span></a></td>
-                        <td class="text-left"><a routerLink="/students/{{ et.student.id }}">{{et.student.firstname}}<span> &nbsp;&nbsp;{{et.student.lastname}}</span></a></td>
-                       
-                        
-                            <td class="td-actions text-right">
-                            <button type="button" (click)="openModal('editETModal')" class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="edit exam taking">
-                                    <i class="material-icons">create</i>
-                            </button> 
-                            <button type="button" rel="tooltip" (click)="removeExamTaking(et)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
+                    <tr *ngFor="let exam of exams">
+                        <td class="text-center">{{exam.id}}</td>
+                        <td><a routerLink="/exams/{{exam.id}}" data-original-title="" title="view exam">{{exam.assignment}}</a></td>
+                        <td>{{exam.date  | date}}</td>
+                        <td>{{exam.points}}</td> 
+                        <td><a routerLink="/course-view/{{exam.course.id}}" data-original-title="" title="view course">{{exam.course.name}}</a></td>
+                        <td class="text-right"> 
+                            <a routerLink="/exams/{{ exam.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
+                                <i class="material-icons">preview</i>
+                            </a> 
+                            <a type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
                                 <i class="material-icons">close</i>
-                            </button>
-                        </td> 
-                    </tr>
+                            </a>
+                       </td>
+                    </tr>  
                    
                 </tbody>
             </table>
             </div>
             </div>
          
-            <jw-modal id="createETModal">
+            <!-- <jw-modal id="createETModal">
 
                 <div class="col-md-6 offset-md-3">
                     <div class="card card-outline-secondary">
@@ -104,7 +101,7 @@
                         </div>
                         
                     </div>
-                    <!-- /form card cc payment -->
+                    
                 </div>
                 </jw-modal>
 
@@ -152,7 +149,7 @@
                                             <option [ngValue]="p"  *ngFor="let p of professorsAll">{{p.firstname}}&nbsp;{{p.lastname}}&nbsp;{{p.role}}</option>
                                         </select>
                                       </div>
-     -->
+   
                                     <div class="row">
                                         <div class="col-md-6 mb-2 form-group">
                                           <button type="submit" rel="tooltip" 
@@ -167,6 +164,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /form card cc payment -->
+                    
                     </div>
-                    </jw-modal>
+                    </jw-modal> -->

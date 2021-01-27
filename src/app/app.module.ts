@@ -35,7 +35,7 @@ import { ProfessorViewComponent } from './professor/professor-view/professor-vie
 import { ProfessorProfileComponent } from './professor/professor-profile/professor-profile.component';
 import { ProfessorCoursesComponent } from './professor/professor-courses/professor-courses.component';
 import { ProfessorExamsComponent } from './professor/professor-exams/professor-exams.component';
-import { ExamPeriodComponent } from './exam-period/exam-period.component';
+
 
 
 import { CourseViewComponent } from './course/course-view/course-view.component';
@@ -69,6 +69,11 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
 import { StudentCreateComponent } from './user/student-create/student-create.component';
 import { ProfessorCreateComponent } from './user/professor-create/professor-create.component';
 import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { ExamPeriodListComponent } from './exam-period/exam-period-list/exam-period-list.component';
+import { ExamPeriodViewComponent } from './exam-period/exam-period-view/exam-period-view.component';
+import { ExamPeriodUnitComponent } from './exam-period/exam-period-unit/exam-period-unit.component';
+import { ExamPeriodExamsComponent } from './exam-period/exam-period-exams/exam-period-exams.component';
+import { ExamPeriodComponent } from './exam-period/exam-period/exam-period.component';
 
 
 
@@ -90,7 +95,6 @@ import { UploadFilesComponent } from './upload-files/upload-files.component';
     ProfessorProfileComponent,
     ProfessorCoursesComponent,
     ProfessorExamsComponent,
-    ExamPeriodComponent,
     CourseViewComponent,
     CourseUnitComponent,
     CourseProfessorsComponent,
@@ -120,7 +124,12 @@ import { UploadFilesComponent } from './upload-files/upload-files.component';
     UserCreateComponent,
     StudentCreateComponent,
     ProfessorCreateComponent,
-    UploadFilesComponent
+    UploadFilesComponent,
+    ExamPeriodListComponent,
+    ExamPeriodViewComponent,
+    ExamPeriodUnitComponent,
+    ExamPeriodExamsComponent,
+    ExamPeriodComponent
    
   ],
   imports: [

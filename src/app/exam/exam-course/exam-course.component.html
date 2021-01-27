@@ -3,12 +3,12 @@
       
         
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">name: {{exam.course.name}}</li>
-              <li class="list-group-item">espb: {{exam.course.espb}}</li>
-              <li class="list-group-item">semester: {{exam.course.semester}}</li>
+              <li class="list-group-item">Name: {{exam.course.name}}</li>
+              <li class="list-group-item">Espb: {{exam.course.espb}}</li>
+              <li class="list-group-item">Semester: {{exam.course.semester}}</li>
             </ul>
-            <div class="card-footer text-right">
-                <a routerLink="/course-view/{{ exam.course.id }}">view course</a>
+            <div class="card-footer text-right" style="height: 50px;">
+                <a style="margin-top: -3px;" routerLink="/course-view/{{ exam.course.id }}" class="btn btn-success btn-sm" title="view course"> <i class="material-icons">preview</i></a>
               </div>
           </div>
     

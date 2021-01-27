@@ -25,7 +25,7 @@
              
                     <tr  *ngFor="let exam of exams">
                         <!-- <td class="text-center">{{ca.id}}</td> -->
-                        <th><a routerLink="/exam-view/{{ exam.id }}">{{exam.assignment}}</a></th>
+                        <th><a routerLink="/exams/{{ exam.id }}">{{exam.assignment}}</a></th>
                         <td>{{exam.date | date}}</td>
                         <td>{{exam.points}}</td>
                         <td>{{exam.examPeriod.name}}</td>
@@ -42,52 +42,47 @@
 
 
 <jw-modal id="createExamModal">
-
-
-
-
 <div class="col-md-6 offset-md-3">
-    
-
-    <!-- form card cc payment -->
+  
     <div class="card card-outline-secondary" *ngIf="course">
         <div class="card-body">
-            <h3 class="text-center">Create Exam</h3>
+            <h3 class="text-center">Create Exam for {{course.name}}</h3>
             
-            <form>
-                <div class="form-group">
-                    <label for="course">Course</label>
-                    <input type="text" class="form-control" id="course" required [(ngModel)]="course.name" name="course" disabled>
-                  </div>
+            <form [formGroup]="examForm" (ngSubmit)="createExam()">
+              
+              <div class="form-group">
+                <ng-container formGroupName="course">
+               
+              </ng-container>
+              </div>
                   <div class="form-group">
-                    <label for="date">Date: {{ exam.date | date }}</label>
+                    <label for="date">Date:</label>
                    
-                    <input type="date" name="date" id="date" class="form-control" [(ngModel)]="exam.date"/>
+                    <input type="date" name="date" id="date" formControlName="date" class="form-control"/>
                      
                 </div>
                 <div class="form-group">
                   <label for="assignment">Assignment</label>
-                  <input type="text" class="form-control" id="assignment" required [(ngModel)]="exam.assignment" name="assignment">
+                  <input type="text" class="form-control" id="assignment" formControlName="assignment" name="assignment">
                 </div>
             
                 <div class="form-group">
-                  <label for="points">Points</label>
-                  <input type="text" class="form-control" id="points" required [(ngModel)]="exam.points" name="points">
+                  <label>Points</label>
+                  <input type="text" class="form-control" id="points" formControlName="points" required name="points">
                 </div>
-            
-                <div class="form-group">
-                  <label for="examPeriod">Exam Period</label>
-                  <select class="custom-select" #examperiod id="inputGroupSelect04">
-                    <option hidden>Sign student for the new course</option>
-                    <option [value]="ep.id" *ngFor="let ep of examPeriods">{{ep.name}}</option>
-                   
+                <div class="input-group">
+                  <label>Select exam period: &nbsp;</label>
+                  <select class="custom-select" formControlName="examPeriod" #ep id="inputGroupSelect05">
+                      <option [ngValue]="ep"  *ngFor="let ep of examPeriods">{{ep.name}}</option>
                   </select>
                 </div>
+             
+                
             
                 <div class="row">
                     <div class="col-md-6 mb-2 form-group">
                       <button type="submit" rel="tooltip" 
-                          class="btn btn-success btn-sm" data-original-title="" title="create exam" (click)="createExam(examperiod.value)">Create</button>
+                          class="btn btn-success btn-sm" data-original-title="" title="create exam">Create</button>
                       </div>
                       <div class="col-md-6 mb-2 form-group text-right">
                         <a type="button" rel="tooltip" (click)="closeModal('createExamModal')"
