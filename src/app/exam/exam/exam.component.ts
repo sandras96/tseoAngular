@@ -29,4 +29,11 @@ export class ExamComponent implements OnInit {
         }
       )
   }
+
+  createExam(exam : Exam){
+    this.exams.push(exam);
+  }
+  removeExam(exam : Exam){
+    this.exams = this.exams.filter(e => e!==exam);
+  }
 }

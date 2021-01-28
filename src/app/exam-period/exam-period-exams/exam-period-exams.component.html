@@ -28,7 +28,7 @@
              
                     <tr *ngFor="let exam of exams">
                         <td class="text-center">{{exam.id}}</td>
-                        <td><a routerLink="/exams/{{exam.id}}" data-original-title="" title="view exam">{{exam.assignment}}</a></td>
+                        <td>{{exam.assignment}}</td>
                         <td>{{exam.date  | date}}</td>
                         <td>{{exam.points}}</td> 
                         <td><a routerLink="/course-view/{{exam.course.id}}" data-original-title="" title="view course">{{exam.course.name}}</a></td>

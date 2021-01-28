@@ -1,5 +1,5 @@
 <h4><small>Exams</small> <span>&nbsp;&nbsp;&nbsp;</span>
-    <a routerLink="/add-course" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add course">
+    <a (click)="openModal('createExam')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add course">
     <i class="material-icons">add</i>
     </a></h4>
 <div class="table-responsive">
@@ -27,7 +27,8 @@
                         <a routerLink="/exams/{{ exam.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
                             <i class="material-icons">preview</i>
                         </a> 
-                        <a type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
+                        <a type="button" rel="tooltip" (click)="removeExam(exam)"
+                        class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete exam">
                             <i class="material-icons">close</i>
                         </a>
                    </td>
@@ -35,3 +36,59 @@
             </tbody>
         </table>
 </div>
+
+<jw-modal id="createExam">
+    <div class="col-md-6 offset-md-3">
+      
+        <div class="card card-outline-secondary">
+            <div class="card-body">
+                <h3 class="text-center">Create Exam</h3>
+                
+                <form [formGroup]="examForm" (ngSubmit)="createExam()">
+                  
+                    <div class="input-group">
+                        <label>Select course: &nbsp;</label>
+                        <select class="custom-select" formControlName="course" #c id="inputGroupSelect05">
+                            <option [ngValue]="c"  *ngFor="let c of courses">{{c.name}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="date">Date:</label>
+                       
+                        <input type="date" name="date" id="date" formControlName="date" class="form-control"/>
+                         
+                    </div>
+                    <div class="form-group">
+                      <label for="assignment">Assignment</label>
+                      <input type="text" class="form-control" id="assignment" formControlName="assignment" name="assignment">
+                    </div>
+                
+                    <div class="form-group">
+                      <label>Points</label>
+                      <input type="text" class="form-control" id="points" formControlName="points" required name="points">
+                    </div>
+                    <div class="input-group">
+                      <label>Select exam period: &nbsp;</label>
+                      <select class="custom-select" formControlName="examPeriod" #ep id="inputGroupSelect05">
+                          <option [ngValue]="ep"  *ngFor="let ep of examPeriods">{{ep.name}}</option>
+                      </select>
+                    </div>
+                 
+                    
+                
+                    <div class="row">
+                        <div class="col-md-6 mb-2 form-group">
+                          <button type="submit" rel="tooltip" 
+                              class="btn btn-success btn-sm" data-original-title="" title="create exam">Create</button>
+                          </div>
+                          <div class="col-md-6 mb-2 form-group text-right">
+                            <a type="button" rel="tooltip" (click)="closeModal('createExam')"
+                          class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                        </div>
+                      </div>
+                  </form>
+            </div>
+        </div>
+        <!-- /form card cc payment -->
+    </div>
+    </jw-modal>

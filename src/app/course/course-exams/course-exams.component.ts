@@ -24,8 +24,6 @@ export class CourseExamsComponent implements OnInit {
   @Output() deleteExam = new EventEmitter<Exam[]>();
   examPeriods : ExamPeriod[];
 
-  exampleForm = new FormGroup ({ course: new FormControl(), date: new FormControl(),assignment: new FormControl(),
-    points: new FormControl(),examPeriod: new FormControl()});
 
   constructor(private examService : ExamService,
               private examPeriodService : ExamPeriodService,
@@ -36,7 +34,7 @@ export class CourseExamsComponent implements OnInit {
 
  
   ngOnInit(): void {
-    this.getExamPeriods();
+   
 
      this.examForm = new FormGroup({
       course : new FormControl(this.course)
@@ -104,6 +102,7 @@ export class CourseExamsComponent implements OnInit {
 
   openModal(id: string) {
     this.modalService.open(id);
+    this.getExamPeriods();
 }
 
   closeModal(id: string) {

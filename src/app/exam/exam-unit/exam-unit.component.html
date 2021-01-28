@@ -22,8 +22,10 @@
         </div>
 
         <div class="form-group">
-          <label for="examPeriod">Exam Period</label>
-          <input type="text" class="form-control" id="examPeriod" required [(ngModel)]="exam.examPeriod.name" name="examPeriod" disabled>
+          <label for="examPeriod">Exam Period: </label><a routerLink="/examperiods/{{ exam.examPeriod.id }}"> {{exam.examPeriod.name}}</a>
+        </div>
+        <div class="form-group">
+          <label for="examPeriod">Course: </label><a routerLink="/courses/{{ exam.course.id }}"> {{exam.course.name}}</a>
         </div>
     
         <div class="row">

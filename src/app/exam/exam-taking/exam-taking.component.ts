@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ExamTaking } from 'src/app/model/exam-taking.model';
-import { FormGroup, FormBuilder} from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import { ModalService } from 'src/app/_modal';
 import { Professor } from 'src/app/model/professor.model';
 import { Student } from 'src/app/model/student.model';
@@ -17,12 +17,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ExamTakingComponent implements OnInit {
 
-  addForm: FormGroup;
+  addForm : FormGroup;
+ 
   studentsAll : Student[];
   professorsAll : Professor[];
   professorId : number;
-  examTaking = new ExamTaking();
+  examTaking = new ExamTaking;
   
+  editET : ExamTaking;
 
   @Input() examTakings : ExamTaking[];
   @Input() exam : Exam;
@@ -34,7 +36,7 @@ export class ExamTakingComponent implements OnInit {
               private professorService : ProfessorService,
               private formBuilder: FormBuilder,
               private modalService: ModalService,
-              private toastr : ToastrService) { }
+              private toastr : ToastrService) {}
 
   ngOnInit(): void {
     this.getStudents();
@@ -48,6 +50,7 @@ export class ExamTakingComponent implements OnInit {
       professor: [''],
       student : ['']
     })
+  
   }
 
   addExamTaking(){
@@ -81,7 +84,7 @@ export class ExamTakingComponent implements OnInit {
       })
   }
   getProfessors(){
-    this.professorService.getAll()
+    this.professorService.getAllByCourseId(this.exam.course.id)
       .subscribe(data=>{
         this.professorsAll = data;
       },error=>{
@@ -91,7 +94,27 @@ export class ExamTakingComponent implements OnInit {
   openModal(id: string) {
     this.modalService.open(id);
 }
+openModalEdit(id: string, etId : number) {
+  this.modalService.open(id);
+   this.getEditET(etId);
+}
 
+  getEditET(id){
+    this.examTakingService.get(id)
+      .subscribe(data=>{
+        this.editET = data;
+      },error=>{
+        console.log(error)
+      })
+} 
+
+editExamTaking(){
+  this.examTakingService.update(this.editET.id, this.editET)
+    .subscribe(data=>{
+      console.log("edit exam taking ", data)
+    })
+
+}
   closeModal(id: string) {
     this.modalService.close(id);
 }
