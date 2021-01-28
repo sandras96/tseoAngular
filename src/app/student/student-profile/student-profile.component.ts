@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Student } from 'src/app/model/student.model';
 import { StudentService } from 'src/app/services/student.service';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-student-profile',
@@ -18,7 +18,7 @@ export class StudentProfileComponent implements OnInit {
   constructor(private studentService : StudentService,
               private router : Router,
               private toastr: ToastrService,
-              private modalService: NgbModal) { }
+              private modalService: ModalService) { }
 
   ngOnInit(): void {
   }
@@ -51,38 +51,14 @@ export class StudentProfileComponent implements OnInit {
       )
   }
 
-  open(content) {
-
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-
-      this.closeResult = `Closed with: ${result}`;
-      console.log("result je " + result)
-
-    }, (reason) => {
-
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-
-    });
-
-  }
-
+ 
   
 
-  private getDismissReason(reason: any): string {
+  openModal(id: string) {
+    this.modalService.open(id);
+}
 
-    if (reason === ModalDismissReasons.ESC) {
-
-      return 'by pressing ESC';
-
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-
-      return 'by clicking on a backdrop';
-
-    } else {
-
-      return  `with: ${reason}`;
-
-    }
-
-  }
+  closeModal(id: string) {
+    this.modalService.close(id);
+}
 }

@@ -14,10 +14,14 @@ import { Student } from 'src/app/model/student.model';
 export class StudentPaymentsComponent implements OnInit {
 
   addForm: FormGroup;
+  editPay : Payment;
+  isShowDivIf = false;
+  showEditPay= false;
   @Input() payments : Payment[];
   @Input() student : Student;
   @Output() createPayment = new EventEmitter<Payment[]>();
   @Output() deletePayment = new EventEmitter<Payment[]>();
+  
   constructor(private paymentService : PaymentService,
               private formBuilder: FormBuilder,
               private toastr : ToastrService,
@@ -71,9 +75,54 @@ export class StudentPaymentsComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+    this.addForm.reset();
 }
 
-onSubmit(){
-  
+
+// openModalEditPayment(id: string, payId : number){
+//   this.modalService.open(id);
+//   this.getEditPay(payId);
+// }
+
+// getEditPay(id){
+//   this.paymentService.get(id)
+//     .subscribe(data=>{
+//       this.editPay = data;
+//     },error=>{
+//       console.log(error)
+//     })
+// }
+editPayment(){
+  this.paymentService.update(this.editPay.id, this.editPay)
+    .subscribe(data=>{
+      console.log("edit payment " , data)   
+      this.toastr.success('Payment was successfully updated!', 'Updated');
+    })
+
+}
+removeEditPayment(p){
+  this.paymentService.delete(p.id)
+    .subscribe( data=>{
+      this.isShowDivIf = !this.isShowDivIf;
+      this.showEditPay = !this.showEditPay;
+      this.deletePayment.emit(p);
+      this.toastr.success("Payment " + p.purpose + " was successfully deleted", "Success")
+    },
+    error => {
+      console.log(error)
+    })
+
+}
+viewPayment(payment){
+  this.editPay = payment;
+  this.isShowDivIf = !this.isShowDivIf;
+  this.showEditPay = !this.showEditPay;
+  console.log(this.editPay)
+}
+
+backToList(){
+  console.log("back to list")
+  this.isShowDivIf = !this.isShowDivIf;
+  this.showEditPay = !this.showEditPay;
 }
 }

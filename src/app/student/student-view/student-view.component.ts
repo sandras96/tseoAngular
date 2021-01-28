@@ -113,6 +113,8 @@ export class StudentViewComponent implements OnInit {
   }
   onTabClick(index){
     this.tabIndex = index;
+   
+    
   }
 
   removeCourse(course : Course){
@@ -148,4 +150,5 @@ export class StudentViewComponent implements OnInit {
     console.log("remove Exam Taking", et)
     this.examTakings = this.examTakings.filter(e => e!==et);
   }
+  
 }

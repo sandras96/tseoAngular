@@ -1,3 +1,6 @@
+#account{
+    height: 800px;
+}
 .container{
     height: auto;
     }
@@ -95,7 +98,7 @@
         border-right: none
     }
     
-    .theme-2 .view-account .side-bar .side-menu .nav>li.active a {
+    .view-account .side-bar .side-menu .nav>li.active a {
         color: #6dbd63;
         border-bottom-color: #6dbd63
     }

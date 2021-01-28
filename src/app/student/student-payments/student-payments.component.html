@@ -1,17 +1,18 @@
+<div *ngIf="!isShowDivIf">
 <div id="divAdd" class="text-right"><span id="span">create payment &nbsp;</span>
-     <a type="button" rel="tooltip" (click)="openModal('createPaymentModal')" class="btn btn-info btn-sm" data-original-title="" title="add course">
+     <a type="button" rel="tooltip" (click)="openModal('createPaymentModal')" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create payment">
           <i class="material-icons">add</i>
           </a></div>
-<div class="table-responsive drive-items-table-wrapper">
+<div class="table-responsive drive-items-table-wrapper"  >
                      
     <table class="table">
          <thead>
             <tr>
                  <th></th>
-                 <th class="name">Name</th>
-                 <th class="date">Date</th>
-                 <th class="purpose">Purpose</th>
-                 <th class="amount">Amount</th>
+                 <th>For</th>
+                 <th>Purpose</th>
+                 <th>Date</th>
+                 <th class="text-right">Amount</th>
                  <th class="text-right">Actions</th>
             </tr>
          </thead>
@@ -19,11 +20,15 @@
          <tbody>
             <tr *ngFor="let payment of payments">
                  <td><i class="fa fa-credit-card"></i></td>
-                 <td class="name"><a routerLink="/payment-view/{{ payment.id }}">{{payment.name}}</a></td>
+                 <td>{{payment.name}}</td>
+                 <td>{{payment.purpose}}</td>
                  <td class="date">{{payment.date | date}}</td>
-                 <td class="purpose">{{payment.purpose}}</td>
-                 <td class="amount">{{payment.amount}}</td>
-                 <td class="text-right"><a type="button" rel="tooltip" (click)="removePayment(payment)"
+                 <td class="text-right">{{payment.amount}}</td>
+                 <td class="text-right">
+                  <button type="button" (click)="viewPayment(payment)" class="btn btn-success btn-sm" data-original-title="" title="view payment">
+                    <i class="material-icons">preview</i>
+            </button>  
+                  <a type="button" rel="tooltip" (click)="removePayment(payment)"
                     class="btn btn-danger btn-sm" data-original-title="" title="delete payment">
                     <i class="material-icons">close</i>
                 </a></td>
@@ -32,7 +37,7 @@
      </table>
      
  </div>
-
+</div>
 
  <jw-modal id="createPaymentModal">
 
@@ -44,29 +49,45 @@
             
              <form [formGroup]="addForm" (ngSubmit)="addPayment()">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input formControlName="name" type="text" class="form-control" id="name" required name="name">
+                    <label for="name">For</label>
+                    <input formControlName="name" type="text" class="form-control" id="name" required name="name" placeholder="John Doe">
+                  </div>
+                  <div class="form-group">
+                    <label for="accountNumber">Account number</label>
+                    <input formControlName="accountNumber" type="number" class="form-control" id="accountNumber" required placeholder="100-123456789-11">
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6 mb-2 form-group">
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <input formControlName="address" type="text" class="form-control" id="address" required name="address" placeholder="John Doe 123 Main St">
+                  </div>
+                    </div>
+                    <div class="col-md-6 mb-2 form-group">
+                  <div class="form-group">
+                      <label for="city">City</label>
+                      <input formControlName="city" type="text" class="form-control" id="city" required name="city"placeholder="Anytown, USA">
+                    </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-row">
+                    <div class="col-md-3 mb-2 form-group">
+                  <div class="form-group">
+                    <label for="paymentCode">Payment Code</label>
+                    <input formControlName="paymentCode" type="number" class="form-control" id="paymentCode" required placeholder="289">
+                  </div>
+               </div>
+               <div class="col-md-9 mb-2 form-group">
+                  <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input formControlName="amount" type="number" class="form-control" id="amount" required name="amount" placeholder="50$">
+                  </div>
+                  </div>
                   </div>
                   <div class="form-group">
                     <label for="purpose">Purpose</label>
-                    <input formControlName="purpose" type="text" class="form-control" id="purpose" required name="purpose">
-                  </div>
-                <div class="form-group">
-                    <label for="accountNumber">Account number</label>
-                    <input formControlName="accountNumber" type="number" class="form-control" id="accountNumber" required placeholder="account number">
-                  </div>
-            
-                <div class="form-group">
-                  <label for="address">Address</label>
-                  <input formControlName="address" type="text" class="form-control" id="address" required name="address">
-                </div>
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input formControlName="city" type="text" class="form-control" id="city" required name="city">
-                  </div>
-                  <div class="form-group">
-                    <label for="amount">Amount</label>
-                    <input formControlName="amount" type="number" class="form-control" id="amount" required placeholder="amount">
+                    <input formControlName="purpose" type="text" class="form-control" id="purpose" required name="purpose" placeholder="Exam payment">
                   </div>
                   <div class="col-md-m form-group">
                     <div class="form-group">
@@ -76,28 +97,27 @@
                          
                     </div>
                   </div>
+                  <div class="form-row">
+                    <div class="col-md-6 mb-2 form-group">
                   <div class="form-group">
-                    <label for="model">Model</label>
-                    <input formControlName="model" type="number" class="form-control" id="model" required placeholder="model">
+                    <label for="model">Payment Model</label>
+                    <input formControlName="model" type="number" class="form-control" id="model" required placeholder="97">
                   </div>
+                 </div>
+                 <div class="col-md-6 mb-2 form-group">
                   <div class="form-group">
-                    <label for="paymentCode">payment_code</label>
-                    <input formControlName="paymentCode" type="number" class="form-control" id="paymentCode" required placeholder="payment_code">
+                    <label for="reference">Reference number</label>
+                    <input formControlName="reference" type="number" class="form-control" id="reference" required placeholder="33-12345-0-6666-7878">
                   </div>
-                  <div class="form-group">
-                    <label for="reference">reference</label>
-                    <input formControlName="reference" type="number" class="form-control" id="reference" required placeholder="reference">
                   </div>
-               
-                  
-
+                  </div>
                 <div class="row">
                     <div class="col-md-6 mb-2 form-group">
                       <button type="submit" rel="tooltip" 
-                          class="btn btn-success btn-sm" data-original-title="" title="create exam">Create</button>
+                          class="btn btn-success btn-sm" data-original-title="" title="create payment">Create</button>
                       </div>
                       <div class="col-md-6 mb-2 form-group text-right">
-                        <a type="button" rel="tooltip" (click)="closeModal('createETModal')"
+                        <a type="button" rel="tooltip" (click)="closeModal('createPaymentModal')"
                       class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
                     </div>
                   </div>
@@ -107,3 +127,93 @@
      <!-- /form card cc payment -->
 </div>
 </jw-modal>
+
+
+
+ 
+<div *ngIf="showEditPay">
+ <div *ngIf="editPay" >
+ <div class="text-right" id="divAdd"><span id="span">back to list &nbsp;</span>
+  <a type="button" rel="tooltip" (click)="backToList()" class="btn btn-outline-secondary btn-sm" data-original-title="" title="back to list">
+       <i class="material-icons">keyboard_backspace</i>
+       </a></div>
+ <div class="col-md-12" >
+         
+  <div class="card card-outline-secondary" >
+      <div class="card-body">
+        <div class="form-row">
+          <h3 class="text-left col-md-6 mb-2 form-group">Edit Payment </h3><h6 class="date text-right col-md-6 mb-2 form-group text-muted">{{editPay.date | date}}</h6>
+        </div>
+          <form (ngSubmit)="editPayment()">
+             <div class="form-group">
+                 <label for="name">For</label>
+                 <input [(ngModel)]="editPay.name" type="text" class="form-control" id="name" required name="name" placeholder="John Doe">
+               </div>
+               <div class="form-group">
+                <label for="accountNumber">Account number</label>
+                <input [(ngModel)]="editPay.accountNumber" type="number" class="form-control" id="accountNumber" required name="accountNumber" placeholder="100-123456789-11">
+              </div>
+              <div class="form-row">
+              <div class="col-md-6 mb-2 form-group">
+             <div class="form-group">
+              <label for="address">Address</label>
+              <input [(ngModel)]="editPay.address" type="text" class="form-control" id="address" required name="address" placeholder="John Doe 123 Main St">
+            </div>
+          </div>
+          <div class="col-md-6 mb-2 form-group">
+            <div class="form-group">
+                <label for="city">City</label>
+                <input [(ngModel)]="editPay.city" type="text" class="form-control" id="city" required name="city" placeholder="Anytown, USA">
+              </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-3 mb-2 form-group">
+              <div class="form-group">
+                <label for="paymentCode">Payment code</label>
+                <input [(ngModel)]="editPay.paymentCode" type="number" class="form-control" id="paymentCode" required name="paymentCode" placeholder="289">
+              </div>
+          </div>
+          <div class="col-md-9 mb-2 form-group">
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input [(ngModel)]="editPay.amount" type="number" class="form-control" id="amount" required  name="amount" placeholder="50$">
+              </div>
+              </div>
+        </div>
+               <div class="form-group">
+                 <label for="purpose">Purpose</label>
+                 <input [(ngModel)]="editPay.purpose" type="text" class="form-control" id="purpose" required name="purpose" placeholder="Exam payment">
+               </div>
+               <div class="form-row">
+                <div class="col-md-6 mb-2 form-group">
+               <div class="form-group">
+                 <label for="model">Payment Model</label>
+                 <input [(ngModel)]="editPay.model" type="number" class="form-control" id="model" required name="model" placeholder="97">
+               </div>
+                </div>
+                <div class="col-md-6 mb-2 form-group">
+               <div class="form-group">
+                 <label for="reference">Reference number</label>
+                 <input [(ngModel)]="editPay.reference" type="number" class="form-control" id="reference" required  name="reference" placeholder="33-12345-0-6666-7878">
+               </div>
+            </div>
+              </div>
+
+             <div class="row">
+                 <div class="col-md-6 mb-2 form-group">
+                   <button type="submit" rel="tooltip" 
+                       class="btn btn-success btn-sm" data-original-title="" title="edit payment">Update</button>
+                   </div>
+                   <div class="col-md-6 mb-2 form-group text-right">
+                     <a type="button" rel="tooltip"
+                   class="btn btn-danger btn-sm" (click)="removeEditPayment(editPay)"data-original-title="" title="delete payment">Delete</a>
+                 </div>
+               </div>
+           </form>
+      </div>
+  </div>
+  <!-- /form card cc payment -->
+</div>
+</div>
+</div>
