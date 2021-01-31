@@ -21,15 +21,7 @@ export class CourseList1Component implements OnInit {
 
   ngOnInit(): void {
   }
-
- 
-
-   newCourse(): void {
-   
-    this.course = new Course();
-  //  getSemester();
-  }
-
+  
   save() {
     this.courseService
       .create(this.course)

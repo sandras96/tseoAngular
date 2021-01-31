@@ -18,7 +18,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ExamTakingComponent implements OnInit {
 
   addForm : FormGroup;
- 
+  submitted = false;
+  date;
   studentsAll : Student[];
   professorsAll : Professor[];
   professorId : number;
@@ -43,14 +44,24 @@ export class ExamTakingComponent implements OnInit {
     this.getProfessors();
     this.addForm = this.formBuilder.group({
       id : [],
-      mark : [''],
-      pass : [''],
-      points : [''],
+      mark : ['', Validators.required],
+      pass : ['', Validators.required],
+      points : ['', Validators.required],
       exam : this.exam,
-      professor: [''],
-      student : ['']
+      professor: ['', Validators.required],
+      student : ['', Validators.required]
     })
   
+  }
+  get f() { return this.addForm.controls; }
+
+  onSubmit(){
+     this.submitted = true;
+
+    if (this.addForm.invalid) {
+        return false;
+    }
+       this.addExamTaking()
   }
 
   addExamTaking(){

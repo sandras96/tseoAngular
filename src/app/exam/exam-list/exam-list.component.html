@@ -44,34 +44,54 @@
             <div class="card-body">
                 <h3 class="text-center">Create Exam</h3>
                 
-                <form [formGroup]="examForm" (ngSubmit)="createExam()">
+                <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
                   
                     <div class="input-group">
                         <label>Select course: &nbsp;</label>
-                        <select class="custom-select" formControlName="course" #c id="inputGroupSelect05">
+                        <select class="custom-select" formControlName="course" #c id="inputGroupSelect05"
+                        [ngClass]="{ 'is-invalid': submitted && f.course.errors }">
                             <option [ngValue]="c"  *ngFor="let c of courses">{{c.name}}</option>
                         </select>
+                        <div *ngIf="submitted && f.course.errors" class="invalid-feedback">
+                            <div *ngIf="f.course.errors.required">Course is required</div>
+                        </div>
                       </div>
                       <div class="form-group">
                         <label for="date">Date:</label>
                        
-                        <input type="date" name="date" id="date" formControlName="date" class="form-control"/>
+                        <input type="date" name="date" id="date" formControlName="date" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.date.errors }" min="{{this.date}}">
+                        <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                            <div *ngIf="f.date.errors.required">Date is required</div>
+                        </div>
                          
                     </div>
                     <div class="form-group">
                       <label for="assignment">Assignment</label>
-                      <input type="text" class="form-control" id="assignment" formControlName="assignment" name="assignment">
+                      <input type="text" class="form-control" id="assignment" formControlName="assignment" name="assignment"
+                      [ngClass]="{ 'is-invalid': submitted && f.assignment.errors }">
+                      <div *ngIf="submitted && f.assignment.errors" class="invalid-feedback">
+                        <div *ngIf="f.assignment.errors.required">Assignment is required</div>
+                    </div>
                     </div>
                 
                     <div class="form-group">
                       <label>Points</label>
-                      <input type="text" class="form-control" id="points" formControlName="points" required name="points">
+                      <input type="number" class="form-control" id="points" formControlName="points" required name="points" min="0"  max="100" oninput="validity.valid||(value='');"
+                      [ngClass]="{ 'is-invalid': submitted && f.points.errors }">
+                      <div *ngIf="submitted && f.points.errors" class="invalid-feedback">
+                        <div *ngIf="f.points.errors.required">Points are required</div>
+                    </div>
                     </div>
                     <div class="input-group">
                       <label>Select exam period: &nbsp;</label>
-                      <select class="custom-select" formControlName="examPeriod" #ep id="inputGroupSelect05">
+                      <select class="custom-select" formControlName="examPeriod" #ep id="inputGroupSelect05"
+                      [ngClass]="{ 'is-invalid': submitted && f.examPeriod.errors }">
                           <option [ngValue]="ep"  *ngFor="let ep of examPeriods">{{ep.name}}</option>
                       </select>
+                      <div *ngIf="submitted && f.examPeriod.errors" class="invalid-feedback">
+                        <div *ngIf="f.examPeriod.errors.required">Exam period is required</div>
+                    </div>
                     </div>
                  
                     

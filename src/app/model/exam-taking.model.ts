@@ -5,7 +5,6 @@ export class ExamTaking {
 
     id : number;
     mark : number;
-    pass : boolean;
     points : number;
     exam : Exam;
     professor: Professor;

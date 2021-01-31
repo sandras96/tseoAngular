@@ -12,10 +12,15 @@ export class ExamTakingService {
 
   constructor(private http : HttpClient) { }
 
+  get(examTaking_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/${examTaking_id}`);
+  }
   create(examTaking : ExamTaking): Observable<any>{
     return this.http.post(`${this.baseUrl}`, examTaking);
   }
-
+  update(examTaking_id : number, data) : Observable<any>{
+    return this.http.put(`${this.baseUrl}/${examTaking_id}`, data);
+  }
   delete(examTaking_id : number) : Observable<any>{
     return this.http.delete(`${this.baseUrl}/${examTaking_id}`);
   }

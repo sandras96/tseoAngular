@@ -9,7 +9,6 @@
                 <th class="text-center">Exam Period</th>
                 <th class="text-center">Points</th>
                 <th class="text-center">Mark</th>
-                <th class="text-center">Pass</th>
                 <th class="text-center">Professor</th>
                 <th class="text-right">Actions</th> 
            </tr>
@@ -22,8 +21,6 @@
                 <td class="text-center">{{et.exam.examPeriod.name}}</td> <!--dodati router link ka ispitnom roku-->
                 <td class="text-center">{{et.points}}</td>
                 <td class="text-center">{{et.mark}}</td>
-                <td class="text-center" *ngIf="!et.pass"><i class="fa fa-thumbs-o-down" style="color:red" aria-hidden="true"></i></td>
-                <td class="text-center" *ngIf="et.pass"><i class="fa fa-thumbs-o-up" style="color:green" aria-hidden="true"></i></td>
                 <td class="text-center"><a routerLink="/professors/{{ et.professor.id }}">{{et.professor.firstname}}&nbsp;{{et.professor.lastname}}</a></td>
                 <td class="text-right"><a type="button" rel="tooltip" (click)="removeExamTaking(et)"
                     class="btn btn-danger btn-sm" data-original-title="" title="delete">

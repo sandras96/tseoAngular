@@ -15,9 +15,7 @@ export class CourseDetailsComponent implements OnInit {
   course_id : number;
   course : Course;
   currentCourse = null;
-  
- 
-  message = '';
+
   
   constructor(private route: ActivatedRoute,
     private router : Router,
@@ -25,7 +23,7 @@ export class CourseDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.course = new Course();
-    this.message = '';
+  
     this.getCourse(this.route.snapshot.paramMap.get('id'));
     
   }
@@ -50,7 +48,7 @@ export class CourseDetailsComponent implements OnInit {
         .subscribe(
           response => {
             console.log(response);
-            this.message = 'The course was updated successfully!';
+           
             
           },
           error => {

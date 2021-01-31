@@ -16,7 +16,8 @@ import { FormArray, FormControl, FormGroup, Validators, FormsModule, FormBuilder
 export class CourseExamsComponent implements OnInit {
 
   examForm : FormGroup;
-
+  submitted = false;
+  date;
   @Input() exams : Exam[];
   @Input() course : Course;
 
@@ -34,8 +35,7 @@ export class CourseExamsComponent implements OnInit {
 
  
   ngOnInit(): void {
-   
-
+    this.date = new Date().toISOString().slice(0, 10);
      this.examForm = new FormGroup({
       course : new FormControl(this.course)
           // id : new FormControl(this.course.id),
@@ -47,12 +47,21 @@ export class CourseExamsComponent implements OnInit {
        date : new FormControl('', Validators.required),
        assignment: new FormControl('', Validators.required),
        points : new FormControl('', Validators.required),
-       examPeriod : new FormControl('')
+       examPeriod : new FormControl('',Validators.required)
      })
    
 
   }
- 
+  get f() { return this.examForm.controls; }
+
+  onSubmit(){
+    this.submitted = true;
+
+   if (this.examForm.invalid) {
+       return false;
+   }
+      this.createExam()
+ }
   getExamPeriods(){
     this.examPeriodService.getAll()
       .subscribe( data => {
@@ -107,5 +116,7 @@ export class CourseExamsComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+    this.examForm.reset();
+    this.submitted = false;
 }
 }

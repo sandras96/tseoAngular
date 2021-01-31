@@ -1,4 +1,6 @@
 import { Authority } from "./authority.model";
+import { Professor } from "./professor.model";
+import {  Student } from "./student.model";
 
 export class User {
 
@@ -6,6 +8,8 @@ export class User {
     deleted: boolean;
     password : String;
     username: String;
+    student : Student;
+    professor : Professor;
     authorities : Authority[];
   
     

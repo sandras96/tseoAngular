@@ -36,6 +36,7 @@
                     </div> -->
  
                     <div class="profile-detail">
+                      
                         <app-professor-profile *ngIf="tabIndex === 0" [professor]="professor"></app-professor-profile>
                         <app-professor-courses  *ngIf="tabIndex === 1" [courses]="courses" (deleteCourse)="removeCourse($event)" (addCourse)="addCourse($event)"[professor]="professor" ></app-professor-courses>
                         <app-professor-exams  *ngIf="tabIndex === 2" [examtakings]="examtakings" ></app-professor-exams>

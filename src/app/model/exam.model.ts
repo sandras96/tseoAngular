@@ -8,8 +8,7 @@ export class Exam {
     date : Date;
     points: number;
     course : Course;
-    courseId : number;
     examPeriod : ExamPeriod;
-    examPeriodId : number;
+
     
 }

@@ -19,6 +19,8 @@ export class ExamListComponent implements OnInit {
   courses : Course[];
   examPeriods : ExamPeriod[];
   examForm : FormGroup;
+  submitted = false;
+  date;
 
   @Input() exams : Exam[];
   @Output() addExam = new EventEmitter<Exam[]>();
@@ -31,16 +33,25 @@ export class ExamListComponent implements OnInit {
               private toastr : ToastrService) { }
 
   ngOnInit(): void {
-  
+    this.date = new Date().toISOString().slice(0, 10);
       this.examForm = new FormGroup({
-         course : new FormControl(''),
+         course : new FormControl('', Validators.required),
          date : new FormControl('', Validators.required),
          assignment: new FormControl('', Validators.required),
          points : new FormControl('', Validators.required),
-         examPeriod : new FormControl('')
+         examPeriod : new FormControl('', Validators.required)
        })
   }
+  get f() { return this.examForm.controls; }
 
+  onSubmit(){
+    this.submitted = true;
+
+   if (this.examForm.invalid) {
+       return false;
+   }
+      this.createExam()
+ }
   createExam(){
     console.log("Exam form je ", this.examForm.value)
     this.examService.createExam(this.examForm.value)
@@ -85,5 +96,7 @@ export class ExamListComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+    this.examForm.reset();
+    this.submitted = false;
 }
 }

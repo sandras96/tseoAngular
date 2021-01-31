@@ -1,27 +1,39 @@
 <div id="unit" class="col-lg-6 col-md-4 ml-auto mr-auto">
 <div style="width: 400px;" *ngIf="course">
-  <form id="form"> 
+  <form id="form"  (ngSubmit)="f2.form.valid && updateCourse()" #f2="ngForm"> 
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" required [(ngModel)]="course.name" name="name">
+      <input type="text" class="form-control"  #name="ngModel" id="name" [(ngModel)]="course.name" name="name"
+      [ngClass]="{ 'is-invalid': f2.submitted && name.errors }" required >
+      <div *ngIf="f2.submitted && name.invalid" class="invalid-feedback">
+        <div *ngIf="name.errors.required">Name is required</div>
+    </div>
     </div>
 
     <div class="form-group">
-      <label for="name">ESPB</label>
-      <input type="text" class="form-control" id="espb" required [(ngModel)]="course.espb" name="espb">
+      <label for="espb">ESPB</label>
+      <input type="text" class="form-control" #espb="ngModel" id="espb" [(ngModel)]="course.espb" name="espb"
+      [ngClass]="{ 'is-invalid': f2.submitted && espb.errors }" required >
+      <div *ngIf="f2.submitted && espb.invalid" class="invalid-feedback">
+        <div *ngIf="espb.errors.required">Espb is required</div>
+    </div>
     </div>
 
     <div class="form-group">
       <label for="semester">Semester</label>
-      <select  class="form-control" id="semester" required [(ngModel)]="course.semester" name="semester">
+      <select  class="form-control" id="semester" #semester="ngModel" [(ngModel)]="course.semester" name="semester"
+      [ngClass]="{ 'is-invalid': f2.submitted && semester.errors }" required >
         <option value="WINTER">WINTER</option>
         <option value="SUMMER">SUMMER</option>
       </select>
+      <div *ngIf="f2.submitted && semester.invalid" class="invalid-feedback">
+        <div *ngIf="semester.errors.required">Semester is required</div>
+    </div>
     </div>
     <div class="row">
       <div class="col-md-6 mb-2 form-group">
-        <a type="button" rel="tooltip" (click)="updateCourse()"
-            class="btn btn-success btn-sm" data-original-title="" title="update course">Update</a>
+        <button type="submit" rel="tooltip" 
+            class="btn btn-success btn-sm" data-original-title="" title="update course">Update</button>
         </div>
         <div class="col-md-6 mb-2 form-group text-right">
           <a type="button" rel="tooltip" 

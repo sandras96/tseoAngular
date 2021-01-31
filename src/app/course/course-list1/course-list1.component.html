@@ -1,5 +1,5 @@
 <h4><small>Courses</small> <span>&nbsp;&nbsp;&nbsp;</span>
-    <a type="button" rel="tooltip" (click)="openModal('createCourseModal')" class="btn btn-info btn-sm" data-original-title="" title="add course">
+    <a type="button" rel="tooltip" (click)="openModal('createCourseModal')" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add course">
         <i class="material-icons">add</i></a></h4>
 <div class="table-responsive" style="height: 300px;overflow: scroll;">
         <table class="table">
@@ -44,23 +44,35 @@
             <div class="card-body">
                 <h3 class="text-center">Create Course</h3>
                
-                <form (ngSubmit)="onSubmit()">
+                <form (ngSubmit)="f2.form.valid && onSubmit()" #f2="ngForm">
                     <div class="form-group">
                       <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" required [(ngModel)]="course.name" name="name">
+                      <input type="text" class="form-control" #name="ngModel" id="name"[(ngModel)]="course.name" name="name"
+                      [ngClass]="{ 'is-invalid': f2.submitted && name.errors }" required >
+                      <div *ngIf="f2.submitted && name.invalid" class="invalid-feedback">
+                        <div *ngIf="name.errors.required">Name is required</div>
                     </div>
-                
+                    </div>
                     <div class="form-group">
                       <label for="espb">espb</label>
-                      <input type="text" class="form-control" id="espb" required [(ngModel)]="course.espb" name="espb">
+                      <input type="text" class="form-control" #espb="ngModel" id="espb" [(ngModel)]="course.espb" name="espb"
+                      [ngClass]="{ 'is-invalid': f2.submitted && espb.errors }" required>
+                        <div *ngIf="f2.submitted && espb.invalid" class="invalid-feedback">
+                        <div *ngIf="espb.errors.required">ESPB is required</div>
+                    </div>
+        
                     </div>
                 
                     <div class="form-group">
                       <label for="semester">semester</label>
-                      <select  class="form-control" id="semester" required [(ngModel)]="course.semester" name="semester">
+                      <select  class="form-control" id="semester" #semester="ngModel" required [(ngModel)]="course.semester" name="semester"
+                      [ngClass]="{ 'is-invalid': f2.submitted && semester.errors }" required>
                         <option value="WINTER">WINTER</option>
                         <option value="SUMMER">SUMMER</option>
                       </select>
+                      <div *ngIf="f2.submitted && semester.invalid" class="invalid-feedback">
+                        <div *ngIf="semester.errors.required">Semester is required</div>
+                    </div>
                     </div>
                 
                     <div class="row">

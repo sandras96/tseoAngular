@@ -10,13 +10,14 @@ import { ExamService } from 'src/app/services/exam.service';
   styleUrls: ['./exam-unit.component.css']
 })
 export class ExamUnitComponent implements OnInit {
-
+  date;
   @Input() exam : Exam;
   constructor(private examService : ExamService, 
               private toastr : ToastrService,
               private router : Router) { }
 
   ngOnInit(): void {
+    this.date = new Date().toISOString().slice(0, 10);
   }
 
   updateExam(){

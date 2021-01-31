@@ -1,28 +1,42 @@
+<div class="tableStudents">
 <h4><small>Students</small> <span>&nbsp;&nbsp;&nbsp;</span>
     <a type="button" rel="tooltip" routerLink="/user-create" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create user">
         <i class="material-icons">add</i></a></h4>
-<div class="table-responsive table-hover">
+<div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
                     <th class="text-center">#</th>
                     <th>Firstname</th>
-                    <th>Lastname</th>
+                   
                     <th>Index number</th>
-                    <!-- <th class="text-right">Actions</th> -->
+                    <th class="text-right">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let student of students; let i = index" (click)="ClickedRow(i)" [class.active]="i == HighlightRow" (click)="selectStudent(student)">
+                <!-- <tr *ngFor="let student of students; let i = index" (click)="ClickedRow(i)" [class.active]="i == HighlightRow" (click)="selectStudent(student)"> -->
+                 <tr *ngFor="let student of students;">
                     <td class="text-center">{{student.id}}</td>
-                    <td>{{student.firstname}}</td>
-                    <td>{{student.lastname}}</td>
+                    <td><ng-template #tipContent let-greeting="greeting"><p style="white-space: pre-wrap">{{student.firstname}} {{student.lastname}}</p><p style="white-space: pre-wrap">email: {{student.email}}</p><p style="white-space: pre-wrap"> phone: {{student.phone}}</p></ng-template>
+                        <a
+                          type="button"
+                          [ngbTooltip]="tipContent"
+                          triggers="manual" #t1="ngbTooltip" (click)="toggleWithGreeting(t1, 'Bonjour')"
+                        >
+                          {{student.firstname}}&nbsp;&nbsp;{{student.lastname}}
+                    </a></td>
+                   
                     <td>{{student.indexNum}}</td> 
-                    <!-- <td class="text-right"><a type="button" rel="tooltip" (click)="deleteStudent(student)"
-                        class="btn btn-danger btn-sm" data-original-title="" title="delete payment">
-                        <i class="material-icons">close</i>
-                    </a></td> -->
+                      <td class="text-right"> 
+                        <a routerLink="/students/{{ student.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
+                            <i class="material-icons">preview</i>
+                        </a> 
+                        <a type="button" rel="tooltip" (click)="removeStudent(student)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete student">
+                            <i class="material-icons">close</i>
+                        </a>
+                   </td>
                 </tr>   
             </tbody>
         </table>
+</div>
 </div>

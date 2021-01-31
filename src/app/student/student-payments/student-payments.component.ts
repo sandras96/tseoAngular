@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Payment } from 'src/app/model/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { ModalService } from 'src/app/_modal';
-import { FormGroup, FormBuilder} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Student } from 'src/app/model/student.model';
 
 @Component({
@@ -14,6 +14,8 @@ import { Student } from 'src/app/model/student.model';
 export class StudentPaymentsComponent implements OnInit {
 
   addForm: FormGroup;
+  submitted = false;
+
   editPay : Payment;
   isShowDivIf = false;
   showEditPay= false;
@@ -21,30 +23,41 @@ export class StudentPaymentsComponent implements OnInit {
   @Input() student : Student;
   @Output() createPayment = new EventEmitter<Payment[]>();
   @Output() deletePayment = new EventEmitter<Payment[]>();
-  
+  date;
+
   constructor(private paymentService : PaymentService,
               private formBuilder: FormBuilder,
               private toastr : ToastrService,
               private modalService: ModalService) { }
 
   ngOnInit(): void {
-   
+    this.date = new Date().toISOString().slice(0, 10);
     this.addForm = this.formBuilder.group({
     id : [],
-    accountNumber : [''],
-    address: [''],
-    amount : [''],
-    city : [''],
-    date : [''],
-    model : [''],
-    name : [''],
-    paymentCode : [''],
-    purpose : [''],
-    reference : [''],
+    accountNumber : ['', Validators.required],
+    address: ['', Validators.required],
+    amount : ['', Validators.required],
+    city : ['', [Validators.required,Validators.minLength(6)]],
+    date : ['', Validators.required],
+    model : ['', Validators.required],
+    name : ['', Validators.required],
+    paymentCode : ['', Validators.required],
+    purpose : ['', Validators.required],
+    reference : ['', Validators.required],
     student : this.student
     })
   }
 
+  get f() { return this.addForm.controls; }
+
+  onSubmit(){
+     this.submitted = true;
+
+    if (this.addForm.invalid) {
+        return false;
+    }
+       this.addPayment()
+  }
   addPayment(){
     console.log("Form dabogsacuvaj drugi deo", this.addForm.value)
     this.paymentService.create(this.addForm.value)
@@ -76,6 +89,7 @@ export class StudentPaymentsComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
     this.addForm.reset();
+    this.submitted = false;
 }
 
 
@@ -92,6 +106,7 @@ export class StudentPaymentsComponent implements OnInit {
 //       console.log(error)
 //     })
 // }
+
 editPayment(){
   this.paymentService.update(this.editPay.id, this.editPay)
     .subscribe(data=>{
@@ -125,4 +140,5 @@ backToList(){
   this.isShowDivIf = !this.isShowDivIf;
   this.showEditPay = !this.showEditPay;
 }
+
 }

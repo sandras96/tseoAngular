@@ -14,7 +14,8 @@ import { throwError } from 'rxjs';
   styleUrls: ['./exam-period-list.component.css']
 })
 export class ExamPeriodListComponent implements OnInit {
-
+  
+ 
   addForm : FormGroup;
   @Input() examPeriods : ExamPeriod[];
   @Output() createExamPeriod = new EventEmitter<ExamPeriod[]>();
@@ -25,12 +26,13 @@ export class ExamPeriodListComponent implements OnInit {
               private toastr : ToastrService) { }
 
   ngOnInit(): void {
- 
+    
   this.addForm = new FormGroup({
      name : new FormControl('', Validators.required),
      startDate : new FormControl('', Validators.required),
-     endDate : new FormControl('', Validators.required)
+     endDate : new FormControl('', [Validators.required])
     })
+
   }
 
   addExamPeriod(){

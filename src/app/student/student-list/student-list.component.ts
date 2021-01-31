@@ -9,22 +9,32 @@ import { Student } from 'src/app/model/student.model';
 export class StudentListComponent implements OnInit {
 
   @Input() public students : Student[];
-  @Output() public studentSelected = new EventEmitter<Student>();
+ // @Output() public studentSelected = new EventEmitter<Student>();
   
   HighlightRow : any;  
   ClickedRow:any; 
   
   constructor() {
-    this.ClickedRow = function(index){  
-      this.HighlightRow = index;  
-  }  
+  //   this.ClickedRow = function(index){  
+  //     this.HighlightRow = index;  
+  // }  
    }
 
   ngOnInit(): void {
   }
+ toggleWithGreeting(tooltip, greeting: string) {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    } else {
+      tooltip.open({greeting});
+    }
+  }
+  // selectStudent(student: Student){
+  //   this.studentSelected.emit(student);
+  // }
 
-  selectStudent(student: Student){
-    this.studentSelected.emit(student);
+  removeStudent(student){
+
   }
 
 }

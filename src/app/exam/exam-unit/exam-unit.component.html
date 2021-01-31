@@ -1,9 +1,13 @@
 <div id="unit" class="col-lg-6 col-md-4 ml-auto mr-auto">
     <div style="width: 400px;" style="width: 400px;" *ngIf="exam">
-      <form id="form"> 
+      <form id="form" (ngSubmit)="f2.form.valid && updateExam()" #f2="ngForm"> 
         <div class="form-group">
           <label for="assignment">Assignment</label>
-          <input type="text" class="form-control" id="assignment" required [(ngModel)]="exam.assignment" name="assignment">
+          <input type="text" class="form-control" #assignment="ngModel" id="assignment" [(ngModel)]="exam.assignment" name="assignment"
+          [ngClass]="{ 'is-invalid': f2.submitted && assignment.errors }" required >
+          <div *ngIf="f2.submitted && assignment.invalid" class="invalid-feedback">
+            <div *ngIf="assignment.errors.required">Assignment is required</div>
+        </div>
         </div>
     
       
@@ -11,14 +15,22 @@
           <div class="form-group">
               <label for="date">Date: {{ exam.date | date }}</label>
              
-              <input type="date" name="date" id="date" class="form-control" [(ngModel)]="exam.date"/>
+              <input type="date" name="date" #date="ngModel" id="date" class="form-control" [(ngModel)]="exam.date"
+              [ngClass]="{ 'is-invalid': f2.submitted && date.errors }" required>
+              <div *ngIf="f2.submitted && date.invalid" class="invalid-feedback">
+                <div *ngIf="date.errors.required">Date is required</div>
+            </div>
                
           </div>
         </div>
     
         <div class="form-group">
           <label for="points">Points</label>
-          <input type="number" class="form-control" id="points" required [(ngModel)]="exam.points" name="points">
+          <input type="number" class="form-control" #points="ngModel" id="points" [(ngModel)]="exam.points" name="points"
+          [ngClass]="{ 'is-invalid': f2.submitted && points.errors }" required min="0"  max="100" oninput="validity.valid||(value='');">
+          <div *ngIf="f2.submitted && points.invalid" class="invalid-feedback">
+            <div *ngIf="points.errors.required">Points are required</div>
+        </div>
         </div>
 
         <div class="form-group">
@@ -30,8 +42,8 @@
     
         <div class="row">
           <div class="col-md-6 mb-2 form-group">
-            <a type="button" rel="tooltip" (click)="updateExam()"
-                class="btn btn-success btn-sm" data-original-title="" title="update course">Update</a>
+            <button type="submit" rel="tooltip"
+                class="btn btn-success btn-sm" data-original-title="" title="update exam">Update</button>
             </div>
             <div class="col-md-6 mb-2 form-group text-right">
               <a type="button" rel="tooltip" (click)="deleteExam()"

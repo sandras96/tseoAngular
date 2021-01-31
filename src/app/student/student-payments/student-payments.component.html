@@ -47,26 +47,44 @@
          <div class="card-body">
              <h3 class="text-center">Create Payment</h3>
             
-             <form [formGroup]="addForm" (ngSubmit)="addPayment()">
+             <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="name">For</label>
-                    <input formControlName="name" type="text" class="form-control" id="name" required name="name" placeholder="John Doe">
+                    <label for="name">For:</label>
+                    <input formControlName="name" type="text" class="form-control" id="name" name="name" placeholder="John Doe"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">Name is required</div>
                   </div>
+                  </div>
+                 
                   <div class="form-group">
-                    <label for="accountNumber">Account number</label>
-                    <input formControlName="accountNumber" type="number" class="form-control" id="accountNumber" required placeholder="100-123456789-11">
+                    <label for="accountNumber">Account number:</label>
+                    <input formControlName="accountNumber" type="number" class="form-control" id="accountNumber" placeholder="10012345678911" min="0" oninput="validity.valid||(value='');"
+                    [ngClass]="{ 'is-invalid': submitted && f.accountNumber.errors }">
+                    <div *ngIf="submitted && f.accountNumber.errors" class="invalid-feedback">
+                      <div *ngIf="f.accountNumber.errors.required">Account number is required</div>
+                  </div>
                   </div>
                   <div class="form-row">
                     <div class="col-md-6 mb-2 form-group">
                   <div class="form-group">
-                    <label for="address">Address</label>
-                    <input formControlName="address" type="text" class="form-control" id="address" required name="address" placeholder="John Doe 123 Main St">
+                    <label for="address">Address:</label>
+                    <input formControlName="address" type="text" class="form-control" id="address" name="address" placeholder="John Doe 123 Main St"
+                    [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                      <div *ngIf="f.address.errors.required">Address is required</div>
+                  </div>
                   </div>
                     </div>
                     <div class="col-md-6 mb-2 form-group">
                   <div class="form-group">
-                      <label for="city">City</label>
-                      <input formControlName="city" type="text" class="form-control" id="city" required name="city"placeholder="Anytown, USA">
+                      <label for="city">City:</label>
+                      <input formControlName="city" type="text" class="form-control" id="city" name="city"placeholder="Anytown, USA"
+                      [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                      <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                        <div *ngIf="f.city.errors.required">City is required</div>
+                          <div *ngIf="f.city.errors.minlength">City must be at least 6 characters</div>
+                    </div>
                     </div>
                     </div>
                   </div>
@@ -74,40 +92,63 @@
                   <div class="form-row">
                     <div class="col-md-3 mb-2 form-group">
                   <div class="form-group">
-                    <label for="paymentCode">Payment Code</label>
-                    <input formControlName="paymentCode" type="number" class="form-control" id="paymentCode" required placeholder="289">
+                    <label for="paymentCode">Payment Code:</label>
+                    <input formControlName="paymentCode" type="number" class="form-control"  id="paymentCode" placeholder="289" min="0" oninput="validity.valid||(value='');"
+                    [ngClass]="{ 'is-invalid': submitted && f.paymentCode.errors }">
+                    <div *ngIf="submitted && f.paymentCode.errors" class="invalid-feedback">
+                      <div *ngIf="f.paymentCode.errors.required">Payment code is required</div>
+                    
+                  </div>
                   </div>
                </div>
                <div class="col-md-9 mb-2 form-group">
                   <div class="form-group">
-                    <label for="amount">Amount</label>
-                    <input formControlName="amount" type="number" class="form-control" id="amount" required name="amount" placeholder="50$">
+                    <label for="amount">Amount:</label>
+                    <input formControlName="amount" type="number" class="form-control" id="amount" name="amount" placeholder="50" min="0" oninput="validity.valid||(value='');"
+                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }">
+                    <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                      <div *ngIf="f.amount.errors.required">Amount is required</div>
+                  </div>
                   </div>
                   </div>
                   </div>
                   <div class="form-group">
-                    <label for="purpose">Purpose</label>
-                    <input formControlName="purpose" type="text" class="form-control" id="purpose" required name="purpose" placeholder="Exam payment">
+                    <label for="purpose">Purpose:</label>
+                    <input formControlName="purpose" type="text" class="form-control" id="purpose" name="purpose" placeholder="Exam payment"
+                    [ngClass]="{ 'is-invalid': submitted && f.purpose.errors }">
+                    <div *ngIf="submitted && f.purpose.errors" class="invalid-feedback">
+                      <div *ngIf="f.purpose.errors.required">Purpose is required</div>
+                  </div>
                   </div>
                   <div class="col-md-m form-group">
                     <div class="form-group">
                         <label for="date">Date:</label>
-                       
-                        <input type="date"  formControlName="date" name="date" id="date" class="form-control"  required/>
-                         
+                        <input type="date"  formControlName="date" name="date" id="date" class="form-control"  
+                        [ngClass]="{ 'is-invalid': submitted && f.date.errors }" min="{{this.date}}" >
+                        <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                          <div *ngIf="f.date.errors.required">Date is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="col-md-6 mb-2 form-group">
                   <div class="form-group">
-                    <label for="model">Payment Model</label>
-                    <input formControlName="model" type="number" class="form-control" id="model" required placeholder="97">
+                    <label for="model">Payment Model:</label>
+                    <input formControlName="model" type="number" class="form-control" id="model" placeholder="97" min="0" oninput="validity.valid||(value='');"
+                    [ngClass]="{ 'is-invalid': submitted && f.model.errors }" >
+                    <div *ngIf="submitted && f.model.errors" class="invalid-feedback">
+                      <div *ngIf="f.model.errors.required">Payment model is required</div>
+                  </div>
                   </div>
                  </div>
                  <div class="col-md-6 mb-2 form-group">
                   <div class="form-group">
-                    <label for="reference">Reference number</label>
-                    <input formControlName="reference" type="number" class="form-control" id="reference" required placeholder="33-12345-0-6666-7878">
+                    <label for="reference">Reference number:</label>
+                    <input formControlName="reference" type="number" class="form-control" id="reference" min="0" oninput="validity.valid||(value='');" placeholder="3312345066667878"
+                    [ngClass]="{ 'is-invalid': submitted && f.reference.errors }" >
+                    <div *ngIf="submitted && f.reference.errors" class="invalid-feedback">
+                      <div *ngIf="f.reference.errors.required">Reference number is required</div>
+                  </div>
                   </div>
                   </div>
                   </div>
@@ -134,7 +175,7 @@
 <div *ngIf="showEditPay">
  <div *ngIf="editPay" >
  <div class="text-right" id="divAdd"><span id="span">back to list &nbsp;</span>
-  <a type="button" rel="tooltip" (click)="backToList()" class="btn btn-outline-secondary btn-sm" data-original-title="" title="back to list">
+  <a type="button" rel="tooltip" (click)="f2.form.valid && backToList()" class="btn btn-outline-secondary btn-sm" data-original-title="" title="back to list">
        <i class="material-icons">keyboard_backspace</i>
        </a></div>
  <div class="col-md-12" >
@@ -144,26 +185,43 @@
         <div class="form-row">
           <h3 class="text-left col-md-6 mb-2 form-group">Edit Payment </h3><h6 class="date text-right col-md-6 mb-2 form-group text-muted">{{editPay.date | date}}</h6>
         </div>
-          <form (ngSubmit)="editPayment()">
+          <form (ngSubmit)="f2.form.valid && editPayment()" #f2="ngForm">
              <div class="form-group">
-                 <label for="name">For</label>
-                 <input [(ngModel)]="editPay.name" type="text" class="form-control" id="name" required name="name" placeholder="John Doe">
-               </div>
+                 <label for="name2">For</label>
+                 <input [(ngModel)]="editPay.name" type="text"  #name="ngModel" class="form-control" name="name2" placeholder="John Doe"
+                 [ngClass]="{ 'is-invalid': f2.submitted && name.errors }" required>
+                 <div *ngIf="f2.submitted && name.invalid" class="invalid-feedback">
+                  <div *ngIf="name.errors.required">Name is required</div>
+              </div>
+              </div>
+               
                <div class="form-group">
                 <label for="accountNumber">Account number</label>
-                <input [(ngModel)]="editPay.accountNumber" type="number" class="form-control" id="accountNumber" required name="accountNumber" placeholder="100-123456789-11">
+                <input [(ngModel)]="editPay.accountNumber" type="number"  #accountNumber="ngModel" class="form-control" id="accountNumber" name="accountNumber" placeholder="100-123456789-11"
+                [ngClass]="{ 'is-invalid': f2.submitted && accountNumber.errors }" required>
+                <div *ngIf="f2.submitted && accountNumber.invalid" class="invalid-feedback">
+                  <div *ngIf="accountNumber.errors.required">Account number is required</div>
+              </div>
               </div>
               <div class="form-row">
               <div class="col-md-6 mb-2 form-group">
              <div class="form-group">
               <label for="address">Address</label>
-              <input [(ngModel)]="editPay.address" type="text" class="form-control" id="address" required name="address" placeholder="John Doe 123 Main St">
+              <input [(ngModel)]="editPay.address" type="text" #address="ngModel" class="form-control" id="address" name="address" placeholder="John Doe 123 Main St"
+              [ngClass]="{ 'is-invalid': f2.submitted && address.errors }" required>
+              <div *ngIf="f2.submitted && address.invalid" class="invalid-feedback">
+                <div *ngIf="address.errors.required">Address is required</div>
+            </div>
             </div>
           </div>
           <div class="col-md-6 mb-2 form-group">
             <div class="form-group">
                 <label for="city">City</label>
-                <input [(ngModel)]="editPay.city" type="text" class="form-control" id="city" required name="city" placeholder="Anytown, USA">
+                <input [(ngModel)]="editPay.city" type="text" #city="ngModel" class="form-control" id="city" name="city" placeholder="Anytown, USA"
+                [ngClass]="{ 'is-invalid': f2.submitted && city.errors }" required>
+                <div *ngIf="f2.submitted && city.invalid" class="invalid-feedback">
+                  <div *ngIf="city.errors.required">City is required</div>
+              </div>
               </div>
           </div>
         </div>
@@ -171,31 +229,51 @@
           <div class="col-md-3 mb-2 form-group">
               <div class="form-group">
                 <label for="paymentCode">Payment code</label>
-                <input [(ngModel)]="editPay.paymentCode" type="number" class="form-control" id="paymentCode" required name="paymentCode" placeholder="289">
+                <input [(ngModel)]="editPay.paymentCode" type="number" #paymentCode="ngModel" class="form-control" id="paymentCode" name="paymentCode" placeholder="289"
+                [ngClass]="{ 'is-invalid': f2.submitted && paymentCode.errors }" required>
+                <div *ngIf="f2.submitted && paymentCode.invalid" class="invalid-feedback">
+                  <div *ngIf="paymentCode.errors.required">Payment code is required</div>
+              </div>
               </div>
           </div>
           <div class="col-md-9 mb-2 form-group">
               <div class="form-group">
                 <label for="amount">Amount</label>
-                <input [(ngModel)]="editPay.amount" type="number" class="form-control" id="amount" required  name="amount" placeholder="50$">
+                <input [(ngModel)]="editPay.amount" type="number" #amount="ngModel" class="form-control" id="amount" required  name="amount" placeholder="50"
+                [ngClass]="{ 'is-invalid': f2.submitted && amount.errors }" required>
+                <div *ngIf="f2.submitted && amount.invalid" class="invalid-feedback">
+                  <div *ngIf="amount.errors.required">Amount is required</div>
+              </div>
               </div>
               </div>
         </div>
                <div class="form-group">
                  <label for="purpose">Purpose</label>
-                 <input [(ngModel)]="editPay.purpose" type="text" class="form-control" id="purpose" required name="purpose" placeholder="Exam payment">
+                 <input [(ngModel)]="editPay.purpose" type="text" #purpose="ngModel" class="form-control" id="purpose" required name="purpose" placeholder="Exam payment"
+                 [ngClass]="{ 'is-invalid': f2.submitted && purpose.errors }" required>
+                 <div *ngIf="f2.submitted && purpose.invalid" class="invalid-feedback">
+                  <div *ngIf="purpose.errors.required">Purpose is required</div>
+              </div>
                </div>
                <div class="form-row">
                 <div class="col-md-6 mb-2 form-group">
                <div class="form-group">
                  <label for="model">Payment Model</label>
-                 <input [(ngModel)]="editPay.model" type="number" class="form-control" id="model" required name="model" placeholder="97">
+                 <input [(ngModel)]="editPay.model" type="number" #model="ngModel" class="form-control" id="model" required name="model" placeholder="97"
+                 [ngClass]="{ 'is-invalid': f2.submitted && model.errors }" required>
+                 <div *ngIf="f2.submitted && model.invalid" class="invalid-feedback">
+                  <div *ngIf="model.errors.required">Payment model is required</div>
+              </div>
                </div>
                 </div>
                 <div class="col-md-6 mb-2 form-group">
                <div class="form-group">
                  <label for="reference">Reference number</label>
-                 <input [(ngModel)]="editPay.reference" type="number" class="form-control" id="reference" required  name="reference" placeholder="33-12345-0-6666-7878">
+                 <input [(ngModel)]="editPay.reference" type="number" #reference="ngModel" class="form-control" id="reference" required  name="reference" placeholder="33-12345-0-6666-7878"
+                 [ngClass]="{ 'is-invalid': f2.submitted && reference.errors }" required>
+                 <div *ngIf="f2.submitted && reference.invalid" class="invalid-feedback">
+                  <div *ngIf="reference.errors.required">Reference number is required</div>
+              </div>
                </div>
             </div>
               </div>
@@ -213,7 +291,7 @@
            </form>
       </div>
   </div>
-  <!-- /form card cc payment -->
+ 
 </div>
 </div>
-</div>
+</div> 

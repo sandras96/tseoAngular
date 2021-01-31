@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { Professor } from 'src/app/model/professor.model';
 import { ProfessorService } from 'src/app/services/professor.service';
@@ -28,7 +28,8 @@ export class ProfessorViewComponent implements OnInit {
 
   constructor(private professorService: ProfessorService,
               private courseService : CourseService,
-              private route : ActivatedRoute) { }
+              private route : ActivatedRoute,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.getProfessor(this.route.snapshot.paramMap.get('id'));
@@ -79,6 +80,7 @@ export class ProfessorViewComponent implements OnInit {
       )
   }
 
+  
   getUserAuth(id){
     
   }
