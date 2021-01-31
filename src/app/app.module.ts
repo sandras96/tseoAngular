@@ -22,7 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddCourseComponent } from './course/add-course/add-course.component';
 import { CourseDetailsComponent } from './course/course-details/course-details.component';
 import { CourseListComponent } from './course/course-list/course-list.component';
-import { UpdateCourseComponent } from './course/update-course/update-course.component';
+
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 
@@ -74,6 +74,13 @@ import { ExamPeriodViewComponent } from './exam-period/exam-period-view/exam-per
 import { ExamPeriodUnitComponent } from './exam-period/exam-period-unit/exam-period-unit.component';
 import { ExamPeriodExamsComponent } from './exam-period/exam-period-exams/exam-period-exams.component';
 import { ExamPeriodComponent } from './exam-period/exam-period/exam-period.component';
+import { HeaderComponent } from './header/header.component';
+import { StudentGuardService } from './services/student-guard.service';
+import { ProfessorGuardService } from './services/professor-guard.service';
+import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { StudentDashboardComponent } from './dashboard/student-dashboard/student-dashboard.component';
+import { ProfessorDashboardComponent } from './dashboard/professor-dashboard/professor-dashboard.component';
+
 
 
 
@@ -88,7 +95,6 @@ import { ExamPeriodComponent } from './exam-period/exam-period/exam-period.compo
     AddCourseComponent,
     CourseDetailsComponent,
     CourseListComponent,
-    UpdateCourseComponent,
     ProfessorComponent,
     ProfessorListComponent,
     ProfessorDetailComponent,
@@ -130,13 +136,19 @@ import { ExamPeriodComponent } from './exam-period/exam-period/exam-period.compo
     ExamPeriodViewComponent,
     ExamPeriodUnitComponent,
     ExamPeriodExamsComponent,
-    ExamPeriodComponent
+    ExamPeriodComponent,
+    HeaderComponent,
+    StudentDashboardComponent,
+    ProfessorDashboardComponent,
+   
    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgbModule,
+    NgbTooltipModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
@@ -155,6 +167,8 @@ import { ExamPeriodComponent } from './exam-period/exam-period/exam-period.compo
     AuthGuard,
     AdminAuthGuard,
     LoginGuard,
+    StudentGuardService,
+    ProfessorGuardService
     
  
   ],

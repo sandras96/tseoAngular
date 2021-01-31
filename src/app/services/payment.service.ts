@@ -12,6 +12,12 @@ export class PaymentService {
 
   constructor(private http : HttpClient) { }
 
+  get(pay_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/${pay_id}`);
+  }
+  update(pay_id : number, data) : Observable<any>{
+    return this.http.put(`${this.baseUrl}/${pay_id}`, data);
+  }
   getPaymentsByStudentId(student_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/student/${student_id}`);
   }

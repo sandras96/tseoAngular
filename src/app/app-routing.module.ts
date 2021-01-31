@@ -1,3 +1,5 @@
+import { StudentDashboardComponent } from './dashboard/student-dashboard/student-dashboard.component';
+import { ProfessorCoursesComponent } from './professor/professor-courses/professor-courses.component';
 import { ExamPeriodListComponent } from './exam-period/exam-period-list/exam-period-list.component';
 import { ExamPeriodViewComponent } from './exam-period/exam-period-view/exam-period-view.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
@@ -14,7 +16,7 @@ import { ProfessorComponent } from './professor/professor/professor.component';
 
 
 
-import { UpdateCourseComponent } from './course/update-course/update-course.component';
+
 import { AddCourseComponent } from './course/add-course/add-course.component';
 import { CourseListComponent } from './course/course-list/course-list.component';
 import { CourseDetailsComponent } from './course/course-details/course-details.component';
@@ -34,21 +36,25 @@ import { UserComponent } from './user/user/user.component';
 import { ExamComponent } from './exam/exam/exam.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
 import { ExamPeriodComponent } from './exam-period/exam-period/exam-period.component';
+import { ProfessorExamsComponent } from './professor/professor-exams/professor-exams.component';
+import { StudentGuardService } from './services/student-guard.service';
+import { ProfessorGuardService } from './services/professor-guard.service';
+import { ProfessorDashboardComponent } from './dashboard/professor-dashboard/professor-dashboard.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
+ 
 
-  { path: 'navbar', component: NavbarComponent, canActivate:[AuthGuard]},
- // { path: '', component: LoginComponent},
+
+ // { path: 'home', component: HomeComponent},
+
+ // { path: 'navbar', component: NavbarComponent, canActivate:[AuthGuard]},
+  { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent },
- // { path: '', redirectTo: '/login', pathMatch: 'full' },
-
-
-
-
+ // { path: '', redirectTo: '/home', pathMatch: 'full' },
 
 { path: 'no-access', component: NoAccessComponent },
-
+{ path: 'student-dashboard', component: StudentDashboardComponent },
+{ path: 'professor-dashboard', component: ProfessorDashboardComponent },
 
 {path: 'courses', component: CourseComponent, canActivate:[AuthGuard]},
 {path: 'course-view/:id', component: CourseViewComponent, canActivate:[AuthGuard]},
@@ -59,10 +65,10 @@ const routes: Routes = [
 {path: 'user-create', component: UserCreateComponent, canActivate:[AuthGuard, AdminAuthGuard]},
 
 {path: 'professors', component: ProfessorComponent, canActivate:[AuthGuard, AdminAuthGuard]},
-{path : 'professors/:id', component: ProfessorViewComponent, canActivate:[AuthGuard]},
+{path : 'professors/:id', component: ProfessorViewComponent, canActivate:[AuthGuard, ProfessorGuardService]},
 
 {path: 'students', component: StudentComponent, canActivate:[AuthGuard, AdminAuthGuard]},
-{path : 'students/:id', component: StudentViewComponent, canActivate:[AuthGuard]},
+{path : 'students/:id', component: StudentViewComponent, canActivate:[AuthGuard,StudentGuardService]},
 
 
 {path: 'exams', component: ExamComponent, canActivate:[AuthGuard]},

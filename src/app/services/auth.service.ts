@@ -1,13 +1,14 @@
 import { TokenStorageService } from './token-storage.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-
 import jwt_decode from "jwt-decode";
-
-import { map } from 'rxjs/operators';
-
+import { catchError, map } from 'rxjs/operators';
 import { Observable,throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { StudentService } from './student.service';
+import { ProfessorService } from './professor.service';
+import { Student } from '../model/student.model';
+
 
 const jwtHelper = new JwtHelperService();
 
@@ -21,14 +22,17 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+
   private roles: string[];
   loggedInUser = false;
-
-  constructor(
-    private http : HttpClient,
-    private tokenStorage : TokenStorageService
-    ) { }
   
+  userId : any;
+  constructor(private http : HttpClient,
+              private tokenStorage : TokenStorageService, 
+              private studentService : StudentService, 
+              private professorService : ProfessorService) { }
+  
+
   login(credentials): Observable<any> {
     console.log("CREDENTIALS SU " + credentials.username + credentials.password)
     return this.http.post(AUTH_API + 'login', {
@@ -41,17 +45,30 @@ export class AuthService {
     return this.http.post(AUTH_API + 'login', 
        JSON.stringify(credentials), httpOptions)
        .pipe(map(response =>{
-         console.log(response);
-        let result : any = response;
-        let token = result && result['access_token'];
-        let role = result['authorities'];
-        if(token){
-          localStorage.setItem('token', token);
-          localStorage.setItem('role', role);
-          return true; //we are mapping our object into boolean
+         let result : any = response;
+         if(result && result.access_token){
+           console.log("result iz responsa je ", result)
+           this.tokenStorage.saveToken(result.access_token);
+           this.tokenStorage.saveUser(result);
+           this.userId = this.tokenStorage.getUser().id;
+           const user = this.tokenStorage.getUser();
+           this.roles = user.authorities;
+        
+           this.getCurrentUser(this.userId);
+          
+           return true
+          
+         }
+         return false
+     
+       }),catchError((error: any) => {
+        if (error.status === 401) {
+          return throwError('Unauthorized');
         }
-        return false;
-       }));
+        else {
+          return throwError(error.json().error || 'Server error');
+        }
+      }))
    }
 
   
@@ -64,16 +81,16 @@ export class AuthService {
     }
     
     let isExpired = jwtHelper.isTokenExpired(token);
-     console.log("isExpired", isExpired);
+   
     if(isExpired){
-      window.sessionStorage.clear();
+      console.log("isteko sam")
+      localStorage.clear();
     }
     return !isExpired;
   //  this.loggedInUser = true;
     
     
-    
-
+   
 //  let token = localStorage.getItem('token');
 //   if(!token){
  //    return false;
@@ -83,7 +100,7 @@ export class AuthService {
 
   
   userRole(): string{
-    if(this.isLoggedIn){
+    if(this.isLoggedIn()){
         const user = this.tokenStorage.getUser();
         this.roles = user.authorities;
         if(this.roles.includes('ADMIN')){
@@ -97,17 +114,35 @@ export class AuthService {
         }
     }
   }
-
-
- // get currentUser(){
-  //  let token = localStorage.getItem('token');
-  //  if(!token) return null;   
-    
- //   return jwtHelper.decodeToken(token);
- // }
-
   
+  getCurrentUser(id) {
+    // if(this.userRole()=='admin'){
+    //   return this.tokenStorage.getUser();
+    //  }  
+    if(this.userRole()=='student'){
+     
+     this.getStudent(id);
+     this.studentService.getByUserId(id).subscribe(
+      data=>{
+        localStorage.setItem('currentStudent', JSON.stringify(data))
+      }, error=>{
+        console.log(error)
+      }
+    )
+    }
+    if(this.userRole()=='professor'){
+      this.professorService.getByUserId(id).subscribe(
+        data=>{
+          localStorage.setItem('currentProfessor', JSON.stringify(data))
+        }, error=>{
+          console.log(error)
+        }
+      )
+    }
+  }
 
-  
+  getStudent(id){
+    return this.studentService.getByUserId(id).toPromise();
+  }
 
 }
