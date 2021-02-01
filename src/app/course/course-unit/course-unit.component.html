@@ -36,7 +36,7 @@
             class="btn btn-success btn-sm" data-original-title="" title="update course">Update</button>
         </div>
         <div class="col-md-6 mb-2 form-group text-right">
-          <a type="button" rel="tooltip" 
+          <a type="button" rel="tooltip" *ngIf="this.authService.userRole()=='admin'" 
         class="btn btn-danger btn-sm" data-original-title="" title="delete course">Delete</a>
       </div>
     </div>

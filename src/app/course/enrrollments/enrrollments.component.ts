@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { CourseAttendance } from './../../model/course-attendance.model';
 import { CourseAttendanceService } from 'src/app/services/course-attendance.service';
@@ -37,7 +38,8 @@ export class EnrrollmentsComponent implements OnInit {
   constructor(private courseAttendanceService : CourseAttendanceService,
               private studentService : StudentService,
               private route : ActivatedRoute,
-              private toastr : ToastrService) {}
+              private toastr : ToastrService,
+              public authService : AuthService) {}
 
                  
 

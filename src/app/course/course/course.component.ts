@@ -79,6 +79,7 @@ getProfessorCourses(p){
   this.professorService.getAllCoursesByProfId(p.id)
     .subscribe(data=>{
       this.courses = data;
+      console.log("kursevi profesora su ", data)
     },
     error => {
       console.log(error)

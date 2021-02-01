@@ -1,3 +1,4 @@
+<div *ngIf="this.authService.userRole()=='admin'">
 <div *ngIf="currentFile" class="progress">
     <div
       class="progress-bar progress-bar-info progress-bar-striped"
@@ -21,7 +22,7 @@
   
   <div class="alert alert-light" role="alert">{{ message }}</div>
   
-  
+</div>
   <!-- <div class="card">
     <div class="card-header">List of Files</div>
     <ul
@@ -40,7 +41,7 @@
             <th></th>
             <th class="text-left">Name</th>
            
-            <th class="text-right">Actions</th>
+            <th *ngIf="this.authService.userRole()=='admin'" class="text-right">Actions</th>
        </tr>
     </thead>
 
@@ -49,7 +50,7 @@
             <td class="text-center"><i class="fa fa-file-text-o"></i></td>
                 <td class="text-left"><a href="{{ file.url }}">{{ file.name }}</a></td>
             
-            <td class="text-right"><a type="button" rel="tooltip"
+            <td *ngIf="this.authService.userRole()=='admin'" class="text-right"><a type="button" rel="tooltip"
                class="btn btn-danger btn-sm" data-original-title="" (click)="removeDocument(file)" title="delete document">
                <i class="material-icons">close</i>
            </a></td>

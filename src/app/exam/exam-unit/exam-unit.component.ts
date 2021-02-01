@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Exam } from 'src/app/model/exam.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ExamService } from 'src/app/services/exam.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class ExamUnitComponent implements OnInit {
   @Input() exam : Exam;
   constructor(private examService : ExamService, 
               private toastr : ToastrService,
-              private router : Router) { }
+              private router : Router,
+              public authService : AuthService) { }
 
   ngOnInit(): void {
     this.date = new Date().toISOString().slice(0, 10);

@@ -41,7 +41,8 @@
             <app-exam-unit  *ngIf="tabIndex === 0" [exam]= "exam"></app-exam-unit>
           </div>
           <div class="tab-pane fade" id="tab2" role="tabpanel">
-            <app-exam-taking  *ngIf="tabIndex === 1" [examTakings]= "examTakings" [exam]="exam" (createExamTaking)="addExamTaking($event)" (deleteExamTaking)="removeExamTaking($event)"></app-exam-taking>
+            <app-exam-taking  *ngIf="tabIndex === 1" [examTakings]= "examTakings" [exam]="exam" (createExamTaking)="addExamTaking($event)" 
+            (deleteExamTaking)="removeExamTaking($event)" (updateExamTaking)="updateExamTaking($event)"></app-exam-taking>
           </div>
           <div class="tab-pane fade" id="tab3" role="tabpanel">
             <app-exam-course  *ngIf="tabIndex === 2" [exam]= "exam"></app-exam-course> 

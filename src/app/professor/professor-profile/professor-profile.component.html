@@ -1,86 +1,134 @@
-    <form>
+    <form (ngSubmit)="f2.form.valid && updateProfessor()" #f2="ngForm">
         <div class="form-row">
-          <div class="col-md-4 mb-3 form-group">
+          <div class="col-md-6 mb-2 form-group">
             <label for="validationDefault01">First name</label>
-            <input type="text" class="form-control" name="firstname"
-            id="firstname" [(ngModel)]="professor.firstname" id="validationDefault01" placeholder="First name"  required/>
+            <input type="text" class="form-control" name="firstname" #firstname="ngModel"
+            id="firstname" [(ngModel)]="professor.firstname" id="validationDefault01" placeholder="Firstname"
+            [ngClass]="{ 'is-invalid': f2.submitted && firstname.errors }" required>
+            <div *ngIf="f2.submitted && firstname.invalid" class="invalid-feedback">
+              <div *ngIf="firstname.errors.required">Firstname is required</div>
+          </div>
            
           </div>
-          <div class="col-md-4 mb-3 form-group">
+          <div class="col-md-6 mb-2 form-group">
             <label for="validationDefault02">Last name</label>
-            <input type="text" class="form-control" name="lastname"
-            id="lastname" [(ngModel)]="professor.lastname"  id="validationDefault02" placeholder="Last name" required>
+            <input type="text" class="form-control" name="lastname"  #lastname="ngModel"
+            id="lastname" [(ngModel)]="professor.lastname"  id="validationDefault02" placeholder="Lastname"
+            [ngClass]="{ 'is-invalid': f2.submitted && lastname.errors }" required>
+            <div *ngIf="f2.submitted && lastname.invalid" class="invalid-feedback">
+              <div *ngIf="lastname.errors.required">Lastname is required</div>
           </div>
-
-          <div class="col-md-4 mb-3 form-group">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-2 form-group">
             <div class="form-group">
                 <label for="birthdate">Birthdate: {{ professor.birthDate | date }}</label>
                
-                <input type="date" name="birthdate" id="birthdate" class="form-control" [(ngModel)]="professor.birthDate"/>
+                <input type="date" name="birthdate" #birthdate="ngModel" id="birthdate" class="form-control" [(ngModel)]="professor.birthDate"
+                [ngClass]="{ 'is-invalid': f2.submitted && birthdate.errors }" required>
+                <div *ngIf="f2.submitted && birthdate.invalid" class="invalid-feedback">
+                  <div *ngIf="birthdate.errors.required">Birthdate is required</div>
+              </div>
                  
             </div>
           </div>
-            <div id="role"class="col-md-6 form-group">
+        
+            <div id="role"class="col-md-6 mb-2 form-group">
                 <label for="profRole">Role</label>
-                <select  class="form-control" id="profRole" name="profRole" [(ngModel)]="professor.role">
-                    
+                <select  class="form-control" id="profRole" #role="ngModel" name="profRole" [(ngModel)]="professor.role"
+                [ngClass]="{ 'is-invalid': f2.submitted && role.errors }" required>
                     <option value="PROFESSOR">PROFESSOR</option>
                     <option value="ASSOCIATE">ASSOCIATE</option>
                     <option value="DEMONSTRATOR">DEMONSTRATOR</option>
                 </select>
+                <div *ngIf="f2.submitted && role.invalid" class="invalid-feedback">
+                  <div *ngIf="role.errors.required">Role is required</div>
+              </div>
         </div>
+      </div>
        
-        </div>
         <div class="form-row">
             <div class="col-md-12 mb-2 form-group">
                 <label for="validationDefault03">Address</label>
-                <input type="text" [(ngModel)]="professor.address" class="form-control" 
-                id="inputAddress" placeholder="1234 Main St" id="validationDefault03" name="address">
+                <input type="text" [(ngModel)]="professor.address" #address="ngModel" class="form-control" 
+                id="inputAddress" placeholder="1234 Main St" id="validationDefault03" name="address"
+                [ngClass]="{ 'is-invalid': f2.submitted && address.errors }" required>
+                <div *ngIf="f2.submitted && address.invalid" class="invalid-feedback">
+                  <div *ngIf="address.errors.required">Address is required</div>
               </div>
+              </div>
+        </div>
+        <div class="form-row">
           <div class="col-md-6 mb-3 form-group">
             <label for="validationDefault04">City</label>
-            <input type="text" [(ngModel)]="professor.city" 
-            class="form-control" id="validationDefault04" placeholder="City" name="city" required>
+            <input type="text" [(ngModel)]="professor.city" #city="ngModel"
+            class="form-control" id="validationDefault04" placeholder="City" name="city" 
+            [ngClass]="{ 'is-invalid': f2.submitted && city.errors }" required>
+            <div *ngIf="f2.submitted && city.invalid" class="invalid-feedback">
+              <div *ngIf="city.errors.required">City is required</div>
+          </div>
+
           </div>
           <div class="col-md-3 mb-3 form-group">
             <label for="validationDefault05">Country</label>
-            <input type="text" [(ngModel)]="professor.country"
-             class="form-control" id="validationDefault05" placeholder="Country" name="country" required>
+            <input type="text" [(ngModel)]="professor.country" #country="ngModel"
+             class="form-control" id="validationDefault05" placeholder="Country" name="country" 
+             [ngClass]="{ 'is-invalid': f2.submitted && country.errors }" required>
+            <div *ngIf="f2.submitted && country.invalid" class="invalid-feedback">
+              <div *ngIf="country.errors.required">Country is required</div>
+          </div>
           </div>
           <div class="col-md-3 mb-3 form-group">
             <label for="validationDefault06">Zip</label>
-            <input type="text" [(ngModel)]="professor.zip" class="form-control"
-             id="validationDefault06" placeholder="Zip" required name="zip" required>
+            <input type="text" [(ngModel)]="professor.zip" class="form-control"  #zip="ngModel"
+             id="validationDefault06" placeholder="Zip" required name="zip"
+             [ngClass]="{ 'is-invalid': f2.submitted && zip.errors }" required >
+             <div *ngIf="f2.submitted && zip.invalid" class="invalid-feedback">
+              <div *ngIf="zip.errors.required">Zip is required</div>
+          </div>
           </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-2 form-group">
                 <label for="email">Email</label>
-                <input type="text" [(ngModel)]="professor.email" 
-                class="form-control" id="email" placeholder="123@test.net" name="email" required>
+                <input type="text" [(ngModel)]="professor.email"  #email="ngModel"
+                class="form-control" id="email" placeholder="123@test.net" name="email"
+                [ngClass]="{ 'is-invalid': f2.submitted && email.errors }" required>
+                <div *ngIf="f2.submitted && email.invalid" class="invalid-feedback">
+                  <div *ngIf="email.errors.required">Email is required</div>
+              </div>
               </div>
               <div class="col-md-6 mb-2 form-group">
                 <label for="phone">Phone</label>
-                <input type="text" [(ngModel)]="professor.phone" 
-                class="form-control" id="phone" placeholder="+381/654017152" name="phone" required>
+                <input type="text" [(ngModel)]="professor.phone" #phone="ngModel"
+                class="form-control" id="phone" placeholder="+381/654017152" name="phone"
+                [ngClass]="{ 'is-invalid': f2.submitted && phone.errors }" required>
+                <div *ngIf="f2.submitted && phone.invalid" class="invalid-feedback">
+                  <div *ngIf="phone.errors.required">Phone is required</div>
+              </div>
               </div>
         </div>
 
         <div class="form-row" *ngIf="professor.user">
             <div class="col-md-6 mb-2 form-group">
             <label for="validationDefaultUsername">Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">@</span>
-              </div>
-              <input type="text" [(ngModel)]="professor.user.username" class="form-control" name="username"
-               id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required>
+              <input type="text" [(ngModel)]="professor.user.username" #username="ngModel" class="form-control" name="username"
+               id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" 
+               [ngClass]="{ 'is-invalid': f2.submitted && username.errors }" required>
+               <div *ngIf="f2.submitted && username.invalid" class="invalid-feedback">
+                <div *ngIf="username.errors.required">Username is required</div>
             </div>
+            
         </div>
               <div class="col-md-6 mb-2 form-group">
                 <label for="password">Password</label>
-                <input type="password" [(ngModel)] = "professor.user.password" 
-                class="form-control" id="password" placeholder="*********" name="password" required>
+                <input type="password" [(ngModel)] = "professor.user.password" #password="ngModel"
+                class="form-control" id="password" placeholder="*********" name="password"
+                [ngClass]="{ 'is-invalid': f2.submitted && password.errors }" required>
+                <div *ngIf="f2.submitted && password.invalid" class="invalid-feedback">
+                  <div *ngIf="password.errors.required">Password is required</div>
+              </div>
               </div>
         </div>
        
@@ -88,10 +136,10 @@
             <div class="padding-top-x5">
                 <div class="row">
                     <div class="col-md-6 mb-2 form-group">
-                      <a type="button" rel="tooltip" (click)="updateProfessor()"
-                          class="btn btn-success btn-sm" data-original-title="" title="update professor">Update</a>
+                      <button type="submit" rel="tooltip"
+                          class="btn btn-success btn-sm" data-original-title="" title="update professor">Update</button>
                       </div>
-                      <div class="col-md-6 mb-2 form-group text-right">
+                      <div class="col-md-6 mb-2 form-group text-right" *ngIf="this.authService.userRole()=='admin'">
                         <a type="button" rel="tooltip" (click)="deleteProfessor()"
                       class="btn btn-danger btn-sm" data-original-title="" title="delete professor">Delete</a>
                     </div>
@@ -99,7 +147,9 @@
             </div>
             
         </div>
-      </form>
+      
+        </form>
+      
 
     
      

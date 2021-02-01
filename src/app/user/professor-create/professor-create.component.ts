@@ -12,7 +12,7 @@ import { ProfessorService } from 'src/app/services/professor.service';
 export class ProfessorCreateComponent implements OnInit {
 
   professorForm : FormGroup;
-
+  submitted = false;
   constructor(private professorService : ProfessorService,
               private router : Router,
               private toastr : ToastrService) { }
@@ -43,6 +43,15 @@ export class ProfessorCreateComponent implements OnInit {
     })
   }
 
+  get f() { return this.professorForm.controls; }
+  onSubmit(){
+    this.submitted = true;
+
+   if (this.professorForm.invalid) {
+       return false;
+   }
+      this.createProfessor()
+ }
   createProfessor(){
     console.log("create prof form je ", this.professorForm.value)
     this.professorService.create(this.professorForm.value)  

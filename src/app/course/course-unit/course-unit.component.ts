@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input } from '@angular/core';
 import { Course } from 'src/app/model/course.model';
@@ -11,7 +12,9 @@ import { CourseService } from 'src/app/services/course.service';
 export class CourseUnitComponent implements OnInit {
 
   @Input() course: Course;
-  constructor(private courseService : CourseService, private toastr : ToastrService) { }
+  constructor(private courseService : CourseService,
+             private toastr : ToastrService,
+             public authService : AuthService) { }
 
   ngOnInit(): void {
   }

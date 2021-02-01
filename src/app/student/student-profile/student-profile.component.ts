@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,6 +17,7 @@ export class StudentProfileComponent implements OnInit {
   @Input() student : Student;
 
   constructor(private studentService : StudentService,
+              public authService : AuthService,
               private router : Router,
               private toastr: ToastrService,
               private modalService: ModalService) { }

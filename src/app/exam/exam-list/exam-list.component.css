@@ -15,19 +15,7 @@
 body{
     background: #fff !important;
 }
-a {
-    color: #3e3947 !important;
-    text-decoration: none;
-}
 
-a:hover{
-    color: white !important;
-    text-decoration: none !important;
-}
-a:focus {
-    color: white!important;
-    text-decoration: none !important;
-}
 .container h3{
     font-size:25px ;
     margin-top: 20px ;

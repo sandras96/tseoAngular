@@ -98,5 +98,9 @@ addCourse(courseId : number){
     this.courses.push(data);
   })
 }
+
+removeExamTaking(examTaking : ExamTaking){
+  this.examtakings = this.examtakings.filter(et => et! == examTaking);
+}
  
 }

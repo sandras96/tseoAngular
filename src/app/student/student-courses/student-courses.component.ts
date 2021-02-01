@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/model/course.model';
 import { CourseAttendanceService } from 'src/app/services/course-attendance.service';
 import { CourseService } from 'src/app/services/course.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-student-courses',
@@ -23,6 +24,7 @@ export class StudentCoursesComponent implements OnInit {
 
   constructor(private courseAttendanceService : CourseAttendanceService,
               private courseService : CourseService,
+              public authService : AuthService,
               private route : ActivatedRoute,
               private toastr: ToastrService) { }
                  

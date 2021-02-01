@@ -1,6 +1,6 @@
 <h4><small>Courses</small> <span>&nbsp;&nbsp;&nbsp;</span>
-    <a type="button" rel="tooltip" (click)="openModal('createCourseModal')" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add course">
-        <i class="material-icons">add</i></a></h4>
+    <a  *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="openModal('createCourseModal')" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add course">
+        <i class="material-icons" >add</i></a></h4>
 <div class="table-responsive" style="height: 300px;overflow: scroll;">
         <table class="table">
             <thead>
@@ -9,7 +9,7 @@
                     <th>Name</th>
                     <th>ESPB</th>
                     <th>Semester</th>
-                    <th class="text-right">Actions</th>
+                    <th *ngIf="this.authService.userRole()!='student'"class="text-right">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,11 +18,11 @@
                     <td>{{course.name}}</td>
                     <td>{{course.espb}}</td>
                     <td>{{course.semester}}</td> 
-                    <td class="text-right"> 
-                        <a routerLink="/course-view/{{ course.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
+                    <td class="text-right" > 
+                        <a *ngIf="this.authService.userRole()!='student'"routerLink="/courses/{{ course.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
                             <i class="material-icons">preview</i>
                         </a> 
-                        <a type="button" rel="tooltip" (click)="removeCourse(course)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
+                        <a *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="removeCourse(course)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
                             <i class="material-icons">close</i>
                         </a>
                    </td>

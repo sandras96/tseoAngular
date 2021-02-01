@@ -4,9 +4,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Course } from 'src/app/model/course.model';
 import { ExamPeriod } from 'src/app/model/exam-period.model';
 import { Exam } from 'src/app/model/exam.model';
+import { Professor } from 'src/app/model/professor.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
 import { ExamPeriodService } from 'src/app/services/exam-period.service';
 import { ExamService } from 'src/app/services/exam.service';
+import { ProfessorService } from 'src/app/services/professor.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { ModalService } from 'src/app/_modal';
 
 @Component({
@@ -21,6 +25,9 @@ export class ExamListComponent implements OnInit {
   examForm : FormGroup;
   submitted = false;
   date;
+  professor : Professor;
+  roles : string[];
+  
 
   @Input() exams : Exam[];
   @Output() addExam = new EventEmitter<Exam[]>();
@@ -29,8 +36,11 @@ export class ExamListComponent implements OnInit {
   constructor(private examService : ExamService,
               private courseService : CourseService,
               private examPeriodService : ExamPeriodService,
+              private professorService : ProfessorService,
+              private tokenStorage : TokenStorageService,
               private modalService: ModalService,
-              private toastr : ToastrService) { }
+              private toastr : ToastrService,
+              public authService : AuthService) { }
 
   ngOnInit(): void {
     this.date = new Date().toISOString().slice(0, 10);
@@ -77,10 +87,20 @@ export class ExamListComponent implements OnInit {
   }
 
   getCourses(){
-    this.courseService.getAll()
-      .subscribe(data=>{
+    const user = this.tokenStorage.getUser();
+    this.roles = user.authorities;
+    this.professor = JSON.parse(localStorage.getItem('currentProfessor'));
+    if(this.professor!=null){
+      this.professorService.getAllCoursesByProfId(this.professor.id)
+        .subscribe(data=>
+          this.courses = data)
+    }else if(this.roles.includes("ADMIN")){
+      this.courseService.getAll()
+      .subscribe(data=>
         this.courses = data
-      })
+      )
+    }
+    
   }
   getExamPeriods(){
     this.examPeriodService.getAll()

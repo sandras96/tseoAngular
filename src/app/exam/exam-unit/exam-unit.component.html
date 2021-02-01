@@ -34,7 +34,10 @@
         </div>
 
         <div class="form-group">
+          <div  *ngIf="this.authService.userRole()=='admin'">
           <label for="examPeriod">Exam Period: </label><a routerLink="/examperiods/{{ exam.examPeriod.id }}"> {{exam.examPeriod.name}}</a>
+        </div>
+          <label *ngIf="this.authService.userRole()=='professor'" for="examPeriod">Exam Period:  {{exam.examPeriod.name}}</label>
         </div>
         <div class="form-group">
           <label for="examPeriod">Course: </label><a routerLink="/courses/{{ exam.course.id }}"> {{exam.course.name}}</a>

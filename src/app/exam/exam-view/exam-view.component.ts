@@ -63,6 +63,17 @@ export class ExamViewComponent implements OnInit {
     this.examTakings = this.examTakings.filter(et => et !== examTaking)
   }
 
+  updateExamTaking(examTaking : ExamTaking){
+    let updateItem = this.examTakings.find(this.findIndexToUpdate, examTaking.id);
+    console.log("Updated item je ", updateItem)
+    let index = this.examTakings.indexOf(updateItem);
+    this.examTakings[index] = examTaking;
+
+  }
+  findIndexToUpdate(newItem) { 
+        return newItem.id === this;
+  }
+
   onTabClick(index){
     this.tabIndex = index;
   }

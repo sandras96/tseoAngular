@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { catchError } from 'rxjs/operators';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -23,7 +24,8 @@ export class ExamPeriodListComponent implements OnInit {
   
   constructor(private examPeriodService : ExamPeriodService,
               private modalService: ModalService,
-              private toastr : ToastrService) { }
+              private toastr : ToastrService,
+              public authService : AuthService) { }
 
   ngOnInit(): void {
     

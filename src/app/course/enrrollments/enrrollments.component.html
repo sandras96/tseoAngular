@@ -25,10 +25,10 @@
 <div class="input-group">
   <select class="custom-select"  #s id="inputGroupSelect04">
     <option hidden>Add student to this course</option>
-      <option [value]="s.id"  *ngFor="let s of filteredStudents">{{s.firstname}}</option>
+      <option [value]="s.id"  *ngFor="let s of filteredStudents">{{s.firstname}}&nbsp;&nbsp;{{s.lastname}}&nbsp;&nbsp;{{s.indexNum}}</option>
   </select>
   <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button"(click)="add(s.value)">Add</button>
+    <button class="btn btn-outline-secondary" type="button"(click)="add(s.value)" >Add</button>
   </div>
 </div>
 </div>
@@ -40,8 +40,9 @@
                     <tr>
                      
                         <th>Students</th>
-                        <th></th>
-                        <th class="text-left">Index number</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Phone</th>
+                        <th class="text-center">Index number</th>
                       
                       <th class="text-right">Actions</th> 
                     </tr>
@@ -49,10 +50,12 @@
                 <tbody>
              
                  <tr *ngFor="let ca of courseAttendances">
-                        <td><a routerLink="/students/{{ ca.student.id }}">{{ca.student.firstname}}<span>&nbsp;&nbsp;&nbsp;</span>{{ca.student.lastname}}</a></td>
-                        <td></td>
-                      <td class="text-left">{{ca.student.indexNum}}</td>
-                      <td class="text-right"><a type="button" rel="tooltip" (click)="removeStudent(ca)"
+                        <td *ngIf="this.authService.userRole()=='admin'"><a routerLink="/students/{{ ca.student.id }}">{{ca.student.firstname}}<span>&nbsp;&nbsp;&nbsp;</span>{{ca.student.lastname}}</a></td>
+                        <td *ngIf="this.authService.userRole()=='professor'">{{ca.student.firstname}}<span>&nbsp;&nbsp;&nbsp;</span>{{ca.student.lastname}}</td>
+                        <td class="text-center">{{ca.student.email}}</td>
+                        <td class="text-center">{{ca.student.phone}}</td>
+                        <td class="text-center">{{ca.student.indexNum}}</td>
+                        <td class="text-right"><a type="button" rel="tooltip" (click)="removeStudent(ca)"
                         class="btn btn-danger btn-sm" data-original-title="" title="remove student">
                         <i class="material-icons">close</i>
                     </a></td>

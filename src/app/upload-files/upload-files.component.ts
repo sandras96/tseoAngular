@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -26,7 +27,8 @@ export class UploadFilesComponent implements OnInit {
   @Output() uploadDocument = new EventEmitter<FileList>();
   constructor(private uploadService: UploadFileService,
               private route : ActivatedRoute,
-              private toastr : ToastrService) { }
+              private toastr : ToastrService,
+              public authService : AuthService) { }
 
   ngOnInit(): void {
     this.studentId = this.route.snapshot.paramMap.get('id');

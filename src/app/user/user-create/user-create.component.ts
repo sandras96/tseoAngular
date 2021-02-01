@@ -16,17 +16,17 @@ export class UserCreateComponent implements OnInit {
   tabIndex = 0;
   authorities = new FormArray([])
   addForm : FormGroup;
+  submitted = false;
  
-
   constructor(private userService : UserService,
               private router : Router,
               private toastr : ToastrService) { }
 
   ngOnInit(): void {
-
+ 
     this.addForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('',Validators.required),
       authorities : new FormArray([
         new FormGroup({
              id: new FormControl(1),
@@ -34,6 +34,16 @@ export class UserCreateComponent implements OnInit {
            })
       ])
   });   
+}
+get f() { return this.addForm.controls; }
+
+onSubmit(){
+  this.submitted = true;
+
+ if (this.addForm.invalid) {
+     return false;
+ }
+    this.createUser()
 }
 
   createUser(){
@@ -51,15 +61,7 @@ export class UserCreateComponent implements OnInit {
   refresh(){
     this.addForm.reset();
   }
-
-  isInvalidAndDirty(field: string): boolean {
-    const ctrl = this.addForm.get(field);
-    return ctrl !== null && !ctrl.valid && ctrl.dirty;
-  }
-  hasError(field: string, error: string): boolean {
-    const ctrl = this.addForm.get(field);
-    return ctrl !== null && ctrl.dirty && ctrl.hasError(error);
-  }
+  
   onTabClick(index){
     this.tabIndex = index;
   }

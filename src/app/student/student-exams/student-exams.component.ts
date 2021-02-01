@@ -2,6 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ExamTakingService } from 'src/app/services/exam-taking.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ExamTaking } from 'src/app/model/exam-taking.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-student-exams',
@@ -17,7 +18,8 @@ export class StudentExamsComponent implements OnInit {
 
   examTaking : ExamTaking = new ExamTaking();
   constructor(private examTakingService : ExamTakingService,
-              private toastr : ToastrService) { }
+              private toastr : ToastrService,
+              public authService : AuthService,) { }
 
   
   ngOnInit(): void {
@@ -35,7 +37,13 @@ export class StudentExamsComponent implements OnInit {
 
   }
 
-
+  toggleWithGreeting(tooltip, greeting: string) {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    } else {
+      tooltip.open({greeting});
+    }
+  }
 
   
 }

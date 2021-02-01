@@ -29,7 +29,9 @@ export class StudentGuardService implements CanActivate {
       this.studentId  =  route.params.id;
       this.student = JSON.parse(localStorage.getItem('currentStudent'));
       console.log("Student id je ", this.studentId , "a student je ", this.student)
-      if(this.roles.includes("ADMIN") || this.studentId == this.student.id) return true;
+      if(this.student!=null){
+        if(this.studentId == this.student.id) return true;
+      }else if (this.roles.includes("ADMIN"))return true;
        
       this.router.navigate(['no-access']);
       return false;

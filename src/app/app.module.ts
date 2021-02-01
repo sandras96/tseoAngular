@@ -80,6 +80,8 @@ import { ProfessorGuardService } from './services/professor-guard.service';
 import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentDashboardComponent } from './dashboard/student-dashboard/student-dashboard.component';
 import { ProfessorDashboardComponent } from './dashboard/professor-dashboard/professor-dashboard.component';
+import { CourseGuardService } from './services/course-guard.service';
+import { ExamGuardService } from './services/exam-guard.service';
 
 
 
@@ -168,7 +170,9 @@ import { ProfessorDashboardComponent } from './dashboard/professor-dashboard/pro
     AdminAuthGuard,
     LoginGuard,
     StudentGuardService,
-    ProfessorGuardService
+    ProfessorGuardService,
+    CourseGuardService,
+    ExamGuardService
     
  
   ],

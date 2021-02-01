@@ -1,3 +1,4 @@
+import { Course } from 'src/app/model/course.model';
 import { StudentDashboardComponent } from './dashboard/student-dashboard/student-dashboard.component';
 import { ProfessorCoursesComponent } from './professor/professor-courses/professor-courses.component';
 import { ExamPeriodListComponent } from './exam-period/exam-period-list/exam-period-list.component';
@@ -40,6 +41,8 @@ import { ProfessorExamsComponent } from './professor/professor-exams/professor-e
 import { StudentGuardService } from './services/student-guard.service';
 import { ProfessorGuardService } from './services/professor-guard.service';
 import { ProfessorDashboardComponent } from './dashboard/professor-dashboard/professor-dashboard.component';
+import { CourseGuardService } from './services/course-guard.service';
+import { ExamGuardService } from './services/exam-guard.service';
 
 const routes: Routes = [
  
@@ -57,7 +60,7 @@ const routes: Routes = [
 { path: 'professor-dashboard', component: ProfessorDashboardComponent },
 
 {path: 'courses', component: CourseComponent, canActivate:[AuthGuard]},
-{path: 'course-view/:id', component: CourseViewComponent, canActivate:[AuthGuard]},
+{path: 'courses/:id', component: CourseViewComponent, canActivate:[AuthGuard, CourseGuardService]},
 {path: 'add-course', component: AddCourseComponent, canActivate:[AuthGuard, AdminAuthGuard]},
 
 {path: 'users', component: UserComponent, canActivate:[AuthGuard, AdminAuthGuard]},
@@ -72,10 +75,10 @@ const routes: Routes = [
 
 
 {path: 'exams', component: ExamComponent, canActivate:[AuthGuard]},
-{path: 'exams/:id', component: ExamViewComponent, canActivate:[AuthGuard]},
+{path: 'exams/:id', component: ExamViewComponent, canActivate:[AuthGuard, ExamGuardService]},
 
 {path: 'examperiods' , component: ExamPeriodComponent, canActivate:[AuthGuard]},
-{path: 'examperiods/:id' , component: ExamPeriodViewComponent, canActivate:[AuthGuard]}
+{path: 'examperiods/:id' , component: ExamPeriodViewComponent, canActivate:[AuthGuard,AdminAuthGuard]}
 
 
 

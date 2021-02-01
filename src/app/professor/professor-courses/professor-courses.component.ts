@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Course } from 'src/app/model/course.model';
 import { Professor } from 'src/app/model/professor.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
 import { ProfessorService } from 'src/app/services/professor.service';
 
@@ -24,7 +25,8 @@ export class ProfessorCoursesComponent implements OnInit {
   constructor(private professorService : ProfessorService,
               private courseService : CourseService,
               private route : ActivatedRoute,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              public authService : AuthService) { }
 
   ngOnInit(): void {
    

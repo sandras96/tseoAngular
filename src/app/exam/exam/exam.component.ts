@@ -49,7 +49,7 @@ export class ExamComponent implements OnInit {
     }
      if(this.authService.userRole()=="professor"){
       this.professor = JSON.parse(localStorage.getItem('currentProfessor'))
-   //   this.getProfessorExams(this.professor);
+       this.getProfessorExams(this.professor);
     }
   }
 
@@ -66,6 +66,13 @@ export class ExamComponent implements OnInit {
       )
   }
 
+  getProfessorExams(p){
+    this.examService.getByProfessorId(p.id)
+      .subscribe(data=>{
+        this.exams = data;
+        console.log("exam profff su ", data)
+      })
+  }
   createExam(exam : Exam){
     this.exams.push(exam);
   }

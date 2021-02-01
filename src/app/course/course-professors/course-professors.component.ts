@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit ,Input, Output, EventEmitter} from '@angular/core';
@@ -16,9 +17,11 @@ export class CourseProfessorsComponent implements OnInit {
   @Input() professors : Professor[];
   @Output() deleteProfessor = new EventEmitter<Professor[]>();
   @Output() addProfessor = new EventEmitter<Professor[]>();
+
   constructor(private professorService : ProfessorService,
               private route : ActivatedRoute,
-              private toastr : ToastrService) { }
+              private toastr : ToastrService,
+              public authService : AuthService) { }
 
   ngOnInit(): void {
     this.getAllProfessors();
@@ -41,6 +44,7 @@ export class CourseProfessorsComponent implements OnInit {
     this.professorService.get(professorId).subscribe(professor =>{
       this.professorService.updateCourse(professorId, this.route.snapshot.paramMap.get('id'),professor)
         .subscribe(data=>{
+          console.log(data)
           this.addProfessor.emit(professor);
           this.filteredProfessors = this.arrayRemove(this.filteredProfessors, professorId);
         })
@@ -76,4 +80,6 @@ export class CourseProfessorsComponent implements OnInit {
         return ele.id != id; 
     });
 }
+
+
 }

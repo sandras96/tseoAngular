@@ -25,10 +25,13 @@
                  <td class="date">{{payment.date | date}}</td>
                  <td class="text-right">{{payment.amount}}</td>
                  <td class="text-right">
-                  <button type="button" (click)="viewPayment(payment)" class="btn btn-success btn-sm" data-original-title="" title="view payment">
+                  <button type="button" *ngIf="this.authService.userRole()=='admin'" (click)="viewPayment(payment)" class="btn btn-success btn-sm" data-original-title="" title="edit payment">
                     <i class="material-icons">preview</i>
+            </button>
+            <button type="button"*ngIf="this.authService.userRole()=='student'"  (click)="openModalPayment('viewStudentPayment',payment.id)" class="btn btn-success btn-sm" data-original-title="" title="view payment">
+              <i class="material-icons">preview</i>
             </button>  
-                  <a type="button" rel="tooltip" (click)="removePayment(payment)"
+                  <a *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="removePayment(payment)"
                     class="btn btn-danger btn-sm" data-original-title="" title="delete payment">
                     <i class="material-icons">close</i>
                 </a></td>
@@ -197,7 +200,7 @@
                
                <div class="form-group">
                 <label for="accountNumber">Account number</label>
-                <input [(ngModel)]="editPay.accountNumber" type="number"  #accountNumber="ngModel" class="form-control" id="accountNumber" name="accountNumber" placeholder="100-123456789-11"
+                <input [(ngModel)]="editPay.accountNumber" type="number"  #accountNumber="ngModel" class="form-control" id="accountNumber" name="accountNumber" placeholder="10012345678911" min="0" oninput="validity.valid||(value='');"
                 [ngClass]="{ 'is-invalid': f2.submitted && accountNumber.errors }" required>
                 <div *ngIf="f2.submitted && accountNumber.invalid" class="invalid-feedback">
                   <div *ngIf="accountNumber.errors.required">Account number is required</div>
@@ -229,7 +232,7 @@
           <div class="col-md-3 mb-2 form-group">
               <div class="form-group">
                 <label for="paymentCode">Payment code</label>
-                <input [(ngModel)]="editPay.paymentCode" type="number" #paymentCode="ngModel" class="form-control" id="paymentCode" name="paymentCode" placeholder="289"
+                <input [(ngModel)]="editPay.paymentCode" type="number" #paymentCode="ngModel" class="form-control" id="paymentCode" name="paymentCode" placeholder="289" min="0" oninput="validity.valid||(value='');"
                 [ngClass]="{ 'is-invalid': f2.submitted && paymentCode.errors }" required>
                 <div *ngIf="f2.submitted && paymentCode.invalid" class="invalid-feedback">
                   <div *ngIf="paymentCode.errors.required">Payment code is required</div>
@@ -239,7 +242,7 @@
           <div class="col-md-9 mb-2 form-group">
               <div class="form-group">
                 <label for="amount">Amount</label>
-                <input [(ngModel)]="editPay.amount" type="number" #amount="ngModel" class="form-control" id="amount" required  name="amount" placeholder="50"
+                <input [(ngModel)]="editPay.amount" type="number" #amount="ngModel" class="form-control" id="amount"  min="1"  oninput="validity.valid||(value='');" required  name="amount" placeholder="50"
                 [ngClass]="{ 'is-invalid': f2.submitted && amount.errors }" required>
                 <div *ngIf="f2.submitted && amount.invalid" class="invalid-feedback">
                   <div *ngIf="amount.errors.required">Amount is required</div>
@@ -259,7 +262,7 @@
                 <div class="col-md-6 mb-2 form-group">
                <div class="form-group">
                  <label for="model">Payment Model</label>
-                 <input [(ngModel)]="editPay.model" type="number" #model="ngModel" class="form-control" id="model" required name="model" placeholder="97"
+                 <input [(ngModel)]="editPay.model" type="number" #model="ngModel" class="form-control" id="model" required name="model"  placeholder="97" min="0"  oninput="validity.valid||(value='');"
                  [ngClass]="{ 'is-invalid': f2.submitted && model.errors }" required>
                  <div *ngIf="f2.submitted && model.invalid" class="invalid-feedback">
                   <div *ngIf="model.errors.required">Payment model is required</div>
@@ -269,7 +272,7 @@
                 <div class="col-md-6 mb-2 form-group">
                <div class="form-group">
                  <label for="reference">Reference number</label>
-                 <input [(ngModel)]="editPay.reference" type="number" #reference="ngModel" class="form-control" id="reference" required  name="reference" placeholder="33-12345-0-6666-7878"
+                 <input [(ngModel)]="editPay.reference" type="number" #reference="ngModel" class="form-control" id="reference" required  name="reference" placeholder="3312345066667878" min="0"  oninput="validity.valid||(value='');"
                  [ngClass]="{ 'is-invalid': f2.submitted && reference.errors }" required>
                  <div *ngIf="f2.submitted && reference.invalid" class="invalid-feedback">
                   <div *ngIf="reference.errors.required">Reference number is required</div>
@@ -295,3 +298,89 @@
 </div>
 </div>
 </div> 
+
+<jw-modal id="viewStudentPayment">
+
+  <div class="col-md-6 offset-md-3">
+       
+      <div class="card card-outline-secondary">
+          <div class="card-body" *ngIf="editPay">
+              <h3 class="text-center">View payment</h3>
+             
+              <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                 <div class="form-group">
+                     <label for="name">For: {{editPay.name}}</label>
+                    
+                   </div>
+                  
+                  <div class="form-group">
+                     <label for="accountNumber">Account number: {{editPay.accountNumber}}</label>
+                    
+                   </div>
+                   <div class="form-row">
+                     <div class="col-md-6 mb-2 form-group">
+                   <div class="form-group">
+                     <label for="address">Address: {{editPay.address}}</label>
+                  
+                   </div>
+                     </div>
+                     <div class="col-md-6 mb-2 form-group">
+                   <div class="form-group">
+                       <label for="city">City: {{editPay.city}}</label>
+                      
+                     </div>
+                     </div>
+                   </div>
+                   
+                   <div class="form-row">
+                     <div class="col-md-3 mb-2 form-group">
+                   <div class="form-group">
+                     <label for="paymentCode">Payment Code: {{editPay.paymentCode}}</label>
+                   </div>
+                </div>
+                <div class="col-md-9 mb-2 form-group">
+                   <div class="form-group">
+                     <label for="amount">Amount: {{editPay.amount}}</label>
+                   </div>
+                   </div>
+                   </div>
+                   <div class="form-group">
+                     <label for="purpose">Purpose: {{editPay.purpose}}</label>
+                  
+                   </div>
+                   <div class="col-md-m form-group">
+                     <div class="form-group">
+                         <label for="date">Date: {{editPay.date | date}}</label>
+                  
+                     </div>
+                   </div>
+                   <div class="form-row">
+                     <div class="col-md-6 mb-2 form-group">
+                   <div class="form-group">
+                     <label for="model">Payment Model: {{editPay.model}}</label>
+                   
+                   </div>
+                  </div>
+                  <div class="col-md-6 mb-2 form-group">
+                   <div class="form-group">
+                     <label for="reference">Reference number: {{editPay.reference}}</label>
+                    
+                   </div>
+                   </div>
+                   </div>
+                 <div class="row">
+                     <div class="col-md-6 mb-2 form-group">
+                  
+                       </div>
+                       <div class="col-md-6 mb-2 form-group text-right">
+                         <a type="button" rel="tooltip" (click)="closeModal('viewStudentPayment')"
+                       class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Close</a>
+                     </div>
+                   </div> 
+               </form>
+          </div>
+      </div>
+      <!-- /form card cc payment -->
+ </div>
+ </jw-modal>
+ 

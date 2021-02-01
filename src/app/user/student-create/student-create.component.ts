@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class StudentCreateComponent implements OnInit {
 
   studentForm: FormGroup;
- 
+  submitted = false;
+  
   constructor(private studentService : StudentService,
               private router : Router,
               private toastr : ToastrService) { }
@@ -42,7 +43,15 @@ export class StudentCreateComponent implements OnInit {
       })
     })
   }
+  get f() { return this.studentForm.controls; }
+  onSubmit(){
+    this.submitted = true;
 
+   if (this.studentForm.invalid) {
+       return false;
+   }
+      this.createStudent()
+ }
   createStudent(){
     console.log("Student form value je ", this.studentForm.value)
     this.studentService.create(this.studentForm.value)

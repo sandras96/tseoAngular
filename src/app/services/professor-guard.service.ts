@@ -26,8 +26,9 @@ export class ProfessorGuardService implements CanActivate{
       
       this.professorId  =  route.params.id;
       this.professor = JSON.parse(localStorage.getItem('currentProfessor'));
-     
-      if(this.roles.includes("ADMIN") || this.professorId == this.professor.id) return true;
+      if(this.professor != null){
+        if(this.professorId == this.professor.id) return true
+      }else if(this.roles.includes("ADMIN")) return true;
        
       this.router.navigate(['no-access']);
       return false;

@@ -41,4 +41,8 @@ export class ExamService {
   getByStudentId(student_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/student/${student_id}`);
   }
+
+   getByProfessorId(professor_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/professor/${professor_id}`);
+  }
 }

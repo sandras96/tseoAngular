@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Payment } from 'src/app/model/payment.model';
@@ -28,7 +29,8 @@ export class StudentPaymentsComponent implements OnInit {
   constructor(private paymentService : PaymentService,
               private formBuilder: FormBuilder,
               private toastr : ToastrService,
-              private modalService: ModalService) { }
+              private modalService: ModalService,
+              protected authService : AuthService) { }
 
   ngOnInit(): void {
     this.date = new Date().toISOString().slice(0, 10);
@@ -141,4 +143,17 @@ backToList(){
   this.showEditPay = !this.showEditPay;
 }
 
+openModalPayment(id: string, paymentId : number){
+  this.modalService.open(id);
+  this.getPayment(paymentId);
+
+}
+getPayment(id){
+  this.paymentService.get(id)
+    .subscribe(data=>{
+      this.editPay = data;
+    },error=>{
+      console.log(error)
+    })
+}
 }

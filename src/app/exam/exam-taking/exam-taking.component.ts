@@ -9,6 +9,8 @@ import { StudentService } from 'src/app/services/student.service';
 import { Exam } from 'src/app/model/exam.model';
 import { ExamTakingService } from 'src/app/services/exam-taking.service';
 import { ToastrService } from 'ngx-toastr';
+import { CourseService } from 'src/app/services/course.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-exam-taking',
@@ -31,13 +33,15 @@ export class ExamTakingComponent implements OnInit {
   @Input() exam : Exam;
   @Output() createExamTaking = new EventEmitter<ExamTaking[]>();
   @Output() deleteExamTaking = new EventEmitter<ExamTaking[]>();
+  @Output() updateExamTaking = new EventEmitter<ExamTaking[]>();
 
   constructor(private examTakingService : ExamTakingService,
-              private studentService : StudentService,
+              private courseService : CourseService,
               private professorService : ProfessorService,
               private formBuilder: FormBuilder,
               private modalService: ModalService,
-              private toastr : ToastrService) {}
+              private toastr : ToastrService,
+              public authService : AuthService) {}
 
   ngOnInit(): void {
     this.getStudents();
@@ -45,7 +49,6 @@ export class ExamTakingComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       id : [],
       mark : ['', Validators.required],
-      pass : ['', Validators.required],
       points : ['', Validators.required],
       exam : this.exam,
       professor: ['', Validators.required],
@@ -56,6 +59,7 @@ export class ExamTakingComponent implements OnInit {
   get f() { return this.addForm.controls; }
 
   onSubmit(){
+    console.log("jebem ti sve", this.addForm.value)
      this.submitted = true;
 
     if (this.addForm.invalid) {
@@ -71,7 +75,7 @@ export class ExamTakingComponent implements OnInit {
         this.examTaking = data;
         this.createExamTaking.emit(data);
         this.addForm.reset();
-        this.toastr.success('Success', 'Success!');
+        this.toastr.success('Exam taking was successfully created!', 'Success!');
         this.closeModal('createETModal');
         console.log("Examtaking dabogsacuvaj je", data)
       })
@@ -81,13 +85,13 @@ export class ExamTakingComponent implements OnInit {
     this.examTakingService.delete(exam.id)
       .subscribe(data=>{
         this.deleteExamTaking.emit(exam);
-        
+        this.toastr.success('Exam taking was susessfully deleted!', 'Success!');
       },error=>{
         console.log(error)
       })
   }
   getStudents(){
-    this.studentService.getAll()
+    this.courseService.getStudents(this.exam.course.id)
       .subscribe(data=>{
         this.studentsAll = data;
       },error=>{
@@ -104,6 +108,7 @@ export class ExamTakingComponent implements OnInit {
   }
   openModal(id: string) {
     this.modalService.open(id);
+    
 }
 openModalEdit(id: string, etId : number) {
   this.modalService.open(id);
@@ -122,12 +127,16 @@ openModalEdit(id: string, etId : number) {
 editExamTaking(){
   this.examTakingService.update(this.editET.id, this.editET)
     .subscribe(data=>{
+      this.toastr.success("Exam taking was successfully updated!", "Success!");
+      this.closeModal('editETModal');
+      this.updateExamTaking.emit(data);
       console.log("edit exam taking ", data)
     })
 
 }
   closeModal(id: string) {
     this.modalService.close(id);
+    this.addForm.reset();
 }
 
 }

@@ -5,6 +5,7 @@ import { Professor } from 'src/app/model/professor.model';
 import { ProfessorService } from 'src/app/services/professor.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-professor-profile',
@@ -21,9 +22,8 @@ export class ProfessorProfileComponent implements OnInit {
   
   constructor(private professorService : ProfessorService,
               private router : Router,
-              private toastr: ToastrService ) {
-               
-               }
+              private toastr: ToastrService,
+              public authService : AuthService) {}
 
   ngOnInit(): void {
   
