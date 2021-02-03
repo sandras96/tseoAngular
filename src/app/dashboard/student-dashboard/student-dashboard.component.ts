@@ -11,23 +11,16 @@ import { Router } from '@angular/router';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  userId : number
+  
   student : Student;
-  constructor(private tokenStorage : TokenStorageService,
-              private authService : AuthService,
-              private router : Router) { }
+  constructor( private router : Router) { }
 
   ngOnInit(): void {
-    this.userId = this.tokenStorage.getUser().id;
   }
 
   goToMyProfile(){
-    
-    if(this.authService.userRole()=="student"){
       this.student = JSON.parse(localStorage.getItem('currentStudent'));
       console.log("Student iz lokala je " , this.student)
       this.router.navigate(['students', this.student.id]);
-    }
-    
   }
 }

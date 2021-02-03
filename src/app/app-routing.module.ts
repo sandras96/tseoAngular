@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { Course } from 'src/app/model/course.model';
 import { StudentDashboardComponent } from './dashboard/student-dashboard/student-dashboard.component';
 import { ProfessorCoursesComponent } from './professor/professor-courses/professor-courses.component';
@@ -51,13 +52,17 @@ const routes: Routes = [
  // { path: 'home', component: HomeComponent},
 
  // { path: 'navbar', component: NavbarComponent, canActivate:[AuthGuard]},
-  { path: '', component: LoginComponent},
-  { path: 'login', component: LoginComponent },
+  
+  
  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+{ path: '', component: LoginComponent},
+{ path: 'login', component: LoginComponent },
+{ path: 'no-access', component: NoAccessComponent, canActivate:[AuthGuard]},
+{ path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+//{ path: 'login', component: LoginComponent },
+//{ path: '', component: HomeComponent },
+//{ path: '',   redirectTo: '/home', pathMatch: 'full' },
 
-{ path: 'no-access', component: NoAccessComponent },
-{ path: 'student-dashboard', component: StudentDashboardComponent },
-{ path: 'professor-dashboard', component: ProfessorDashboardComponent },
 
 {path: 'courses', component: CourseComponent, canActivate:[AuthGuard]},
 {path: 'courses/:id', component: CourseViewComponent, canActivate:[AuthGuard, CourseGuardService]},
@@ -78,11 +83,11 @@ const routes: Routes = [
 {path: 'exams/:id', component: ExamViewComponent, canActivate:[AuthGuard, ExamGuardService]},
 
 {path: 'examperiods' , component: ExamPeriodComponent, canActivate:[AuthGuard]},
-{path: 'examperiods/:id' , component: ExamPeriodViewComponent, canActivate:[AuthGuard,AdminAuthGuard]}
+{path: 'examperiods/:id' , component: ExamPeriodViewComponent, canActivate:[AuthGuard,AdminAuthGuard]},
 
 
-
-
+//{ path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
+{ path: '**', component: DashboardComponent }
 ];
 
 @NgModule({

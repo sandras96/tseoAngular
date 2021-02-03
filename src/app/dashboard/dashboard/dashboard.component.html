@@ -1,0 +1,9 @@
+<div *ngIf="this.authService.userRole()=='admin'">
+    <app-admin-dashboard></app-admin-dashboard>
+</div>
+<div *ngIf="this.authService.userRole()=='student'">
+    <app-student-dashboard></app-student-dashboard>
+</div>
+<div *ngIf="this.authService.userRole()=='professor'">
+    <app-professor-dashboard></app-professor-dashboard>
+</div>

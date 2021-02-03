@@ -1,3 +1,4 @@
+import { ModalService } from './../../_modal/modal.service';
 import { filter } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -6,6 +7,8 @@ import { Course } from 'src/app/model/course.model';
 import { CourseAttendanceService } from 'src/app/services/course-attendance.service';
 import { CourseService } from 'src/app/services/course.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProfessorService } from 'src/app/services/professor.service';
+import { Professor } from 'src/app/model/professor.model';
 
 @Component({
   selector: 'app-student-courses',
@@ -16,6 +19,7 @@ export class StudentCoursesComponent implements OnInit {
 
   @Input() courses : Course[];
   
+  professors : Professor[];
   coursesAll : Course[];
   filteredCourses : any[] = [];
   studentId : number;
@@ -26,7 +30,9 @@ export class StudentCoursesComponent implements OnInit {
               private courseService : CourseService,
               public authService : AuthService,
               private route : ActivatedRoute,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private modalService : ModalService,
+              private professorService : ProfessorService) { }
                  
   ngOnInit(): void {
    this.studentId = this.getStudentId(this.route.snapshot.paramMap.get('id'));
@@ -94,5 +100,19 @@ export class StudentCoursesComponent implements OnInit {
       });
   }
 
+  openProfModal(id: string, courseId) {
+    this.modalService.open(id);
+    this.getProfessors(courseId)
+  }
+  getProfessors(id){
+    this.professorService.getAllByCourseId(id).subscribe(data=>{
+      this.professors = data;
+    console.log(data)
+  });
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+}
   }
 

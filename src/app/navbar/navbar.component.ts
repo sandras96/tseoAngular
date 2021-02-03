@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
    }
    ngOnInit(): void {
      this.isLoggedIn=true;
-     
+    
      this.userId = this.tokenStorage.getUser().id;
 
     // this.isLoggedIn = this.authService.isLoggedIn();
@@ -68,7 +68,11 @@ export class NavbarComponent implements OnInit {
     this.tokenStorage.signOut();
   }
   
-
+  showDashboard(){
+    if(this.isLoggedIn){
+      this.router.navigate(['dashboard'])
+    }
+  }
   goToMyProfile(){
     if(this.userRole()=='admin'){
       this.router.navigate(['users',this.userId]);

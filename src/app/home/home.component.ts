@@ -1,6 +1,7 @@
 import { TokenStorageService } from './../services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'home',
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit{
 checkLoggedIn() : boolean {
   this.isLoggedIn = this.authService.isLoggedIn();
   if(this.isLoggedIn){
+   
     return true
   }
   return false

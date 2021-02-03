@@ -21,6 +21,7 @@
                  <th class="date">Espb</th>
                  <th class="date">SEMESTER</th>
                  <th  *ngIf="this.authService.userRole()=='admin'" class="text-right">Actions</th>
+                 <th  *ngIf="this.authService.userRole()=='student'" class="text-right">Professor</th>
              </tr>
          </thead>
          <tbody>
@@ -37,10 +38,37 @@
                     <a type="button" rel="tooltip" (click)="removeCourse(course)"
                     class="btn btn-danger btn-sm" data-original-title="" title="remove course">
                     <i class="material-icons">close</i>
-                </a></td>
-               
+                </a>
+            </td>
+                <td *ngIf="this.authService.userRole()=='student'" class="text-right">
+            <a *ngIf="this.authService.userRole()=='student'" (click)="openProfModal('seeProfessors', course.id)" type="button" rel="tooltip" class="btn btn-success btn-sm" data-original-title="" title="see professors">
+                <i class="material-icons">person</i>
+            </a>
+        </td>
              </tr> 
         
          </tbody>
      </table>
  </div>
+
+ <jw-modal id="seeProfessors">
+    <div class="col-md-4 offset-md-4">
+    <div class="card card-outline-secondary">
+      <div class="card-body">
+          <h4 class="text-center">Course professors</h4>
+      <div class="card card-body">
+        <ul *ngFor="let p of professors">
+            <li>{{p.firstname}}&nbsp;{{p.lastname}}&nbsp;<br/>role: {{p.role}}&nbsp;<br/>email: {{p.email}}&nbsp;<br/>phone: {{p.phone}}</li>
+
+        </ul>
+      </div>
+     
+      <div class="text-right">
+        <a type="button" rel="tooltip" (click)="closeModal('seeProfessors')"
+      class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Close</a>
+    </div>
+    
+    </div>  
+    </div>
+  </div>
+   </jw-modal>

@@ -46,9 +46,13 @@ export class ProfessorListComponent implements OnInit {
       if(param=="role"){
         this.searchByRole(search);
       }
+    }else{
+      this.getProfessors();
     }
    }
-  
+  getProfessors(){ 
+    this.professorService.getAll().subscribe(data=>this.professors=data);
+  }
    searchByFirstname(search){
     this.professorService.findByFirstname(search)
       .subscribe(data=>{

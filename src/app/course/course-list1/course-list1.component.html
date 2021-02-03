@@ -31,7 +31,8 @@
                     <th>Name</th>
                     <th>ESPB</th>
                     <th>Semester</th>
-                    <th *ngIf="this.authService.userRole()!='student'"class="text-right">Actions</th>
+                    <th *ngIf="this.authService.userRole()!='student'" class="text-right">Actions</th>
+                    <th *ngIf="this.authService.userRole()=='student'" class="text-right">Professor</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,9 +45,13 @@
                         <a *ngIf="this.authService.userRole()!='student'"routerLink="/courses/{{ course.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
                             <i class="material-icons">preview</i>
                         </a> 
-                        <a *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="removeCourse(course)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
+                        <a *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="openDeleteModal('deleteModal', course)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
                             <i class="material-icons">close</i>
                         </a>
+                        <a *ngIf="this.authService.userRole()=='student'" (click)="openProfModal('seeProfessors', course.id)" type="button" rel="tooltip" class="btn btn-success btn-sm" data-original-title="" title="see professors">
+                            <i class="material-icons">person</i>
+                        </a>
+                        
                    </td>
                 </tr>   
             </tbody>
@@ -113,3 +118,47 @@
         <!-- /form card cc payment -->
    </div>
    </jw-modal>
+
+   <jw-modal id="seeProfessors">
+    <div class="col-md-4 offset-md-4">
+    <div class="card card-outline-secondary">
+      <div class="card-body">
+          <h4 class="text-center">Course professors</h4>
+      <div class="card card-body">
+        <ul *ngFor="let p of professors">
+            <li>{{p.firstname}}&nbsp;{{p.lastname}}&nbsp;<br/>role: {{p.role}}&nbsp;<br/>email: {{p.email}}&nbsp;<br/>phone: {{p.phone}}</li>
+
+        </ul>
+      </div>
+     
+      <div class="text-right">
+        <a type="button" rel="tooltip" (click)="closeModal('seeProfessors')"
+      class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Close</a>
+    </div>
+    
+    </div>  
+    </div>
+  </div>
+   </jw-modal>
+
+   <jw-modal id="deleteModal">
+    <div class="col-md-4 offset-md-4">
+    <div class="card card-outline-secondary" *ngIf="courseForDelete">
+      <div class="card-body">
+          <h4 class="text-center">Are you sure you want to delete {{courseForDelete.name}}?</h4>
+      <div class="card card-body">
+        <div class="row">
+            <div class="col-md-6 mb-2 form-group">
+              <button type="submit" rel="tooltip" 
+                  class="btn btn-danger btn-sm" data-original-title="" (click)="removeCourse(courseForDelete)" title="delete">Delete</button>
+              </div>
+              <div class="col-md-6 mb-2 form-group text-right">
+                <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+              class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+            </div>
+          </div>
+      </div>
+    </div>  
+    </div>
+  </div>
+</jw-modal>

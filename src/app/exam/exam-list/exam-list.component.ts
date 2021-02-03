@@ -122,17 +122,22 @@ export class ExamListComponent implements OnInit {
 
 retrieveExams(search, param){
   console.log("serach je ", search , "a param by je ", param)
+  if(search!=""){
   if(param=="examperiod"){
     this.searchByExamPeriod(search);
   }
   if(param=="course"){
     this.searchByCourse(search);
   }
-  
-  
- 
- }
+}
+else{
+  this.getExams();
 
+}
+  }
+  getExams(){
+    this.examService.getAll().subscribe(data=>this.exams=data);
+   }
  searchByExamPeriod(search){
   this.examService.findByExamPeriod(search)
     .subscribe(data=>{

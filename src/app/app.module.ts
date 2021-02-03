@@ -82,6 +82,8 @@ import { StudentDashboardComponent } from './dashboard/student-dashboard/student
 import { ProfessorDashboardComponent } from './dashboard/professor-dashboard/professor-dashboard.component';
 import { CourseGuardService } from './services/course-guard.service';
 import { ExamGuardService } from './services/exam-guard.service';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -142,6 +144,8 @@ import { ExamGuardService } from './services/exam-guard.service';
     HeaderComponent,
     StudentDashboardComponent,
     ProfessorDashboardComponent,
+    DashboardComponent,
+    AdminDashboardComponent,
    
    
   ],

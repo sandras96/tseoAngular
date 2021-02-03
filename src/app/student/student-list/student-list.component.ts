@@ -44,7 +44,12 @@ export class StudentListComponent implements OnInit {
       if(param=="indexnumber"){
         this.searchByIndexnumber(search);
       }
+    }else{
+      this.getStudents();
     }
+   }
+   getStudents(){
+     this.studentService.getAll().subscribe(data=>this.students = data);
    }
   
    searchByFirstname(search){

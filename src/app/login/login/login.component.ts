@@ -77,17 +77,17 @@ export class LoginComponent implements OnInit{
    
             let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           
-            if(this.authService.userRole()=="student"){
-              this.router.navigate([returnUrl || '/student-dashboard']);
-            }
+            // if(this.authService.userRole()=="student"){
+            //   this.router.navigate([returnUrl || '/student-dashboard']);
+            // }
             
-            if(this.authService.userRole()=="professor"){
-              this.router.navigate([returnUrl || '/professor-dashboard']);
-            }
+            // if(this.authService.userRole()=="professor"){
+            //   this.router.navigate([returnUrl || '/professor-dashboard']);
+            // }
             
             
           
-          //  this.router.navigate(['courses'], {relativeTo:this.route})
+            this.router.navigate([returnUrl ||'/dashboard'], {relativeTo:this.route})
             this.isLoggedIn = true;
            
           
@@ -95,6 +95,7 @@ export class LoginComponent implements OnInit{
             
       
           }
+     
 
         }, (err:Error) => {
           if(err.toString()==='Unauthorized'){

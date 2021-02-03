@@ -4,6 +4,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from 'src/app/model/course.model';
 import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/_modal';
+import { Router } from '@angular/router';
+import { ProfessorService } from 'src/app/services/professor.service';
+import { Professor } from 'src/app/model/professor.model';
 @Component({
   selector: 'app-course-list1',
   templateUrl: './course-list1.component.html',
@@ -11,6 +14,8 @@ import { ModalService } from 'src/app/_modal';
 })
 export class CourseList1Component implements OnInit {
 
+  professors : Professor[];
+  courseForDelete : Course;
   @Input() public courses : Course[];
   @Output() addCourse = new EventEmitter<Course[]>();
   @Output() deleteCourse = new EventEmitter<Course[]>();
@@ -18,8 +23,10 @@ export class CourseList1Component implements OnInit {
 
   constructor( private modalService: ModalService,
                private courseService : CourseService,
+               private professorService : ProfessorService,
                public authService : AuthService,
-               private toastr : ToastrService) { }
+               private toastr : ToastrService,
+               private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -48,6 +55,7 @@ export class CourseList1Component implements OnInit {
       .subscribe(data=>{
         console.log(data)
         this.deleteCourse.emit(course);
+        this.closeModal('deleteModal');
        this.toastr.success('Course '+course.name+' was successfully deleted!', 'Success!')
       })
   }
@@ -75,11 +83,11 @@ retrieveCourses(search, param){
     }
   }
   else{
-   
-    
+    this.getCourses();
   }
- 
- 
+ }
+ getCourses(){
+   this.courseService.getAll().subscribe(data=>this.courses=data);
  }
 
  searchByName(search){
@@ -105,4 +113,20 @@ retrieveCourses(search, param){
        console.log(data)
      })
  }
+
+ openProfModal(id: string, courseId) {
+  this.modalService.open(id);
+  this.getProfessors(courseId)
+}
+getProfessors(id){
+  this.professorService.getAllByCourseId(id).subscribe(data=>{
+    this.professors = data;
+  console.log(data)
+});
+}
+openDeleteModal(id: string, course){
+  console.log("kurs za brisanje", course)
+  this.modalService.open(id);
+  this.courseForDelete = course;
+}
 }
