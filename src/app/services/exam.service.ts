@@ -45,4 +45,16 @@ export class ExamService {
    getByProfessorId(professor_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/professor/${professor_id}`);
   }
+  findByExamPeriod(name): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByExamPeriod/${name}`);
+  }
+  findByCourse(name): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByCourse/${name}`);
+  }
+  findByExamPeriodAndCourseId(name : string, course_id : number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByExamPeriodAndCourse/${name}/${course_id}`);
+  }
+  findByCourseAndExamPeriodId(name : string, ep_id : number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByCourseAndExamPeriod/${name}/${ep_id}`);
+  }
 }

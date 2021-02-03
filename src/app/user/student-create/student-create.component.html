@@ -103,26 +103,31 @@
           </div>
           </div>
     </div>
-    <ng-container formGroupName="user">
+    <ng-container formGroupName="user" >
       <div class="form-row" >
         <div class="col-md-4 mb-3 form-group">
         <label for="username">Username</label>
         <div class="input-group">
           <input type="text" formControlName="username" class="form-control" name="username"
-           id="username" placeholder="Username" >
-          
+           id="username" placeholder="Username"  [ngClass]="{ 'is-invalid': submitted && studentForm.get('user.username').errors }" >
+           <div *ngIf="submitted && studentForm.get('user.username').errors" class="invalid-feedback">
+            <div *ngIf="studentForm.get('user.username').errors.required">Username is required</div>
+        </div>
         </div>
     </div>
           <div class="col-md-4 mb-3 form-group">
             <label for="password">Password</label>
-            <input type="password" formControlName="password"
+            <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && studentForm.get('user.password').errors }"
             class="form-control" id="password" placeholder="*********" name="password" >
+            <div *ngIf="submitted && studentForm.get('user.password').errors" class="invalid-feedback">
+              <div *ngIf="studentForm.get('user.password').errors.required">Password is required</div>
+          </div>
            
           </div>
           <div class="col-md-4 mb-3 form-group">
             <label for="authorities">Role</label>
             <input type="role" 
-            class="form-control"  id="authorities" value="student" placeholder="STUDENT" name="authorities" disabled>
+            class="form-control"  id="authorities" value="student" name="authorities" disabled>
         </div>
     </div>
     </ng-container>

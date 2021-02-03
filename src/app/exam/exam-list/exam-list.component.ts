@@ -119,4 +119,33 @@ export class ExamListComponent implements OnInit {
     this.examForm.reset();
     this.submitted = false;
 }
+
+retrieveExams(search, param){
+  console.log("serach je ", search , "a param by je ", param)
+  if(param=="examperiod"){
+    this.searchByExamPeriod(search);
+  }
+  if(param=="course"){
+    this.searchByCourse(search);
+  }
+  
+  
+ 
+ }
+
+ searchByExamPeriod(search){
+  this.examService.findByExamPeriod(search)
+    .subscribe(data=>{
+        this.exams =data;
+         console.log(data)
+       })
+ }
+
+ searchByCourse(search){
+  this.examService.findByCourse(search)
+  .subscribe(data=>{
+      this.exams =data;
+       console.log(data)
+     })
+ }
 }

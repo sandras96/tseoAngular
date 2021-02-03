@@ -7,7 +7,13 @@
   .ngx-pagination {
     padding-inline-start: 0 !important;
   } */
-
+  select{
+    height: 30px;
+    font-size: 13px;
+}
+#btn{
+    margin-top: -4px;
+}
   html *{
     -webkit-font-smoothing: antialiased;
     
@@ -53,7 +59,7 @@ small{
     padding: 12px 8px;
     vertical-align: middle;
     border-color: #ddd;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .table>tbody>tr>td{
@@ -87,4 +93,10 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+#tableScroll{
+    height: 300px;
+    width: 750px;
+    overflow-y: scroll;
 }

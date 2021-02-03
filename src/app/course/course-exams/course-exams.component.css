@@ -1,8 +1,7 @@
-
-a {
-    color: #3e3947 !important;
-    text-decoration: none;
+#btn{
+    margin-top: -4px;
 }
+
 
 
 .table {
@@ -21,6 +20,9 @@ a {
     padding: 12px 8px;
     vertical-align: middle;
     border-color: #ddd;
+    font-weight: 300;
+}
+#a{
     font-weight: 300;
 }
 
@@ -45,9 +47,7 @@ a {
 }
 
 
-#unit{
-    padding-top: 20px;
-}
+
 #enrollDiv{
     margin-left: 120px;
     width: 600px;

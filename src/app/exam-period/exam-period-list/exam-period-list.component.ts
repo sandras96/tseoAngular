@@ -69,4 +69,11 @@ export class ExamPeriodListComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
 }
+
+retrieveExams(search){
+  this.examPeriodService.findByName(search)
+    .subscribe(data=>{
+      this.examPeriods = data;
+    })
+}
 }

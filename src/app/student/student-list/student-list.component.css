@@ -8,4 +8,15 @@
     cursor: pointer;
   } 
 
-  
+  #tableScroll{
+    height: 300px;
+    overflow-y: scroll;
+    width: 680px;
+}
+select{
+  height: 30px;
+  font-size: 13px;
+}
+#btn{
+  margin-top: -4px;
+}

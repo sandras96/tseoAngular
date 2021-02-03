@@ -2,6 +2,7 @@ import { ProfessorDetailComponent } from './../professor-detail/professor-detail
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Professor } from 'src/app/model/professor.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ProfessorService } from 'src/app/services/professor.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ProfessorListComponent implements OnInit {
   HighlightRow : any;  
   ClickedRow:any; 
   
-  constructor() {
+  constructor(private professorService : ProfessorService) {
     this.ClickedRow = function(index){  
       this.HighlightRow = index;  
   }  
@@ -33,6 +34,44 @@ export class ProfessorListComponent implements OnInit {
     
 
   }  
+  retrieveStudents(search, param){
+    console.log("serach je ", search , "a param by je ", param)
+    if(search!=""){
+      if(param=="firstname"){
+        this.searchByFirstname(search);
+      }
+      if(param=="lastname"){
+        this.searchByLastname(search);
+      }
+      if(param=="role"){
+        this.searchByRole(search);
+      }
+    }
+   }
+  
+   searchByFirstname(search){
+    this.professorService.findByFirstname(search)
+      .subscribe(data=>{
+          this.professors =data;
+           console.log(data)
+         })
+   }
+  
+   searchByLastname(search){
+    this.professorService.findByLastname(search)
+    .subscribe(data=>{
+        this.professors =data;
+         console.log(data)
+       })
+   }
+  
+   searchByRole(search){
+    this.professorService.findByRole(search)
+    .subscribe(data=>{
+        this.professors =data;
+         console.log(data)
+       })
+   }
 
 
 }

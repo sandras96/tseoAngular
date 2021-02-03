@@ -7,4 +7,11 @@
     color: white; 
     cursor: pointer;
 }
-  
+#tableScroll{
+  height: 300px;
+  overflow-y: scroll;
+  width: 680px;
+}
+#btn{
+  margin-top: -4px;
+}

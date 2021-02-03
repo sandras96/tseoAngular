@@ -1,56 +1,23 @@
-/* .list {
-    text-align: left;
-    max-width: 750px;
-    margin: auto;
-  }
-  
-  .ngx-pagination {
-    padding-inline-start: 0 !important;
-  } */
-
-  html *{
+select{
+    height: 30px;
+    font-size: 13px;
+}
+#btn{
+    margin-top: -4px;
+}
+html *{
     -webkit-font-smoothing: antialiased;
     
 }
 body{
     background: #fff !important;
 }
-a {
-    color: #3e3947 !important;
-    text-decoration: none;
-}
 
-a:hover{
-    color: white !important;
-    text-decoration: none !important;
-}
-a:focus {
-    color: white!important;
-    text-decoration: none !important;
-}
-.container h3{
-    font-size:25px ;
-    margin-top: 20px ;
-    margin-bottom: 10px ;
-    font-weight: 300 ;
-    color: #3c4858 ;
-}
-.container h4{
-    font-size: 18px;
-    line-height: 1.5;
-    margin: 10px 0;
-    font-weight: 300;
-    color: #3c4858;
-}
 
-small{
-    font-size: 75% !important;
-    color: #777;
-}
 
 
 .table {
-    width: 600px;
+    width: 100%;
     max-width: 100%;
     margin-bottom: 16px;
     background-color: transparent;
@@ -58,14 +25,14 @@ small{
 
 .table thead tr th {
     font-size: 17px ;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .table>thead>tr>th{
     padding: 12px 8px;
     vertical-align: middle;
     border-color: #ddd;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .table>tbody>tr>td{
@@ -88,4 +55,8 @@ small{
     background-color: #f9f9f9 !important;
 }
 
-
+#tableScroll{
+    height: 300px;
+    overflow-y: scroll;
+    width: 750px;
+}

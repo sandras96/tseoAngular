@@ -41,5 +41,14 @@ export class StudentService {
     return this.http.get(`${this.baseUrl}/user/${user_id}`);
   }
   
+  findByFirstname(firstname): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByFirstname/${firstname}`);
+  }
+  findByLastname(lastname): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByLastname/${lastname}`);
+  }
+  findByIndexnumber(indexnum): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByIndexnumber/${indexnum}`);
+  }
 
 }

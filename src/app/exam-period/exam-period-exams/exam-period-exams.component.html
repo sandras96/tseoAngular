@@ -4,6 +4,16 @@
         <div>
           <button class="btn btn-outline-secondary" type="button" >+</button>
         </div>
+        <div class="input-group input-group-sm mb-3">
+          <input type="text"  placeholder="Search by Course" #search  id="inputGroup-sizing-sm"
+          class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <div class="input-group-append" id="btn">
+              <a   (click)="retrieveExams(search.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
+                  search
+                  </span></a>
+            </div>
+          
+          </div>
       </div>
    
 <div class="unit">
@@ -28,14 +38,11 @@
              
                     <tr *ngFor="let exam of exams">
                         <td class="text-center">{{exam.id}}</td>
-                        <td>{{exam.assignment}}</td>
+                        <th class="text-left" id="a"><a  routerLink="/exams/{{ exam.id }}" data-original-title="" title="view exam">{{exam.assignment}}</a></th>
                         <td>{{exam.date  | date}}</td>
                         <td>{{exam.points}}</td> 
                         <td><a routerLink="/course-view/{{exam.course.id}}" data-original-title="" title="view course">{{exam.course.name}}</a></td>
                         <td class="text-right"> 
-                            <a routerLink="/exams/{{ exam.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
-                                <i class="material-icons">preview</i>
-                            </a> 
                             <a type="button" rel="tooltip" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete course">
                                 <i class="material-icons">close</i>
                             </a>

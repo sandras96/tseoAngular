@@ -145,4 +145,25 @@ export class AuthService {
     return this.studentService.getByUserId(id).toPromise();
   }
 
+  changePassword(oldPassword,newPassword): Observable<String>{
+    console.log("koje su sifre : ", oldPassword, newPassword)
+    let pc = {
+      "oldPassword":oldPassword,
+      "newPassword":newPassword
+    }
+    console.log("CP "+ JSON.stringify(pc));
+    return this.http.post(AUTH_API + 'change-password',pc).pipe(map(data => JSON.stringify(data))
+    ,catchError((error: any) => {
+      if (error.status === 401) {
+        return throwError('Unauthorized');
+      }
+      if(error.status == 200){
+        return throwError("OK")
+      }
+      else {
+        return throwError(error.json().error || 'Server error');
+      }
+    })
+    )
+  }
 }

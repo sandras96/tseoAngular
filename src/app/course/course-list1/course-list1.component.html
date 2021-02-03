@@ -1,9 +1,31 @@
 <h4><small>Courses</small> <span>&nbsp;&nbsp;&nbsp;</span>
     <a  *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="openModal('createCourseModal')" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add course">
-        <i class="material-icons" >add</i></a></h4>
-<div class="table-responsive" style="height: 300px;overflow: scroll;">
+        <i class="material-icons" >add</i></a>  
+                     
+            <div class="input-group input-group-sm mb-3" style="width: 750px;">
+                <div class="input-group-prepend">
+                <select class="custom-select"  #param >
+                    <option hidden>Search by</option>
+                     <option value="name">NAME</option>
+                     <option value="semester">SEMESTER</option>
+                     <option value="espb">ESPB</option>
+                  </select>
+          </div>
+                <input type="text"  placeholder="Search..." #search  id="inputGroup-sizing-sm"
+                class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                <div class="input-group-append" id="btn">
+                    <a   (click)="retrieveCourses(search.value, param.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
+                        search
+                        </span></a>
+                  </div>
+                
+                </div>    
+</h4>
+
+
+<div class="table-responsive" id="tableScroll">
         <table class="table">
-            <thead>
+            <thead id="header-fixed">
                 <tr>
                     <th class="text-center">#</th>
                     <th>Name</th>

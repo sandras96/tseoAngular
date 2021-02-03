@@ -36,65 +36,109 @@
     
         <div class="tab-content" *ngIf="user">
           <div class="tab-pane active" id="home">
-             
-                <form class="form" (click)="updateUser(user)">
-                
+            <div *ngIf="this.currentUserId != user.id">
+                <form class="form" (ngSubmit)="f2.form.valid && updateUser()" #f2="ngForm">
+                  
                         <div class="col-sm-8 form-group" id="username">
                             <label for="username"><h4>Username</h4></label>
-                            <input type="text" class="form-control" name="username" [(ngModel)]="user.username"required/>
+                            <input type="text" class="form-control" name="username" #username="ngModel"
+                             [(ngModel)]="user.username"
+                            [ngClass]="{ 'is-invalid': f2.submitted && username.errors }" required>
+                            <div *ngIf="f2.submitted && username.invalid" class="invalid-feedback">
+                              <div *ngIf="username.errors.required">Username is required</div>
+                          </div>
                         </div>
-                        <div class="col-sm-8 form-group" id="username">
-                          <label for="password"><h4>Password</h4></label>
-                          <input type="password" class="form-control" name="password" [(ngModel)]="user.password" required/>
+                  
+                        <!--  -->
+                      <div class="row" style="margin-left:18px; margin-top:35px;">
+                        <div class="col-md-6 mb-2 form-group">
+                          <button type="submit" rel="tooltip"
+                              class="btn btn-success btn-sm" data-original-title="" title="update user">Update</button>
+                          </div>
+                          <div class="col-md-6 mb-2 form-group">
+                            <a  type="button" rel="tooltip" (click)="deleteUser()"
+                          class="btn btn-danger btn-sm" data-original-title="" title="delete user">Delete</a>
+                        </div>
+                        
                       </div>
-                        <!-- <div class="col-sm-10  form-group">
+                 
+                    </form>
+                  </div>
+                  <div  *ngIf="this.currentUserId == user.id">
+                    <div class="col-sm-8 form-group" id="username">
+                      <label for="username"><h5>Username: {{user.username}}</h5></label>
+                    </div>
+                      
+                      <div class="col-sm-8 form-group" id="username">
+                        <form class="form" (ngSubmit)="f3.form.valid && updateUser()" #f3="ngForm">
+                        <label for="password"><h5>Password</h5></label>
+                        <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" 
+                        [ngClass]="{ 'is-invalid': f3.submitted && password.errors }" required>
+                        <div *ngIf="f3.submitted && password.invalid" class="invalid-feedback">
+                          <div *ngIf="password.errors.required">Password is required</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-2 form-group">
+                          <button type="submit" rel="tooltip"
+                              class="btn btn-success btn-sm" data-original-title="" title="update user">Change password</button>
+                          </div>
+                         
+                        
+                      </div>
+                   </form>
+                      </div>
+                  
+                  </div>
+                  <div *ngIf="this.currentUserId != user.id">
+                        <div class="col-sm-10  form-group">
                           <p style="margin-left: 18px;"> 
-                            <a  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                              Change Password?
-                            </a>
-                            
+                            <!-- <a  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                              Change Password? 
+                            </a> -->
+                            <a type="button" (click)="openModal('changePasswordModal')" id="a" >Change password?</a>
                           </p>
-                          <div class="collapse" id="collapseExample">
+                          <!-- <div class="collapse" id="collapseExample">
                             <div class="card card-body">
-                              <form [formGroup]="changeForm" (ngSubmit)="changePassword()">
+                        <form [formGroup]="changeForm" (ngSubmit)="onSubmitChangePass()">
                               <div class="form-group">
                                 <label for="oldpassword">Old password:</label>
-                                <input formControlName="oldPassword" name="oldpassword" type="text" class="form-control" placeholder="Old password..." required>
+                                <input formControlName="oldpassword" name="oldpassword" type="text" class="form-control" placeholder="Old password..." 
+                                [ngClass]="{ 'is-invalid': submitted && f.oldpassword.errors }">
+                                <div *ngIf="submitted && f.oldpassword.errors" class="invalid-feedback">
+                                  <div *ngIf="f.oldpassword.errors.required">Old password is required</div>
+                              </div>
                               </div>
                           
                               <div class="form-group">
                                 <label for="newpassword">New password:</label>
-                                <input formControlName="newPassword" name="newpassword" type="text" class="form-control" placeholder="New password..." required>
+                                <input formControlName="newpassword" name="newpassword" type="text" class="form-control" placeholder="New password..." 
+                                [ngClass]="{ 'is-invalid': submitted && f.newpassword.errors }">
+                                <div *ngIf="submitted && f.newpassword.errors" class="invalid-feedback">
+                                  <div *ngIf="f.newpassword.errors.required">New password is required</div>
+                              </div>
                               </div>
                           
                               <div class="form-group">
                                 <label for="cnewpassword">Confirm new password:</label>
-                                <input formControlName="cnewPassword" name="cnewpassword" type="text" class="form-control" placeholder="Confirm new password..." required>
+                                <input formControlName="cnewpassword" name="cnewpassword" type="text" class="form-control" placeholder="Confirm new password..."
+                                [ngClass]="{ 'is-invalid': submitted && f.cnewpassword.errors }">
+                                <div *ngIf="submitted && f.cnewpassword.errors" class="invalid-feedback">
+                                  <div *ngIf="f.cnewpassword.errors.required">Confirm new password is required</div>
                               </div>
-                              <button class="btn btn-success">Change pass</button>
+                              </div>
+                              <button type="submit" class="btn btn-success">Change pass</button>
             </form>
                             </div>
                           </div>  
-                        </div> -->
-                        <div class="row" style="margin-left:18px; margin-top:35px;">
-                          <div class="col-md-6 mb-2 form-group">
-                            <button type="submit" rel="tooltip"
-                                class="btn btn-success btn-sm" data-original-title="" title="update user">Update</button>
-                            </div>
-                            <div class="col-md-6 mb-2 form-group">
-                              <a type="button" rel="tooltip" (click)="deleteUser()"
-                            class="btn btn-danger btn-sm" data-original-title="" title="delete user">Delete</a>
-                          </div>
-                          
-                        </div>
+                        </div>  -->
+                     
                    
-                   
-              </form>
+              
             
      
             
-           </div><!--/tab-pane-->
-         
+           </div>
+          </div>
              
          
            
@@ -103,3 +147,56 @@
       </div><!--/col-9-->
   </div><!--/row-->
           
+
+  <jw-modal id="changePasswordModal">
+    <div class="col-md-4 offset-md-4">
+    <div class="card card-outline-secondary">
+      <div class="card-body">
+          <h4 class="text-center">Change Password</h4>
+
+ 
+    
+      <div class="card card-body">
+  <form [formGroup]="changeForm" (ngSubmit)="onSubmitChangePass()">
+        <div class="form-group">
+          <label for="oldpassword">Old password:</label>
+          <input formControlName="oldpassword" name="oldpassword" type="password" class="form-control" placeholder="Old password..." 
+          [ngClass]="{ 'is-invalid': submitted && f.oldpassword.errors }">
+          <div *ngIf="submitted && f.oldpassword.errors" class="invalid-feedback">
+            <div *ngIf="f.oldpassword.errors.required">Old password is required</div>
+        </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="newpassword">New password:</label>
+          <input formControlName="newpassword" name="newpassword" type="password" class="form-control" placeholder="New password..." 
+          [ngClass]="{ 'is-invalid': submitted && f.newpassword.errors }">
+          <div *ngIf="submitted && f.newpassword.errors" class="invalid-feedback">
+            <div *ngIf="f.newpassword.errors.required">New password is required</div>
+        </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="cnewpassword">Confirm new password:</label>
+          <input formControlName="cnewpassword" name="cnewpassword" type="password" class="form-control" placeholder="Confirm new password..."
+          [ngClass]="{ 'is-invalid': submitted && f.cnewpassword.errors }">
+          <div *ngIf="submitted && f.cnewpassword.errors" class="invalid-feedback">
+            <div *ngIf="f.cnewpassword.errors.required">Confirm new password is required</div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-2 form-group">
+            <button type="submit" rel="tooltip" 
+                class="btn btn-success btn-sm" data-original-title="" title="change password">Change</button>
+            </div>
+            <div class="col-md-6 mb-2 form-group text-right">
+              <a type="button" rel="tooltip" (click)="closeModal('changePasswordModal')"
+            class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+          </div>
+        </div>
+</form>
+      </div>
+    </div>  
+    </div>
+  </div>
+   </jw-modal>

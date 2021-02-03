@@ -46,8 +46,9 @@ export class CourseList1Component implements OnInit {
   removeCourse(course){
     this.courseService.delete(course.id)  
       .subscribe(data=>{
+        console.log(data)
         this.deleteCourse.emit(course);
-        this.toastr.success('Course '+course.name+' was successfully deleted!', 'Success!')
+       this.toastr.success('Course '+course.name+' was successfully deleted!', 'Success!')
       })
   }
 
@@ -58,4 +59,50 @@ export class CourseList1Component implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
 }
+
+
+retrieveCourses(search, param){
+  console.log("serach je ", search , "a param by je ", param)
+  if(search!=""){
+    if(param=="name"){
+      this.searchByName(search);
+    }
+    if(param=="semester"){
+      this.searchBySemester(search);
+    }
+    if(param=="espb"){
+      this.searchByEspb(search);
+    }
+  }
+  else{
+   
+    
+  }
+ 
+ 
+ }
+
+ searchByName(search){
+  this.courseService.findByName(search)
+    .subscribe(data=>{
+        this.courses =data;
+         console.log(data)
+       })
+ }
+
+ searchBySemester(search){
+  this.courseService.findBySemester(search)
+  .subscribe(data=>{
+      this.courses =data;
+       console.log(data)
+     })
+ }
+
+ searchByEspb(search){
+  this.courseService.findByEspb(search)
+  .subscribe(data=>{
+      this.courses =data;
+       console.log(data)
+     })
+ }
 }

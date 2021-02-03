@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/model/course.model';
 import { ExamPeriod } from 'src/app/model/exam-period.model';
@@ -6,6 +6,7 @@ import { ExamTaking } from 'src/app/model/exam-taking.model';
 import { Exam } from 'src/app/model/exam.model';
 import { ExamService } from 'src/app/services/exam.service';
 import { ExamTakingService } from 'src/app/services/exam-taking.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exam-view',
@@ -22,7 +23,9 @@ export class ExamViewComponent implements OnInit {
   tabIndex = 0;
   constructor(private examService : ExamService,
               private examTakingService : ExamTakingService,
-              private route : ActivatedRoute) { }
+              private route : ActivatedRoute,
+              private toastr : ToastrService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.getExam(this.route.snapshot.paramMap.get('id'));
@@ -37,6 +40,8 @@ export class ExamViewComponent implements OnInit {
           this.getExamTakings(data.id);
         },
         error => {
+          this.toastr.error("The course for this exam not found!", "Error!")
+          this.router.navigate(['exams']);
           console.log(error)
         }
       )

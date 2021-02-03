@@ -1,8 +1,25 @@
 <h4><small>Exams</small> <span>&nbsp;&nbsp;&nbsp;</span>
-    <a *ngIf="this.authService.userRole()!='student'" (click)="openModal('createExam')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add course">
+    <a *ngIf="this.authService.userRole()!='student'" (click)="openModal('createExam')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add exam">
     <i class="material-icons">add</i>
-    </a></h4>
-<div class="table-responsive">
+    </a>
+    <div class="input-group input-group-sm mb-3" style="width: 750px;">
+        <div class="input-group-prepend">
+        <select class="custom-select"  #param >
+            <option hidden>Search by</option>
+             <option value="examperiod">EXAM PERIOD</option>
+             <option value="course">COURSE</option>
+          </select>
+  </div>
+        <input type="text"  placeholder="Search..." #search  id="inputGroup-sizing-sm"
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <div class="input-group-append" id="btn">
+            <a   (click)="retrieveExams(search.value, param.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
+                search
+                </span></a>
+          </div>
+        
+        </div>  </h4>
+<div class="table-responsive" id="tableScroll">
         <table class="table">
             <thead>
                 <tr>
@@ -50,7 +67,7 @@
                   
                     <div class="input-group">
                         <label>Select course: &nbsp;</label>
-                        <select class="custom-select" formControlName="course" #c id="inputGroupSelect05"
+                        <select class="custom-select" formControlName="course" #c id="inputGroupSelect07"
                         [ngClass]="{ 'is-invalid': submitted && f.course.errors }">
                             <option [ngValue]="c"  *ngFor="let c of courses">{{c.name}}</option>
                         </select>

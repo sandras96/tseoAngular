@@ -119,4 +119,11 @@ export class CourseExamsComponent implements OnInit {
     this.examForm.reset();
     this.submitted = false;
 }
+
+retrieveExams(search){
+  this.examService.findByExamPeriodAndCourseId(search, this.course.id)
+    .subscribe(data=>{
+      this.exams = data;
+    })
+}
 }

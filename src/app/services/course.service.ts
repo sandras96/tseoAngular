@@ -44,6 +44,12 @@ export class CourseService {
   findByName(name): Observable<any> {
     return this.http.get(`${this.baseUrl}/searchByName/${name}`);
   }
+  findBySemester(semester): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchBySemester/${semester}`);
+  }
+  findByEspb(espb): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByEspb/${espb}`);
+  }
 
   getStudents(course_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/student/course/${course_id}`);
@@ -56,6 +62,8 @@ export class CourseService {
   getByStudentId(student_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/student/${student_id}`);
   }
+
+
   
 }
 

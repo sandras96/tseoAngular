@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Student } from 'src/app/model/student.model';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-student-list',
@@ -14,7 +15,7 @@ export class StudentListComponent implements OnInit {
   HighlightRow : any;  
   ClickedRow:any; 
   
-  constructor() {
+  constructor(private studentService : StudentService) {
       this.ClickedRow = function(index){  
       this.HighlightRow = index;  
    }  
@@ -22,13 +23,7 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit(): void {
   }
- toggleWithGreeting(tooltip, greeting: string) {
-    if (tooltip.isOpen()) {
-      tooltip.close();
-    } else {
-      tooltip.open({greeting});
-    }
-  }
+ 
    selectStudent(student: Student){
      this.studentSelected.emit(student);
    }
@@ -36,5 +31,44 @@ export class StudentListComponent implements OnInit {
   removeStudent(student){
 
   }
+
+  retrieveStudents(search, param){
+    console.log("serach je ", search , "a param by je ", param)
+    if(search!=""){
+      if(param=="firstname"){
+        this.searchByFirstname(search);
+      }
+      if(param=="lastname"){
+        this.searchByLastname(search);
+      }
+      if(param=="indexnumber"){
+        this.searchByIndexnumber(search);
+      }
+    }
+   }
+  
+   searchByFirstname(search){
+    this.studentService.findByFirstname(search)
+      .subscribe(data=>{
+          this.students =data;
+           console.log(data)
+         })
+   }
+  
+   searchByLastname(search){
+    this.studentService.findByLastname(search)
+    .subscribe(data=>{
+        this.students =data;
+         console.log(data)
+       })
+   }
+  
+   searchByIndexnumber(search){
+    this.studentService.findByIndexnumber(search)
+    .subscribe(data=>{
+        this.students =data;
+         console.log(data)
+       })
+   }
 
 }

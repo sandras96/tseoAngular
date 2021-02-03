@@ -17,7 +17,7 @@
         <tbody>
            <tr *ngFor="let et of examTakings">
              
-                <td  *ngIf="this.authService.userRole()=='admin'"class="text-center"><i class="fa fa-book"></i><a routerLink="/exam-view/{{ et.exam.id }}">{{et.exam.course.name}}</a></td>
+                <td  *ngIf="this.authService.userRole()=='admin'"class="text-center"><i class="fa fa-book"></i><a routerLink="/exams/{{ et.exam.id }}">{{et.exam.course.name}}</a></td>
                 <td *ngIf="this.authService.userRole()=='admin'" class="text-center"><a routerLink="/examperiods/{{ et.exam.examPeriod.id }}">{{et.exam.examPeriod.name}}</a></td> <!--dodati router link ka ispitnom roku-->
               
               

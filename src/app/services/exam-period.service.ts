@@ -27,4 +27,7 @@ export class ExamPeriodService {
   create(examPeriod : ExamPeriod): Observable<any>{
     return this.http.post(`${this.baseUrl}`, examPeriod);
   }
+  findByName(name): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByName/${name}`);
+  }
 }

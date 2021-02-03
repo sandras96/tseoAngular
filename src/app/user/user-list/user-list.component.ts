@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
   HighlightRow : any;  
   ClickedRow:any; 
   
-  constructor() {
+  constructor(private userService : UserService) {
     this.ClickedRow = function(index){  
       this.HighlightRow = index;  
   }  
@@ -42,7 +42,12 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  
+  retrieveUsers(search){
+    this.userService.findByAuthority(search)
+      .subscribe(data=>{
+        this.users = data;
+      })
+  }
     
   }
   

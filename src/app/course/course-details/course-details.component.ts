@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Course } from 'src/app/model/course.model';
 import { Student } from 'src/app/model/student.model';
@@ -19,7 +20,8 @@ export class CourseDetailsComponent implements OnInit {
   
   constructor(private route: ActivatedRoute,
     private router : Router,
-    private courseService : CourseService) { }
+    private courseService : CourseService,
+    private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.course = new Course();
@@ -38,6 +40,7 @@ export class CourseDetailsComponent implements OnInit {
             console.log(data);
           },
           error => {
+            this.toastr.error("The course not found!", "Error!")
             console.log(error);
           });
     }

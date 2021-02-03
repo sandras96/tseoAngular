@@ -1,3 +1,5 @@
+import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,7 +15,10 @@ import { ModalService } from 'src/app/_modal';
 })
 export class StudentProfileComponent implements OnInit {
 
+  changeForm : FormGroup;
+  submitted = false;
   closeResult: string;
+ 
   @Input() student : Student;
 
   constructor(private studentService : StudentService,
@@ -23,8 +28,66 @@ export class StudentProfileComponent implements OnInit {
               private modalService: ModalService) { }
 
   ngOnInit(): void {
+  
+    this.changeForm = new FormGroup({
+      oldpassword: new FormControl('', Validators.required),
+      newpassword: new FormControl('', Validators.required),
+      cnewpassword: new FormControl('', Validators.required),
+    })
   }
 
+ 
+  get f() { return this.changeForm.controls; }
+
+  onSubmitChangePass(){
+    this.submitted = true;
+
+    if (this.changeForm.invalid) {
+        return false;
+    }
+       this.changePassword()
+   
+  }
+
+  changePassword() : void{
+    console.log("value forme je ", this.changeForm.value)
+   
+    if(this.changeForm.value.newpassword === this.changeForm.value.cnewpassword){
+
+      this.authService.changePassword(this.changeForm.value.oldpassword,this.changeForm.value.newpassword)
+        .subscribe(data => {
+          console.log(data)
+        },(err:Error) => {
+          if(err.toString()==='Unauthorized'){
+          
+            console.log("Greska.");
+            
+            this.toastr.error('Bad credentials!','Error');
+            console.log(err);
+          } 
+          else if(err.toString()==="OK"){
+            this.closeModal('changePasswordModal');
+            this.toastr.success("Password was changed successfully!", "Success!")
+          }
+          else{
+        
+            this.toastr.error('Change password unsuccessful!','Error!');
+          }
+         
+        }
+        );
+     
+      
+      }else{
+        this.toastr.error("Passwords don't match!", "Error!") 
+
+      }
+          
+        
+          
+        
+    
+  }
   updateStudent() : void {
     this.studentService.update(this.student.id, this.student)
       .subscribe(
@@ -62,5 +125,6 @@ export class StudentProfileComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+    this.changeForm.reset();
 }
 }

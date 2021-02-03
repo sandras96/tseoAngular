@@ -40,5 +40,7 @@ export class UserService {
   getAuthoritiesByUser(user_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/authorities/${user_id}`);
   }
-  
+  findByAuthority(name): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByAuthority/${name}`);
+  }
 }

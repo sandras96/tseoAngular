@@ -1,11 +1,25 @@
 <div id="enrollDiv">
+  
     <div>
         <div class="input-group">
-           
-            <div>
-              <button class="btn btn-outline-secondary" type="button" (click)="openModal('createExamModal')">+</button>
-            </div>
+          <div>
+             
+            <button id="btn" class="btn btn-outline-secondary btn-sm" type="button" (click)="openModal('createExamModal')">+</button>
           </div>
+            
+            <div class="input-group input-group-sm mb-3">
+              <input type="text"  placeholder="Search by Exam period" #search  id="inputGroup-sizing-sm"
+              class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              <div class="input-group-append" id="btn">
+                  <a   (click)="retrieveExams(search.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
+                      search
+                      </span></a>
+                </div>
+              
+              </div>
+             
+          </div>
+          
         </div>
     <div id="unit">
             <div class="table-responsive">
@@ -14,22 +28,22 @@
                     <tr>
                      
                         
-                        <th>Assignment</th>
-                        <th>Date</th>
-                        <th>Points</th> 
-                        <th>Exam period</th>
-                        <th>Actions</th> 
+                        <th class="text-left">Assignment</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Points</th> 
+                        <th class="text-center">Exam period</th>
+                        <th class="text-right">Actions</th> 
                     </tr>
                 </thead>
                 <tbody>
              
                     <tr  *ngFor="let exam of exams">
                         <!-- <td class="text-center">{{ca.id}}</td> -->
-                        <th><a routerLink="/exams/{{ exam.id }}">{{exam.assignment}}</a></th>
-                        <td>{{exam.date | date}}</td>
-                        <td>{{exam.points}}</td>
-                        <td>{{exam.examPeriod.name}}</td>
-                        <td><a type="button" rel="tooltip" 
+                        <th class="text-left" id="a"><a  routerLink="/exams/{{ exam.id }}" data-original-title="" title="view exam">{{exam.assignment}}</a></th>
+                        <td class="text-center"> {{exam.date | date}}</td>
+                        <td class="text-center">{{exam.points}}</td>
+                        <td class="text-center"><a  routerLink="/examperiods/{{ exam.examPeriod.id }}" data-original-title="" title="view exam period">{{exam.examPeriod.name}}</a></td>
+                        <td class="text-right"><a type="button" rel="tooltip" 
                             class="btn btn-danger btn-sm" data-original-title="" (click)="removeExam(exam)"title="remove exam">
                             <i class="material-icons">close</i>
                         </a></td>

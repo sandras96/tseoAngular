@@ -59,7 +59,7 @@ export class ExamTakingComponent implements OnInit {
   get f() { return this.addForm.controls; }
 
   onSubmit(){
-    console.log("jebem ti sve", this.addForm.value)
+   
      this.submitted = true;
 
     if (this.addForm.invalid) {

@@ -32,7 +32,7 @@ export class StudentCreateComponent implements OnInit {
       zip: new FormControl('', Validators.required),
       indexNum : new FormControl('', Validators.required),
       user : new FormGroup({
-          username : new FormControl('', Validators.required),
+          username : new FormControl('', [Validators.required]),
           password :new FormControl('', Validators.required),
           authorities : new FormArray([
               new FormGroup({

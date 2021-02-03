@@ -1,6 +1,6 @@
 import { CourseService } from 'src/app/services/course.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/model/course.model';
 import { CourseAttendance } from 'src/app/model/course-attendance.model';
 import { CourseAttendanceService } from 'src/app/services/course-attendance.service';
@@ -9,6 +9,7 @@ import { Professor } from 'src/app/model/professor.model';
 import { Exam } from 'src/app/model/exam.model';
 import { switchMap } from 'rxjs/operators';
 import { Student } from 'src/app/model/student.model';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -30,7 +31,9 @@ export class CourseViewComponent implements OnInit {
   constructor(private courseService : CourseService,
               private courseAttendancesService : CourseAttendanceService,
               private professorService : ProfessorService,
-              private route : ActivatedRoute) { }
+              private route : ActivatedRoute,
+              private toastr : ToastrService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.getCourse(this.route.snapshot.paramMap.get('id'));
@@ -47,6 +50,8 @@ export class CourseViewComponent implements OnInit {
           this.getExams(data.id);
         },
         error => {
+          this.toastr.error("The course not found!","Error!")
+          this.router.navigate(['courses']);
           console.log(error)
         }
       )

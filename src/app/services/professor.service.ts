@@ -34,8 +34,8 @@ export class ProfessorService {
     return this.http.delete(`${this.baseUrl}/${professor_id}`);
   }
 
-  getAllByCourseId(professor_id : number) : Observable<any>{
-    return this.http.get(`${this.baseUrl}/course/${professor_id}`);
+  getAllByCourseId(course_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/course/${course_id}`);
   }
 
   getAllCoursesByProfId(professor_id :number) : Observable<any>{
@@ -50,5 +50,15 @@ export class ProfessorService {
   }
   removeCourseProfessor(professor_id : number, course_id) : Observable<any>{
     return this.http.delete(`${this.baseUrl}/profcourse/${professor_id}/${course_id}`);
+  }
+
+  findByFirstname(firstname): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByFirstname/${firstname}`);
+  }
+  findByLastname(lastname): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByLastname/${lastname}`);
+  }
+  findByRole(role): Observable<any> {
+    return this.http.get(`${this.baseUrl}/searchByRole/${role}`);
   }
 }

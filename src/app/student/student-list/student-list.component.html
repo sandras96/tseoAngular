@@ -1,8 +1,26 @@
 <div class="tableStudents">
 <h4><small>Students</small> <span>&nbsp;&nbsp;&nbsp;</span>
     <a type="button" rel="tooltip" routerLink="/user-create" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create user">
-        <i class="material-icons">add</i></a></h4>
-<div class="table-responsive">
+        <i class="material-icons">add</i></a> 
+        <div class="input-group input-group-sm mb-3" style="width: 680px;">
+            <div class="input-group-prepend">
+            <select class="custom-select"  #param >
+                <option hidden>Search by</option>
+                 <option value="firstname">FIRSTNAME</option>
+                 <option value="lastname">LASTNAME</option>
+                 <option value="indexnumber">INDEX NUMBER</option>
+              </select>
+      </div>
+            <input type="text"  placeholder="Search..." #search  id="inputGroup-sizing-sm"
+            class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            <div class="input-group-append" id="btn">
+                <a   (click)="retrieveStudents(search.value, param.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
+                    search
+                    </span></a>
+              </div>
+            
+            </div>    </h4>
+<div class="table-responsive" id="tableScroll">
         <table class="table">
             <thead>
                 <tr>

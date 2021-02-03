@@ -1,7 +1,17 @@
 <h4><small>Users</small> <span>&nbsp;&nbsp;&nbsp;</span>
     <a type="button" rel="tooltip" routerLink="/user-create" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create user">
-        <i class="material-icons">add</i></a></h4>
-<div class="table table-hover table-sm">
+        <i class="material-icons">add</i></a>
+        <div class="input-group input-group-sm mb-3">
+            <input type="text"  placeholder="Search by role" #search  id="inputGroup-sizing-sm"
+            class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            <div class="input-group-append" id="btn">
+                <a (click)="retrieveUsers(search.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
+                    search
+                    </span></a>
+              </div>
+            
+            </div></h4>
+<div class="table table-hover table-sm" id="tableScroll">
         <table class="table">
             <thead>
                 <tr>

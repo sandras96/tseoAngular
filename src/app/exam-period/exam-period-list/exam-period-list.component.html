@@ -2,8 +2,17 @@
 <h4><small>Exam Periods</small> <span>&nbsp;&nbsp;&nbsp;</span>
     <a  *ngIf="this.authService.userRole()=='admin'" (click)="openModal('createEPModal')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add exam period">
     <i class="material-icons">add</i>
-    </a></h4>
-<div class="table-responsive">
+    </a> <div class="input-group input-group-sm mb-3" style="width: 750px;">
+        <input type="text"  placeholder="Search by name" #search  id="inputGroup-sizing-sm"
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <div class="input-group-append" id="btn">
+            <a   (click)="retrieveExams(search.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
+                search
+                </span></a>
+          </div>
+        
+        </div></h4>
+<div class="table-responsive" id="tableScroll">
         <table class="table">
             <thead>
                 <tr>
@@ -21,7 +30,7 @@
                     <td>{{ep.startDate  | date}}</td>
                     <td>{{ep.endDate  | date}}</td> 
                     <td *ngIf="this.authService.userRole()=='admin'" class="text-right"> 
-                        <a routerLink="/examperiods/{{ ep.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
+                        <a routerLink="/examperiods/{{ ep.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
                             <i class="material-icons">preview</i>
                         </a> 
                         <a type="button" rel="tooltip" (click)="deleteExamP(ep)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete exam period">
