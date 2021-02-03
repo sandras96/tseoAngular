@@ -16,7 +16,7 @@ import { throwError } from 'rxjs';
 })
 export class ExamPeriodListComponent implements OnInit {
   
- 
+  submitted = false;
   addForm : FormGroup;
   @Input() examPeriods : ExamPeriod[];
   @Output() createExamPeriod = new EventEmitter<ExamPeriod[]>();
@@ -36,7 +36,16 @@ export class ExamPeriodListComponent implements OnInit {
     })
 
   }
+  get f() { return this.addForm.controls; }
 
+  onSubmit(){
+    this.submitted = true;
+
+   if (this.addForm.invalid) {
+       return false;
+   }
+      this.addExamPeriod()
+ }
   addExamPeriod(){
     console.log("forma za exam period je ", this.addForm.value)
     this.examPeriodService.create(this.addForm.value)
@@ -68,6 +77,7 @@ export class ExamPeriodListComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+    this.addForm.reset();
 }
 
 retrieveExams(search){

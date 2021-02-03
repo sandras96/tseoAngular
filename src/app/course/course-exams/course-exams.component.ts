@@ -17,15 +17,14 @@ export class CourseExamsComponent implements OnInit {
 
   examForm : FormGroup;
   submitted = false;
+  examPeriods : ExamPeriod[];
   date;
   @Input() exams : Exam[];
   @Input() course : Course;
 
   @Output() addExam = new EventEmitter<Exam[]>();
   @Output() deleteExam = new EventEmitter<Exam[]>();
-  examPeriods : ExamPeriod[];
-
-
+ 
   constructor(private examService : ExamService,
               private examPeriodService : ExamPeriodService,
               private toastr : ToastrService,
@@ -37,13 +36,7 @@ export class CourseExamsComponent implements OnInit {
   ngOnInit(): void {
     this.date = new Date().toISOString().slice(0, 10);
      this.examForm = new FormGroup({
-      course : new FormControl(this.course)
-          // id : new FormControl(this.course.id),
-          // name : new FormControl(this.course.name),
-          // espb : new FormControl(this.course.espb),
-          // semester : new FormControl(this.course.semester),
-          // deleted : new FormControl(false)
-     ,
+      course : new FormControl(this.course),
        date : new FormControl('', Validators.required),
        assignment: new FormControl('', Validators.required),
        points : new FormControl('', Validators.required),
@@ -85,23 +78,13 @@ export class CourseExamsComponent implements OnInit {
       console.log(error)
     })
    
-    // console.log("Exam za kreiranje je", this.exam, "Kurs id je ", this.course.id, "Exam id je ", epId)
-    // this.examService.create(this.exam, this.course.id, epId)
-    //   .subscribe( data =>{
-    //     this.exam = data;
-    //     this.addExam.emit(data);
-    //     this.toastr.success("The exam was created susccessfully!", "Success!");
-    //     this.closeModal('createExamModal');
-    //   }, error =>{
-    //     console.log(error)
-    //   })
   }
 
   removeExam(exam){
     this.examService.delete(exam.id)
       .subscribe(data=>{
         this.deleteExam.emit(exam);
-
+        this.toastr.success("Exam was successfully deleted!","Success!")
 
       }, error=>{
         console.log(error)

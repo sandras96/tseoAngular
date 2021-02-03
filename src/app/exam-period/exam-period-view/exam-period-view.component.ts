@@ -12,6 +12,7 @@ import { ExamService } from 'src/app/services/exam.service';
 })
 export class ExamPeriodViewComponent implements OnInit {
 
+  tabIndex = 0;
   examPeriod : ExamPeriod;
   exams : Exam[];
 
@@ -48,5 +49,16 @@ export class ExamPeriodViewComponent implements OnInit {
         }
       )
   }
+  onTabClick(index){
+    this.tabIndex = index;
+  }
 
+  createExam(exam : Exam){
+    console.log("exam pushovan je ", exam)
+    this.exams.push(exam);
+  }
+
+  deleteExam(exam:Exam){
+    this.exams = this.exams.filter(e => e!==exam);
+  }
 }
