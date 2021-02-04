@@ -110,18 +110,19 @@
               </div>
         </div>
 
-        <div class="form-row" *ngIf="professor.user">
-            <div class="col-md-6 mb-2 form-group">
-            <label for="validationDefaultUsername">Username</label>
-              <input type="text" [(ngModel)]="professor.user.username" #username="ngModel" class="form-control" name="username"
-               id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" 
-               [ngClass]="{ 'is-invalid': f2.submitted && username.errors }" required>
-               <div *ngIf="f2.submitted && username.invalid" class="invalid-feedback">
-                <div *ngIf="username.errors.required">Username is required</div>
-            </div>
-            
-        </div>
+        <div  *ngIf="this.authService.userRole()=='admin'">
+          <div class="form-row" *ngIf="professor.user">
               <div class="col-md-6 mb-2 form-group">
+              <label for="validationDefaultUsername">Username</label>
+                <input type="text" [(ngModel)]="professor.user.username" #username="ngModel" class="form-control" name="username"
+                 id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" 
+                 [ngClass]="{ 'is-invalid': f2.submitted && username.errors }" required>
+                 <div *ngIf="f2.submitted && username.invalid" class="invalid-feedback">
+                  <div *ngIf="username.errors.required">Username is required</div>
+              </div>
+              
+          </div>
+              <!-- <div class="col-md-6 mb-2 form-group">
                 <label for="password">Password</label>
                 <input type="password" [(ngModel)] = "professor.user.password" #password="ngModel"
                 class="form-control" id="password" placeholder="*********" name="password"
@@ -129,9 +130,23 @@
                 <div *ngIf="f2.submitted && password.invalid" class="invalid-feedback">
                   <div *ngIf="password.errors.required">Password is required</div>
               </div>
+              </div> -->
               </div>
         </div>
-       
+        <div *ngIf="this.authService.userRole()=='professor'" style="padding-top: 20px;">
+          <div class="form-row" *ngIf="professor.user">
+              <div class="col-md-6 mb-2 form-group">
+              <label for="validationDefaultUsername">Username: {{professor.user.username}}</label>   
+          </div>
+                <div class="col-md-6 mb-2 form-group">
+                  <div class="col-md-6 mb-2 form-group"  >
+                    <a type="button" (click)="openModal('changePasswordModal')" id="a" >Change password?</a>
+                 
+                  </div>
+                </div>
+               
+          </div>
+        </div>
         <div class="padding-top-x5">
             <div class="padding-top-x5">
                 <div class="row">
@@ -139,10 +154,11 @@
                       <button type="submit" rel="tooltip"
                           class="btn btn-success btn-sm" data-original-title="" title="update professor">Update</button>
                       </div>
-                      <div class="col-md-6 mb-2 form-group text-right" *ngIf="this.authService.userRole()=='admin'">
-                        <a type="button" rel="tooltip" (click)="deleteProfessor()"
-                      class="btn btn-danger btn-sm" data-original-title="" title="delete professor">Delete</a>
-                    </div>
+                      <div *ngIf="this.authService.userRole()=='admin'" 
+                      class="col-md-6 mb-2 form-group text-right">
+                  <a type="button" rel="tooltip" (click)="openModal('deleteModal')"
+                class="btn btn-danger btn-sm" data-original-title="" title="delete professor">Delete</a>
+              </div>
                   </div>
             </div>
             
@@ -152,4 +168,76 @@
       
 
     
-     
+       
+                   
+    <jw-modal id="changePasswordModal">
+      <div class="col-md-4 offset-md-4">
+      <div class="card card-outline-secondary">
+        <div class="card-body">
+            <h4 class="text-center">Change Password</h4>
+        <div class="card card-body">
+    <form [formGroup]="changeForm" (ngSubmit)="onSubmitChangePass()" *ngIf="this.authService.userRole()=='professor'">
+          <div class="form-group">
+            <label for="oldpassword">Old password:</label>
+            <input formControlName="oldpassword" name="oldpassword" type="password" class="form-control" placeholder="Old password..." 
+            [ngClass]="{ 'is-invalid': submitted && f.oldpassword.errors }">
+            <div *ngIf="submitted && f.oldpassword.errors" class="invalid-feedback">
+              <div *ngIf="f.oldpassword.errors.required">Old password is required</div>
+          </div>
+          </div>
+      
+          <div class="form-group">
+            <label for="newpassword">New password:</label>
+            <input formControlName="newpassword" name="newpassword" type="password" class="form-control" placeholder="New password..." 
+            [ngClass]="{ 'is-invalid': submitted && f.newpassword.errors }">
+            <div *ngIf="submitted && f.newpassword.errors" class="invalid-feedback">
+              <div *ngIf="f.newpassword.errors.required">New password is required</div>
+          </div>
+          </div>
+      
+          <div class="form-group">
+            <label for="cnewpassword">Confirm new password:</label>
+            <input formControlName="cnewpassword" name="cnewpassword" type="password" class="form-control" placeholder="Confirm new password..."
+            [ngClass]="{ 'is-invalid': submitted && f.cnewpassword.errors }">
+            <div *ngIf="submitted && f.cnewpassword.errors" class="invalid-feedback">
+              <div *ngIf="f.cnewpassword.errors.required">Confirm new password is required</div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-2 form-group">
+              <button type="submit" rel="tooltip" 
+                  class="btn btn-success btn-sm" data-original-title="" title="change password">Change</button>
+              </div>
+              <div class="col-md-6 mb-2 form-group text-right">
+                <a type="button" rel="tooltip" (click)="closeModal('changePasswordModal')"
+              class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+            </div>
+          </div>
+  </form>
+        </div>
+      </div>  
+      </div>
+    </div>
+     </jw-modal>
+
+     <jw-modal id="deleteModal">
+      <div class="col-md-4 offset-md-4">
+      <div class="card card-outline-secondary" *ngIf="professor">
+        <div class="card-body">
+            <h4 class="text-center">Are you sure you want to delete {{professor.firstname}}&nbsp;{{professor.lastname}}?</h4>
+        <div class="card card-body">
+          <div class="row">
+              <div class="col-md-6 mb-2 form-group">
+                <button type="submit" rel="tooltip" 
+                    class="btn btn-danger btn-sm" data-original-title="" (click)="deleteProfessor()" title="delete">Delete</button>
+                </div>
+                <div class="col-md-6 mb-2 form-group text-right">
+                  <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+                class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+              </div>
+            </div>
+        </div>
+      </div>  
+      </div>
+    </div>
+  </jw-modal>

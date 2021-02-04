@@ -4,7 +4,7 @@
         <div class="input-group">
           <div>
              
-            <button id="btn" class="btn btn-outline-secondary btn-sm" type="button" (click)="openModal('createExamModal')">+</button>
+            <button id="btn" class="btn btn-outline-secondary btn-sm" type="button" (click)="openModalCreate('createExamModal')">+</button>
           </div>
             
             <div class="input-group input-group-sm mb-3">
@@ -44,7 +44,7 @@
                         <td class="text-center">{{exam.points}}</td>
                         <td class="text-center"><a  routerLink="/examperiods/{{ exam.examPeriod.id }}" data-original-title="" title="view exam period">{{exam.examPeriod.name}}</a></td>
                         <td class="text-right"><a type="button" rel="tooltip" 
-                            class="btn btn-danger btn-sm" data-original-title="" (click)="removeExam(exam)"title="remove exam">
+                            class="btn btn-danger btn-sm" data-original-title=""  (click)="openModalDelete('deleteModal', exam)"title="remove exam">
                             <i class="material-icons">close</i>
                         </a></td>
                     </tr>
@@ -126,4 +126,24 @@
 </div>
 </jw-modal>
 
-        
+<jw-modal id="deleteModal">
+  <div class="col-md-4 offset-md-4">
+  <div class="card card-outline-secondary" *ngIf="examforDelete">
+    <div class="card-body">
+        <h4 class="text-center">Are you sure you want to delete this exam?</h4>
+    <div class="card card-body">
+      <div class="row">
+          <div class="col-md-6 mb-2 form-group">
+            <button type="submit" rel="tooltip" 
+                class="btn btn-danger btn-sm" data-original-title="" (click)="removeExam(examforDelete)" title="delete">Delete</button>
+            </div>
+            <div class="col-md-6 mb-2 form-group text-right">
+              <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+            class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+          </div>
+        </div>
+    </div>
+  </div>  
+  </div>
+</div>
+</jw-modal>

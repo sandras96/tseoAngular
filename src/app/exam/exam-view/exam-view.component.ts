@@ -40,7 +40,7 @@ export class ExamViewComponent implements OnInit {
           this.getExamTakings(data.id);
         },
         error => {
-          this.toastr.error("The course for this exam not found!", "Error!")
+          this.toastr.error("The exam not found!", "Error!")
           this.router.navigate(['exams']);
           console.log(error)
         }

@@ -60,6 +60,7 @@ export class ProfessorCreateComponent implements OnInit {
         this.router.navigate(['/professors',data.id])
         console.log(data)
       }, error=>{
+        this.toastr.error("Error, username already taken!", "Error!");
         console.log(error)
       })
   }

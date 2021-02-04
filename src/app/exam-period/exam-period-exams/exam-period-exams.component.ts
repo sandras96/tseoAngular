@@ -16,7 +16,7 @@ import { Course } from 'src/app/model/course.model';
 })
 export class ExamPeriodExamsComponent implements OnInit {
 
-
+  examforDelete : Exam;
   examForm : FormGroup;
   submitted = false;
   courses : Course[];
@@ -83,7 +83,7 @@ export class ExamPeriodExamsComponent implements OnInit {
       .subscribe(data=>{
         this.deleteExam.emit(exam);
         this.toastr.success("Exam was successfully deleted!","Success!")
-
+        this.closeModal('deleteModal')
       }, error=>{
         console.log(error)
       })
@@ -105,5 +105,14 @@ export class ExamPeriodExamsComponent implements OnInit {
       .subscribe(data=>{
         this.exams = data;
       })
+  }
+
+  openModalDelete(id: string, exam) {
+    this.modalService.open(id);
+    this.examforDelete = exam;
+  }
+  
+  closeModalDelete(id: string) {
+    this.modalService.close(id);
   }
 }

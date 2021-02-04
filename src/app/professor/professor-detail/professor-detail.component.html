@@ -7,15 +7,11 @@
     <p class="card-text text-muted">email: {{professor.email}} <br/>phone: {{professor.phone}} </p>
   
     <div class="card-footer bg-transparent border-info text-right row">
-      <div>
+      
         <a routerLink="/professors/{{professor.id}}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view more">
           <i class="material-icons">preview</i>
       </a> 
-      </div>
-      <div class="text-right col"><a type="button" rel="tooltip" 
-        class="btn btn-danger btn-sm" data-original-title="" title="delete professor" (click)="deleteProfessor(professor)">
-        <i class="material-icons">close</i>
-    </a></div>
+     
     </div>
    
   </div>

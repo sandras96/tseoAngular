@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/model/user.model';
-import { ProfessorService } from 'src/app/services/professor.service';
-import { StudentService } from 'src/app/services/student.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,7 +11,8 @@ export class UserListComponent implements OnInit {
 
   @Input() users : User[];
   @Output() userSelected  = new EventEmitter<User>();
-  
+ 
+
   HighlightRow : any;  
   ClickedRow:any; 
   
@@ -26,11 +24,12 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+ 
 
   selectUser(user : User){
     this.userSelected.emit(user);
   }
-  
+ 
   findRole(u) : string {
      if(u.authorities.find(e=> e.name =="PROFESSOR")){
       return "professor"      
@@ -48,7 +47,7 @@ export class UserListComponent implements OnInit {
         this.users = data;
       })
   }
-    
+  
   }
   
   

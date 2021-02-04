@@ -1,39 +1,12 @@
-<!-- <div class="card text-center col-md-8" *ngIf="user">
-    <div>
-      Admin profile
-    </div>
-    <div class="card-body">
-      
-        <div class="col-md-6  form-group">
-            <label for="validationDefault01">Username: </label>
-            <input type="text" class="form-control" name="firstname"
-            id="firstname" [(ngModel)]="user.username" id="validationDefault01" placeholder="First name"  required/>
-           
-          </div>
-          <div class="col-md-6 form-group">
-            <label for="validationDefault02">Role: </label>
-            <input type="text" class="form-control" name="lastname"
-            id="lastname" value="ADMIN" id="validationDefault02" placeholder="Last name" disabled>
-          </div>
-                 
-            </div>
-          </div> -->
-       
-
-
-<div class="container bootstrap snippet">
- 
+<div class="container bootstrap snippet" *ngIf="user">
   <div class="row">
     <div class="col-sm-3">
-            
-
     <div class="text-center">
       <img src="assets\img\admin.png" style="width:185px"  alt="avatar">
       <h6>ADMIN</h6>
     </div><br> 
     </div>
     <div class="col-sm-6  form-group">
-    
         <div class="tab-content" *ngIf="user">
           <div class="tab-pane active" id="home">
             <div *ngIf="this.currentUserId != user.id">
@@ -56,7 +29,7 @@
                               class="btn btn-success btn-sm" data-original-title="" title="update user">Update</button>
                           </div>
                           <div class="col-md-6 mb-2 form-group">
-                            <a  type="button" rel="tooltip" (click)="deleteUser()"
+                            <a  type="button" rel="tooltip" (click)="openModal('deleteModal')"
                           class="btn btn-danger btn-sm" data-original-title="" title="delete user">Delete</a>
                         </div>
                         
@@ -70,7 +43,7 @@
                     </div>
                       
                       <div class="col-sm-8 form-group" id="username">
-                        <form class="form" (ngSubmit)="f3.form.valid && updateUser()" #f3="ngForm">
+                        <!-- <form class="form" (ngSubmit)="f3.form.valid && updateUser()" #f3="ngForm">
                         <label for="password"><h5>Password</h5></label>
                         <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" 
                         [ngClass]="{ 'is-invalid': f3.submitted && password.errors }" required>
@@ -85,67 +58,20 @@
                          
                         
                       </div>
-                   </form>
+                   </form> -->
                       </div>
                   
                   </div>
-                  <div *ngIf="this.currentUserId != user.id">
-                        <div class="col-sm-10  form-group">
-                          <p style="margin-left: 18px;"> 
-                            <!-- <a  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                              Change Password? 
-                            </a> -->
-                            <a type="button" (click)="openModal('changePasswordModal')" id="a" >Change password?</a>
-                          </p>
-                          <!-- <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                        <form [formGroup]="changeForm" (ngSubmit)="onSubmitChangePass()">
-                              <div class="form-group">
-                                <label for="oldpassword">Old password:</label>
-                                <input formControlName="oldpassword" name="oldpassword" type="text" class="form-control" placeholder="Old password..." 
-                                [ngClass]="{ 'is-invalid': submitted && f.oldpassword.errors }">
-                                <div *ngIf="submitted && f.oldpassword.errors" class="invalid-feedback">
-                                  <div *ngIf="f.oldpassword.errors.required">Old password is required</div>
-                              </div>
-                              </div>
-                          
-                              <div class="form-group">
-                                <label for="newpassword">New password:</label>
-                                <input formControlName="newpassword" name="newpassword" type="text" class="form-control" placeholder="New password..." 
-                                [ngClass]="{ 'is-invalid': submitted && f.newpassword.errors }">
-                                <div *ngIf="submitted && f.newpassword.errors" class="invalid-feedback">
-                                  <div *ngIf="f.newpassword.errors.required">New password is required</div>
-                              </div>
-                              </div>
-                          
-                              <div class="form-group">
-                                <label for="cnewpassword">Confirm new password:</label>
-                                <input formControlName="cnewpassword" name="cnewpassword" type="text" class="form-control" placeholder="Confirm new password..."
-                                [ngClass]="{ 'is-invalid': submitted && f.cnewpassword.errors }">
-                                <div *ngIf="submitted && f.cnewpassword.errors" class="invalid-feedback">
-                                  <div *ngIf="f.cnewpassword.errors.required">Confirm new password is required</div>
-                              </div>
-                              </div>
-                              <button type="submit" class="btn btn-success">Change pass</button>
-            </form>
-                            </div>
-                          </div>  
-                        </div>  -->
-                     
-                   
-              
-            
-     
-            
-           </div>
-          </div>
-             
-         
-           
-        </div><!--/tab-content-->
-
-      </div><!--/col-9-->
-  </div><!--/row-->
+                  <div *ngIf="this.currentUserId == user.id">
+                      <div class="col-sm-10  form-group">
+                        <p style="margin-left: 18px;"> 
+                          <a type="button" (click)="openModal('changePasswordModal')" id="a" >Change password?</a>
+                        </p>  
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
           
 
   <jw-modal id="changePasswordModal">
@@ -154,10 +80,8 @@
       <div class="card-body">
           <h4 class="text-center">Change Password</h4>
 
- 
-    
       <div class="card card-body">
-  <form [formGroup]="changeForm" (ngSubmit)="onSubmitChangePass()">
+      <form [formGroup]="changeForm" (ngSubmit)="onSubmitChangePass()">
         <div class="form-group">
           <label for="oldpassword">Old password:</label>
           <input formControlName="oldpassword" name="oldpassword" type="password" class="form-control" placeholder="Old password..." 
@@ -194,9 +118,31 @@
             class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
           </div>
         </div>
-</form>
+  </form>
       </div>
     </div>  
     </div>
   </div>
    </jw-modal>
+
+   <jw-modal id="deleteModal">
+    <div class="col-md-4 offset-md-4">
+    <div class="card card-outline-secondary" *ngIf="user">
+      <div class="card-body">
+          <h4 class="text-center">Are you sure you want to delete {{user.username}}?</h4>
+      <div class="card card-body">
+        <div class="row">
+            <div class="col-md-6 mb-2 form-group">
+              <button type="submit" rel="tooltip" 
+                  class="btn btn-danger btn-sm" data-original-title="" (click)="deleteUser()" title="delete">Delete</button>
+              </div>
+              <div class="col-md-6 mb-2 form-group text-right">
+                <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+              class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+            </div>
+          </div>
+      </div>
+    </div>  
+    </div>
+  </div>
+</jw-modal>

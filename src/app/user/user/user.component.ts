@@ -44,6 +44,9 @@ export class UserComponent implements OnInit {
       )
   }
 
+removed(user : User){
+  this.users = this.users.filter(u=> u!== user);
+}
   
   selected(user : any){
     

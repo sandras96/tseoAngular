@@ -1,3 +1,4 @@
+import { ModalService } from './../_modal/modal.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
@@ -19,7 +20,7 @@ export class UploadFilesComponent implements OnInit {
   currentFile: File;
   progress = 0;
   message = '';
-
+  fileForDelete;
   studentId : any;
 
   fileInfos: Observable<FileList>;
@@ -28,7 +29,8 @@ export class UploadFilesComponent implements OnInit {
   constructor(private uploadService: UploadFileService,
               private route : ActivatedRoute,
               private toastr : ToastrService,
-              public authService : AuthService) { }
+              public authService : AuthService,
+              private modalService : ModalService) { }
 
   ngOnInit(): void {
     this.studentId = this.route.snapshot.paramMap.get('id');
@@ -74,8 +76,19 @@ export class UploadFilesComponent implements OnInit {
     this.uploadService.delete(doc.id)
       .subscribe( data=>{
           console.log("remove file")
+          this.closeModal('deleteModal');
         this.fileInfos = this.uploadService.getFiles(this.studentId);
         this.toastr.success("File " + doc.name + " was successfully deleted", "Success")
       })
   }
+
+  openDeleteModal(id: string, file){
+    console.log("file za brisanje", file)
+    this.modalService.open(id);
+    this.fileForDelete = file;
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+}
 }

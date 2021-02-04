@@ -19,6 +19,7 @@ export class CourseExamsComponent implements OnInit {
   submitted = false;
   examPeriods : ExamPeriod[];
   date;
+  examforDelete : Exam;
   @Input() exams : Exam[];
   @Input() course : Course;
 
@@ -68,6 +69,7 @@ export class CourseExamsComponent implements OnInit {
   
   createExam(){
    console.log("Forma za dodavanje exam-a je ", this.examForm.value)
+   this.examForm.value.course = this.course;
    this.examService.createExam(this.examForm.value)
     .subscribe(data=>{
       this.addExam.emit(data);
@@ -80,19 +82,20 @@ export class CourseExamsComponent implements OnInit {
    
   }
 
+  
   removeExam(exam){
     this.examService.delete(exam.id)
       .subscribe(data=>{
         this.deleteExam.emit(exam);
         this.toastr.success("Exam was successfully deleted!","Success!")
-
+        this.closeModalDelete('deleteModal');
       }, error=>{
         console.log(error)
       })
   }
   
 
-  openModal(id: string) {
+  openModalCreate(id: string) {
     this.modalService.open(id);
     this.getExamPeriods();
 }
@@ -108,5 +111,14 @@ retrieveExams(search){
     .subscribe(data=>{
       this.exams = data;
     })
+}
+
+openModalDelete(id: string, exam) {
+  this.modalService.open(id);
+  this.examforDelete = exam;
+}
+
+closeModalDelete(id: string) {
+  this.modalService.close(id);
 }
 }

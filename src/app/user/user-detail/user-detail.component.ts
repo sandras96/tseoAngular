@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Professor } from 'src/app/model/professor.model';
-import { Student } from 'src/app/model/student.model';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { ModalService } from 'src/app/_modal';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/model/user.model';
-import { StudentService } from 'src/app/services/student.service';
-import { UserComponent } from '../user/user.component';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,15 +13,14 @@ import { UserComponent } from '../user/user.component';
 })
 export class UserDetailComponent implements OnInit {
 
+  userForDelete : User;
+  currentUserId;
   @Input() user : User;
-
-  constructor(private studentService : StudentService) { }
+  
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  deleteUser(user){
-    
+  
   }
  
 

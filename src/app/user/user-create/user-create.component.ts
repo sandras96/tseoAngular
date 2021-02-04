@@ -50,10 +50,11 @@ onSubmit(){
     console.log("ADD form user je ", this.addForm.value)
      this.userService.create(this.addForm.value)
       .subscribe(data=>{
-        this.toastr.success('User '+data.username+ ' was successfully created.', "Success!")
+        this.toastr.success('User '+data.username+ ' was successfully created!', 'Success!')
          this.router.navigate(['/users/',data.id])
        console.log(data)
      }, error=>{
+        this.toastr.error("Error, username already taken!", "Error!");
        console.log(error)
      })
   }

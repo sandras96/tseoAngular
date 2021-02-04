@@ -16,7 +16,7 @@ export class StudentPaymentsComponent implements OnInit {
 
   addForm: FormGroup;
   submitted = false;
-
+  payForDelete : Payment;
   editPay : Payment;
   isShowDivIf = false;
   showEditPay= false;
@@ -39,7 +39,7 @@ export class StudentPaymentsComponent implements OnInit {
     accountNumber : ['', Validators.required],
     address: ['', Validators.required],
     amount : ['', Validators.required],
-    city : ['', [Validators.required,Validators.minLength(6)]],
+    city : ['', Validators.required],
     date : ['', Validators.required],
     model : ['', Validators.required],
     name : ['', Validators.required],
@@ -61,6 +61,7 @@ export class StudentPaymentsComponent implements OnInit {
        this.addPayment()
   }
   addPayment(){
+    this.addForm.value.student = this.student
     console.log("Form dabogsacuvaj drugi deo", this.addForm.value)
     this.paymentService.create(this.addForm.value)
       .subscribe(data=>{
@@ -77,6 +78,7 @@ export class StudentPaymentsComponent implements OnInit {
     this.paymentService.delete(p.id)
       .subscribe( data=>{
         this.deletePayment.emit(p);
+        this.closeDeleteModal('deleteModal');
         this.toastr.success("Payment " + p.purpose + " was successfully deleted", "Success")
       },
       error => {
@@ -155,5 +157,15 @@ getPayment(id){
     },error=>{
       console.log(error)
     })
+}
+
+openDeleteModal(id: string, payment){
+  console.log("pay za brisanje", payment)
+  this.modalService.open(id);
+  this.payForDelete = payment;
+}
+
+closeDeleteModal(id: string) {
+  this.modalService.close(id);
 }
 }

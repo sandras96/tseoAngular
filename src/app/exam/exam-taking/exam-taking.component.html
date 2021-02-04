@@ -2,7 +2,7 @@
     <div class="input-group" id="addBtn">
        
         <div>
-          <button class="btn btn-outline-secondary" type="button" (click)="openModal('createETModal')">+</button>
+          <button class="btn btn-outline-secondary" type="button" (click)="openModal('createETModal2')">+</button>
         </div>
       </div>
    
@@ -36,7 +36,7 @@
                             <button type="button" (click)="openModalEdit('editETModal',et.id)" class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="edit exam taking">
                                     <i class="material-icons">create</i>
                             </button> 
-                            <button type="button" rel="tooltip" (click)="removeExamTaking(et)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
+                            <button type="button" rel="tooltip" (click)="openDeleteModal('deleteModal', et)" class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="">
                                 <i class="material-icons">close</i>
                             </button>
                         </td> 
@@ -47,14 +47,19 @@
             </div>
             </div>
          
-            <jw-modal id="createETModal">
+            <jw-modal id="createETModal2">
 
                 <div class="col-md-6 offset-md-3">
-                    <div class="card card-outline-secondary">
+                    <div class="card card-outline-secondary" *ngIf="exam">
                         <div class="card-body">
-                            <h3 class="text-center">Create Examination</h3>
+                            <h3 class="text-center">Create Examination for this {{exam.assignment}}</h3>
                             
                             <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                              <div class="form-group">
+                                <ng-container formGroupName="exam">
+                               
+                              </ng-container>
+                              </div>
                                 <div class="input-group">
                                   <label>Select student:&nbsp;</label>
                                     <select class="custom-select" formControlName="student" #s id="inputGroupSelect04"
@@ -73,6 +78,8 @@
                                       <div *ngIf="f.mark.errors.required">Mark is required</div>
                                   </div>
                                   </div>
+                                  
+                                 
                                   
                                 
                                 <div class="form-group">
@@ -100,7 +107,7 @@
                                           class="btn btn-success btn-sm" data-original-title="" title="create exam taking">Create</button>
                                       </div>
                                       <div class="col-md-6 mb-2 form-group text-right">
-                                        <a type="button" rel="tooltip" (click)="closeModal('createETModal')"
+                                        <a type="button" rel="tooltip" (click)="closeModal('createETModal2')"
                                       class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
                                     </div>
                                   </div>
@@ -139,7 +146,7 @@
                                       
                                   
                                       <div class="form-group">
-                                        <label for="semester">Professor: {{editET.professor.firstname}}</label>
+                                        <label for="semester">Professor: {{editET.professor.firstname}}&nbsp;{{editET.professor.lastname}}&nbsp;{{editET.professor.role}}</label>
                                        <br/>
                                         <label>Change professor: </label>
                                         <select  class="form-control" #professor="ngModel" id="professor" [(ngModel)]="editET.professor" name="professor"
@@ -179,3 +186,25 @@
                     </div>
                     </jw-modal>
                 
+
+                    <jw-modal id="deleteModal">
+                      <div class="col-md-4 offset-md-4">
+                      <div class="card card-outline-secondary" *ngIf="etForDelete">
+                        <div class="card-body">
+                            <h4 class="text-center">Are you sure you want to delete this examination?</h4>
+                        <div class="card card-body">
+                          <div class="row">
+                              <div class="col-md-6 mb-2 form-group">
+                                <button type="submit" rel="tooltip" 
+                                    class="btn btn-danger btn-sm" data-original-title="" (click)="removeExamTaking(etForDelete)" title="delete">Delete</button>
+                                </div>
+                                <div class="col-md-6 mb-2 form-group text-right">
+                                  <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+                                class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                              </div>
+                            </div>
+                        </div>
+                      </div>  
+                      </div>
+                    </div>
+                  </jw-modal>

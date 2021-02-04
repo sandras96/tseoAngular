@@ -1,9 +1,10 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ExamPeriod } from 'src/app/model/exam-period.model';
 import { Exam } from 'src/app/model/exam.model';
 import { ExamPeriodService } from 'src/app/services/exam-period.service';
 import { ExamService } from 'src/app/services/exam.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exam-period-view',
@@ -18,7 +19,9 @@ export class ExamPeriodViewComponent implements OnInit {
 
   constructor(private examPeriodService : ExamPeriodService,
               private examService : ExamService,
-              private route : ActivatedRoute) { }
+              private route : ActivatedRoute,
+              private toastr: ToastrService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.getExamPeriod(this.route.snapshot.paramMap.get('id'));
@@ -33,6 +36,8 @@ export class ExamPeriodViewComponent implements OnInit {
           console.log(data)
         },
         error=>{
+          this.toastr.error("The Exam period not found!", "Error!");
+          this.router.navigate(['examperiods']);
           console.log(error)
         }
       )

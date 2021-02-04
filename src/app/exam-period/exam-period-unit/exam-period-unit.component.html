@@ -45,7 +45,7 @@
                 class="btn btn-success btn-sm" data-original-title="" title="update exam period">Update</button>
             </div>
             <div class="col-md-6 mb-2 form-group text-right">
-              <a type="button" rel="tooltip" (click)="deleteExamPeriod()"
+              <a type="button" rel="tooltip" (click)="openModal('deleteModal')" 
             class="btn btn-danger btn-sm" data-original-title="" title="delete exam period">Delete</a>
           </div>
         </div>
@@ -53,3 +53,25 @@
     </div>
     
     </div>
+
+    <jw-modal id="deleteModal">
+      <div class="col-md-4 offset-md-4">
+      <div class="card card-outline-secondary" *ngIf="examPeriod">
+        <div class="card-body">
+            <h4 class="text-center">Are you sure you want to delete {{examPeriod.name}}?</h4>
+        <div class="card card-body">
+          <div class="row">
+              <div class="col-md-6 mb-2 form-group">
+                <button type="submit" rel="tooltip" 
+                    class="btn btn-danger btn-sm" data-original-title="" (click)="deleteExamPeriod()" title="delete">Delete</button>
+                </div>
+                <div class="col-md-6 mb-2 form-group text-right">
+                  <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+                class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+              </div>
+            </div>
+        </div>
+      </div>  
+      </div>
+    </div>
+    </jw-modal>

@@ -17,8 +17,7 @@ export class StudentProfileComponent implements OnInit {
 
   changeForm : FormGroup;
   submitted = false;
-  closeResult: string;
- 
+
   @Input() student : Student;
 
   constructor(private studentService : StudentService,
@@ -39,6 +38,36 @@ export class StudentProfileComponent implements OnInit {
  
   get f() { return this.changeForm.controls; }
 
+ 
+  updateStudent() : void {
+    this.studentService.update(this.student.id, this.student)
+      .subscribe(
+        response => {
+          this.toastr.success("Student was successfully updated!", "Success")
+          console.log("Updated student", response)
+        },
+        error => {
+          
+          console.log(error)
+        }
+      )
+  }
+
+  deleteStudent() : void {
+    this.studentService.delete(this.student.id)
+      .subscribe(
+        response => {
+          this.toastr.success("This Student "+this.student.firstname + " " + this.student.lastname+" was deleted successfully!", "Success!");
+          this.router.navigate(['/students']);
+        },
+        error => {
+          this.toastr.error('Error!', 'Delete')
+          console.log(error)
+        }
+      )
+  }
+
+ 
   onSubmitChangePass(){
     this.submitted = true;
 
@@ -70,54 +99,14 @@ export class StudentProfileComponent implements OnInit {
             this.toastr.success("Password was changed successfully!", "Success!")
           }
           else{
-        
             this.toastr.error('Change password unsuccessful!','Error!');
           }
-         
-        }
-        );
-     
-      
+        });
       }else{
         this.toastr.error("Passwords don't match!", "Error!") 
 
       }
-          
-        
-          
-        
-    
   }
-  updateStudent() : void {
-    this.studentService.update(this.student.id, this.student)
-      .subscribe(
-        response => {
-          this.toastr.success("Student was successfully updated!", "Success")
-          console.log("Updated student", response)
-        },
-        error => {
-          
-          console.log(error)
-        }
-      )
-  }
-
-  deleteStudent() : void {
-    this.studentService.delete(this.student.id)
-      .subscribe(
-        response => {
-          this.toastr.success('This Student was deleted successfully!', 'Delete')
-          this.router.navigate(['/students']);
-        },
-        error => {
-          this.toastr.error('Error!', 'Delete')
-          console.log(error)
-        }
-      )
-  }
-
- 
-  
 
   openModal(id: string) {
     this.modalService.open(id);

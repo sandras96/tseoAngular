@@ -46,7 +46,7 @@
                         <a routerLink="/exams/{{ exam.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
                             <i class="material-icons">preview</i>
                         </a> 
-                        <a type="button" rel="tooltip" (click)="removeExam(exam)"
+                        <a type="button" rel="tooltip" (click)="openDeleteModal('deleteModal', exam)"
                         class="btn btn-danger btn-link btn-just-icon btn-sm" data-original-title="" title="delete exam">
                             <i class="material-icons">close</i>
                         </a>
@@ -130,4 +130,27 @@
         </div>
         <!-- /form card cc payment -->
     </div>
+    </jw-modal>
+
+
+    <jw-modal id="deleteModal">
+        <div class="col-md-4 offset-md-4">
+        <div class="card card-outline-secondary" *ngIf="examForDelete">
+          <div class="card-body">
+              <h4 class="text-center">Are you sure you want to delete this exam?</h4>
+          <div class="card card-body">
+            <div class="row">
+                <div class="col-md-6 mb-2 form-group">
+                  <button type="submit" rel="tooltip" 
+                      class="btn btn-danger btn-sm" data-original-title="" (click)="removeExam(examForDelete)" title="delete">Delete</button>
+                  </div>
+                  <div class="col-md-6 mb-2 form-group text-right">
+                    <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+                  class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+                </div>
+              </div>
+          </div>
+        </div>  
+        </div>
+      </div>
     </jw-modal>

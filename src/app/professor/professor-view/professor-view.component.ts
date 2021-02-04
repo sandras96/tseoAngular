@@ -7,6 +7,7 @@ import { ExamTaking } from 'src/app/model/exam-taking.model';
 import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { CourseService } from 'src/app/services/course.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-professor-view',
@@ -29,7 +30,8 @@ export class ProfessorViewComponent implements OnInit {
   constructor(private professorService: ProfessorService,
               private courseService : CourseService,
               private route : ActivatedRoute,
-              private router : Router) { }
+              private router : Router,
+              private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.getProfessor(this.route.snapshot.paramMap.get('id'));
@@ -48,6 +50,8 @@ export class ProfessorViewComponent implements OnInit {
           this.getUserAuth(data.user.id);
         },
         error => {
+          this.toastr.error("The Professor not found!","Error!")
+          this.router.navigate(['professors']);
           console.log(error);
         }
       )
@@ -99,8 +103,9 @@ addCourse(courseId : number){
   })
 }
 
-removeExamTaking(examTaking : ExamTaking){
-  this.examtakings = this.examtakings.filter(et => et! == examTaking);
-}
+// removeExamTaking(examTaking : ExamTaking){
+//   console.log("ehaat" , examTaking)
+//   this.examtakings = this.examtakings.filter(et => et! == examTaking);
+// }
  
 }

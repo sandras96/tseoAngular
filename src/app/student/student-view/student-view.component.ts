@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { ExamTakingService } from 'src/app/services/exam-taking.service';
 import { Course } from 'src/app/model/course.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/model/student.model';
 import { StudentService } from 'src/app/services/student.service';
@@ -11,6 +11,7 @@ import { DocumentService } from 'src/app/services/document.service';
 import { Payment } from 'src/app/model/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { UploadFileService } from 'src/app/services/upload-file.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-view',
@@ -29,11 +30,12 @@ export class StudentViewComponent implements OnInit {
 
   constructor(private studentService : StudentService,
               private courseService : CourseService,
-              private documentService : DocumentService,
               private paymentService : PaymentService,
               private examTakingService : ExamTakingService,
               private uploadService: UploadFileService,
-              private route : ActivatedRoute) { }
+              private route : ActivatedRoute,
+              private toastr: ToastrService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.getStudent(this.route.snapshot.paramMap.get('id'));
@@ -51,6 +53,8 @@ export class StudentViewComponent implements OnInit {
           this.getExamTakings(data.id);
         }, 
         error => {
+          this.toastr.error("The Student not found!","Error!")
+          this.router.navigate(['students']);
           console.log(error);
         }
       )
@@ -146,9 +150,9 @@ export class StudentViewComponent implements OnInit {
     this.payments = this.payments.filter(p => p!== payment);
   }
 
-  removeExamTaking(et : ExamTaking){
-    console.log("remove Exam Taking", et)
-    this.examTakings = this.examTakings.filter(e => e!==et);
-  }
+  // removeExamTaking(et : ExamTaking){
+  //   console.log("remove Exam Taking", et)
+  //   this.examTakings = this.examTakings.filter(e => e!==et);
+  // }
   
 }

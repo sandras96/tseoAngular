@@ -1,3 +1,4 @@
+import { ModalService } from 'src/app/_modal';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +17,8 @@ export class ExamUnitComponent implements OnInit {
   constructor(private examService : ExamService, 
               private toastr : ToastrService,
               private router : Router,
-              public authService : AuthService) { }
+              public authService : AuthService,
+              private modalService : ModalService) { }
 
   ngOnInit(): void {
     this.date = new Date().toISOString().slice(0, 10);
@@ -41,4 +43,12 @@ export class ExamUnitComponent implements OnInit {
         console.log(error)
       })
   }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+}
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+}
 }

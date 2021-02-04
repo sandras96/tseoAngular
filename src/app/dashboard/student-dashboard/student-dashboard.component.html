@@ -1,39 +1,84 @@
-<div class="row">
-    <div class="col-sm-4">
-      <div class="card"  style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><a routerLink="/courses">My courses</a></h5>
-          <img src="assets/img/booksdash.png" >
-          <!-- <a routerLink="/courses" class="btn btn-primary">Courses</a> -->
+  
+  <div class="box">
+    <div class="container">
+     	<div class="row">
+			 
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+					<div class="box-part text-center">
+                        
+            <img src="assets/img/booksdash.png" >
+                        
+						<div class="title">
+							<h4>My Courses</h4>
+						</div>
+                        
+						<div class="text">
+							
+						</div>
+                        
+						<a routerLink="/courses">Learn More</a>
+                        
+					 </div>
+				</div>	 
+				
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+					<div class="box-part text-center">
+					    
+            <img src="assets/img/exam-pencil.png">
+                    
+						<div class="title">
+							<h4> My Exams</h4>
+						</div>
+                        
+						<div class="text">
+							
+						</div>
+                        
+						<a routerLink="/exams">Learn More</a>
+                        
+					 </div>
+				</div>	 
+				
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+					<div class="box-part text-center">
+                        
+            <img src="assets/img/calendar.png">
+                        
+						<div class="title">
+							<h4>Exam Periods</h4>
+						</div>
+                        
+						<div class="text">
+							
+						</div>
+                        
+						<a routerLink="/examperiods">Learn More</a>
+                        
+					 </div>
         </div>
-      </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+					<div class="box-part text-center">
+                        
+            <img src="assets/img/profile.png">
+                        
+						<div class="title">
+							<h4>My profile</h4>
+						</div>
+                        
+						<div class="text">
+							
+						</div>
+                        
+						<a (click)="goToMyProfile()">Learn More</a>
+                        
+					 </div>
+				</div>
+		
+		</div>		
     </div>
-    <div class="col-sm-4">
-      <div class="card"  style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><a routerLink="/exams">My exams</a></h5>
-          <img src="assets/img/exam-pencil.png" style="height: 100px; width: 100px;">
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card"  style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title"><a routerLink="/examperiods">Exam periods</a></h5>
-            <img src="assets/img/calendar.png" style="height: 100px; width: 100px;">
-         
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-sm-4" style="padding-top: 50px;">
-        <div class="card"  style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title" id="a"><a type="button" (click)="goToMyProfile()">My Account</a></h5>
-            <img src="assets/img/profile.png" style="height: 100px; width: 100px;">
-           
-          </div>
-        </div>
-      </div>
-  </div>
+</div>

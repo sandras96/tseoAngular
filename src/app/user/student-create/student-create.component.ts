@@ -60,6 +60,7 @@ export class StudentCreateComponent implements OnInit {
          this.toastr.success('Student '+data.firstname+ ' ' + data.lastname+ ' was successfully created.', "Success!")
          this.router.navigate(['/students/',data.id])
        },error=>{
+        this.toastr.error("Error, username or index number already taken!", "Error!");
          console.log(error)
        })
 

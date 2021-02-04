@@ -4,30 +4,30 @@
    <table class="table">
         <thead>
            <tr>
-                
-                <th class="text-center">Course exam</th>
-                <th class="text-center">Exam Period</th>
-                <th class="text-center">Points</th>
-                <th class="text-center">Mark</th>
-                <th class="text-center">Professor</th>
-                <th *ngIf="this.authService.userRole()=='admin'" class="text-right">Actions</th> 
+                <th></th>
+                <th>Course exam</th>
+                <th>Exam Period</th>
+                <th>Points</th>
+                <th>Mark</th>
+                <th>Professor</th>
+                <!-- <th *ngIf="this.authService.userRole()=='admin'" class="text-right">Actions</th>  -->
            </tr>
         </thead>
 
         <tbody>
            <tr *ngFor="let et of examTakings">
-             
-                <td  *ngIf="this.authService.userRole()=='admin'"class="text-center"><i class="fa fa-book"></i><a routerLink="/exams/{{ et.exam.id }}">{{et.exam.course.name}}</a></td>
-                <td *ngIf="this.authService.userRole()=='admin'" class="text-center"><a routerLink="/examperiods/{{ et.exam.examPeriod.id }}">{{et.exam.examPeriod.name}}</a></td> <!--dodati router link ka ispitnom roku-->
+                <td><i class="fa fa-book"></i></td>
+                <td  *ngIf="this.authService.userRole()=='admin'"><a routerLink="/exams/{{ et.exam.id }}">{{et.exam.course.name}}</a></td>
+                <td *ngIf="this.authService.userRole()=='admin'"><a routerLink="/examperiods/{{ et.exam.examPeriod.id }}">{{et.exam.examPeriod.name}}</a></td> <!--dodati router link ka ispitnom roku-->
               
               
-               <td *ngIf="this.authService.userRole()=='student'" class="text-center"><i class="fa fa-book"></i>{{et.exam.course.name}}</td>
-                <td *ngIf="this.authService.userRole()=='student'"class="text-center">{{et.exam.examPeriod.name}}</td>
+               <td *ngIf="this.authService.userRole()=='student'" >{{et.exam.course.name}}</td>
+                <td *ngIf="this.authService.userRole()=='student'">{{et.exam.examPeriod.name}}</td>
          
-                <td class="text-center">{{et.points}}</td>
-                <td class="text-center">{{et.mark}}</td>
-                <td  *ngIf="this.authService.userRole()=='admin'" class="text-center"><a routerLink="/professors/{{ et.professor.id }}">{{et.professor.firstname}}&nbsp;{{et.professor.lastname}}</a></td>
-                <td *ngIf="this.authService.userRole()=='student'" class="text-center"><ng-template #tipContent let-greeting="greeting"><p style="white-space: pre-wrap">{{et.professor.firstname}} {{et.professor.lastname}}</p><p style="white-space: pre-wrap">role: {{et.professor.role}}</p><p style="white-space: pre-wrap">email: {{et.professor.email}}</p><p style="white-space: pre-wrap"> phone: {{et.professor.phone}}</p></ng-template>
+                <td>{{et.points}}</td>
+                <td>{{et.mark}}</td>
+                <td  *ngIf="this.authService.userRole()=='admin'"><a routerLink="/professors/{{ et.professor.id }}">{{et.professor.firstname}}&nbsp;{{et.professor.lastname}}</a></td>
+                <td *ngIf="this.authService.userRole()=='student'" ><ng-template #tipContent let-greeting="greeting"><p style="white-space: pre-wrap">{{et.professor.firstname}} {{et.professor.lastname}}</p><p style="white-space: pre-wrap">role: {{et.professor.role}}</p><p style="white-space: pre-wrap">email: {{et.professor.email}}</p><p style="white-space: pre-wrap"> phone: {{et.professor.phone}}</p></ng-template>
                   <a
                     type="button"
                     [ngbTooltip]="tipContent"
@@ -35,10 +35,10 @@
                   >
                     {{et.professor.firstname}}&nbsp;&nbsp;{{et.professor.lastname}}
               </a></td>
-                <td  *ngIf="this.authService.userRole()=='admin'"  class="text-right"><a type="button" rel="tooltip" (click)="removeExamTaking(et)"
+                <!-- <td  *ngIf="this.authService.userRole()=='admin'"  class="text-right"><a type="button" rel="tooltip" (click)="removeExamTaking(et)"
                     class="btn btn-danger btn-sm" data-original-title="" title="delete">
                     <i class="material-icons">close</i>
-                </a></td>
+                </a></td> -->
            </tr>
         </tbody>
     </table>

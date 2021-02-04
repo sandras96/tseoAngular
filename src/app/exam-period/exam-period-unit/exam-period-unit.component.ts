@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ExamPeriod } from 'src/app/model/exam-period.model';
 import { ExamPeriodService } from 'src/app/services/exam-period.service';
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-exam-period-unit',
@@ -14,7 +15,8 @@ export class ExamPeriodUnitComponent implements OnInit {
   @Input() examPeriod : ExamPeriod;
   constructor(private examPeriodService : ExamPeriodService,
               private toastr : ToastrService,
-              private router : Router) { }
+              private router : Router,
+              private modalService : ModalService) { }
 
   ngOnInit(): void {
   }
@@ -40,4 +42,12 @@ export class ExamPeriodUnitComponent implements OnInit {
         }
       )
   }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+}
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+}
 }

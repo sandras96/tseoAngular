@@ -47,6 +47,44 @@ export class UserViewComponent implements OnInit {
   }
   get f() { return this.changeForm.controls; }
 
+  getUser(id){
+    console.log("getUser()")
+    this.userService.get(id)
+      .subscribe(data => {
+        this.user = data;
+        console.log(data)
+      },
+      error =>{
+        this.toastr.error("The user not found!","Error!")
+        this.router.navigate(['users']);
+        console.log(error)
+      })
+  }
+
+  deleteUser(){
+    this.userService.delete(this.user.id)
+      .subscribe(data=>{
+        this.router.navigate(['users']);
+        this.toastr.success("The user "+this.user.username+" was successfully deleted!","Success!");
+      },error=>{
+        console.log(error)
+        this.toastr.error("Error, try again!", "Error!");
+      })
+
+  }
+
+  updateUser(){
+    this.userService.update(this.user.id, this.user)
+      .subscribe(data=>{
+        this.toastr.success("The username was sucessfully updated!", "Success!");
+        console.log(this.user)
+        console.log(data)
+      },
+      error => {
+        this.toastr.error("Error, try again!", "Error!")
+        console.log(error)
+      })
+  }
   openModal(id: string) {
     this.modalService.open(id);
 }
@@ -56,17 +94,6 @@ export class UserViewComponent implements OnInit {
     this.changeForm.reset();
 }
   
-  getUser(id){
-    this.userService.get(id)
-      .subscribe(data => {
-        this.user = data;
-        console.log(data)
-      },
-      error =>{
-        console.log(error)
-      })
-  }
-
   onSubmitChangePass(){
     this.submitted = true;
 
@@ -74,14 +101,9 @@ export class UserViewComponent implements OnInit {
         return false;
     }
        this.changePassword()
-   
-  }
-  changePasswordAdmin(){
-    
   }
   changePassword() : void{
     console.log("value forme je ", this.changeForm.value)
-   
     if(this.changeForm.value.newpassword === this.changeForm.value.cnewpassword){
 
       this.authService.changePassword(this.changeForm.value.oldpassword,this.changeForm.value.newpassword)
@@ -89,50 +111,24 @@ export class UserViewComponent implements OnInit {
           console.log(data)
         },(err:Error) => {
           if(err.toString()==='Unauthorized'){
-          
             console.log("Greska.");
-            
             this.toastr.error('Bad credentials!','Error');
             console.log(err);
           } 
           else if(err.toString()==="OK"){
             this.closeModal('changePasswordModal');
             this.toastr.success("Password was changed successfully!", "Success!")
-          }
+            }
           else{
-        
             this.toastr.error('Change password unsuccessful!','Error!');
           }
-         
-        }
-        );
-     
-      
+          });
+
       }else{
         this.toastr.error("Passwords don't match!", "Error!") 
 
       }
-          
-        
-          
-        
-    
-  }
+    }
 
-  deleteUser(){
 
-  }
-
-  updateUser(){
-    this.userService.update(this.user.id, this.user)
-      .subscribe(data=>{
-     //   this.user = data;
-        console.log(this.user)
-        console.log(data)
-      },
-      error => {
-        
-        console.log(error)
-      })
-  }
 }

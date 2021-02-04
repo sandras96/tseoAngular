@@ -31,7 +31,7 @@
             <button type="button"*ngIf="this.authService.userRole()=='student'"  (click)="openModalPayment('viewStudentPayment',payment.id)" class="btn btn-success btn-sm" data-original-title="" title="view payment">
               <i class="material-icons">preview</i>
             </button>  
-                  <a *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="removePayment(payment)"
+                  <a *ngIf="this.authService.userRole()=='admin'" type="button" rel="tooltip" (click)="openDeleteModal('deleteModal', payment)"
                     class="btn btn-danger btn-sm" data-original-title="" title="delete payment">
                     <i class="material-icons">close</i>
                 </a></td>
@@ -86,7 +86,6 @@
                       [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
                       <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
                         <div *ngIf="f.city.errors.required">City is required</div>
-                          <div *ngIf="f.city.errors.minlength">City must be at least 6 characters</div>
                     </div>
                     </div>
                     </div>
@@ -301,86 +300,49 @@
 
 <jw-modal id="viewStudentPayment">
 
-  <div class="col-md-6 offset-md-3">
-       
-      <div class="card card-outline-secondary">
-          <div class="card-body" *ngIf="editPay">
-              <h3 class="text-center">View payment</h3>
-             
-              <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-                 <div class="form-group">
-                     <label for="name">For: {{editPay.name}}</label>
-                    
-                   </div>
-                  
-                  <div class="form-group">
-                     <label for="accountNumber">Account number: {{editPay.accountNumber}}</label>
-                    
-                   </div>
-                   <div class="form-row">
-                     <div class="col-md-6 mb-2 form-group">
-                   <div class="form-group">
-                     <label for="address">Address: {{editPay.address}}</label>
-                  
-                   </div>
-                     </div>
-                     <div class="col-md-6 mb-2 form-group">
-                   <div class="form-group">
-                       <label for="city">City: {{editPay.city}}</label>
-                      
-                     </div>
-                     </div>
-                   </div>
-                   
-                   <div class="form-row">
-                     <div class="col-md-3 mb-2 form-group">
-                   <div class="form-group">
-                     <label for="paymentCode">Payment Code: {{editPay.paymentCode}}</label>
-                   </div>
-                </div>
-                <div class="col-md-9 mb-2 form-group">
-                   <div class="form-group">
-                     <label for="amount">Amount: {{editPay.amount}}</label>
-                   </div>
-                   </div>
-                   </div>
-                   <div class="form-group">
-                     <label for="purpose">Purpose: {{editPay.purpose}}</label>
-                  
-                   </div>
-                   <div class="col-md-m form-group">
-                     <div class="form-group">
-                         <label for="date">Date: {{editPay.date | date}}</label>
-                  
-                     </div>
-                   </div>
-                   <div class="form-row">
-                     <div class="col-md-6 mb-2 form-group">
-                   <div class="form-group">
-                     <label for="model">Payment Model: {{editPay.model}}</label>
-                   
-                   </div>
-                  </div>
-                  <div class="col-md-6 mb-2 form-group">
-                   <div class="form-group">
-                     <label for="reference">Reference number: {{editPay.reference}}</label>
-                    
-                   </div>
-                   </div>
-                   </div>
-                 <div class="row">
-                     <div class="col-md-6 mb-2 form-group">
-                  
-                       </div>
-                       <div class="col-md-6 mb-2 form-group text-right">
-                         <a type="button" rel="tooltip" (click)="closeModal('viewStudentPayment')"
-                       class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Close</a>
-                     </div>
-                   </div> 
-               </form>
-          </div>
-      </div>
-      <!-- /form card cc payment -->
+  <div class="col-md-6 offset-md-4"  *ngIf="editPay">
+    <div class="card" style="width: 26rem;">
+    <div class="card-header">
+      <h4 class="text-left col-md-6 mb-2 form-group">View Payment </h4>
+      <h6 class="date text-right  form-group text-muted">{{editPay.date | date}}</h6>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">For: {{editPay.name}}</li>
+      <li class="list-group-item">Account number: {{editPay.accountNumber}}</li>
+      <li class="list-group-item">Address: {{editPay.address}}</li>
+      <li class="list-group-item">City: {{editPay.city}}</li>
+      <li class="list-group-item">Payment Code: {{editPay.paymentCode}}</li>
+      <li class="list-group-item">Purpose: {{editPay.purpose}}</li>
+      <li class="list-group-item">Payment Model: {{editPay.model}}</li>
+      <li class="list-group-item">Reference number: {{editPay.reference}}</li>
+    </ul>
+    <div class="card-body form-group text-right">
+      <a type="button" rel="tooltip" (click)="closeModal('viewStudentPayment')"
+      class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Close</a>
+    </div>
+  </div>
  </div>
  </jw-modal>
  
+
+ <jw-modal id="deleteModal">
+  <div class="col-md-4 offset-md-4">
+  <div class="card card-outline-secondary" *ngIf="payForDelete">
+    <div class="card-body">
+        <h4 class="text-center">Are you sure you want to delete this payment?</h4>
+    <div class="card card-body">
+      <div class="row">
+          <div class="col-md-6 mb-2 form-group">
+            <button type="submit" rel="tooltip" 
+                class="btn btn-danger btn-sm" data-original-title="" (click)="removePayment(payForDelete)" title="delete">Delete</button>
+            </div>
+            <div class="col-md-6 mb-2 form-group text-right">
+              <a type="button" rel="tooltip" (click)="closeModal('deleteModal')"
+            class="btn btn-outline-secondary btn-sm" data-original-title="" title="close">Cancel</a>
+          </div>
+        </div>
+    </div>
+  </div>  
+  </div>
+</div>
+</jw-modal>

@@ -6,3 +6,35 @@
     color:#007BFF;
     
 }
+.container{
+    background-color: rgba(0, 0, 0, 0.048);
+}
+
+body{
+    background: #eee;
+}
+span{
+    font-size:7px;
+}
+a{
+  text-decoration:none; 
+  color: #0062cc;
+  border-bottom:1px solid #0062cc;
+}
+.box{
+    padding:0px 0px;
+}
+
+.box-part{
+    background:#FFF;
+    border-radius:0;
+    padding:30px 5px;
+    margin:15px 0px;
+}
+.text{
+    margin:10px 0px;
+}
+
+.fa{
+     color:#4183D7;
+}

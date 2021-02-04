@@ -1,6 +1,10 @@
 .a{
     text-decoration: none;
 }
+#a{
+    color:#007BFF
+  }
+
 
 .btn-group{
     position: relative;

@@ -27,7 +27,7 @@ export class ExamListComponent implements OnInit {
   date;
   professor : Professor;
   roles : string[];
-  
+  examForDelete : Exam;
 
   @Input() exams : Exam[];
   @Output() addExam = new EventEmitter<Exam[]>();
@@ -80,6 +80,7 @@ export class ExamListComponent implements OnInit {
     this.examService.delete(exam.id)
     .subscribe(data=>{
       this.deleteExam.emit(exam);
+      this.closeDeleteModal('deleteModal');
       this.toastr.success('Exam was successfully deleted!', 'Success!');
     }, error=>{
       console.log(error)
@@ -119,7 +120,14 @@ export class ExamListComponent implements OnInit {
     this.examForm.reset();
     this.submitted = false;
 }
-
+openDeleteModal(id: string, exam){
+  console.log("exam za brisanje", exam)
+  this.modalService.open(id);
+  this.examForDelete = exam;
+} 
+closeDeleteModal(id: string) {
+  this.modalService.close(id);
+}
 retrieveExams(search, param){
   console.log("serach je ", search , "a param by je ", param)
   if(search!=""){

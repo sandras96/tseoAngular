@@ -18,6 +18,7 @@ export class ExamPeriodListComponent implements OnInit {
   
   submitted = false;
   addForm : FormGroup;
+  epForDelete : ExamPeriod;
   @Input() examPeriods : ExamPeriod[];
   @Output() createExamPeriod = new EventEmitter<ExamPeriod[]>();
   @Output() deleteExamPeriod = new EventEmitter<ExamPeriod[]>();
@@ -68,6 +69,7 @@ export class ExamPeriodListComponent implements OnInit {
     this.examPeriodService.delete(examPeriod.id)
       .subscribe(data=>{
         this.deleteExamPeriod.emit(examPeriod);
+        this.closeModal('deleteModal')
         this.toastr.success('Exam period: '+ examPeriod.name + ' was successfully deleted!', "Deleted!")
       })
   }
@@ -81,9 +83,23 @@ export class ExamPeriodListComponent implements OnInit {
 }
 
 retrieveExams(search){
-  this.examPeriodService.findByName(search)
+  if(search!=""){
+    this.examPeriodService.findByName(search)
     .subscribe(data=>{
       this.examPeriods = data;
     })
+  }
+  else{
+    this.getExamPeriods();
+  }
+}
+getExamPeriods(){
+  this.examPeriodService.getAll().subscribe(data=>this.examPeriods=data);
+}
+
+openDeleteModal(id: string, ep){
+  console.log("ep za brisanje", ep)
+  this.modalService.open(id);
+  this.epForDelete = ep;
 }
 }
