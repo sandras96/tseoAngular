@@ -71,18 +71,6 @@ export class StudentViewComponent implements OnInit {
         }
       )
   }
-  // getDocuments(id){
-  //   this.documentService.getDocumentsByStudentId(id)
-  //     .subscribe(
-  //       data => {
-  //         this.documents = data;
-  //         console.log(data)
-  //       }, 
-  //       error => {
-  //         console.log(error)
-  //       }
-  //     )
-  // }
 
   getFiles(id){
     this.uploadService.getFiles(id)

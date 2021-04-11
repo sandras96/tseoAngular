@@ -1,3 +1,4 @@
+import { CreatePaymentComponent } from './student/student-payments/create-payment/create-payment.component';
 import { EnrrollmentsComponent } from './course/enrrollments/enrrollments.component';
 
 import { LoginGuard } from './services/login-guard.service';
@@ -84,6 +85,9 @@ import { CourseGuardService } from './services/course-guard.service';
 import { ExamGuardService } from './services/exam-guard.service';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
+import { AddPaymentComponent } from './student/student-payments/add-payment/add-payment.component';
+import { CreditCardComponent } from './student/student-payments/credit-card/credit-card.component';
+
 
 
 
@@ -146,7 +150,10 @@ import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashb
     ProfessorDashboardComponent,
     DashboardComponent,
     AdminDashboardComponent,
-   
+    AddPaymentComponent,
+    CreditCardComponent,
+    CreatePaymentComponent
+
    
   ],
   imports: [

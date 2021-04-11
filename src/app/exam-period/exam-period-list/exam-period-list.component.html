@@ -2,7 +2,7 @@
 <h4><small>Exam Periods</small> <span>&nbsp;&nbsp;&nbsp;</span>
     <a  *ngIf="this.authService.userRole()=='admin'" (click)="openModal('createEPModal')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add exam period">
     <i class="material-icons">add</i>
-    </a> <div class="input-group input-group-sm mb-3" style="width: 750px;">
+    </a> <div *ngIf="this.authService.userRole()=='admin'" class="input-group input-group-sm mb-3" style="width: 750px;">
         <input type="text"  placeholder="Search by name" #search  id="inputGroup-sizing-sm"
         class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
         <div class="input-group-append" id="btn">

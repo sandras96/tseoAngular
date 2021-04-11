@@ -22,6 +22,7 @@ export class AdminAuthGuard implements CanActivate {
     if(this.isLoggedIn){
       const user = this.tokenStorage.getUser();
       this.roles = user.authorities;
+     
        if(this.roles.includes("ADMIN")) return true;
         
        

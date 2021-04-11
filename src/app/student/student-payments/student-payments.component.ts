@@ -132,6 +132,9 @@ removeEditPayment(p){
     })
 
 }
+checkout(){
+  this.isShowDivIf= !this.isShowDivIf;
+}
 viewPayment(payment){
   this.editPay = payment;
   this.isShowDivIf = !this.isShowDivIf;

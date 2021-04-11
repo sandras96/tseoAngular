@@ -2,7 +2,7 @@
     <a *ngIf="this.authService.userRole()!='student'" (click)="openModal('createExam')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add exam">
     <i class="material-icons">add</i>
     </a>
-    <div class="input-group input-group-sm mb-3" style="width: 750px;">
+    <div  *ngIf="this.authService.userRole()=='admin'" class="input-group input-group-sm mb-3" style="width: 750px;">
         <div class="input-group-prepend">
         <select class="custom-select"  #param >
             <option hidden>Search by</option>
@@ -12,7 +12,7 @@
   </div>
         <input type="text"  placeholder="Search..." #search  id="inputGroup-sizing-sm"
         class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <div class="input-group-append" id="btn">
+        <div  class="input-group-append" id="btn">
             <a   (click)="retrieveExams(search.value, param.value)" class="btn btn-outline-secondary" type="button"><span class="material-icons">
                 search
                 </span></a>

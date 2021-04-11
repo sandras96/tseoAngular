@@ -13,6 +13,14 @@
    <div class="side">
         <nav id="sidebarMenu">
           <div >
+            <ul class="nav flex-column">
+              <!-- <div class="list-items">
+                <a routerLink="/dashboard" routerLinkActive="is-active" class="list-item" >
+                  <span data-feather="home"></span>
+                 dash
+                </a>
+              </div> -->
+            </ul>
             <div *ngIf="this.userRole()=='admin'">
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span id="title">Users</span>

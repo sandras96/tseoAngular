@@ -1,13 +1,3 @@
-<!-- <h1>Home Page</h1>
-<p>
-  Welcome {{this.username}}
-</p>
-<ul>
-  <li *ngIf="this.isLoggedIn && showAdminBoard"><a routerLink="/admin">Admin</a></li>
-  <li *ngIf="!this.isLoggedIn"><a routerLink="/login">Login</a></li>
-  <li *ngIf="this.isLoggedIn"><a routerLink="/login" (click)="this.logout()">Logout</a></li>
-</ul> -->
-
 
 <div *ngIf="this.checkLoggedIn()">
 <navbar>
@@ -15,9 +5,9 @@
 </navbar>
 
 </div>
-<!-- 
+
  <div style="margin-left: 500px;"*ngIf="!this.checkLoggedIn()">
 <login></login>
 
-</div>  -->
+</div>  
 

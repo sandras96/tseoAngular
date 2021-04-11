@@ -66,6 +66,7 @@ export class ExamPeriodExamsComponent implements OnInit {
     })
 }
  createExam(){
+  this.examForm.value.examPeriod = this.examPeriod;
    console.log(this.examForm.value, this.examPeriod)
     this.examService.createExam(this.examForm.value)
       .subscribe(data=>{

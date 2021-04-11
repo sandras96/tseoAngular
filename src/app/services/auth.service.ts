@@ -87,15 +87,7 @@ export class AuthService {
       localStorage.clear();
     }
     return !isExpired;
-  //  this.loggedInUser = true;
-    
-    
-   
-//  let token = localStorage.getItem('token');
-//   if(!token){
- //    return false;
- //  }
-// 
+
   }
 
   

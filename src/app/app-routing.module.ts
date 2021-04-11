@@ -1,3 +1,4 @@
+import { CreatePaymentComponent } from './student/student-payments/create-payment/create-payment.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { Course } from 'src/app/model/course.model';
 import { StudentDashboardComponent } from './dashboard/student-dashboard/student-dashboard.component';
@@ -44,25 +45,13 @@ import { ProfessorGuardService } from './services/professor-guard.service';
 import { ProfessorDashboardComponent } from './dashboard/professor-dashboard/professor-dashboard.component';
 import { CourseGuardService } from './services/course-guard.service';
 import { ExamGuardService } from './services/exam-guard.service';
+import { AddPaymentComponent } from './student/student-payments/add-payment/add-payment.component';
 
 const routes: Routes = [
  
-
-
- // { path: 'home', component: HomeComponent},
-
- // { path: 'navbar', component: NavbarComponent, canActivate:[AuthGuard]},
   
-  
- // { path: '', redirectTo: '/home', pathMatch: 'full' },
-{ path: '', component: LoginComponent},
-{ path: 'login', component: LoginComponent },
 { path: 'no-access', component: NoAccessComponent, canActivate:[AuthGuard]},
 { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
-//{ path: 'login', component: LoginComponent },
-//{ path: '', component: HomeComponent },
-//{ path: '',   redirectTo: '/home', pathMatch: 'full' },
-
 
 {path: 'courses', component: CourseComponent, canActivate:[AuthGuard]},
 {path: 'courses/:id', component: CourseViewComponent, canActivate:[AuthGuard, CourseGuardService]},
@@ -86,6 +75,9 @@ const routes: Routes = [
 {path: 'examperiods/:id' , component: ExamPeriodViewComponent, canActivate:[AuthGuard,AdminAuthGuard]},
 
 
+//{path: 'add-payment/:id' , component: AddPaymentComponent},
+
+{path: 'create-payment/:id', component: CreatePaymentComponent},
 //{ path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
 { path: '**', component: DashboardComponent }
 ];

@@ -27,21 +27,6 @@ export class NavbarComponent implements OnInit {
     
      this.userId = this.tokenStorage.getUser().id;
 
-    // this.isLoggedIn = this.authService.isLoggedIn();
-
-    // if (this.isLoggedIn) {
-      
-    //     const user = this.tokenStorage.getUser();
-    //     this.roles = user.authorities;
-    //     this.userRole = this.authService.userRole();
-    //     this.username = user.username;
-    //     this.isLoggedIn = true;
-     
-    
-    //   console.log("ROLES SU " + this.roles);
-    //   console.log("TRENUTNA ROLA JE " + this.userRole)
-    //   console.log("USER JE " + user.username);
-  //   this.currentUser = this.authService.getCurrentUser(this.userId);
    }
 
  
@@ -68,11 +53,6 @@ export class NavbarComponent implements OnInit {
     this.tokenStorage.signOut();
   }
   
-  showDashboard(){
-    if(this.isLoggedIn){
-      this.router.navigate(['dashboard'])
-    }
-  }
   goToMyProfile(){
     if(this.userRole()=='admin'){
       this.router.navigate(['users',this.userId]);
@@ -87,5 +67,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['professors', this.professor.id]);
     }
   }
+
+
 
 }

@@ -26,6 +26,7 @@ export class UploadFilesComponent implements OnInit {
   fileInfos: Observable<FileList>;
 
   @Output() uploadDocument = new EventEmitter<FileList>();
+  
   constructor(private uploadService: UploadFileService,
               private route : ActivatedRoute,
               private toastr : ToastrService,

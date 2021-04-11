@@ -20,7 +20,7 @@ export class UserService {
   get(user_id : number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/${user_id}`);
   }
-
+  
   create(user : User): Observable<any>{
     return this.http.post(`${this.baseUrl}`, user);
   }

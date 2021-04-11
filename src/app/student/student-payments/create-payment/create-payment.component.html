@@ -1,0 +1,386 @@
+<div class="container" *ngIf="student">
+
+<div class="row d-flex justify-content-center">
+    <div class="stepwizard col-md-offset-3">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+        <a (click)="onTabClick(0)" type="button" class="btn btn-primary btn-circle">1</a>
+        <p>Step 1</p>
+      </div>
+      <div class="stepwizard-step">
+        <a (click)="onTabClick(1)" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+        <p>Step 2</p>
+      </div>
+      <div class="stepwizard-step">
+        <a (click)="onTabClick(2)" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+        <p>Step 3</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <div class="row d-flex justify-content-center" *ngIf="tabIndex === 0">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
+            <div class="card border-0">
+                <span class="text-muted text-right"><h6>{{this.date | date}}</h6></span>
+                <div class="row justify-content-center">
+                    <h3 class="mb-4">Create Payment </h3>
+                    
+                </div>
+               
+                <div class="row">
+                    <div class="col-sm-7 border-line pb-3" *ngIf="financialCard">
+                        <div class="form-group">
+                            
+                          </div>
+                         
+                          <div class="form-group">
+                            <p class="text-muted text-sm mb-0">Student full name:  <span><h5>{{student.firstname}}&nbsp;{{student.lastname}}</h5></span></p> 
+                          </div>
+                            
+                         
+                          <div class="form-group">
+                            <p class="text-muted text-sm mb-0">Account number: <span><h5>840-1234567-13</h5></span></p> 
+                          </div>
+                         
+                          <div class="form-group">
+                            <span class="text-muted text-sm mb-0">Model: <h5>97</h5></span>  <p class="text-muted text-sm mb-0">Personal reference number: <span><h5>{{financialCard.reference}}</h5></span></p> 
+                          </div>
+                    
+                        
+                    </div>
+                    <div class="col-lg-5 text-sm-center justify-content-center pt-4 pb-4"> <small class="text-sm text-muted">Purpose</small>
+                        <h6><textarea formControlName="purpose" name="purpose" id="textarea" type="text" [ngClass]="{ 'is-invalid': submitted && f.purpose.errors }"> </textarea></h6> 
+                        <div *ngIf="submitted && f.assignment.errors" class="invalid-feedback">
+                          <div *ngIf="f.assignment.errors.required">Purpose is required</div>
+                      </div>
+                      <small class="text-sm text-muted">Amount</small>
+                        <div class="row px-3 justify-content-sm-center">
+                            <h4 class=""><span class="text-md font-weight-bold mr-2">RSD</span><input type="number" formControlName="amount" name="amount" id="textarea" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"></h4>
+                            <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                              <div *ngIf="f.amount.errors.required">Amount is required</div>
+                          </div>
+                          </div> <button type="submit" class="btn btn-red text-center mt-4" (click)="nextBtn1()">NEXT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center" *ngIf="tabIndex === 1">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11" formGroupName="creditCard">
+            <div class="card border-0">
+                <div class="row justify-content-center">
+                    <h3 class="mb-4">Credit Card Checkout</h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7 border-line pb-3">
+                        <div class="form-group">
+                          <div class="form-group"> <label><small><strong class="text-muted">CARD HOLDER</strong></small></label> <input class="form-control" placeholder="Devin Caldwell"> </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="form-group"> <label><small><strong class="text-muted">CARD NUMBER</strong></small></label>
+                            <div class="row px-3"> <input type="text" name="card-num" placeholder="0000 0000 0000 0000" size="18" id="cr_no" minlength="19" maxlength="19" formControlName="cardNumber">
+                                <p class="mb-0 ml-3">/</p> <img class="image ml-1" src="https://i.imgur.com/WIAP9Ku.jpg">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="line3">
+                            <div class="txt d-flex">
+                                <p><small class="text-muted">EXPERATION DATE</small></p>
+                                <p><small class="text-muted" >CVV</small></p>
+                            </div>
+                            <div class="form-group row"> <select class="form-control col-5">
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>march</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select> <select class="form-control col-4">
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                    <option>2025</option>
+                                </select> 
+                                <input class="col-3 col-md-2 offset-md-1 text-left" type="text" placeholder="234" size="1" minlength="3" maxlength="3" formControlName="cvc"> </div>
+                        </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-5 text-sm-center justify-content-center pt-4 pb-4"> <small class="text-sm text-muted">Purpose</small>
+                        <h5 class="mb-5" >{{f.purpose.value}}</h5> <small class="text-sm text-muted">Payment amount</small>
+                        <div class="row px-3 justify-content-sm-center">
+                            <h2 class=""><span class="text-md font-weight-bold mr-2">$</span><span class="text-danger">{{f.amount.value}}</span></h2>
+                        </div> <button type="submit" class="btn btn-red text-center mt-4" (click)="nextBtn2()">NEXT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+  
+    
+</form>-->
+
+
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" *ngIf="student">
+  <div *ngIf="tabIndex === 0">
+<div class='container-fluid mt-5 mb-5 p-0' >
+  <div class="inner row d-flex justify-content-center">
+      <div class="card card1 col-md-5 col-12 box1">
+          <div class="card-content">
+              <div class="card-header">
+                  <div class="heading mb-3" style="float:right"> PAYMENT </div>
+                </div>
+               <div>
+                 <div id="formId">
+                    <div class="form-group"> <label><small><strong class="text-muted">STUDENT</strong></small></label></div> <textarea class="text-left" value="{{student.firstname}} {{student.lastname}}&#13;&#10; {{student.address}}" disabled></textarea>
+                    <!-- <input class="text-left"  value="{{student.address}}"disabled> -->
+                        
+                   <br/>
+                      <div class="form-group" style="padding-top:20px"> <label><small><strong class="text-muted">PURPOSE</strong></small></label>
+                       <textarea class="form-control" formControlName="purpose"></textarea> 
+                   
+                        </div>
+                      
+                          <div class="form-group"> <label><small><strong class="text-muted">KOME</strong></small></label>
+                            <div class="d-flex card-number"> <textarea class="form-control"></textarea> </div>
+                        </div>
+                      </div>
+                     
+               
+             
+              </div>
+          </div>
+      </div>
+    
+      <div class="card card2 col-md-5 col-12 box1" *ngIf="financialCard">
+          <div class="card-content">
+              <div class="card-header">
+                  <div class="heading mb-3"  style="float:right"> {{this.date}} </div>
+              </div>
+              <div id="formId">
+                
+                      <div class="form-group"> <label><small><strong class="text-muted">ACCOUNT NUMBER</strong></small></label></div> <input class="text-left" value="{{financialCard.accountNumber}}" disabled>
+                     
+                      <div class="line3">
+                        
+                      <div class="txt d-flex">
+                        <p><small class="text-muted">MODEL</small></p>
+                        <p><small class="text-muted">REFERENCE</small></p>
+                      </div>
+                      <input class="col-3 col-md-2  text-center" type="text" value="{{financialCard.model}}"disabled> 
+                      <input class="col-3 col-md-8 offset-md-2 text-right" type="text" value="{{financialCard.reference}}"disabled> 
+                    </div>
+                    <br/>
+                 
+                    <br/>
+                    <div class="txt1 d-flex">
+                      <p><small class="text-muted">AMOUNT</small></p>
+                      
+                    </div>
+                    <input id="idAmount"class="col-3 col-md-4 text-center" formControlName="amount" type="text"> 
+               
+                </div>
+              <div class="card-footer3 col-10 offset-1 border-0 footer2">
+                
+                <button type="submit" style="float:right" class="btn btn-red text-center mt-4" (click)="nextBtn1()">NEXT</button>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<div *ngIf="tabIndex === 1">
+  <div class='container-fluid mt-5 mb-5 p-0' formGroupName="creditCard">
+    <div class="inner row d-flex justify-content-center">
+        <div class="card card1 col-md-5 col-12 box1">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="heading mb-3" style="float:right">CREDIT CARD DETAILS </div>
+                  </div>
+                 
+                   <div id="formId">
+                      
+                     
+                         <div class="form-group">
+                          <div class="form-group"> <label><small><strong class="text-muted">CARD HOLDER</strong></small></label> <input class="form-control" placeholder="John Doe" formControlName="name"> </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                          <div class="form-group"> <label><small><strong class="text-muted">CARD NUMBER</strong></small></label>
+                            <div class="row px-3"> <input type="text" name="card-num" placeholder="0000 0000 0000 0000" size="18" id="cr_no" minlength="19"  maxlength="19" formControlName="cardNumber">
+                                <p class="mb-0 ml-3">/</p> <img class="image ml-1" src="https://i.imgur.com/WIAP9Ku.jpg">
+                            </div>
+                            </div>
+                        </div>
+                              <div class="line3">
+                                <br/>
+                                  <div class="txt d-flex">
+                                      <p><small class="text-muted">EXPERATION DATE</small></p>
+                                      <p><small class="text-muted" style="margin-right: 6px;">CVV</small></p>
+                                  </div>
+                                  <div class="form-group row"> <select class="form-control col-5">
+                                          <option>January</option>
+                                          <option>February</option>
+                                          <option>march</option>
+                                          <option>April</option>
+                                          <option>May</option>
+                                          <option>June</option>
+                                          <option>July</option>
+                                          <option>August</option>
+                                          <option>September</option>
+                                          <option>October</option>
+                                          <option>November</option>
+                                          <option>December</option>
+                                      </select> <select class="form-control col-4">
+                                          <option>2020</option>
+                                          <option>2021</option>
+                                          <option>2022</option>
+                                          <option>2023</option>
+                                          <option>2024</option>
+                                          <option>2025</option>
+                                      </select> <input class="col-3 col-md-2 offset-md-1 text-center" style="padding-top: 8px;" type="text" placeholder="234" formControlName="cvc"> </div>
+                              </div>
+                              <!-- <div class="form-group" style="padding-top:20px"> <label><small><strong class="text-muted">AMOUNT</strong></small></label></div>
+                              <input class="col-6" style="color:red" value="RSD {{f.amount.value}}" disabled> -->
+                        </div>
+                       
+                 
+               
+                
+                <div class="card-footer col-10 offset-1 border-0 footer2">
+                  
+                  <button type="button" id="btnBack"style="float:left;" class="btn btn-red text-center" (click)="backBtn1()">BACK</button>
+              </div>
+            </div>
+        </div>
+      
+        <div class="card card2 col-md-5 col-12 box1" >
+            
+              
+                  <div class="card-content">
+                    <div class="card-header">
+                      <div class="heading mb-3" style="float:right"> </div>
+                      
+                    </div>
+                    <div id="formId">
+                    <div class="card-body">
+                        <p><small> Enter your credit card details.</small></p>
+                         <div class="credit d-block mt-5 mx-auto"> <img class="frnt" src="assets/img/cardpro.jpg" width="180px"> <img class="back" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1575707450/main-qimg-bd6b7e786c2fdb670c89c6ded8fcb973.webp" width="180px"> </div> 
+                    </div>
+                </div>
+                    
+                 
+                <div class="card-footer2 col-10 offset-1 border-0 footer2">
+                  
+                  <button type="button" style="float:right" class="btn btn-red text-center mt-4" (click)="nextBtn2()">NEXT</button>
+              </div>
+                  </div>
+                
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <div  *ngIf="tabIndex === 2" >
+     <div class='container-fluid mt-5 mb-5 p-0' formGroupName="creditCard">
+    <div class="inner row d-flex justify-content-center">
+        <div class="card card1 col-md-5 col-12 box1">
+              <div class="card-content">
+                  <div class="card-header">
+                      <div class="heading mb-3" style="float:right">CREDIT CARD CHECKOUT </div>
+                    </div>
+                  
+                     <div id="formId">
+                        
+                       
+                           <div class="form-group">
+                            <div class="form-group"> <label><small><strong class="text-muted">CARD HOLDER</strong></small></label> <input type="text" value="{{f.creditCard.controls.name.value}}" disabled /></div> 
+                          </div>
+                      
+                          <div class="form-group">
+                            <div class="form-group"> <label><small><strong class="text-muted">CARD NUMBER</strong></small></label>
+                              <div class="row px-3"> <input type="text" name="card-num" value="{{f.creditCard.controls.cardNumber.value}}" disabled/>
+                                  <p class="mb-0 ml-3">/</p> <img class="image ml-1" src="https://i.imgur.com/WIAP9Ku.jpg">
+                              </div>
+                              </div>
+                          </div>
+                                <div class="line3">
+                                
+                                    <div class="txt d-flex">
+                                        <p><small class="text-muted">VALID THRU</small></p>
+                                        <p><small class="text-muted" style="margin-right: 145px;">CVV</small></p>
+                                    </div>
+                                    <div class="form-group row"> 
+                                      <input class="col-2 col-md-2 offset-md-1 text-center" value="{{this.date}}" disabled/>
+                                           
+                                         <input class="col-2 col-md-2 offset-md-1 text-center" style="padding-top: 8px;" type="text" value="{{f.creditCard.controls.cvc.value}}"disabled/> </div>
+                                </div>
+                                <div class="form-group" style="padding-top:20px"> <label><small><strong  style="color:#EF5350" >TOTAL</strong></small></label>
+                                <input class="col-4" style="color:#EF5350; font-weight: 900" value="&nbsp; {{f.amount.value}} RSD" disabled></div>
+                          </div>
+                         
+                   
+                         
+                          <div class="card-footer col-10 offset-1 border-0 footer2">
+                  
+                            <button type="button" id="btnBack"style="float:left;" class="btn btn-red text-center" (click)="backBtn2()">BACK</button>
+                        </div>
+                
+              </div>
+          </div>
+        
+          <div class="card card2 col-md-5 col-12 box1" *ngIf="student" >
+              <div class="card-content">
+                  <div class="card-header">
+                      <div class="heading mb-3"  style="float:right"> PAYMENT DETAILS </div>
+                  </div>
+                  <div id="formId">
+                
+                    <div class="form-group"> <label><small><strong class="text-muted">ACCOUNT NUMBER</strong></small></label></div> <input class="text-left" value="{{financialCard.accountNumber}}" disabled>
+                   
+                    <div class="line3">
+                      
+                    <div class="txt d-flex">
+                      <p><small class="text-muted">MODEL</small></p>
+                      <p><small class="text-muted">REFERENCE</small></p>
+                    </div>
+                    <input class="col-3 col-md-2  text-center" type="text" value="{{financialCard.model}}"disabled> 
+                    <input class="col-3 col-md-8 offset-md-2 text-right" type="text" value="{{financialCard.reference}}"disabled> 
+                  </div>
+                 
+                  <div class="form-group"> <label><small><strong class="text-muted">PURPOSE</strong></small></label></div> <input value="{{f.purpose.value}}" disabled/>
+                  <!-- <input class="text-left"  value="{{student.address}}"disabled> -->
+                 
+                        
+                    
+                  <div class="form-group"> <label><small><strong class="text-muted">STUDENT</strong></small></label></div> <input value="{{student.firstname}} {{student.lastname}}" disabled/>
+                  
+                 <br/>
+                  
+              </div>
+                  <div class="card-footer col-10 offset-1 border-0 footer2">
+                    
+                    <button type="submit" style="float:right" class="btn btn-red1 text-center mt-4" type="submit">PAY</button>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>

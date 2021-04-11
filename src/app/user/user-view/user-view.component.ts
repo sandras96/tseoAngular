@@ -19,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserViewComponent implements OnInit {
 
- 
+  private roles;
   user : User;
   submitted = false;
  
@@ -51,8 +51,17 @@ export class UserViewComponent implements OnInit {
     console.log("getUser()")
     this.userService.get(id)
       .subscribe(data => {
-        this.user = data;
         console.log(data)
+        this.roles = data.authorities;
+        const isAdmin = this.roles.some(role => role.name === "ADMIN");
+        if(isAdmin){
+          this.user = data;
+        } 
+        else{
+          this.toastr.error("Admin not found!","Error!")
+          this.router.navigate(['users'])
+        }
+       
       },
       error =>{
         this.toastr.error("The user not found!","Error!")

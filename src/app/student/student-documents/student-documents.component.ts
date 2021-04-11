@@ -41,5 +41,6 @@ export class StudentDocumentsComponent implements OnInit {
   }
 uploadDocument(doc){
   this.documents = [...this.documents, doc]
+ //this.documents.push(doc);
 }
 }
