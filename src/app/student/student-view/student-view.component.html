@@ -22,7 +22,7 @@
                         <li><a (click)="onTabClick(1)"><span class="fa fa-book"></span> Courses</a></li>
                         <li><a (click)="onTabClick(2)"><span class="fa fa-pencil"></span> Examinations</a></li>
                         <li><a (click)="onTabClick(3)"><span class="fa fa-file-text-o"></span> Documents</a></li>
-                        <li><a (click)="onTabClick(4)"><span class="fa fa-credit-card"></span> Payments</a></li>
+                        <li><a (click)="onTabClick(4)"><span class="fa fa-credit-card"></span> Financial Card</a></li>
                     </ul> 
 
 
@@ -43,7 +43,7 @@
                         <app-student-courses  *ngIf="tabIndex === 1" [courses]="courses" (deleteCourse)="removeCourse($event)" (addCourse)="addCourse($event)"></app-student-courses>
                         <app-student-exams  *ngIf="tabIndex === 2" [examTakings]="examTakings"></app-student-exams>
                         <app-student-documents  *ngIf="tabIndex === 3" [documents]="documents" (deleteDocument)="removeDocument($event)" (uploadDocument)="uploadDocument($event)" ></app-student-documents>
-                        <app-student-payments  *ngIf="tabIndex === 4" [payments]="payments" (createPayment)="addPayment($event)"(deletePayment)="removePayment($event)" [student]="student"></app-student-payments>
+                        <app-student-payments  *ngIf="tabIndex === 4" [payments]="payments" (createPayment)="addPayment($event)"(deletePayment)="removePayment($event)" [student]="student" [financialCard]="financialCard"></app-student-payments>
                     </div>
                     
                     </div>

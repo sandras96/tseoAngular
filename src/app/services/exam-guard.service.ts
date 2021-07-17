@@ -33,6 +33,7 @@ export class ExamGuardService implements CanActivate{
       this.roles = user.authorities;
       
       this.professor = JSON.parse(localStorage.getItem('currentProfessor'));
+    
       this.examId = route.params.id;
       if(this.roles.includes("ADMIN"))return true
      

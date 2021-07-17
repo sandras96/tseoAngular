@@ -51,4 +51,7 @@ export class StudentService {
     return this.http.get(`${this.baseUrl}/searchByIndexnumber/${indexnum}`);
   }
 
+  signUpExam(data, student_id) : Observable<any>{
+    return this.http.put(`${this.baseUrl}/signExam/${student_id}`, data);
+  }
 }

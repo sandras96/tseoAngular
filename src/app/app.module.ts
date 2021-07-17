@@ -1,3 +1,4 @@
+import { ExamRegisteredComponent } from './exam/exam-registered/exam-registered.component';
 import { CreatePaymentComponent } from './student/student-payments/create-payment/create-payment.component';
 import { EnrrollmentsComponent } from './course/enrrollments/enrrollments.component';
 
@@ -93,6 +94,7 @@ import { CreditCardComponent } from './student/student-payments/credit-card/cred
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -152,7 +154,8 @@ import { CreditCardComponent } from './student/student-payments/credit-card/cred
     AdminDashboardComponent,
     AddPaymentComponent,
     CreditCardComponent,
-    CreatePaymentComponent
+    CreatePaymentComponent,
+    ExamRegisteredComponent
 
    
   ],

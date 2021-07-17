@@ -7,4 +7,5 @@ export class FinancialCard {
     model : number;
     reference : String;
     student : Student;
+    balance : number;
 }

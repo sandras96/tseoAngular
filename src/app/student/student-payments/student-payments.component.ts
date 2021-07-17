@@ -1,3 +1,4 @@
+import { FinancialCard } from './../../model/financial-card.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -22,6 +23,7 @@ export class StudentPaymentsComponent implements OnInit {
   showEditPay= false;
   @Input() payments : Payment[];
   @Input() student : Student;
+  @Input() financialCard : FinancialCard;
   @Output() createPayment = new EventEmitter<Payment[]>();
   @Output() deletePayment = new EventEmitter<Payment[]>();
   date;

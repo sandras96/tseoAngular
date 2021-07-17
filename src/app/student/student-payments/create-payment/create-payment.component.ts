@@ -1,9 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from './../../../services/payment.service';
 import { FinancialCardService } from './../../../services/financial-card.service';
 import { FinancialCard } from './../../../model/financial-card.model';
 import { StudentService } from './../../../services/student.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from 'src/app/model/student.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -21,9 +22,11 @@ export class CreatePaymentComponent implements OnInit {
   date : String;
   
   constructor(private route : ActivatedRoute,
+              private router : Router,  
               private studentService : StudentService,
               private financialCardService : FinancialCardService,
-              private paymentService : PaymentService) { }
+              private paymentService : PaymentService,
+              private toastrService : ToastrService) { }
 
   ngOnInit(): void {
     this.getStudent(this.route.snapshot.paramMap.get('id'));
@@ -33,6 +36,7 @@ export class CreatePaymentComponent implements OnInit {
       financialCard : new FormControl(this.financialCard),
       purpose : new FormControl('', Validators.required),
       amount: new FormControl('', Validators.required),
+      accountName: new FormControl('', Validators.required),
       creditCard : new FormGroup({
           name : new FormControl('', [Validators.required]),
           cardNumber : new FormControl('',Validators.required ),
@@ -50,6 +54,8 @@ export class CreatePaymentComponent implements OnInit {
     console.log("creditcard je", this.paymentForm.controls)
     this.paymentService.create(this.paymentForm.value)
        .subscribe(data=>{
+         this.toastrService.success(`Success!`, `Payment successfully created! Current balance: ${data.financialCard.balance} RSD`)
+       //  this.router.navigate(['/students/',this.student.id])
          console.log(data)
     })
   }

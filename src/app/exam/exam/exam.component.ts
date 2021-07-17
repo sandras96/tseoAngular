@@ -1,3 +1,4 @@
+import { ExamRegisterService } from 'src/app/services/exam-register.service';
 import { ExamTakingService } from 'src/app/services/exam-taking.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,9 +19,12 @@ export class ExamComponent implements OnInit {
   professor : Professor;
   user : User;
   exams : Exam[];
-
+  unregisteredExams : Exam[];
+  registeredExams : Exam[];
+  
   constructor(private examService : ExamService,
-              private authService : AuthService) { }
+              private examRegisterService : ExamRegisterService,
+              public authService : AuthService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -45,7 +49,8 @@ export class ExamComponent implements OnInit {
     }
      if(this.authService.userRole()=="student"){
       this.student = JSON.parse(localStorage.getItem('currentStudent'))
-      this.getStudentExams(this.student);
+      this.getRegisteredExams(this.student);
+   //   this.getUnregisteredExams(this.student);
     }
      if(this.authService.userRole()=="professor"){
       this.professor = JSON.parse(localStorage.getItem('currentProfessor'))
@@ -53,8 +58,13 @@ export class ExamComponent implements OnInit {
     }
   }
 
-  getStudentExams(s){
-   
+  getRegisteredExams(s){
+      // this.examRegisterService.getAllRegistered(s.id)
+      //   .subscribe(data=>{
+      //     this.registeredExams = data;
+      //   },error=>{
+      //     console.log(error)
+      //   })
     this.examService.getByStudentId(s.id)
       .subscribe(data=>{
         this.exams = data;
@@ -64,8 +74,18 @@ export class ExamComponent implements OnInit {
         console.log(error)
       }
       )
+
   }
 
+/*  getUnregisteredExams(id){
+    this.examService.getByStudentId(id)
+      .subscribe(data=>{
+        this.exams = data;
+        console.log(data)
+      },error=>{
+        console.log(error)
+      })
+  }*/
   getProfessorExams(p){
     this.examService.getByProfessorId(p.id)
       .subscribe(data=>{

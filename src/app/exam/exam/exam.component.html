@@ -2,7 +2,10 @@
     <div class="col-lg-8 col-md-6">
         <app-exam-list [exams]="exams" (addExam)="createExam($event)" (deleteExam)="removeExam($event)"></app-exam-list>
     </div>
-    <div class="col-lg-4 col-md-4">
-        <!-- <app-student-detail [student]="student"></app-student-detail> -->
-    </div>
+<!--   <div class="col-lg-8 col-md-6" *ngIf='this.authService.userRole()=="student"'>
+        <app-student-exams [registeredExams]="registeredExams" [unregisteredExams]="unregisteredExams"></app-student-exams>
+    </div>--> 
+    <!-- <div class="col-lg-4 col-md-4">
+        <app-exam-registered [exams]="exams"></app-exam-registered> 
+    </div>  -->
 </div>

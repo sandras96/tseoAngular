@@ -1,3 +1,5 @@
+import { FinancialCardService } from './../../services/financial-card.service';
+import { TokenStorageService } from './../../services/token-storage.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -10,8 +12,11 @@ import { CourseService } from 'src/app/services/course.service';
 import { ExamPeriodService } from 'src/app/services/exam-period.service';
 import { ExamService } from 'src/app/services/exam.service';
 import { ProfessorService } from 'src/app/services/professor.service';
-import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { ModalService } from 'src/app/_modal';
+import { StudentService } from 'src/app/services/student.service';
+import { Student } from 'src/app/model/student.model';
+import { FinancialCard } from 'src/app/model/financial-card.model';
+import { ExamRegisterService } from 'src/app/services/exam-register.service';
 
 @Component({
   selector: 'app-exam-list',
@@ -28,6 +33,15 @@ export class ExamListComponent implements OnInit {
   professor : Professor;
   roles : string[];
   examForDelete : Exam;
+  student : Student;
+  financialCard : FinancialCard;
+  signExams = [];
+  checked = [];
+  balanceAfter : any;
+
+
+  selectedItemsList = [];
+  checkedIDs = [];
 
   @Input() exams : Exam[];
   @Output() addExam = new EventEmitter<Exam[]>();
@@ -37,12 +51,15 @@ export class ExamListComponent implements OnInit {
               private courseService : CourseService,
               private examPeriodService : ExamPeriodService,
               private professorService : ProfessorService,
+              private examRegisterService : ExamRegisterService,
+              private financialCardService : FinancialCardService,
               private tokenStorage : TokenStorageService,
               private modalService: ModalService,
               private toastr : ToastrService,
               public authService : AuthService) { }
 
   ngOnInit(): void {
+    console.log("U exam-list componenti sam!!")
     this.date = new Date().toISOString().slice(0, 10);
       this.examForm = new FormGroup({
          course : new FormControl('', Validators.required),
@@ -51,6 +68,10 @@ export class ExamListComponent implements OnInit {
          points : new FormControl('', Validators.required),
          examPeriod : new FormControl('', Validators.required)
        })
+       if(localStorage.getItem('currentStudent')){
+        this.getFinancialCard();
+       }
+    //   
   }
   get f() { return this.examForm.controls; }
 
@@ -161,4 +182,60 @@ else{
        console.log(data)
      })
  }
+
+
+ signUp(exam){
+  console.log("exam je ",exam)
+  this.signExams.push(exam);
+  this.student = JSON.parse(localStorage.getItem('currentStudent'));
+
+  this.examRegisterService.signUpExam(this.signExams,this.student.id)
+    .subscribe(data=>{
+      console.log(data)
+    })
+ }
+
+ register(){
+
+   console.log("cekni su", this.selectedItemsList)
+   this.student = JSON.parse(localStorage.getItem('currentStudent'));
+
+   this.examRegisterService.signUpExam(this.selectedItemsList,this.student.id)
+     .subscribe(data=>{
+       console.log(data)
+     })
+ }
+
+ changeSelection() {
+  
+  console.log("BALANCE AFTER")
+  this.fetchSelectedItems()
+  
+}
+;
+
+ fetchSelectedItems() {
+  this.selectedItemsList = this.exams.filter((value, index) => {
+    return value['checked']
+    
+  });
+  this.balanceAfter = this.financialCard.balance - (this.selectedItemsList.length * 200);
+}
+
+fetchCheckedIDs() {
+  this.checkedIDs = []
+  this.exams.forEach((value, index) => {
+    if (value['checked']) {
+      this.checkedIDs.push(value.id);
+    }
+  });
+}
+
+getFinancialCard(){
+  this.student = JSON.parse(localStorage.getItem('currentStudent'));
+  this.financialCardService.getByStudent(this.student.id)
+    .subscribe(data=>{
+      this.financialCard = data;
+    })
+}
 }

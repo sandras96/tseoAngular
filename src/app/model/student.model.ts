@@ -1,3 +1,4 @@
+import { FinancialCard } from "./financial-card.model";
 import { User } from "./user.model";
 
 export class Student {
@@ -14,6 +15,7 @@ export class Student {
     zip: number;
     indexNum : String;
     user : User;
+    financialCard: FinancialCard;
    
 
 }

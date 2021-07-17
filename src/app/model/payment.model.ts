@@ -9,6 +9,7 @@ export class Payment {
     deleted : boolean;
     purpose : String;
     reference : number;
+    accountName : String;
     financialCard : FinancialCard;
     creditCard : CreditCard;
 }

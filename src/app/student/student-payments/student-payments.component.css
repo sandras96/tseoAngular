@@ -20,7 +20,7 @@ input[type=number] {
 }
 
 
-body {
+/* body {
   color: #000;
   overflow-x: hidden;
   height: 100%;
@@ -122,4 +122,4 @@ button:focus {
       border-bottom: 1px solid #EEEEEE
   }
 }
-
+ */

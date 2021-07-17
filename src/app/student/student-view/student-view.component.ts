@@ -1,3 +1,5 @@
+import { FinancialCard } from './../../model/financial-card.model';
+import { FinancialCardService } from './../../services/financial-card.service';
 import { Observable } from 'rxjs';
 import { ExamTakingService } from 'src/app/services/exam-taking.service';
 import { Course } from 'src/app/model/course.model';
@@ -25,11 +27,12 @@ export class StudentViewComponent implements OnInit {
   examTakings : ExamTaking[];
   documents : Document[];
   payments : Payment[];
-
+  financialCard : FinancialCard;
   tabIndex = 0;
 
   constructor(private studentService : StudentService,
               private courseService : CourseService,
+              private financialCardService : FinancialCardService,
               private paymentService : PaymentService,
               private examTakingService : ExamTakingService,
               private uploadService: UploadFileService,
@@ -49,7 +52,9 @@ export class StudentViewComponent implements OnInit {
           this.student = data;
           this.getCourses(data.id);
           this.getFiles(data.id);
-          this.getPayments(data.id);
+          this.getFinancialCard(data.id);
+          console.log("student je s podacima", data)
+       //   this.getPayments(data.financialCard.id);
           this.getExamTakings(data.id);
         }, 
         error => {
@@ -81,8 +86,16 @@ export class StudentViewComponent implements OnInit {
         console.log(error)
       })
   }
+  getFinancialCard(id){
+    this.financialCardService.getByStudent(id)
+      .subscribe(data=>{
+        this.financialCard = data;
+        this.getPayments(data.id);
+      })
+  }
   getPayments(id){
-    this.paymentService.getPaymentsByStudentId(id)
+    console.log("student je sa balancom kojim", this.student.financialCard)
+    this.paymentService.getPaymentsByFinancialCardId(id)
       .subscribe(
         data => {
           this.payments = data;

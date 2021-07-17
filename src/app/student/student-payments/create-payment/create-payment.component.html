@@ -155,8 +155,8 @@
                    
                         </div>
                       
-                          <div class="form-group"> <label><small><strong class="text-muted">KOME</strong></small></label>
-                            <div class="d-flex card-number"> <textarea class="form-control"></textarea> </div>
+                          <div class="form-group"> <label><small><strong class="text-muted">ACCOUNT NAME</strong></small></label>
+                            <div class="d-flex card-number"> <textarea class="form-control" formControlName="accountName"></textarea> </div>
                         </div>
                       </div>
                      
@@ -255,6 +255,9 @@
                                           <option>2025</option>
                                       </select> <input class="col-3 col-md-2 offset-md-1 text-center" style="padding-top: 8px;" type="text" placeholder="234" formControlName="cvc"> </div>
                               </div>
+                              <div class="form-group mb-0">
+                                <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" class="custom-control-input" checked> <label for="chk1" class="custom-control-label text-muted text-sm">save my card for future payment</label> </div>
+                            </div>
                               <!-- <div class="form-group" style="padding-top:20px"> <label><small><strong class="text-muted">AMOUNT</strong></small></label></div>
                               <input class="col-6" style="color:red" value="RSD {{f.amount.value}}" disabled> -->
                         </div>

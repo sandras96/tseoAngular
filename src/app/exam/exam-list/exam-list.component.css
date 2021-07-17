@@ -7,6 +7,15 @@
   .ngx-pagination {
     padding-inline-start: 0 !important;
   } */
+.card{
+    margin-top: -18.8rem;
+    margin-left: 48rem;
+    width: 18rem;
+}
+
+  #myCheckbox{
+    background-color: red;
+  }
   select{
     height: 30px;
     font-size: 13px;

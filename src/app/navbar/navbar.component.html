@@ -74,12 +74,30 @@
               </a>
             </h6>
             <ul class="nav flex-column">
+           <!--   <div class="list-items">
+                <a  routerLink="/registeredExams" class="list-item" routerLinkActive="selected">
+                  <span data-feather="home"></span>
+                  See all registered
+                </a>
+              </div>-->
               <div class="list-items">
                 <a  routerLink="/exams" class="list-item" routerLinkActive="selected">
                   <span data-feather="home"></span>
-                  See all
+                  See all 
                 </a>
               </div>
+          <!--   <div class="list-items" *ngIf="this.userRole()!='student'">
+                <a  routerLink="/registeredExams" class="list-item" routerLinkActive="selected">
+                  <span data-feather="home"></span>
+                  See all 
+                </a>
+              </div>
+              <div class="list-items" *ngIf="this.userRole()!='student'">
+                <a  routerLink="/unregisteredExams" class="list-item" routerLinkActive="selected">
+                  <span data-feather="home"></span>
+                  See all 
+                </a>
+              </div>--> 
               <div class="list-items">
                 <a  routerLink="/examperiods" class="list-item" routerLinkActive="selected">
                   <span data-feather="home"></span>

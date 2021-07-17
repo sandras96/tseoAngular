@@ -1,0 +1,17 @@
+<div class="card" *ngIf="financialCard"> 
+    <div class="card-header"> CURRENT BALANCE: {{financialCard.balance}}  RSD</div>
+    <div class="card-body">
+     
+        
+          <div>SUM: {{selectedItemsList.length * 200}},00 RSD</div>
+       
+    
+      <div class="card-footer bg-transparent border-info text-right row">
+        <div> Balance after: {{balanceAfter}} </div>
+    </div><button type="button" class="btn btn red btn-sm"(click)="register()">CHEKIRAJ</button>
+       <p></p>
+     
+    </div>
+     
+    </div>
+ 

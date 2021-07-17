@@ -18,8 +18,8 @@ export class PaymentService {
   update(pay_id : number, data) : Observable<any>{
     return this.http.put(`${this.baseUrl}/${pay_id}`, data);
   }
-  getPaymentsByStudentId(student_id : number) : Observable<any>{
-    return this.http.get(`${this.baseUrl}/student/${student_id}`);
+  getPaymentsByFinancialCardId(fc_id : number) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/financialCard/${fc_id}`);
   }
   delete(pay_id : number) : Observable<any>{
     return this.http.delete(`${this.baseUrl}/${pay_id}`);

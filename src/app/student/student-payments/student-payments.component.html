@@ -1,12 +1,12 @@
 <div *ngIf="!isShowDivIf">
-<div id="divAdd" class="text-right"><span id="span">create payment &nbsp;</span>
+<div id="divAdd"><div class="text-left"><span style="color:RED">BALANCE: {{financialCard.balance}} RSD</span></div><div   class="text-right"><span id="span">create payment &nbsp;</span>
       <!-- <a type="button" rel="tooltip" (click)="openModal('createPaymentModal')" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create payment">
           <i class="material-icons">add</i>
           </a></div> -->
           <a type="button" rel="tooltip" routerLink="/create-payment/{{student.id}}" class="btn btn-outline-secondary btn-sm" data-original-title="" title="create payment">
             <i class="material-icons">add</i>
             </a></div>
-  
+          </div>
 
 <div class="table-responsive drive-items-table-wrapper"  >
                      
@@ -14,7 +14,7 @@
          <thead>
             <tr>
                  <th></th>
-                 <th>For</th>
+                
                  <th>Purpose</th>
                  <th>Date</th>
                  <th class="text-right">Amount</th>
@@ -25,7 +25,7 @@
          <tbody>
             <tr *ngFor="let payment of payments">
                  <td><i class="fa fa-credit-card"></i></td>
-                 <td>{{payment.name}}</td>
+                
                  <td>{{payment.purpose}}</td>
                  <td class="date">{{payment.date | date}}</td>
                  <td class="text-right">{{payment.amount}}</td>
@@ -195,10 +195,10 @@
           <form (ngSubmit)="f2.form.valid && editPayment()" #f2="ngForm">
              <div class="form-group">
                  <label for="name2">For</label>
-                 <input [(ngModel)]="editPay.name" type="text"  #name="ngModel" class="form-control" name="name2" placeholder="John Doe"
-                 [ngClass]="{ 'is-invalid': f2.submitted && name.errors }" required>
-                 <div *ngIf="f2.submitted && name.invalid" class="invalid-feedback">
-                  <div *ngIf="name.errors.required">Name is required</div>
+                 <input [(ngModel)]="editPay.accountName" type="text"  #accountName="ngModel" class="form-control" name="name2" placeholder="John Doe"
+                 [ngClass]="{ 'is-invalid': f2.submitted && accountName.errors }" required>
+                 <div *ngIf="f2.submitted && accountName.invalid" class="invalid-feedback">
+                  <div *ngIf="accountName.errors.required">Name is required</div>
               </div>
               </div>
                
@@ -210,9 +210,9 @@
                   <div *ngIf="accountNumber.errors.required">Account number is required</div>
               </div>
               </div>
-              <div class="form-row">
+            <!-- <div class="form-row">
               <div class="col-md-6 mb-2 form-group">
-             <div class="form-group">
+           <div class="form-group">
               <label for="address">Address</label>
               <input [(ngModel)]="editPay.address" type="text" #address="ngModel" class="form-control" id="address" name="address" placeholder="John Doe 123 Main St"
               [ngClass]="{ 'is-invalid': f2.submitted && address.errors }" required>
@@ -231,9 +231,9 @@
               </div>
               </div>
           </div>
-        </div>
+        </div>-->
         <div class="form-row">
-          <div class="col-md-3 mb-2 form-group">
+        <!--  <div class="col-md-3 mb-2 form-group">
               <div class="form-group">
                 <label for="paymentCode">Payment code</label>
                 <input [(ngModel)]="editPay.paymentCode" type="number" #paymentCode="ngModel" class="form-control" id="paymentCode" name="paymentCode" placeholder="289" min="0" oninput="validity.valid||(value='');"
@@ -242,7 +242,7 @@
                   <div *ngIf="paymentCode.errors.required">Payment code is required</div>
               </div>
               </div>
-          </div>
+          </div>-->
           <div class="col-md-9 mb-2 form-group">
               <div class="form-group">
                 <label for="amount">Amount</label>

@@ -1,3 +1,4 @@
+
 <h4><small>Exams</small> <span>&nbsp;&nbsp;&nbsp;</span>
     <a *ngIf="this.authService.userRole()!='student'" (click)="openModal('createExam')" type="button" rel="tooltip" class="btn btn-outline-secondary btn-sm" data-original-title="" title="add exam">
     <i class="material-icons">add</i>
@@ -29,6 +30,7 @@
                     <th>Points</th>
                     <th>Exam Period</th>
                     <th>Course</th>
+                    <th *ngIf="this.authService.userRole()=='student'">Sign up</th>
                     <th  *ngIf="this.authService.userRole()!='student'"class="text-right">Actions</th>
                 </tr>
             </thead>
@@ -42,7 +44,27 @@
                     <td *ngIf="this.authService.userRole()!='admin'" >{{exam.examPeriod.name}}</td>
                     <td *ngIf="this.authService.userRole()!='student'"><a routerLink="/courses/{{exam.course.id}}" data-original-title="" title="view course">{{exam.course.name}}</a></td>
                     <td *ngIf="this.authService.userRole()=='student'">{{exam.course.name}}</td>
-                    <td *ngIf="this.authService.userRole()!='student'" class="text-right"> 
+                    <!-- <td *ngIf="this.authService.userRole()=='student'">  <label>
+                        <input type="checkbox"  value="{{exam.id}}" [(ngModel)]="exam['checked']" /> sign up
+                       
+                    </label>
+                    <button (click)="signUp(exam)"></button> 
+                </td> -->
+               <td *ngIf="this.authService.userRole()=='student'"> 
+                <div class="bg">
+                  <div>
+                    <div class="chiller_cb">
+                    <input id="myCheckbox"  [(ngModel)]="exam['checked']" (change)="changeSelection()" type="checkbox" checked>
+                   
+                    
+                    <span></span>
+                  </div>
+                
+                  </div>
+                </div>
+                
+                 <!-- <input type="checkbox" [(ngModel)]="exam['checked']" (change)="changeSelection()"/> {{exam.id}}</td> -->
+               <td *ngIf="this.authService.userRole()!='student'" class="text-right"> 
                         <a routerLink="/exams/{{ exam.id }}" type="button"  class="btn btn-success btn-link btn-just-icon btn-sm" data-original-title="" title="view exam">
                             <i class="material-icons">preview</i>
                         </a> 
@@ -54,7 +76,71 @@
                 </tr>   
             </tbody>
         </table>
+        
 </div>
+
+ 
+
+
+<div class="card" *ngIf="financialCard"> 
+  <div class="card-header"> CURRENT BALANCE: {{financialCard.balance}}  RSD</div>
+  <div class="card-body">
+   
+      
+        <div>SUM: {{selectedItemsList.length * 200}},00 RSD</div>
+     
+  
+    <div class="card-footer bg-transparent border-info text-right row">
+      <div> Balance after: {{balanceAfter}} </div>
+      <button style="float: inline-end;" type="button" class="btn btn red btn-sm"(click)="register()">CHEKIRAJ</button>
+  </div>
+     <p></p>
+  
+  </div>
+   
+  </div>
+
+
+ 
+
+ <!-- <div class="col-4"><div class="card " style="width: 18rem;" *ngIf="financialCard">
+    <div class="card-header"> CURRENT BALANCE: {{financialCard.balance}} RSD</div>
+    <div class="card-body">
+     
+        
+          <div>SUM: {{selectedItemsList.length * 200}},00 RSD</div>
+       
+    
+      <div class="card-footer bg-transparent border-info text-right row">
+        <div> Balance after: {{balanceAfter}}  </div>
+      
+       <p></p>
+     
+    </div>
+     
+    </div>
+  </div></div> </div> -->
+  
+<!-- <div class="col-md-4">
+    <h4>No of Selected Hobbies: {{selectedItemsList.length}} </h4>
+    <ul>
+      <li *ngFor="let item of selectedItemsList">{{item.course.name}} : 200,00RSD</li>
+    </ul>
+    <ul>
+        <li>{{selectedItemsList.length * 200}}</li>
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+    <h4>Object</h4>
+    <code>
+    {{selectedItemsList | json}}
+    </code>
+
+    <h4>Array of IDs</h4>
+    <code>{{checkedIDs}}</code>
+  </div> -->
+
 
 <jw-modal id="createExam">
     <div class="col-md-6 offset-md-3">
